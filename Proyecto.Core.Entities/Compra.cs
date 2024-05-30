@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WinForm;
+namespace Proyecto.Core.Entities;
 
 public partial class Compra
 {

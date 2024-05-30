@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WinForm;
+namespace Proyecto.Core.Entities;
 
-public partial class Categorium
+public partial class Categoria
 {
     public int CategoriaId { get; set; }
 

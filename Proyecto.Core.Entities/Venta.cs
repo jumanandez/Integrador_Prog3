@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WinForm;
+namespace Proyecto.Core.Entities;
 
-public partial class Ventum
+public partial class Venta
 {
     public int VentaId { get; set; }
 
