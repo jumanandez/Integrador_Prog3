@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Proyecto.Core.Entities;
 
-namespace WinForm;
+namespace Proyecto.Core.Data;
 
 public partial class IntegradorProg3Context : DbContext
 {
     public IntegradorProg3Context()
     {
     }
-
+    
     public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<Categorium> Categoria { get; set; }
+    public virtual DbSet<Categoria> Categoria { get; set; }
 
     public virtual DbSet<Compra> Compras { get; set; }
 
@@ -23,7 +24,7 @@ public partial class IntegradorProg3Context : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
-    public virtual DbSet<Ventum> Venta { get; set; }
+    public virtual DbSet<Venta> Venta { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -32,7 +33,7 @@ public partial class IntegradorProg3Context : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Categorium>(entity =>
+        modelBuilder.Entity<Categoria>(entity =>
         {
             entity.HasKey(e => e.CategoriaId).HasName("PK__Categori__F353C1E5432C83E0");
 
@@ -84,7 +85,7 @@ public partial class IntegradorProg3Context : DbContext
             entity.Property(e => e.Salt).HasMaxLength(16);
         });
 
-        modelBuilder.Entity<Ventum>(entity =>
+        modelBuilder.Entity<Venta>(entity =>
         {
             entity.HasKey(e => e.VentaId).HasName("PK__Venta__5B4150ACB87417E5");
 
