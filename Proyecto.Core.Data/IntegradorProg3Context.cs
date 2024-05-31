@@ -1,21 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto.Core.Configurations;
 using Proyecto.Core.Entities;
 
 namespace Proyecto.Core.Data;
 
 public partial class IntegradorProg3Context : DbContext
 {
-    public IntegradorProg3Context()
+
+    //  Se le da la config al context
+
+    private readonly Config _config;
+    public IntegradorProg3Context(Config config)
     {
+        _config = config;
     }
     
-    public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
-        : base(options)
-    {
-    }
 
+    
+    //Este constructor no vamos a usar si usamos el Config
+    //Es el constructor que usa el EntityFramework.Core.Tools       lo que hace es que fuera de nuestra vista se conecta a la base de datos y usa la connectionstring, pero esto ni lo vemos, entonces no esta bueno
+
+    //public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
+    //    : base(options)
+    //{
+    //}
+
+    //Todos los DbSet Necesarios
     public virtual DbSet<Categoria> Categoria { get; set; }
 
     public virtual DbSet<Compra> Compras { get; set; }
@@ -26,12 +36,15 @@ public partial class IntegradorProg3Context : DbContext
 
     public virtual DbSet<Venta> Venta { get; set; }
 
+    //Aca la config para que se conecte y utilice nuestro Constructor
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+		optionsBuilder.UseSqlServer(_config.ConnectionString);
+	}
 
-    }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+	#region SETEO DE CLAVES PRIMARIAS Y RELACIONES ENTRE TABLAS
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Categoria>(entity =>
         {
@@ -104,6 +117,9 @@ public partial class IntegradorProg3Context : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+	#endregion
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    //NOSE QUE HACE PERO LO USA JEJE, (ESTO LO HIZO EL TOOLS TAMBIEN)
+	partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

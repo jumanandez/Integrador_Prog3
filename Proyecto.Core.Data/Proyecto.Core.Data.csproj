@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Proyecto.Core.Configurations\Proyecto.Core.Configurations.csproj" />
     <ProjectReference Include="..\Proyecto.Core.Entities\Proyecto.Core.Entities.csproj" />
   </ItemGroup>
 
