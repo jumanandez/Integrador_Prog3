@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "WinForm\WinForm.csproj", "{BCDB2178-EB31-408D-A8F2-10619EEE4ABA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForm", "WinForm\WinForm.csproj", "{BCDB2178-EB31-408D-A8F2-10619EEE4ABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{AB22F9C9-DD1F-4CDB-8CAF-926E3340FCFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{AB22F9C9-DD1F-4CDB-8CAF-926E3340FCFE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C7D813FC-5CAA-4BB5-8D9E-1F83CE5BEC72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_API", "Web_API\Web_API.csproj", "{FD7F1C18-6B4C-4D13-B7C7-4B38460F9F54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_API", "Web_API\Web_API.csproj", "{FD7F1C18-6B4C-4D13-B7C7-4B38460F9F54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Core.Entities", "Proyecto.Core.Entities\Proyecto.Core.Entities.csproj", "{9F25649F-07C6-484A-8BE5-012079C6225B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Core.Entities", "Proyecto.Core.Entities\Proyecto.Core.Entities.csproj", "{9F25649F-07C6-484A-8BE5-012079C6225B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Core.Data", "Proyecto.Core.Data\Proyecto.Core.Data.csproj", "{62D54BBB-95A1-4D8F-AFAF-1BC3DA93DFEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Core.Data", "Proyecto.Core.Data\Proyecto.Core.Data.csproj", "{62D54BBB-95A1-4D8F-AFAF-1BC3DA93DFEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Core.Business", "Proyecto.Core.Business\Proyecto.Core.Business.csproj", "{EAEECD73-0BDA-4C0D-9419-D949006CA9FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Core.Business", "Proyecto.Core.Business\Proyecto.Core.Business.csproj", "{EAEECD73-0BDA-4C0D-9419-D949006CA9FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Core.Configurations", "Proyecto.Core.Configurations\Proyecto.Core.Configurations.csproj", "{A39588DB-F8F3-4A72-AA89-E26FEBD09A4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Core.Configurations", "Proyecto.Core.Configurations\Proyecto.Core.Configurations.csproj", "{A39588DB-F8F3-4A72-AA89-E26FEBD09A4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{13BD3FAD-D2C9-43C6-B8F1-ABCB93871BA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{A39588DB-F8F3-4A72-AA89-E26FEBD09A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A39588DB-F8F3-4A72-AA89-E26FEBD09A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A39588DB-F8F3-4A72-AA89-E26FEBD09A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13BD3FAD-D2C9-43C6-B8F1-ABCB93871BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13BD3FAD-D2C9-43C6-B8F1-ABCB93871BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13BD3FAD-D2C9-43C6-B8F1-ABCB93871BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13BD3FAD-D2C9-43C6-B8F1-ABCB93871BA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
