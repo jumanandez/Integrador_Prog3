@@ -27,5 +27,15 @@ namespace Proyecto.Core.Business
 		{
 			return _projectRepository.GetProductos();
 		}
+
+		public Producto GetProducto(int id)
+		{
+			return _projectRepository.GetProducto(id);
+		}
+
+		public void DeleteProducto(int id)
+		{
+			_projectRepository.DeleteProducto(id);
+		}
 	}
 }

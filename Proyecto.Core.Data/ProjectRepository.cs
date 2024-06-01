@@ -42,5 +42,28 @@ namespace Proyecto.Core.Data
 			}
 			return productos;
 		}
+
+		public Producto GetProducto(int id)
+		{
+			var producto = new Producto();
+
+			using (var dbcontext = new IntegradorProg3Context(_config))
+			{
+				producto = dbcontext.Productos.Find(id);
+			}
+			return producto;
+		}
+
+		public void DeleteProducto(int id)
+		{
+			var producto = new Producto();
+
+			using(var dbcontext = new IntegradorProg3Context(_config))
+			{
+				producto = dbcontext.Productos.Find(id);
+				dbcontext.Remove(producto);
+				dbcontext.SaveChanges();
+			}
+		}
 	}
 }

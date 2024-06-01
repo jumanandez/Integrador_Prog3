@@ -22,13 +22,38 @@ namespace Web_API.Controllers
 		}
 
 		// Acá probé que funcione la conexion, lo pueden borrar si quieren
-		
-		[HttpGet(Name = "GetProductos")]
-		public IEnumerable<Producto> Get()
-		{
-			var productos = _productoBusiness.GetAll();
 
-			return productos;
+		[HttpGet]
+		[Route("Lista")]
+		public List<Producto> GetAll()
+		{
+			var products = new List<Producto>();
+			
+			products = _productoBusiness.GetAll();
+
+			return products;
+			
+        }
+
+		[HttpGet]
+		[Route("Producto/{ProductoId:int}")]
+		public Producto Get(int id)
+		{
+			Producto producto = _productoBusiness.GetProducto(id);
+
+			return producto;
 		}
+
+	
+		[HttpDelete]
+		[Route("Eliminar/{ProductoId:int}")]
+		public void Eliminar(int ProductoId)
+		{
+			_productoBusiness.DeleteProducto(ProductoId);
+		}
+
+
+
+
 	}
 }
