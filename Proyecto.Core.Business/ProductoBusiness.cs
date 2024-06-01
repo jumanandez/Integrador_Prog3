@@ -28,7 +28,18 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetProductos();
 		}
 
-		public Producto GetProducto(int id)
+		public List<Compra> GetCompras() 
+		{
+			return _projectRepository.GetCompras();
+		}
+
+        public List<Venta> GetVentas()
+        {
+            return _projectRepository.GetVentas();
+        }
+
+
+        public Producto GetProducto(int id)
 		{
 			return _projectRepository.GetProducto(id);
 		}

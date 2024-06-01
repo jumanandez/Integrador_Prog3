@@ -43,6 +43,28 @@ namespace Proyecto.Core.Data
 			return productos;
 		}
 
+		public List<Compra> GetCompras()
+		{
+			var compras = new List<Compra>();
+
+			using (var dbcontext = new IntegradorProg3Context(_config))
+			{
+				compras = dbcontext.Compras.ToList();
+			}
+			return compras;
+		}
+
+		public List<Venta> GetVentas() 
+		{
+            var ventas = new List<Venta>();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                ventas = dbcontext.Venta.ToList();
+            }
+            return ventas;
+        }
+
 		public Producto GetProducto(int id)
 		{
 			var producto = new Producto();

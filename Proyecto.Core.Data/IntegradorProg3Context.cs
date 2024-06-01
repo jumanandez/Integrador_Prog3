@@ -18,7 +18,7 @@ public partial class IntegradorProg3Context : DbContext
 
     
     //Este constructor no vamos a usar si usamos el Config
-    //Es el constructor que usa el EntityFramework.Core.Tools       lo que hace es que fuera de nuestra vista se conecta a la base de datos y usa la connectionstring, pero esto ni lo vemos, entonces no esta bueno
+    //Es el constructor que usa el EntityFramework.Core.Tools lo que hace es que fuera de nuestra vista se conecta a la base de datos y usa la connectionstring, pero esto ni lo vemos, entonces no esta bueno
 
     //public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
     //    : base(options)
