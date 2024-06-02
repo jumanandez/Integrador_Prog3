@@ -78,7 +78,7 @@ public partial class IntegradorProg3Context : DbContext
 
             entity.ToTable("Producto");
 
-            entity.Property(e => e.Habilitado).HasDefaultValue(true);
+            entity.Property(e => e.Habilitado).HasDefaultValue(false);
             entity.Property(e => e.Nombre).HasMaxLength(50);
 
             entity.HasOne(d => d.Categoria).WithMany(p => p.Productos)
