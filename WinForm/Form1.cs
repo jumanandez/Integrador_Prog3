@@ -6,5 +6,6 @@ namespace WinForm
 		{
 			InitializeComponent();
 		}
+
 	}
 }
