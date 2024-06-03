@@ -23,12 +23,12 @@ namespace WebApp.Controllers
         // GET: VentaController
         public ActionResult Index()
         {       
-            return View(_productoBusiness.GetAll());            
+            return View(_productoBusiness.GetVentas());            
         }
 
         // GET: VentaController/Details/5
         public ActionResult Details(int id)
-        {
+        {          
             return View();
         }
 
