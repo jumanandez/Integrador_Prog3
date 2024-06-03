@@ -20,19 +20,6 @@ namespace Web_API.Controllers
 			_productoBusiness = productoBusiness;
 		}
 
-		// Acá probé que funcione la conexion, lo pueden borrar si quieren
-
-		//[HttpGet]
-		//[Route("Lista")]
-		//public List<Producto> GetAll()
-		//{
-		//	var products = new List<Producto>();
-
-		//	products = _productoBusiness.GetAll();
-
-		//	return products;
-
-		//      }
 
 		[HttpGet]
 		[Route("/{UsuarioId:int}/user/{ProductoId:int}/stock")]
@@ -53,13 +40,7 @@ namespace Web_API.Controllers
 		}
 
 	
-		//[HttpDelete]
-		//[Route("Eliminar/{ProductoId:int}")]
-		//public void Eliminar(int ProductoId)
-		//{
-		//	_productoBusiness.DeleteProducto(ProductoId);
-		//}
-
+		
 
 
 
