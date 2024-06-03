@@ -5,8 +5,6 @@ using Proyecto.Core.Business;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
 #region INYECCION DE DEPENDENCIAS
 //Pueden usar el codigo a partir de aca en la WEB APP
 // utilizando "connection" como el nomnbre de la string de conexión
@@ -42,8 +40,10 @@ builder.Services.AddScoped<ProjectRepository>();
 
 #endregion
 
-var app = builder.Build();
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
