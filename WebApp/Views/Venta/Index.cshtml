@@ -1,8 +1,20 @@
-﻿
+﻿@model WebApp.Models.ViewModels.VentaVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Registrar Venta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
 
+<ul>
+    @foreach (var v in Model.VentaLista)
+    {
+        <li>Item: @v.VentaId (@v.Producto.Nombre)</li>
+        <li>Fecha: @v.Fecha</li>
+        <li>Cantidad: @v.Cantidad</li>
+
+    }
+
+    
+
+</ul>
