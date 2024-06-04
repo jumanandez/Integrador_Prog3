@@ -4,11 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Bienvenido a la sección de Ventas</h1>
 
 <ul>
     @foreach (var v in Model.VentaLista)
     {
+        <li>Usuario: @v.Usuario.Nombre</li>
+
         <li>Item: @v.VentaId (@v.Producto.Nombre)</li>
         <li>Fecha: @v.Fecha</li>
         <li>Cantidad: @v.Cantidad</li>

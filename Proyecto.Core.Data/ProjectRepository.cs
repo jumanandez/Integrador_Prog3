@@ -1,4 +1,5 @@
-﻿using Proyecto.Core.Configurations;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto.Core.Configurations;
 using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -43,13 +44,24 @@ namespace Proyecto.Core.Data
 			return productos;
 		}
 
-		public List<Compra> GetCompras()
+        public List<Categoria> GetCategorias()
+        {
+            var categorias = new List<Categoria>();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                categorias = dbcontext.Categoria.Include(ct => ct.Productos).ToList();
+            }
+            return categorias;
+        }
+
+        public List<Compra> GetCompras()
 		{
 			var compras = new List<Compra>();
 
 			using (var dbcontext = new IntegradorProg3Context(_config))
 			{
-				compras = dbcontext.Compras.ToList();
+				compras = dbcontext.Compras.Include(c => c.Producto).Include(c => c.Usuario).ToList();
 			}
 			return compras;
 		}
@@ -60,7 +72,7 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                ventas = dbcontext.Venta.ToList();
+                ventas = dbcontext.Venta.Include(v => v.Producto).Include(v => v.Usuario).ToList();
             }
             return ventas;
         }

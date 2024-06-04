@@ -17,8 +17,7 @@ namespace WebApp.Controllers
         private readonly ProductoBusiness _productoBusiness;
 
         public VentaController(ProductoBusiness productoBusiness,
-                                    ILogger<VentaController> logger,
-                                    IntegradorProg3Context context)
+                                    ILogger<VentaController> logger)
         {
             _logger = logger;
             _productoBusiness = productoBusiness;
