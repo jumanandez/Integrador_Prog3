@@ -51,6 +51,8 @@ public partial class IntegradorProg3Context : DbContext
             entity.HasKey(e => e.CategoriaId).HasName("PK__Categori__F353C1E5432C83E0");
 
             entity.Property(e => e.Nombre).HasMaxLength(50);
+
+            
         });
 
         modelBuilder.Entity<Compra>(entity =>

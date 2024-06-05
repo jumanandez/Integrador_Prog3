@@ -28,7 +28,6 @@ namespace Proyecto.Core.Data
 			}
 
 		}
-
 		public List<Producto> GetProductos()
 		{
 			var productos = new List<Producto>();
@@ -38,9 +37,38 @@ namespace Proyecto.Core.Data
 
 				productos = dbcontext.Productos.ToList();
 
-				
+
 			}
 			return productos;
+		}
+
+		public List<Categoria> GetCategorias()
+		{
+			var categorias = new List<Categoria>();
+
+			using (var dbcontext = new IntegradorProg3Context(_config))
+			{
+
+				categorias = dbcontext.Categoria.ToList();
+			}
+
+			return categorias;
+
+		}
+
+		
+		public bool PostCategoría(Categoria categoria)
+		{
+			using (var dbcontext = new IntegradorProg3Context(_config))
+			{
+
+				dbcontext.Categoria.Add(categoria);
+
+				dbcontext.SaveChanges();
+
+			}
+
+			return true;
 		}
 	}
 }
