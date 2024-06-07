@@ -48,5 +48,10 @@ namespace Proyecto.Core.Business
 		{
 			_projectRepository.DeleteProducto(id);
 		}
+
+		public int GetStock(int usuarioId, int productoId)
+		{
+			return _projectRepository.GetStock(usuarioId, productoId);
+		}
 	}
 }

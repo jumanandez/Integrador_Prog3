@@ -10,7 +10,7 @@ namespace Web_API.Controllers
 	{
 		private readonly ILogger<ProductoController> _logger;
 
-		//Se inyecta las dependencias para usar el business de ejemplo
+		//Se inyecta las dependencias para usar el business
 		private readonly ProductoBusiness _productoBusiness;
 
 		public ProductoController(ProductoBusiness productoBusiness,
@@ -22,21 +22,10 @@ namespace Web_API.Controllers
 
 
 		[HttpGet]
-		[Route("/{UsuarioId:int}/user/{ProductoId:int}/stock")]
-		public int GetStock(int UsuarioId, int ProductoId)
+		[Route("/{usuarioId:int}/user/{productoId:int}/stock")]
+		public int GetStock(int usuarioId, int productoId)
 		{
-			int compras = (from c in _productoBusiness.GetCompras()
-						  where c.ProductoId == ProductoId && c.UsuarioId == UsuarioId
-						  select c.Cantidad).Sum();
-
-			int ventas = (from v in  _productoBusiness.GetVentas()
-						  where v.ProductoId == ProductoId && v.UsuarioId == UsuarioId
-						  select v.Cantidad).Sum();
-
-			int stock = compras - ventas;
-						
-
-			return stock;
+			return _productoBusiness.GetStock(usuarioId, productoId);
 		}
 
 	
