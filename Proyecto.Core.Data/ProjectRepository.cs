@@ -17,6 +17,8 @@ namespace Proyecto.Core.Data
 		{
 			_config = config;
 		}
+
+		#region Region Producto
 		public void AddProducto(Producto product)
 		{
 			
@@ -41,7 +43,9 @@ namespace Proyecto.Core.Data
 			}
 			return productos;
 		}
+		#endregion
 
+		#region Region Categoria
 		public List<Categoria> GetCategorias()
 		{
 			var categorias = new List<Categoria>();
@@ -55,8 +59,6 @@ namespace Proyecto.Core.Data
 			return categorias;
 
 		}
-
-		
 		public bool AddCategoría(Categoria categoria)
 		{
 			using (var dbcontext = new IntegradorProg3Context(_config))
@@ -70,5 +72,6 @@ namespace Proyecto.Core.Data
 
 			return true;
 		}
+		#endregion
 	}
 }

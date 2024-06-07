@@ -23,9 +23,9 @@ namespace Proyecto.Core.Business
 			return _projetRepository.GetCategorias();
 		}
 
-		public bool Post(Categoria categoriaNueva)
+		public bool Add(Categoria categoriaNueva)
 		{
-			return _projetRepository.PostCategoría(categoriaNueva);
+			return _projetRepository.AddCategoría(categoriaNueva);
 		}
 	}
 }

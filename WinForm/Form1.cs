@@ -20,7 +20,7 @@ namespace WinForm
 				Nombre = nombreCategoria
 			};
 
-			lblResultado.Text = _categoríaBusiness.Post(categoriaNueva).ToString();
+			lblResultado.Text = _categoríaBusiness.Add(categoriaNueva).ToString();
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
