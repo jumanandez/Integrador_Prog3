@@ -57,7 +57,7 @@ namespace Proyecto.Core.Data
 		}
 
 		
-		public bool PostCategoría(Categoria categoria)
+		public bool AddCategoría(Categoria categoria)
 		{
 			using (var dbcontext = new IntegradorProg3Context(_config))
 			{
