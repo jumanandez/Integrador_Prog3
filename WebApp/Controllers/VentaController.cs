@@ -71,11 +71,7 @@ namespace WebApp.Controllers
         }
 
         // GET: VentaController/Create
-        public ActionResult Create()
-        {
-            var usuariosID = 1;
-
-            
+        
 
             var VentaObj = new Models.ViewModels.VentaVM()
             {
