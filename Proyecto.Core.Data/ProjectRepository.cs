@@ -114,20 +114,16 @@ namespace Proyecto.Core.Data
             }
             return ventas;
         }
-
-		public void AddVenta(Venta venta)
-		{
-
-			using (var dbcontext = new IntegradorProg3Context(_config))
-			{
-				dbcontext.Add(venta);
-
-				dbcontext.SaveChanges();
-			}
-
-		}
-
-        public void DeleteVenta(int id)
+        
+        public void AddVenta(Venta venta)
+    {
+    using (var dbcontext = new IntegradorProg3Context(_config))
+			  {
+      dbcontext.Add(venta);
+		  dbcontext.SaveChanges();
+      }
+     } 
+     public void DeleteVenta(int id)
         {
             var venta = new Venta();
 
@@ -138,9 +134,20 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-
-        #endregion
-
+     
+        public List<string> GetAllNames()
+        {
+            var productos = new List<Producto>();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                List<string> names = dbcontext.Productos
+                                                        .Select(p => p.Nombre)
+                                                        .ToList();
+                return names;
+            }
+        }
+      #endregion
+      
         public int GetStock(int usuarioId, int productoId)
         {
             int stock = 0;
@@ -181,6 +188,7 @@ namespace Proyecto.Core.Data
             }
             return true;
         }
+
         #endregion
     }
 }
