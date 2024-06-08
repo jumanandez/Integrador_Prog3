@@ -12,37 +12,37 @@ using Proyecto.Core.Data.Interfaces;
 namespace Proyecto.Core.Business
 {
 	public class ProductoBusiness : IProductoBusiness
-    {
-		private readonly ProjectRepository _projectRepository;
+	{
+		private readonly IProjectRepository _projectRepository;
 
-		public ProductoBusiness(ProjectRepository projectRepository)
+		public ProductoBusiness(IProjectRepository projectRepository)
 		{
 			_projectRepository = projectRepository;
 		}
 
 		public void AddProducto(Producto producto)
 		{
-			 _projectRepository.AddProducto(producto);
+			_projectRepository.AddProducto(producto);
 		}
 
-        public void DeleteProducto(Producto product)
+		public void DeleteProducto(Producto product)
 		{
 			_projectRepository.DeleteProducto(product);
 		}
 
-        public void ModifyProduct(Producto product)
+		public void ModifyProduct(Producto product)
 		{
 			_projectRepository.ModifyProduct(product);
 		}
 
 
-        public List<Producto> GetAll()
+		public List<Producto> GetAll()
 		{
 			return _projectRepository.GetProductos();
 		}
 
 
-        public Producto GetProducto(int id)
+		public Producto GetProducto(int id)
 		{
 			return _projectRepository.GetProducto(id);
 		}
@@ -55,6 +55,7 @@ namespace Proyecto.Core.Business
 		public int GetStock(int usuarioId, int productoId)
 		{
 			return _projectRepository.GetStock(usuarioId, productoId);
+		}
 
 		public List<string> GetAllNames()
 		{
