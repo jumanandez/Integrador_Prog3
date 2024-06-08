@@ -10,10 +10,15 @@ namespace WebApp.Models.ViewModels
 
         public List<Producto> ProductoLista { get; set; }
 
-        public Producto _Producto {  get; set; }
+        public Producto _Producto {  get; set; }       
 
         public List<Categoria> CategoriaLista { get; set; }
 
         public Categoria _Categoria { get; set; }
+
+        public int? CategoriaID { get; set; }
+
+        public string NombreProducto { get; set; }
+
     }
 }
