@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
@@ -28,6 +29,17 @@ namespace Proyecto.Core.Data
             }
         }
 
+        public Producto GetProducto(int id)
+        {
+            var producto = new Producto();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                producto = dbcontext.Productos.Find(id);
+            }
+            return producto;
+        }
+
         public List<Producto> GetProductos()
         {
             var productos = new List<Producto>();
@@ -38,6 +50,20 @@ namespace Proyecto.Core.Data
             }
             return productos;
         }
+
+        public void DeleteProducto(int id)
+        {
+            var producto = new Producto();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                producto = dbcontext.Productos.Find(id);
+                dbcontext.Remove(producto);
+                dbcontext.SaveChanges();
+            }
+        }
+
+        #endregion
 
         public List<Compra> GetCompras()
         {
@@ -88,29 +114,6 @@ namespace Proyecto.Core.Data
 
         #endregion
 
-        public Producto GetProducto(int id)
-		{
-			var producto = new Producto();
-
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                producto = dbcontext.Productos.Find(id);
-            }
-            return producto;
-        }
-
-        public void DeleteProducto(int id)
-        {
-            var producto = new Producto();
-
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                producto = dbcontext.Productos.Find(id);
-                dbcontext.Remove(producto);
-                dbcontext.SaveChanges();
-            }
-        }
-
         public int GetStock(int usuarioId, int productoId)
         {
             int stock = 0;
@@ -128,8 +131,6 @@ namespace Proyecto.Core.Data
             }
             return stock;
         }
-
-        #endregion
 
         #region Region Categoria
         public List<Categoria> GetCategorias()

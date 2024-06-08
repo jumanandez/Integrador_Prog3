@@ -15,13 +15,14 @@ namespace WebApp.Controllers
 
         //Se inyecta las dependencias para usar el business de ejemplo
         private readonly VentaBusiness _ventaBusiness;
+        private readonly ProductoBusiness _productoBusiness;
 
-        public VentaController(VentaBusiness ventaBusiness,
+        public VentaController(VentaBusiness ventaBusiness, ProductoBusiness productoBusiness,
                                     ILogger<VentaController> logger)
         {
             _logger = logger;
             _ventaBusiness = ventaBusiness;
-            
+            _productoBusiness = productoBusiness;
         }
 
 
@@ -34,13 +35,14 @@ namespace WebApp.Controllers
             
             ventas = (from v in ventas
                       where v.Producto.CategoriaId == CategoriaID.Value
-                      where v.Producto.Nombre.ToLower().StartsWith(NombreProducto.ToLower())
-                      select v).ToList();                            
+                      where v.Producto.Nombre.ToLower().StartsWith(NombreProducto.ToLower())               
+                      select v).ToList();                           
             
 
             var ViewModel = new VentaVM()
             {
-                VentaLista = ventas
+                VentaLista = ventas,
+                CategoriaLista = _categoriaBusiness.GetAll()
             };
 
             return View(ViewModel);
@@ -77,7 +79,7 @@ namespace WebApp.Controllers
 
             var VentaObj = new Models.ViewModels.VentaVM()
             {
-                ProductoLista = _ventaBusiness.GetAll(),
+                ProductoLista = _productoBusiness.GetAll(),
                 VentaLista = _ventaBusiness.GetVentas()
             };           
            

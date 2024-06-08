@@ -23,25 +23,9 @@ namespace Proyecto.Core.Business
             _projectRepository.AddVenta(venta);
         }
 
-        public List<Producto> GetAll()
-        {
-            return _projectRepository.GetProductos();
-        }
-
-        public List<Compra> GetCompras()
-        {
-            return _projectRepository.GetCompras();
-        }
-
         public List<Venta> GetVentas()
         {
             return _projectRepository.GetVentas();
-        }
-
-
-        public Producto GetProducto(int id)
-        {
-            return _projectRepository.GetProducto(id);
         }
 
         public void DeleteVenta(int id)
