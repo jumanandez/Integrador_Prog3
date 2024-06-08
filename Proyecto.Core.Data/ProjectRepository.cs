@@ -64,9 +64,10 @@ namespace Proyecto.Core.Data
 				compras = dbcontext.Compras.Include(c => c.Producto).Include(c => c.Usuario).ToList();
 			}
 			return compras;
-		}
+		}       
 
-		public List<Venta> GetVentas() 
+        #region REPOSITORY DE VENTAS
+        public List<Venta> GetVentas() 
 		{
             var ventas = new List<Venta>();
 
@@ -77,7 +78,33 @@ namespace Proyecto.Core.Data
             return ventas;
         }
 
-		public Producto GetProducto(int id)
+		public void AddVenta(Venta venta)
+		{
+
+			using (var dbcontext = new IntegradorProg3Context(_config))
+			{
+				dbcontext.Add(venta);
+
+				dbcontext.SaveChanges();
+			}
+
+		}
+
+        public void DeleteVenta(int id)
+        {
+            var venta = new Venta();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                venta = dbcontext.Venta.Find(id);
+                dbcontext.Remove(venta);
+                dbcontext.SaveChanges();
+            }
+        }
+
+        #endregion
+
+        public Producto GetProducto(int id)
 		{
 			var producto = new Producto();
 
