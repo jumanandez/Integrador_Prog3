@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Proyecto.Core.Configurations;
+using Proyecto.Core.Business.Interfaces;
 
 namespace Proyecto.Core.Business
 {
-    public class VentaBusiness
+    public class VentaBusiness : IVentaBusiness
     {
         private readonly ProjectRepository _projectRepository;
 
@@ -32,5 +33,6 @@ namespace Proyecto.Core.Business
         {
             _projectRepository.DeleteVenta(id);
         }
+
     }
 }

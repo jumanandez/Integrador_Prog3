@@ -65,6 +65,7 @@ namespace Proyecto.Core.Data
 
         #endregion
 
+        #region Region Compras
         public List<Compra> GetCompras()
         {
             var compras = new List<Compra>();
@@ -76,14 +77,40 @@ namespace Proyecto.Core.Data
             return compras;
         }
 
-        #region REPOSITORY DE VENTAS
+        
+        public void AddCompra(Compra compra)
+        {
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Add(compra);
+
+                dbcontext.SaveChanges();
+            }
+
+        }
+
+        public void DeleteCompra(int id)
+        {
+            var compra = new Compra();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                compra = dbcontext.Compras.Find(id);
+                dbcontext.Remove(compra);
+                dbcontext.SaveChanges();
+            }
+        }
+        #endregion
+
+        #region Region Ventas
         public List<Venta> GetVentas() 
 		{
             var ventas = new List<Venta>();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                ventas = dbcontext.Venta.Include(v => v.Producto).Include(v => v.Usuario).ToList();
+                ventas = dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario).ToList();
             }
             return ventas;
         }
@@ -106,7 +133,7 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                venta = dbcontext.Venta.Find(id);
+                venta = dbcontext.Ventas.Find(id);
                 dbcontext.Remove(venta);
                 dbcontext.SaveChanges();
             }
@@ -123,7 +150,7 @@ namespace Proyecto.Core.Data
                                where c.ProductoId == productoId && c.UsuarioId == usuarioId
                                select c.Cantidad).Sum();
 
-                int ventas = (from v in dbcontext.Venta
+                int ventas = (from v in dbcontext.Ventas
                               where v.ProductoId == productoId && v.UsuarioId == usuarioId
                               select v.Cantidad).Sum();
 
