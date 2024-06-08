@@ -7,14 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Data.Interfaces;
 
 namespace Proyecto.Core.Business
 {
 	public class ProductoBusiness : IProductoBusiness
     {
-		private readonly ProjectRepository _projectRepository;
+		private readonly IProjectRepository _projectRepository;
 
-		public ProductoBusiness(ProjectRepository projectRepository)
+		public ProductoBusiness(IProjectRepository projectRepository)
 		{
 			_projectRepository = projectRepository;
 		}

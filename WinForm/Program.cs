@@ -39,11 +39,12 @@ namespace WinForm
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             services.AddLogging(configure => configure.AddConsole())
-                    //.AddScoped<Config>(p =>
-                    //{
-                    //    return config;
-                    //})
+                    .AddScoped<Config>(p =>
+                    {
+                        return config;
+                    })
                     .AddScoped<ICatergoriaBusiness, CategoriaBusiness>()
+                    .AddScoped<IProjectRepository, ProjectRepository>()
                     .AddScoped<IProductoBusiness, ProductoBusiness>()
                     .AddTransient<FormProducto>();
         }
