@@ -45,18 +45,19 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                compras = dbcontext.Compras.ToList();
+                compras = dbcontext.Compras.Include(c => c.Producto).Include(c => c.Usuario).ToList();
             }
             return compras;
         }
 
         public List<Venta> GetVentas()
         {
+
             var ventas = new List<Venta>();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                ventas = dbcontext.Venta.ToList();
+                ventas = dbcontext.Venta.Include(v => v.Producto).Include(v => v.Usuario).ToList();
             }
             return ventas;
         }
