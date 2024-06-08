@@ -51,6 +51,8 @@ public partial class IntegradorProg3Context : DbContext
             entity.HasKey(e => e.CategoriaId).HasName("PK__Categori__F353C1E5432C83E0");
 
             entity.Property(e => e.Nombre).HasMaxLength(50);
+
+            
         });
 
         modelBuilder.Entity<Compra>(entity =>
@@ -78,7 +80,7 @@ public partial class IntegradorProg3Context : DbContext
 
             entity.ToTable("Producto");
 
-            entity.Property(e => e.Habilitado).HasDefaultValue(true);
+            entity.Property(e => e.Habilitado).HasDefaultValue(false);
             entity.Property(e => e.Nombre).HasMaxLength(50);
 
             entity.HasOne(d => d.Categoria).WithMany(p => p.Productos)
