@@ -61,13 +61,17 @@ namespace WinForm
 			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
 		}
 
-		private void btnPrimerCarga_Click(object sender, EventArgs e)
+		//DESCOMENTAR LA REGION PARA CARGAR SUS PRODUCTOS
+		
+		#region BOTON DE PRIMERA CARGA
+		/*private void btnPrimerCarga_Click(object sender, EventArgs e)
 		{
 			var categorias = _categoríaBusiness.GetAll();
 
 			var idMotor = categorias[0].CategoriaId;
 			var productos = new List<Producto>();
 
+			#region PRIMERA CARGA DE PRODUCTOS
 			//productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Bloque del motor", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Cilindros", CategoriaId = idMotor }); productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
@@ -243,9 +247,18 @@ namespace WinForm
 			productos.Add(new Producto { Nombre = "Refrigerantes", CategoriaId = idOtros });
 			productos.Add(new Producto { Nombre = "Limpiadores", CategoriaId = idOtros });
 			productos.Add(new Producto { Nombre = "Aditivos", CategoriaId = idOtros });
+			#endregion 
 
+			foreach (Producto p in productos)
+			{
+				_productoBusiness.AddProducto(p);
+			}
 
-		}
+			btnPrimerCarga.Visible = false;
+		}*/
+		#endregion NO TOCAR
+
+		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
 	}
 }
 //### Transmisión
