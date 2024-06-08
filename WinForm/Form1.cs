@@ -1,14 +1,18 @@
+using Microsoft.Extensions.Logging;
 using Proyecto.Core.Business;
+using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Entities;
 namespace WinForm
 {
-	public partial class Form1 : Form
+    public partial class Form1 : Form
 	{
-		private CategoriaBusiness _categoríaBusiness;
-		public Form1()
+        private readonly ILogger _logger;
+        private readonly ICatergoriaBusiness _categoríaBusiness;
+		public Form1(ILogger <Form1> logger, ICatergoriaBusiness business)
 		{
+			_logger = logger;
+			_categoríaBusiness = business;
 			InitializeComponent();
-			_categoríaBusiness = new CategoriaBusiness();
 		}
 
 		private void button1_Click(object sender, EventArgs e)

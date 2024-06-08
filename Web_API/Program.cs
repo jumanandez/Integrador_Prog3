@@ -1,8 +1,8 @@
 using Proyecto.Core.Entities;
-
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
+using Proyecto.Core.Business.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

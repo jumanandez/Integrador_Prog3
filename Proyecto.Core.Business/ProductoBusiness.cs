@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Proyecto.Core.Configurations;
+using Proyecto.Core.Business.Interfaces;
 
 namespace Proyecto.Core.Business
 {
-	public class ProductoBusiness
-	{
+	public class ProductoBusiness : IProductoBusiness
+    {
 		private readonly ProjectRepository _projectRepository;
 
 		public ProductoBusiness(ProjectRepository projectRepository)
