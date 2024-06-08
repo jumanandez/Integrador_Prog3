@@ -1,4 +1,5 @@
 ﻿using Proyecto.Core.Configurations;
+using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Proyecto.Core.Data
 {
 
-	public class ProjectRepository
+	public class ProjectRepository : IProjectRepository
 	{
 		private readonly Config _config;
 
@@ -17,6 +18,8 @@ namespace Proyecto.Core.Data
 		{
 			_config = config;
 		}
+
+		#region Region Producto
 		public void AddProducto(Producto product)
 		{
 			
@@ -41,7 +44,9 @@ namespace Proyecto.Core.Data
 			}
 			return productos;
 		}
+		#endregion
 
+		#region Region Categoria
 		public List<Categoria> GetCategorias()
 		{
 			var categorias = new List<Categoria>();
@@ -55,9 +60,7 @@ namespace Proyecto.Core.Data
 			return categorias;
 
 		}
-
-		
-		public bool PostCategoría(Categoria categoria)
+		public bool AddCategoría(Categoria categoria)
 		{
 			using (var dbcontext = new IntegradorProg3Context(_config))
 			{
@@ -70,5 +73,6 @@ namespace Proyecto.Core.Data
 
 			return true;
 		}
+		#endregion
 	}
 }

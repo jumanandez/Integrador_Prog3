@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto.Core.Business;
+using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Entities;
 
 namespace Web_API.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class ProductoController : ControllerBase
 	{

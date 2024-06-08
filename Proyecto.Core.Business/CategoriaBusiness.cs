@@ -1,4 +1,5 @@
-﻿using Proyecto.Core.Configurations;
+﻿using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Core.Business
 {
-	public class CategoriaBusiness
+	public class CategoriaBusiness : ICatergoriaBusiness
 	{
 		private readonly ProjectRepository _projetRepository;
 		public Config config = new();
@@ -23,9 +24,9 @@ namespace Proyecto.Core.Business
 			return _projetRepository.GetCategorias();
 		}
 
-		public bool Post(Categoria categoriaNueva)
+		public bool Add(Categoria categoriaNueva)
 		{
-			return _projetRepository.PostCategoría(categoriaNueva);
+			return _projetRepository.AddCategoría(categoriaNueva);
 		}
 	}
 }
