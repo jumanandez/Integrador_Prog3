@@ -31,7 +31,18 @@ namespace Proyecto.Core.Data
 			}
 
 		}
-		public List<Producto> GetProductos()
+        public void DeleteProducto(Producto product)
+        {
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Remove(product);
+
+                dbcontext.SaveChanges();
+            }
+
+        }
+        public List<Producto> GetProductos()
 		{
 			var productos = new List<Producto>();
 
@@ -44,10 +55,32 @@ namespace Proyecto.Core.Data
 			}
 			return productos;
 		}
-		#endregion
+        public List<string> GetAllNames()
+        {
+            var productos = new List<Producto>();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                List<string> names = dbcontext.Productos
+                                                        .Select(p => p.Nombre)
+                                                        .ToList();
+                return names;
+            }
+        }
+        public void ModifyProduct(Producto product)
+        {
 
-		#region Region Categoria
-		public List<Categoria> GetCategorias()
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+				dbcontext.Entry(product).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+                dbcontext.SaveChanges();
+            }
+
+        }
+        #endregion
+
+        #region Region Categoria
+        public List<Categoria> GetCategorias()
 		{
 			var categorias = new List<Categoria>();
 
@@ -73,6 +106,6 @@ namespace Proyecto.Core.Data
 
 			return true;
 		}
-		#endregion
-	}
+        #endregion
+    }
 }

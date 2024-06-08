@@ -11,5 +11,8 @@ namespace Proyecto.Core.Business.Interfaces
     {
         public List<Producto> GetAll();
         public void AddProducto(Producto producto);
+        public void DeleteProducto(Producto product);
+        public void ModifyProduct(Producto product);
+        public List<string> GetAllNames();
     }
 }

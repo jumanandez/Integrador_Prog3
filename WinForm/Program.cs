@@ -22,14 +22,15 @@ namespace WinForm
             {
                 var formprd = serviceProvider.GetRequiredService<FormProducto>();
                 Application.Run(formprd);
+
             }
         }
         private static void ConfigureServices(ServiceCollection services)
         {
-            var connectionString = "Persist Security Info=True;Initial Catalog=IntegradorProg3;Data Source=.; Application Name=DemoApp; Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";
+            var connectionString = Properties.Settings.Default.Connection;
 
             //Se setea la connectionstring en nuestra clase de configuracion
-            var config = new Proyecto.Core.Configurations.Config()
+            var config = new Config()
             {
                 ConnectionString = connectionString
             };
@@ -46,7 +47,8 @@ namespace WinForm
                     .AddScoped<ICatergoriaBusiness, CategoriaBusiness>()
                     .AddScoped<IProjectRepository, ProjectRepository>()
                     .AddScoped<IProductoBusiness, ProductoBusiness>()
-                    .AddTransient<FormProducto>();
+                    .AddTransient<FormProducto>()
+                    .AddTransient<Form2>();
         }
     }
 }

@@ -17,54 +17,95 @@ using System.Windows.Forms;
 
 namespace WinForm
 {
-	public partial class FormProducto : Form
-	{
-		private readonly ILogger _logger;
-		private readonly ICatergoriaBusiness _categoríaBusiness;
-		private readonly IProductoBusiness _productoBusiness;
-		//private readonly IProjectRepository _projectRepository;
-		private Producto _productoACargar;
-		public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
-		{
-			_logger = logger;
-			_categoríaBusiness = catbusi;
-			//_projectRepository = prorepo;
-			_productoBusiness = produbusi;
-			_productoACargar = new Producto();
-			InitializeComponent();
-		}
+    public partial class FormProducto : Form
+    {
+        private readonly ILogger _logger;
+        private readonly ICatergoriaBusiness _categoríaBusiness;
+        private readonly IProductoBusiness _productoBusiness;
+        private Producto _productoACargar;
+        private Producto _productoSeleccionado;
+        public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
+        {
+            _logger = logger;
+            _categoríaBusiness = catbusi;
+            _productoBusiness = produbusi;
+            _productoACargar = new Producto();
+            InitializeComponent();
+        }
 
-		private void FormProducto_Load(object sender, EventArgs e)
-		{
+        private void FormProducto_Load(object sender, EventArgs e)
+        {
 
 
-			cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
-			cmbBoxCategorias.DisplayMember = "Nombre";
+            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
+            cmbBoxCategorias.DisplayMember = "Nombre";
+            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+        }
 
-			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-		}
+        private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _productoACargar.CategoriaId = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
+        }
 
-		private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			_productoACargar.CategoriaId = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
-		}
+        private void btnCargarProducto_Click(object sender, EventArgs e)
+        {
+            _productoACargar.Nombre = txtNombreProducto.Text;
+            _productoBusiness.AddProducto(_productoACargar);
+            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
 
-		private void btnCargarProducto_Click(object sender, EventArgs e)
-		{
-			_productoACargar.Nombre = txtNombreProducto.Text;
-			_productoBusiness.AddProducto(_productoACargar);
+        }
 
-		}
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+        }
 
-		private void btnRefrescar_Click(object sender, EventArgs e)
-		{
-			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-		}
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            var i = dataGridViewProducto.CurrentRow.Index;
+            var prod = dataGridViewProducto.SelectedRows[0];
+            _productoSeleccionado = (Producto)prod.DataBoundItem;
 
-		//DESCOMENTAR LA REGION PARA CARGAR SUS PRODUCTOS
-		
-		#region BOTON DE PRIMERA CARGA
-		/*private void btnPrimerCarga_Click(object sender, EventArgs e)
+            if (i >= 0)
+            {
+                Form2 AddAPart = new Form2(_productoSeleccionado, _categoríaBusiness, _productoBusiness);
+                AddAPart.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+            }
+        }
+        //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
+        private void FormProducto_Activated(object sender, EventArgs e)
+        {
+            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+        }
+
+        private void BTNdelete_Click(object sender, EventArgs e)
+        {
+            var i = dataGridViewProducto.CurrentRow.Index;
+            var prod = dataGridViewProducto.SelectedRows[0];
+            _productoSeleccionado = (Producto)prod.DataBoundItem;
+            if (i >= 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _productoBusiness.DeleteProducto(_productoSeleccionado);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+            }
+            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+        }
+
+        //DESCOMENTAR LA REGION PARA CARGAR SUS PRODUCTOS
+
+        #region BOTON DE PRIMERA CARGA
+        /*private void btnPrimerCarga_Click(object sender, EventArgs e)
 		{
 			var categorias = _categoríaBusiness.GetAll();
 
@@ -256,10 +297,10 @@ namespace WinForm
 
 			btnPrimerCarga.Visible = false;
 		}*/
-		#endregion NO TOCAR
+        #endregion NO TOCAR
 
-		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
-	}
+        //COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
+    }
 }
 //### Transmisión
 //### 3. Sistema Eléctrico
