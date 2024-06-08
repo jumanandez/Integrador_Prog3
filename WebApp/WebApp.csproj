@@ -12,6 +12,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Proyecto.Core.Business\Proyecto.Core.Business.csproj" />
+    <ProjectReference Include="..\Proyecto.Core.Configurations\Proyecto.Core.Configurations.csproj" />
+    <ProjectReference Include="..\Proyecto.Core.Entities\Proyecto.Core.Entities.csproj" />
   </ItemGroup>
 
 </Project>

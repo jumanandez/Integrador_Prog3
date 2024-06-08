@@ -59,5 +59,45 @@ namespace WinForm {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        internal static bool ColumnCategoria_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("ColumnCategoria.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        internal static bool ColumnHabilitado_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("ColumnHabilitado.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        internal static bool ColumnNombreProducto_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("ColumnNombreProducto.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        internal static bool ColumnProductoId_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("ColumnProductoId.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
     }
 }

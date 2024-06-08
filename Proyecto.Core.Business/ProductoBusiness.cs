@@ -13,9 +13,9 @@ namespace Proyecto.Core.Business
 {
 	public class ProductoBusiness : IProductoBusiness
     {
-		private readonly IProjectRepository _projectRepository;
+		private readonly ProjectRepository _projectRepository;
 
-		public ProductoBusiness(IProjectRepository projectRepository)
+		public ProductoBusiness(ProjectRepository projectRepository)
 		{
 			_projectRepository = projectRepository;
 		}
@@ -41,9 +41,25 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetProductos();
 		}
 
+
+        public Producto GetProducto(int id)
+		{
+			return _projectRepository.GetProducto(id);
+		}
+
+		public void DeleteProducto(int id)
+		{
+			_projectRepository.DeleteProducto(id);
+		}
+
+		public int GetStock(int usuarioId, int productoId)
+		{
+			return _projectRepository.GetStock(usuarioId, productoId);
+
 		public List<string> GetAllNames()
 		{
 			return _projectRepository.GetAllNames();
+
 		}
 	}
 }
