@@ -14,34 +14,60 @@ namespace WebApp.Controllers
         private readonly ILogger<VentaController> _logger;        
 
         //Se inyecta las dependencias para usar el business de ejemplo
+        private readonly VentaBusiness _ventaBusiness;
         private readonly ProductoBusiness _productoBusiness;
 
-        public VentaController(ProductoBusiness productoBusiness,
+        public VentaController(VentaBusiness ventaBusiness, ProductoBusiness productoBusiness,
                                     ILogger<VentaController> logger)
         {
             _logger = logger;
+            _ventaBusiness = ventaBusiness;
             _productoBusiness = productoBusiness;
-            
         }
 
 
         // GET: VentaController
-        public ActionResult Index()
+        public ActionResult Index(int? CategoriaID, string NombreProducto)
         {
+
+            var ventas = _ventaBusiness.GetVentas();
+
             
+            ventas = (from v in ventas
+                      where v.Producto.CategoriaId == CategoriaID.Value
+                      where v.Producto.Nombre.ToLower().StartsWith(NombreProducto.ToLower())               
+                      select v).ToList();                           
+            
+
             var ViewModel = new VentaVM()
             {
-                VentaLista = _productoBusiness.GetVentas()
-
+                VentaLista = ventas,
+                CategoriaLista = _categoriaBusiness.GetAll()
             };
 
             return View(ViewModel);
         }
 
         // GET: VentaController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? CategoriaID, int id)
         {
-            return View();
+
+            var ventas = _ventaBusiness.GetVentas();
+
+
+            ventas = (from v in ventas
+                      where v.Producto.CategoriaId == CategoriaID.Value
+                      where v.ProductoId == id
+                      select v).ToList();
+
+
+            var ViewModel = new VentaVM()
+            {
+                VentaLista = ventas
+
+            };
+
+            return View(ViewModel);
         }
 
         // GET: VentaController/Create
@@ -49,14 +75,15 @@ namespace WebApp.Controllers
         {
             var usuariosID = 1;
 
-            
+
 
             var VentaObj = new Models.ViewModels.VentaVM()
             {
                 ProductoLista = _productoBusiness.GetAll(),
-                VentaLista = _productoBusiness.GetVentas()
-            };           
-           
+                VentaLista = _ventaBusiness.GetVentas()
+
+            };
+
             return View();
         }
 

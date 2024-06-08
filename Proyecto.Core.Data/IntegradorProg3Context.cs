@@ -34,7 +34,7 @@ public partial class IntegradorProg3Context : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
-    public virtual DbSet<Venta> Venta { get; set; }
+    public virtual DbSet<Venta> Ventas { get; set; }
 
     //Aca la config para que se conecte y utilice nuestro Constructor
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
