@@ -3,6 +3,7 @@ using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
 using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Data.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,9 +35,9 @@ builder.Services.AddScoped<Config>(p =>
 
 
 //se inyecta el Business que utiliza ProductController 
-builder.Services.AddScoped<ProductoBusiness>();
+builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
 //se inyecta el repository que utiliza el ProductoBusiness class
-builder.Services.AddScoped<ProjectRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 //Ademas el Repository necesita el Context el cual necesita una 
 //connectionString, que la tiene la Config class
 

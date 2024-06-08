@@ -38,6 +38,7 @@
 			btnCargarProducto = new Button();
 			btnRefrescar = new Button();
 			lblProductos = new Label();
+			btnPrimerCarga = new Button();
 			((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
 			SuspendLayout();
 			// 
@@ -136,11 +137,23 @@
 			lblProductos.TabIndex = 9;
 			lblProductos.Text = "Productos";
 			// 
+			// btnPrimerCarga
+			// 
+			btnPrimerCarga.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			btnPrimerCarga.Location = new Point(406, 12);
+			btnPrimerCarga.Name = "btnPrimerCarga";
+			btnPrimerCarga.Size = new Size(162, 80);
+			btnPrimerCarga.TabIndex = 10;
+			btnPrimerCarga.Text = "Boton para la primera carga de productos\r\n";
+			btnPrimerCarga.UseVisualStyleBackColor = true;
+			btnPrimerCarga.Click += btnPrimerCarga_Click;
+			// 
 			// FormProducto
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(800, 450);
+			Controls.Add(btnPrimerCarga);
 			Controls.Add(lblProductos);
 			Controls.Add(btnRefrescar);
 			Controls.Add(btnCargarProducto);
@@ -171,5 +184,6 @@
 		private Button btnCargarProducto;
 		private Button btnRefrescar;
 		private Label lblProductos;
+		private Button btnPrimerCarga;
 	}
 }
