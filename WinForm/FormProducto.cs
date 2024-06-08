@@ -1,4 +1,7 @@
-﻿using Proyecto.Core.Business;
+﻿using Microsoft.Extensions.Logging;
+using Proyecto.Core.Business;
+using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
@@ -16,30 +19,24 @@ namespace WinForm
 {
 	public partial class FormProducto : Form
 	{
-		private CategoriaBusiness _categoríaBusiness;
-		private ProductoBusiness _productoBusiness;
-		private ProjectRepository _projectRepository;
-		private Config _config;
-		private Producto _productoACargar;
-		public FormProducto()
+        private readonly ILogger _logger;
+        private readonly ICatergoriaBusiness _categoríaBusiness;
+        private readonly IProductoBusiness _productoBusiness;
+        //private readonly IProjectRepository _projectRepository;
+        private Producto _productoACargar;
+		public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
 		{
-			_config = new Config
-			{
-				ConnectionString = "Persist Security Info=True;Initial Catalog=IntegradorProg3;Data Source=.; Application Name=DemoApp; Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True;"
-			};
-
-			InitializeComponent();
-			_projectRepository = new ProjectRepository(_config);
-			_categoríaBusiness = new CategoriaBusiness();
-			_productoACargar = new Producto();
-		}
+            _logger = logger;
+            _categoríaBusiness = catbusi;
+			//_projectRepository = prorepo;
+			_productoBusiness = produbusi;
+            _productoACargar = new Producto();
+            InitializeComponent();
+        }
 
 		private void FormProducto_Load(object sender, EventArgs e)
 		{
 
-			_projectRepository = new ProjectRepository(_config);
-
-			_productoBusiness = new ProductoBusiness(_projectRepository);
 
 			cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
 			cmbBoxCategorias.DisplayMember = "Nombre";

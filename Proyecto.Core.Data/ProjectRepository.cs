@@ -1,4 +1,5 @@
 ﻿using Proyecto.Core.Configurations;
+using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Proyecto.Core.Data
 {
 
-	public class ProjectRepository
+	public class ProjectRepository : IProjectRepository
 	{
 		private readonly Config _config;
 
