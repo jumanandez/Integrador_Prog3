@@ -28,8 +28,18 @@ namespace WinForm
             InitializeComponent();
             cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
             cmbBoxCategorias.DisplayMember = "Nombre";
-            cmbBoxCategorias.SelectedItem = productin.CategoriaId;
+            int index = FindIndexByName(productin.Categoria.Nombre);
+            cmbBoxCategorias.SelectedIndex = index;
             txtNombreProducto.Text = productin.Nombre;
+        }
+
+        private int FindIndexByName(string name)
+        {
+            var item = cmbBoxCategorias.Items.OfType<Categoria>()
+                                      .Select((cate, index) => new { cate, index })
+                                      .FirstOrDefault(x => x.cate.Nombre == name);
+
+            return item != null ? item.index : -1;
         }
 
         private void BTNCancelar_Click(object sender, EventArgs e)
