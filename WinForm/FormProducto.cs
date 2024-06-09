@@ -35,14 +35,7 @@ namespace WinForm
 			
 		}
 
-		
-
 		private void FormProducto_Load(object sender, EventArgs e)
-		{
-			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-		}
-
-		private void btnRefrescar_Click(object sender, EventArgs e)
 		{
 			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
 		}
