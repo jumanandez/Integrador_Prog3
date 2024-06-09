@@ -98,7 +98,7 @@ namespace WinForm
 		}
 		private void btnNuevoProducto_Click(object sender, EventArgs e)
 		{
-			Form2 AddAPart = new Form2(_productoACargar, _categoríaBusiness, _productoBusiness);
+			Form2 AddAPart = new Form2(_categoríaBusiness, _productoBusiness);
 			AddAPart.ShowDialog();
 		}
 

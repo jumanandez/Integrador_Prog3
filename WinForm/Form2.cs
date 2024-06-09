@@ -33,6 +33,15 @@ namespace WinForm
             txtNombreProducto.Text = productin.Nombre;
         }
 
+        public Form2(ICatergoriaBusiness catbusi, IProductoBusiness productoBusiness)
+        {
+            _categoríaBusiness = catbusi;
+            _productoBusiness = productoBusiness;
+            InitializeComponent();
+            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
+            cmbBoxCategorias.DisplayMember = "Nombre";
+        }
+
         private int FindIndexByName(string name)
         {
             var item = cmbBoxCategorias.Items.OfType<Categoria>()
