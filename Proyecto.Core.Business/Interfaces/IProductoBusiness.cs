@@ -21,7 +21,6 @@ namespace Proyecto.Core.Business.Interfaces
         public void DeleteProducto(Producto product);
         public void ModifyProduct(Producto product);
         public List<string> GetAllNames();
-        public int GetStock(int usuarioId, int productoId);
 
     }
 }

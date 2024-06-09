@@ -21,9 +21,5 @@ namespace Proyecto.Core.Data.Interfaces
         public Producto GetProducto(int id);
         public void DeleteProducto(int id);
         public int GetStock(int usuarioId, int productoId);
-        public void AddCompra(Compra compra);
-        public void DeleteCompra(int id);
-        public void AddVenta(Venta venta);
-        public void DeleteVenta(int id);
     }
 }

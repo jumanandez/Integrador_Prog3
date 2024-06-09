@@ -62,23 +62,6 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-        public void DeleteProducto(Producto producto)
-        {
-
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                dbcontext.Remove(producto);
-                dbcontext.SaveChanges();
-            }
-        }
-        public void ModifyProduct(Producto product)
-        {
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                dbcontext.Update(product);
-                dbcontext.SaveChanges();
-            }
-        }
 
         #endregion
 

@@ -24,7 +24,7 @@ namespace WinForm
         private readonly IProductoBusiness _productoBusiness;
         private Producto _productoACargar;
         private Producto _productoSeleccionado;
-        public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi)
+        public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
         {
             _logger = logger;
             _categoríaBusiness = catbusi;
@@ -49,19 +49,9 @@ namespace WinForm
 
         private void btnCargarProducto_Click(object sender, EventArgs e)
         {
-            List<string> nms = _productoBusiness.GetAllNames();
-
-                    if (nms.Contains(txtNombreProducto.Text))
-                    {
-                        MessageBox.Show("Este producto ya existe!");
-                    }
-                    else
-                    {
-                        _productoACargar.Nombre = txtNombreProducto.Text;
-                        _productoBusiness.AddProducto(_productoACargar);
-						MessageBox.Show("El producto se ha cargado correctamente!");
-                        dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-                    }
+            _productoACargar.Nombre = txtNombreProducto.Text;
+            _productoBusiness.AddProducto(_productoACargar);
+            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
 
         }
 
