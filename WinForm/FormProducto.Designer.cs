@@ -45,6 +45,7 @@
 			BTNdelete = new Button();
 			BTNmodif = new Button();
 			panel1 = new Panel();
+			btnNuevoProducto = new Button();
 			((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
 			panel1.SuspendLayout();
 			SuspendLayout();
@@ -89,7 +90,7 @@
 			// cmbBoxCategorias
 			// 
 			cmbBoxCategorias.FormattingEnabled = true;
-			cmbBoxCategorias.Location = new Point(7, 73);
+			cmbBoxCategorias.Location = new Point(18, 77);
 			cmbBoxCategorias.Name = "cmbBoxCategorias";
 			cmbBoxCategorias.Size = new Size(171, 23);
 			cmbBoxCategorias.TabIndex = 1;
@@ -97,7 +98,7 @@
 			// 
 			// txtNombreProducto
 			// 
-			txtNombreProducto.Location = new Point(12, 275);
+			txtNombreProducto.Location = new Point(18, 148);
 			txtNombreProducto.Name = "txtNombreProducto";
 			txtNombreProducto.Size = new Size(171, 23);
 			txtNombreProducto.TabIndex = 2;
@@ -115,7 +116,7 @@
 			// lblNombreProducto
 			// 
 			lblNombreProducto.AutoSize = true;
-			lblNombreProducto.Location = new Point(12, 257);
+			lblNombreProducto.Location = new Point(18, 130);
 			lblNombreProducto.Name = "lblNombreProducto";
 			lblNombreProducto.Size = new Size(51, 15);
 			lblNombreProducto.TabIndex = 4;
@@ -124,7 +125,7 @@
 			// lblCategoria
 			// 
 			lblCategoria.AutoSize = true;
-			lblCategoria.Location = new Point(12, 189);
+			lblCategoria.Location = new Point(18, 59);
 			lblCategoria.Name = "lblCategoria";
 			lblCategoria.Size = new Size(58, 15);
 			lblCategoria.TabIndex = 5;
@@ -134,7 +135,7 @@
 			// 
 			lblNuevoProducto.AutoSize = true;
 			lblNuevoProducto.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-			lblNuevoProducto.Location = new Point(12, 148);
+			lblNuevoProducto.Location = new Point(18, 20);
 			lblNuevoProducto.Name = "lblNuevoProducto";
 			lblNuevoProducto.Size = new Size(171, 30);
 			lblNuevoProducto.TabIndex = 6;
@@ -143,7 +144,7 @@
 			// btnCargarProducto
 			// 
 			btnCargarProducto.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-			btnCargarProducto.Location = new Point(12, 313);
+			btnCargarProducto.Location = new Point(18, 186);
 			btnCargarProducto.Name = "btnCargarProducto";
 			btnCargarProducto.Size = new Size(80, 29);
 			btnCargarProducto.TabIndex = 7;
@@ -201,34 +202,47 @@
 			// 
 			panel1.BackColor = SystemColors.Control;
 			panel1.Controls.Add(cmbBoxCategorias);
-			panel1.Location = new Point(5, 134);
+			panel1.Controls.Add(lblNuevoProducto);
+			panel1.Controls.Add(lblCategoria);
+			panel1.Controls.Add(txtNombreProducto);
+			panel1.Controls.Add(lblNombreProducto);
+			panel1.Controls.Add(btnCargarProducto);
+			panel1.Location = new Point(12, 112);
 			panel1.Name = "panel1";
-			panel1.Size = new Size(200, 226);
+			panel1.Size = new Size(296, 322);
 			panel1.TabIndex = 13;
+			// 
+			// btnNuevoProducto
+			// 
+			btnNuevoProducto.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			btnNuevoProducto.Location = new Point(532, 427);
+			btnNuevoProducto.Name = "btnNuevoProducto";
+			btnNuevoProducto.Size = new Size(80, 29);
+			btnNuevoProducto.TabIndex = 14;
+			btnNuevoProducto.Text = "Nuevo";
+			btnNuevoProducto.UseVisualStyleBackColor = true;
+			btnNuevoProducto.Click += btnNuevoProducto_Click;
 			// 
 			// FormProducto
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(800, 474);
+			Controls.Add(panel1);
+			Controls.Add(btnNuevoProducto);
 			Controls.Add(BTNmodif);
 			Controls.Add(BTNdelete);
 			Controls.Add(lblProductos);
 			Controls.Add(btnRefrescar);
-			Controls.Add(btnCargarProducto);
-			Controls.Add(lblNuevoProducto);
-			Controls.Add(lblCategoria);
-			Controls.Add(lblNombreProducto);
 			Controls.Add(lblTitulo);
-			Controls.Add(txtNombreProducto);
 			Controls.Add(dataGridViewProducto);
-			Controls.Add(panel1);
 			Name = "FormProducto";
 			Text = "FormProducto";
 			Activated += FormProducto_Activated;
 			Load += FormProducto_Load;
 			((System.ComponentModel.ISupportInitialize)dataGridViewProducto).EndInit();
 			panel1.ResumeLayout(false);
+			panel1.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -252,5 +266,6 @@
 		private DataGridViewTextBoxColumn ColumnCategoria;
 		private DataGridViewCheckBoxColumn ColumnHabilitado;
 		private Panel panel1;
+		private Button btnNuevoProducto;
 	}
 }

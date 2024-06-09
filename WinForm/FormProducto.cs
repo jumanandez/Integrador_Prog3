@@ -17,128 +17,125 @@ using System.Windows.Forms;
 
 namespace WinForm
 {
-    public partial class FormProducto : Form
-    {
-        private readonly ILogger _logger;
-        private readonly ICatergoriaBusiness _categoríaBusiness;
-        private readonly IProductoBusiness _productoBusiness;
-        private Producto _productoACargar;
-        private Producto _productoSeleccionado;
-		
-        public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi)
-        {
-            _logger = logger;
-            _categoríaBusiness = catbusi;
-            _productoBusiness = produbusi;
-            _productoACargar = new Producto();
-            InitializeComponent();
-			InitPanel();
-        }
+	public partial class FormProducto : Form
+	{
+		private readonly ILogger _logger;
+		private readonly ICatergoriaBusiness _categoríaBusiness;
+		private readonly IProductoBusiness _productoBusiness;
+		private Producto _productoACargar;
+		private Producto _productoSeleccionado;
 
-		private void InitPanel()
+		public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi)
 		{
-			panel1.Controls.Add(lblCategoria);
-			panel1.Controls.Add(lblNombreProducto);
-			panel1.Controls.Add(lblNuevoProducto);
-			panel1.Controls.Add(btnCargarProducto);
-			panel1.Controls.Add(txtNombreProducto);
-			panel1.Controls.Add(cmbBoxCategorias);
+			_logger = logger;
+			_categoríaBusiness = catbusi;
+			_productoBusiness = produbusi;
+			_productoACargar = new Producto();
+			InitializeComponent();
 			panel1.Visible = false;
 		}
 
+		
+
 		private void FormProducto_Load(object sender, EventArgs e)
-        {
+		{
 
 
-            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
-            cmbBoxCategorias.DisplayMember = "Nombre";
-            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-        }
+			cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
+			cmbBoxCategorias.DisplayMember = "Nombre";
+			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+		}
 
-        private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _productoACargar.CategoriaId = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
-        }
+		private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			_productoACargar.CategoriaId = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
+		}
 
-        private void btnCargarProducto_Click(object sender, EventArgs e)
-        {
-            List<string> nms = _productoBusiness.GetAllNames();
+		private void btnCargarProducto_Click(object sender, EventArgs e)
+		{
+			List<string> nms = _productoBusiness.GetAllNames();
 
-                    if (nms.Contains(txtNombreProducto.Text))
-                    {
-                        MessageBox.Show("Este producto ya existe!");
-                    }
-                    else
-                    {
-                        _productoACargar.Nombre = txtNombreProducto.Text;
-                        _productoBusiness.AddProducto(_productoACargar);
-						MessageBox.Show("El producto se ha cargado correctamente!");
-                        dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-                    }
+			if (nms.Contains(txtNombreProducto.Text))
+			{
+				MessageBox.Show("Este producto ya existe!");
+			}
+			else
+			{
+				_productoACargar.Nombre = txtNombreProducto.Text;
+				_productoBusiness.AddProducto(_productoACargar);
+				MessageBox.Show("El producto se ha cargado correctamente!");
+				dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+			}
+			panel1.Visible = false;
+		}
 
-        }
+		private void btnRefrescar_Click(object sender, EventArgs e)
+		{
+			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+		}
 
-        private void btnRefrescar_Click(object sender, EventArgs e)
-        {
-            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-        }
+		private void btnModificar_Click(object sender, EventArgs e)
+		{
+			var i = dataGridViewProducto.CurrentRow.Index;
+			var prod = dataGridViewProducto.SelectedRows[0];
+			_productoSeleccionado = (Producto)prod.DataBoundItem;
 
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            var i = dataGridViewProducto.CurrentRow.Index;
-            var prod = dataGridViewProducto.SelectedRows[0];
-            _productoSeleccionado = (Producto)prod.DataBoundItem;
+			if (i >= 0)
+			{
+				Form2 AddAPart = new Form2(_productoSeleccionado, _categoríaBusiness, _productoBusiness);
+				AddAPart.ShowDialog();
+			}
+			else
+			{
+				MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+			}
+		}
+		//AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
+		private void FormProducto_Activated(object sender, EventArgs e)
+		{
 
-            if (i >= 0)
-            {
-                Form2 AddAPart = new Form2(_productoSeleccionado, _categoríaBusiness, _productoBusiness);
-                AddAPart.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
-            }
-        }
-        //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
-        private void FormProducto_Activated(object sender, EventArgs e)
-        {
-			panel1.Controls.Clear();
 			dataGridViewProducto.AutoGenerateColumns = false;
 			dataGridViewProducto.DataSource = ProductosConCategorias();
-        }
+		}
 
 		public List<Producto> ProductosConCategorias()
 		{
 			var productos = _productoBusiness.GetAll();
 			var categorias = _categoríaBusiness.GetAll();
 
-			foreach(Producto p in productos)
+			foreach (Producto p in productos)
 			{
 				p.Categoria = (from cat in categorias
-							  where cat.CategoriaId == p.CategoriaId
-							  select cat).FirstOrDefault();							  
+							   where cat.CategoriaId == p.CategoriaId
+							   select cat).FirstOrDefault();
 			}
 			return productos;
 		}
-        private void BTNdelete_Click(object sender, EventArgs e)
-        {
-            var i = dataGridViewProducto.CurrentRow.Index;
-            var prod = dataGridViewProducto.SelectedRows[0];
-            _productoSeleccionado = (Producto)prod.DataBoundItem;
-            if (i >= 0)
-            {
-                DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    _productoBusiness.DeleteProducto(_productoSeleccionado);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
-            }
-            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-        }
+		private void BTNdelete_Click(object sender, EventArgs e)
+		{
+			var i = dataGridViewProducto.CurrentRow.Index;
+			var prod = dataGridViewProducto.SelectedRows[0];
+			_productoSeleccionado = (Producto)prod.DataBoundItem;
+			if (i >= 0)
+			{
+				DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.Yes)
+				{
+					_productoBusiness.DeleteProducto(_productoSeleccionado);
+				}
+			}
+			else
+			{
+				MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+			}
+			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+		}
+		private void btnNuevoProducto_Click(object sender, EventArgs e)
+		{
+			panel1.Visible = true;
+		}
+
+
 
 		//DESCOMENTAR LA REGION PARA CARGAR SUS PRODUCTOS
 
@@ -335,6 +332,8 @@ namespace WinForm
 
 			//btnPrimerCarga.Visible = false;
 		}
+
+		
 		#endregion NO TOCAR
 
 		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
