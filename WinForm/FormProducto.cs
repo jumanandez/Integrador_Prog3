@@ -32,41 +32,14 @@ namespace WinForm
 			_productoBusiness = produbusi;
 			_productoACargar = new Producto();
 			InitializeComponent();
-			panel1.Visible = false;
+			
 		}
 
 		
 
 		private void FormProducto_Load(object sender, EventArgs e)
 		{
-
-
-			cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
-			cmbBoxCategorias.DisplayMember = "Nombre";
 			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-		}
-
-		private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			_productoACargar.CategoriaId = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
-		}
-
-		private void btnCargarProducto_Click(object sender, EventArgs e)
-		{
-			List<string> nms = _productoBusiness.GetAllNames();
-
-			if (nms.Contains(txtNombreProducto.Text))
-			{
-				MessageBox.Show("Este producto ya existe!");
-			}
-			else
-			{
-				_productoACargar.Nombre = txtNombreProducto.Text;
-				_productoBusiness.AddProducto(_productoACargar);
-				MessageBox.Show("El producto se ha cargado correctamente!");
-				dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-			}
-			panel1.Visible = false;
 		}
 
 		private void btnRefrescar_Click(object sender, EventArgs e)
@@ -132,7 +105,8 @@ namespace WinForm
 		}
 		private void btnNuevoProducto_Click(object sender, EventArgs e)
 		{
-			panel1.Visible = true;
+			Form2 AddAPart = new Form2(_productoACargar, _categoríaBusiness, _productoBusiness);
+			AddAPart.ShowDialog();
 		}
 
 
