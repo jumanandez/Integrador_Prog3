@@ -311,11 +311,11 @@ namespace WinForm
             var productos = _productoBusiness.GetAll();
             var categorias = _categoríaBusiness.GetAll();
 
-            var filteredMaterias = from materia in productos
-                                   where materia.Nombre.ToLower().Contains(searchText)
-                                   select materia;
+            var filteredProductos = from prod in productos
+                                   where prod.Nombre.ToLower().Contains(searchText)
+                                   select prod;
 
-            dataGridViewProducto.DataSource = ProductosConCategorias(filteredMaterias.ToList(), _categoríaBusiness.GetAll());
+            dataGridViewProducto.DataSource = ProductosConCategorias(filteredProductos.ToList(), _categoríaBusiness.GetAll());
 
         }
     }
