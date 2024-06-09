@@ -28,7 +28,7 @@ namespace WinForm
             InitializeComponent();
             cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
             cmbBoxCategorias.DisplayMember = "Nombre";
-            cmbBoxCategorias.SelectedIndex = productin.CategoriaId -1;
+            cmbBoxCategorias.SelectedItem = productin.CategoriaId;
             txtNombreProducto.Text = productin.Nombre;
         }
 

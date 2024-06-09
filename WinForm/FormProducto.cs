@@ -89,9 +89,23 @@ namespace WinForm
         //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
         private void FormProducto_Activated(object sender, EventArgs e)
         {
-            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+			dataGridViewProducto.AutoGenerateColumns = false;
+			dataGridViewProducto.DataSource = ProductosConCategorias();
         }
 
+		public List<Producto> ProductosConCategorias()
+		{
+			var productos = _productoBusiness.GetAll();
+			var categorias = _categoríaBusiness.GetAll();
+
+			foreach(Producto p in productos)
+			{
+				p.Categoria = (from cat in categorias
+							  where cat.CategoriaId == p.CategoriaId
+							  select cat).FirstOrDefault();							  
+			}
+			return productos;
+		}
         private void BTNdelete_Click(object sender, EventArgs e)
         {
             var i = dataGridViewProducto.CurrentRow.Index;
@@ -312,13 +326,5 @@ namespace WinForm
 		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
 	}
 }
-//### Transmisión
-//### 3. Sistema Eléctrico
-//### 4. Suspensión y Dirección
-//### 5. Frenos
-//### 6. Carrocería y Accesorios
-//### 7. Climatización
-//### 8. Neumáticos y Ruedas
-//### 9. Sistemas de Seguridad
-//### 10. Otros
+
 
