@@ -87,6 +87,7 @@ namespace WinForm
 		{
 			dataGridViewProducto.AutoGenerateColumns = false;
 			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+			CargarStock();
 			//ProductosConCategorias(_productoBusiness.GetAll(), _categoríaBusiness.GetAll());
 		}
 
@@ -104,7 +105,7 @@ namespace WinForm
 			#region PRIMERA CARGA DE PRODUCTOS
 			productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Bloque del motor", CategoriaId = idMotor });
-			productos.Add(new Producto { Nombre = "Cilindros", CategoriaId = idMotor }); productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
+			productos.Add(new Producto { Nombre = "Cilindros", CategoriaId = idMotor }); 
 			productos.Add(new Producto { Nombre = "Bielas", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "cigueñal", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Correa de distribución", CategoriaId = idMotor });
@@ -141,7 +142,7 @@ namespace WinForm
 			var idTransmision = categorias[1].CategoriaId;
 
 
-			productos.Add(new Producto { Nombre = "Engranajes", CategoriaId = idTransmision });
+			productos.Add(new Producto { Nombre = "Engranajes de transmision", CategoriaId = idTransmision });
 			productos.Add(new Producto { Nombre = "Ejes", CategoriaId = idTransmision });
 			productos.Add(new Producto { Nombre = "Sincronizadores", CategoriaId = idTransmision });
 			productos.Add(new Producto { Nombre = "Rodamientos", CategoriaId = idTransmision });
@@ -284,7 +285,7 @@ namespace WinForm
 				_productoBusiness.AddProducto(p);
 			}
 
-			btnPrimerCarga.Visible = false;
+			btnPrimerCarga.Enabled = false;
 		}
 		#endregion NO TOCAR
 
@@ -339,7 +340,34 @@ namespace WinForm
 			return categorias;
 		}
 
-		
+		public void CargarStock()
+		{
+			foreach (DataGridViewRow row in dataGridViewProducto.Rows)
+			{
+				if (!row.IsNewRow)
+				{
+					var producto = (Producto)row.DataBoundItem;
+					
+					var comprasDeProducto = producto.Compras;
+					
+					var ventasDeProducto = producto.Venta;
+					
+					int cantidadVentas = 0, 
+						cantidadCompras = 0;
+
+					foreach (var venta in ventasDeProducto)
+                    {
+						cantidadVentas += venta.Cantidad;
+                    }
+                    foreach (var compra in comprasDeProducto)
+                    {
+						cantidadCompras += compra.Cantidad;
+                    }
+					
+					row.Cells[3].Value = cantidadCompras - cantidadVentas;
+				}
+			}
+		}
 	}
 }
 
