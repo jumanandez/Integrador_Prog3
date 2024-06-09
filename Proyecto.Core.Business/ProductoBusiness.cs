@@ -6,11 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Proyecto.Core.Configurations;
+using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Data.Interfaces;
 
 namespace Proyecto.Core.Business
 {
-	public class ProductoBusiness
-	{
+	public class ProductoBusiness : IProductoBusiness
+    {
 		private readonly ProjectRepository _projectRepository;
 
 		public ProductoBusiness(ProjectRepository projectRepository)
@@ -28,17 +30,6 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetProductos();
 		}
 
-		public List<Compra> GetCompras() 
-		{
-			return _projectRepository.GetCompras();
-		}
-
-        public List<Venta> GetVentas()
-        {
-            return _projectRepository.GetVentas();
-        }
-
-
         public Producto GetProducto(int id)
 		{
 			return _projectRepository.GetProducto(id);
@@ -47,6 +38,11 @@ namespace Proyecto.Core.Business
 		public void DeleteProducto(int id)
 		{
 			_projectRepository.DeleteProducto(id);
+		}
+
+		public int GetStock(int usuarioId, int productoId)
+		{
+			return _projectRepository.GetStock(usuarioId, productoId);
 		}
 	}
 }
