@@ -67,7 +67,7 @@ namespace WinForm
                     else
                     {
                         _productoBusiness.ModifyProduct(produmf);
-                        MessageBox.Show("Producto modificado correctamente!");
+                        MessageBox.Show("Accion realizada correctamente!");
                     }
                 }
                 this.Close();
