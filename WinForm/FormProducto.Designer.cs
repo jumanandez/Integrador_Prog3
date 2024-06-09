@@ -29,6 +29,10 @@
 		private void InitializeComponent()
 		{
 			dataGridViewProducto = new DataGridView();
+			ColumnProductoId = new DataGridViewTextBoxColumn();
+			ColumnNombreProducto = new DataGridViewTextBoxColumn();
+			ColumnCategoria = new DataGridViewTextBoxColumn();
+			ColumnHabilitado = new DataGridViewCheckBoxColumn();
 			cmbBoxCategorias = new ComboBox();
 			txtNombreProducto = new TextBox();
 			lblTitulo = new Label();
@@ -40,11 +44,9 @@
 			lblProductos = new Label();
 			BTNdelete = new Button();
 			BTNmodif = new Button();
-			ColumnProductoId = new DataGridViewTextBoxColumn();
-			ColumnNombreProducto = new DataGridViewTextBoxColumn();
-			ColumnCategoria = new DataGridViewTextBoxColumn();
-			ColumnHabilitado = new DataGridViewCheckBoxColumn();
+			panel1 = new Panel();
 			((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
+			panel1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// dataGridViewProducto
@@ -58,10 +60,36 @@
 			dataGridViewProducto.Size = new Size(455, 257);
 			dataGridViewProducto.TabIndex = 0;
 			// 
+			// ColumnProductoId
+			// 
+			ColumnProductoId.DataPropertyName = "ProductoId";
+			ColumnProductoId.HeaderText = "ID Producto";
+			ColumnProductoId.Name = "ColumnProductoId";
+			ColumnProductoId.ReadOnly = true;
+			// 
+			// ColumnNombreProducto
+			// 
+			ColumnNombreProducto.DataPropertyName = "Nombre";
+			ColumnNombreProducto.HeaderText = "Nombre";
+			ColumnNombreProducto.Name = "ColumnNombreProducto";
+			ColumnNombreProducto.ReadOnly = true;
+			// 
+			// ColumnCategoria
+			// 
+			ColumnCategoria.DataPropertyName = "Categoria";
+			ColumnCategoria.HeaderText = "Categoria";
+			ColumnCategoria.Name = "ColumnCategoria";
+			ColumnCategoria.ReadOnly = true;
+			// 
+			// ColumnHabilitado
+			// 
+			ColumnHabilitado.HeaderText = "Habilitado";
+			ColumnHabilitado.Name = "ColumnHabilitado";
+			// 
 			// cmbBoxCategorias
 			// 
 			cmbBoxCategorias.FormattingEnabled = true;
-			cmbBoxCategorias.Location = new Point(12, 207);
+			cmbBoxCategorias.Location = new Point(7, 73);
 			cmbBoxCategorias.Name = "cmbBoxCategorias";
 			cmbBoxCategorias.Size = new Size(171, 23);
 			cmbBoxCategorias.TabIndex = 1;
@@ -169,31 +197,14 @@
 			BTNmodif.UseVisualStyleBackColor = true;
 			BTNmodif.Click += btnModificar_Click;
 			// 
-			// ColumnProductoId
+			// panel1
 			// 
-			ColumnProductoId.DataPropertyName = "ProductoId";
-			ColumnProductoId.HeaderText = "ID Producto";
-			ColumnProductoId.Name = "ColumnProductoId";
-			ColumnProductoId.ReadOnly = true;
-			// 
-			// ColumnNombreProducto
-			// 
-			ColumnNombreProducto.DataPropertyName = "Nombre";
-			ColumnNombreProducto.HeaderText = "Nombre";
-			ColumnNombreProducto.Name = "ColumnNombreProducto";
-			ColumnNombreProducto.ReadOnly = true;
-			// 
-			// ColumnCategoria
-			// 
-			ColumnCategoria.DataPropertyName = "Categoria";
-			ColumnCategoria.HeaderText = "Categoria";
-			ColumnCategoria.Name = "ColumnCategoria";
-			ColumnCategoria.ReadOnly = true;
-			// 
-			// ColumnHabilitado
-			// 
-			ColumnHabilitado.HeaderText = "Habilitado";
-			ColumnHabilitado.Name = "ColumnHabilitado";
+			panel1.BackColor = SystemColors.Control;
+			panel1.Controls.Add(cmbBoxCategorias);
+			panel1.Location = new Point(5, 134);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(200, 226);
+			panel1.TabIndex = 13;
 			// 
 			// FormProducto
 			// 
@@ -210,13 +221,14 @@
 			Controls.Add(lblNombreProducto);
 			Controls.Add(lblTitulo);
 			Controls.Add(txtNombreProducto);
-			Controls.Add(cmbBoxCategorias);
 			Controls.Add(dataGridViewProducto);
+			Controls.Add(panel1);
 			Name = "FormProducto";
 			Text = "FormProducto";
 			Activated += FormProducto_Activated;
 			Load += FormProducto_Load;
 			((System.ComponentModel.ISupportInitialize)dataGridViewProducto).EndInit();
+			panel1.ResumeLayout(false);
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -239,5 +251,6 @@
 		private DataGridViewTextBoxColumn ColumnNombreProducto;
 		private DataGridViewTextBoxColumn ColumnCategoria;
 		private DataGridViewCheckBoxColumn ColumnHabilitado;
+		private Panel panel1;
 	}
 }

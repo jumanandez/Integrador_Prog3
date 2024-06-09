@@ -24,6 +24,7 @@ namespace WinForm
         private readonly IProductoBusiness _productoBusiness;
         private Producto _productoACargar;
         private Producto _productoSeleccionado;
+		
         public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi)
         {
             _logger = logger;
@@ -31,9 +32,21 @@ namespace WinForm
             _productoBusiness = produbusi;
             _productoACargar = new Producto();
             InitializeComponent();
+			InitPanel();
         }
 
-        private void FormProducto_Load(object sender, EventArgs e)
+		private void InitPanel()
+		{
+			panel1.Controls.Add(lblCategoria);
+			panel1.Controls.Add(lblNombreProducto);
+			panel1.Controls.Add(lblNuevoProducto);
+			panel1.Controls.Add(btnCargarProducto);
+			panel1.Controls.Add(txtNombreProducto);
+			panel1.Controls.Add(cmbBoxCategorias);
+			panel1.Visible = false;
+		}
+
+		private void FormProducto_Load(object sender, EventArgs e)
         {
 
 
@@ -89,6 +102,7 @@ namespace WinForm
         //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
         private void FormProducto_Activated(object sender, EventArgs e)
         {
+			panel1.Controls.Clear();
 			dataGridViewProducto.AutoGenerateColumns = false;
 			dataGridViewProducto.DataSource = ProductosConCategorias();
         }
