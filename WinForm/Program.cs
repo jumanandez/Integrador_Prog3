@@ -35,6 +35,9 @@ namespace WinForm
                 ConnectionString = connectionString
             };
 
+            var projectgay = new ProjectRepository(config);
+
+
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             services.AddLogging(configure => configure.AddConsole())
                     .AddScoped<Config>(p =>
