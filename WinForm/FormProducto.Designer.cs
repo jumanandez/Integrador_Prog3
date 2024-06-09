@@ -42,6 +42,7 @@
 			LblBuscar = new Label();
 			cmbBoxCategorias = new ComboBox();
 			lblCategorias = new Label();
+			btnPrimerCarga = new Button();
 			((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
 			SuspendLayout();
 			// 
@@ -174,11 +175,24 @@
 			lblCategorias.TabIndex = 18;
 			lblCategorias.Text = "Categorias";
 			// 
+			// btnPrimerCarga
+			// 
+			btnPrimerCarga.Enabled = false;
+			btnPrimerCarga.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			btnPrimerCarga.Location = new Point(378, 12);
+			btnPrimerCarga.Name = "btnPrimerCarga";
+			btnPrimerCarga.Size = new Size(114, 81);
+			btnPrimerCarga.TabIndex = 19;
+			btnPrimerCarga.Text = "Primera Carga de Productos ";
+			btnPrimerCarga.UseVisualStyleBackColor = true;
+			btnPrimerCarga.Click += btnPrimerCarga_Click;
+			// 
 			// FormProducto
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(800, 474);
+			Controls.Add(btnPrimerCarga);
 			Controls.Add(lblCategorias);
 			Controls.Add(cmbBoxCategorias);
 			Controls.Add(LblBuscar);
@@ -213,5 +227,6 @@
         private DataGridViewCheckBoxColumn ColumnHabilitado;
 		private ComboBox cmbBoxCategorias;
 		private Label lblCategorias;
+		private Button btnPrimerCarga;
 	}
 }

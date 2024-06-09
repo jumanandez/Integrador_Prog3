@@ -46,7 +46,9 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                productos = dbcontext.Productos.ToList();
+                productos = dbcontext.Productos.Include(p => p.Categoria)
+                                               .Include(p => p.Compras)
+                                               .Include(p => p.Venta).ToList();
             }
             return productos;
         }
@@ -136,8 +138,8 @@ namespace Proyecto.Core.Data
     {
     using (var dbcontext = new IntegradorProg3Context(_config))
 			  {
-      dbcontext.Add(venta);
-		  dbcontext.SaveChanges();
+            dbcontext.Add(venta);
+		    dbcontext.SaveChanges();
       }
      } 
      public void DeleteVenta(int id)
