@@ -59,9 +59,7 @@ namespace WinForm
 		//AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
 		private void FormProducto_Activated(object sender, EventArgs e)
 		{
-
-			dataGridViewProducto.AutoGenerateColumns = false;
-			dataGridViewProducto.DataSource = ProductosConCategorias();
+				RefreshGrid();
 		}
 
 		public List<Producto> ProductosConCategorias()
@@ -94,13 +92,19 @@ namespace WinForm
 			{
 				MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
 			}
-			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+			RefreshGrid();
 		}
 		private void btnNuevoProducto_Click(object sender, EventArgs e)
 		{
 			Form2 AddAPart = new Form2(_categoríaBusiness, _productoBusiness);
 			AddAPart.ShowDialog();
 		}
+
+		private void RefreshGrid()
+		{
+            dataGridViewProducto.AutoGenerateColumns = false;
+            dataGridViewProducto.DataSource = ProductosConCategorias();
+        }
 
 
 
