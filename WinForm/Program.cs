@@ -35,7 +35,7 @@ namespace WinForm
                 ConnectionString = connectionString
             };
 
-            var projectgay = new ProjectRepository(config);
+            
 
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
