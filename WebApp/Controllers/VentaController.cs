@@ -17,9 +17,9 @@ namespace WebApp.Controllers
         //Se inyecta las dependencias para usar el business de ejemplo
         private readonly IVentaBusiness _ventaBusiness;
         private readonly IProductoBusiness _productoBusiness;
-        private readonly ICatergoriaBusiness _categoriaBusiness;
+        private readonly ICategoriaBusiness _categoriaBusiness;
 
-        public VentaController(IVentaBusiness ventaBusiness, IProductoBusiness productoBusiness, CategoriaBusiness categoriaBusiness,
+        public VentaController(IVentaBusiness ventaBusiness, IProductoBusiness productoBusiness, ICategoriaBusiness categoriaBusiness,
                                     ILogger<VentaController> logger)
         {
             _logger = logger;

@@ -20,11 +20,11 @@ namespace WinForm
 	public partial class FormProducto : Form
 	{
 		private readonly ILogger _logger;
-		private readonly ICatergoriaBusiness _categoríaBusiness;
+		private readonly ICategoriaBusiness _categoríaBusiness;
 		private readonly IProductoBusiness _productoBusiness;
 		//private readonly IProjectRepository _projectRepository;
 		private Producto _productoACargar;
-		public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
+		public FormProducto(ILogger<FormProducto> logger, ICategoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
 		{
 			_logger = logger;
 			_categoríaBusiness = catbusi;
