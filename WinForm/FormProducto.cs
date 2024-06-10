@@ -297,12 +297,26 @@ namespace WinForm
 			var productos = _productoBusiness.GetAll();
 			var categorias = _categoríaBusiness.GetAll();
 
-			var filteredProductos = from prod in productos
-									where prod.Nombre.ToLower().Contains(searchText)
-									select prod;
+			if (cmbBoxCategorias.SelectedIndex == 0)
+			{
+				var filteredProductos = from prod in productos
+										where prod.Nombre.ToLower().Contains(searchText)
+										select prod;
 
-			dataGridViewProducto.DataSource = filteredProductos.ToList();
-
+				dataGridViewProducto.DataSource = filteredProductos.ToList();
+			}
+			else
+			{
+				var filteredProductos = from prod in productos
+										where prod.CategoriaId ==
+											  ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
+													&&
+											  prod.Nombre.ToLower().Contains(searchText)
+										select prod;
+				
+				dataGridViewProducto.DataSource = filteredProductos.ToList();
+			
+			}
 		}
 
 		private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
@@ -348,23 +362,9 @@ namespace WinForm
 				{
 					var producto = (Producto)row.DataBoundItem;
 					
-					var comprasDeProducto = producto.Compras;
-					
-					var ventasDeProducto = producto.Venta;
-					
-					int cantidadVentas = 0, 
-						cantidadCompras = 0;
-
-					foreach (var venta in ventasDeProducto)
-                    {
-						cantidadVentas += venta.Cantidad;
-                    }
-                    foreach (var compra in comprasDeProducto)
-                    {
-						cantidadCompras += compra.Cantidad;
-                    }
-					
-					row.Cells[3].Value = cantidadCompras - cantidadVentas;
+					row.Cells[3].Value = (producto.Compras.Select(c => c.Cantidad).Sum()) //Compras
+											- //menos
+										(producto.Venta.Select(v => v.Cantidad).Sum());//Ventas
 				}
 			}
 		}
