@@ -1,5 +1,6 @@
 ﻿using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data;
+using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace Proyecto.Core.Business
 {
     public class CompraBusiness : ICompraBusiness
     {
-        private readonly ProjectRepository _projectRepository;
+        private readonly IProjectRepository _projectRepository;
 
-        public CompraBusiness(ProjectRepository projectRepository)
+        public CompraBusiness(IProjectRepository projectRepository)
         {
             _projectRepository = projectRepository;
         }
