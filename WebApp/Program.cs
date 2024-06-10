@@ -2,7 +2,9 @@ using Proyecto.Core.Entities;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
-
+using Microsoft.EntityFrameworkCore;
+using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Data.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 #region INYECCION DE DEPENDENCIAS
@@ -32,9 +34,12 @@ builder.Services.AddScoped<Config>(p =>
 
 
 //se inyecta el Business que utiliza ProductController 
-builder.Services.AddScoped<ProductoBusiness>();
+builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
 //se inyecta el repository que utiliza el ProductoBusiness class
-builder.Services.AddScoped<ProjectRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
+builder.Services.AddScoped<IVentaBusiness, VentaBusiness>();
+//se inyecta el repository que utiliza el ProductoBusiness class
 //Ademas el Repository necesita el Context el cual necesita una 
 //connectionString, que la tiene la Config class
 
@@ -42,6 +47,7 @@ builder.Services.AddScoped<ProjectRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

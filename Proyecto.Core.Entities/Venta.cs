@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto.Core.Entities;
-
+[Table("venta")]
 public partial class Venta
 {
     public int VentaId { get; set; }

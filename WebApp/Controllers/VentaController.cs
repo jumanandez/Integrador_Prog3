@@ -77,7 +77,7 @@ namespace WebApp.Controllers
 
             var VentaObj = new Models.ViewModels.VentaVM()
             {
-                ProductoLista = _ventaBusiness.GetAll(),
+               // ProductoLista = _ventaBusiness.GetAll(),
                 VentaLista = _ventaBusiness.GetVentas()
             };           
            

@@ -20,10 +20,10 @@ public partial class IntegradorProg3Context : DbContext
     //Este constructor no vamos a usar si usamos el Config
     //Es el constructor que usa el EntityFramework.Core.Tools lo que hace es que fuera de nuestra vista se conecta a la base de datos y usa la connectionstring, pero esto ni lo vemos, entonces no esta bueno
 
-    //public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
-    //    : base(options)
-    //{
-    //}
+    public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
+        : base(options)
+    {
+    }
 
     //Todos los DbSet Necesarios
     public virtual DbSet<Categoria> Categoria { get; set; }
@@ -98,6 +98,7 @@ public partial class IntegradorProg3Context : DbContext
             entity.Property(e => e.HashPassword).HasMaxLength(256);
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.Salt).HasMaxLength(16);
+            entity.Property(e => e.Email).HasMaxLength(256);
         });
 
         modelBuilder.Entity<Venta>(entity =>

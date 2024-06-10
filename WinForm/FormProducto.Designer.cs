@@ -146,7 +146,7 @@
 			btnPrimerCarga.TabIndex = 10;
 			btnPrimerCarga.Text = "Boton para la primera carga de productos\r\n";
 			btnPrimerCarga.UseVisualStyleBackColor = true;
-			btnPrimerCarga.Click += btnPrimerCarga_Click;
+			//btnPrimerCarga.Click += btnPrimerCarga_Click;
 			// 
 			// FormProducto
 			// 

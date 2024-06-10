@@ -6,14 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Proyecto.Core.Configurations;
+using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Data.Interfaces;
 
 namespace Proyecto.Core.Business
 {
-    public class VentaBusiness
+    public class VentaBusiness : IVentaBusiness
     {
-        private readonly ProjectRepository _projectRepository;
+        private readonly IProjectRepository _projectRepository;
 
-        public VentaBusiness(ProjectRepository projectRepository)
+        public VentaBusiness(IProjectRepository projectRepository)
         {
             _projectRepository = projectRepository;
         }
@@ -23,30 +25,15 @@ namespace Proyecto.Core.Business
             _projectRepository.AddVenta(venta);
         }
 
-        public List<Producto> GetAll()
-        {
-            return _projectRepository.GetProductos();
-        }
-
-        public List<Compra> GetCompras()
-        {
-            return _projectRepository.GetCompras();
-        }
-
         public List<Venta> GetVentas()
         {
             return _projectRepository.GetVentas();
-        }
-
-
-        public Producto GetProducto(int id)
-        {
-            return _projectRepository.GetProducto(id);
         }
 
         public void DeleteVenta(int id)
         {
             _projectRepository.DeleteVenta(id);
         }
+
     }
 }

@@ -10,9 +10,13 @@ public partial class Usuario
 
     public string Nombre { get; set; } = null!;
 
+    public string Email { get; set; } = null!;
+
     public byte[] HashPassword { get; set; } = null!;
 
     public byte[] Salt { get; set; } = null!;
+
+   
     
     public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
 
