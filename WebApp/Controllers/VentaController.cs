@@ -30,22 +30,15 @@ namespace WebApp.Controllers
 
 
         // GET: VentaController
-        public ActionResult Index(int? CategoriaID, string NombreProducto)
+        public ActionResult Index()
         {
 
-            var ventas = _ventaBusiness.GetVentas();
-
-            
-            ventas = (from v in ventas
-                      where v.Producto.CategoriaId == CategoriaID.Value
-                      where v.Producto.Nombre.ToLower().StartsWith(NombreProducto.ToLower())               
-                      select v).ToList();                           
-            
-
+            var ventas = _ventaBusiness.GetVentas();        
+                           
             var ViewModel = new VentaVM()
             {
                 VentaLista = ventas,
-                //CategoriaLista = _categoriaBusiness.GetAll()
+                CategoriaLista = _categoriaBusiness.GetAll()
             };
 
             return View(ViewModel);
@@ -77,11 +70,9 @@ namespace WebApp.Controllers
             var usuariosID = 1;
 
 
-
             var VentaObj = new Models.ViewModels.VentaVM()
             {
-                ProductoLista = _productoBusiness.GetAll(),
-                VentaLista = _ventaBusiness.GetVentas()
+                ProductoLista = _productoBusiness.GetAll()
 
             };
 

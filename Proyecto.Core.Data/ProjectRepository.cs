@@ -40,17 +40,6 @@ namespace Proyecto.Core.Data
             return producto;
         }
 
-        public Producto GetProducto(int id)
-        {
-            var producto = new Producto();
-
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                producto = dbcontext.Productos.Find(id);
-            }
-            return producto;
-        }
-
         public List<Producto> GetProductos()
         {
             var productos = new List<Producto>();
