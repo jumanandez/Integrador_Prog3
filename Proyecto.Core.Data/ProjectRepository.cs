@@ -62,25 +62,23 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-		public void DeleteProducto(Producto producto)
-		{
 
-			using (var dbcontext = new IntegradorProg3Context(_config))
-			{
-				dbcontext.Remove(producto);
-				dbcontext.SaveChanges();
-			}
-		}
-		public void ModifyProduct(Producto product)
-		{
-			using (var dbcontext = new IntegradorProg3Context(_config))
-			{
-				dbcontext.Update(product);
-				dbcontext.SaveChanges();
-			}
-		}
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Remove(producto);
+                dbcontext.SaveChanges();
+            }
+        }
+        public void ModifyProduct(Producto product)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Update(product);
+                dbcontext.SaveChanges();
+            }
+        }
 
-		#endregion
+        #endregion
 
 		#region Region Compras
 		public List<Compra> GetCompras()
@@ -94,7 +92,7 @@ namespace Proyecto.Core.Data
             return compras;
         }
 
-        
+
         public void AddCompra(Compra compra)
         {
 
@@ -121,8 +119,8 @@ namespace Proyecto.Core.Data
         #endregion
 
         #region Region Ventas
-        public List<Venta> GetVentas() 
-		{
+        public List<Venta> GetVentas()
+        {
             var ventas = new List<Venta>();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
@@ -131,16 +129,16 @@ namespace Proyecto.Core.Data
             }
             return ventas;
         }
-        
+
         public void AddVenta(Venta venta)
-    {
-    using (var dbcontext = new IntegradorProg3Context(_config))
-			  {
-      dbcontext.Add(venta);
-		  dbcontext.SaveChanges();
-      }
-     } 
-     public void DeleteVenta(int id)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Add(venta);
+                dbcontext.SaveChanges();
+            }
+        }
+        public void DeleteVenta(int id)
         {
             var venta = new Venta();
 
@@ -151,7 +149,7 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-     
+
         public List<string> GetAllNames()
         {
             var productos = new List<Producto>();
@@ -163,8 +161,8 @@ namespace Proyecto.Core.Data
                 return names;
             }
         }
-      #endregion
-      
+        #endregion
+
         public int GetStock(int usuarioId, int productoId)
         {
             int stock = 0;
@@ -196,7 +194,7 @@ namespace Proyecto.Core.Data
             return categorias;
         }
 
-        public bool AddCategoría(Categoria categoria)
+        public bool AddCategori­a(Categoria categoria)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
