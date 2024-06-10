@@ -62,6 +62,8 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
+        public void DeleteProducto(Producto producto)
+        {
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
@@ -80,8 +82,8 @@ namespace Proyecto.Core.Data
 
         #endregion
 
-		#region Region Compras
-		public List<Compra> GetCompras()
+        #region Region Compras
+        public List<Compra> GetCompras()
         {
             var compras = new List<Compra>();
 
@@ -194,7 +196,7 @@ namespace Proyecto.Core.Data
             return categorias;
         }
 
-        public bool AddCategori­a(Categoria categoria)
+        public bool AddCategoria(Categoria categoria)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
