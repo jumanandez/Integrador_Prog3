@@ -62,9 +62,9 @@ namespace WinForm
 		}
 
 		//DESCOMENTAR LA REGION PARA CARGAR SUS PRODUCTOS
-		
+
 		#region BOTON DE PRIMERA CARGA
-		/*private void btnPrimerCarga_Click(object sender, EventArgs e)
+		private void btnPrimerCarga_Click(object sender, EventArgs e)
 		{
 			var categorias = _categoríaBusiness.GetAll();
 
@@ -72,7 +72,7 @@ namespace WinForm
 			var productos = new List<Producto>();
 
 			#region PRIMERA CARGA DE PRODUCTOS
-			//productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
+			productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Bloque del motor", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Cilindros", CategoriaId = idMotor }); productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Bielas", CategoriaId = idMotor });
@@ -255,7 +255,7 @@ namespace WinForm
 			}
 
 			btnPrimerCarga.Visible = false;
-		}*/
+		}
 		#endregion NO TOCAR
 
 		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES

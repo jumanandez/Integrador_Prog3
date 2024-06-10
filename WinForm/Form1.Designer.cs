@@ -19,85 +19,85 @@ namespace WinForm {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Form1 {
+    //[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    //[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    //internal class Form1 {
         
-        private static global::System.Resources.ResourceManager resourceMan;
+    //    private static global::System.Resources.ResourceManager resourceMan;
         
-        private static global::System.Globalization.CultureInfo resourceCulture;
+    //    private static global::System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Form1() {
-        }
+    //    [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+    //    internal Form1() {
+    //    }
         
-        /// <summary>
-        ///   Returns the cached ResourceManager instance used by this class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinForm.Form1", typeof(Form1).Assembly);
-                    resourceMan = temp;
-                }
-                return resourceMan;
-            }
-        }
+    //    /// <summary>
+    //    ///   Returns the cached ResourceManager instance used by this class.
+    //    /// </summary>
+    //    [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+    //    internal static global::System.Resources.ResourceManager ResourceManager {
+    //        get {
+    //            if (object.ReferenceEquals(resourceMan, null)) {
+    //                global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinForm.Form1", typeof(Form1).Assembly);
+    //                resourceMan = temp;
+    //            }
+    //            return resourceMan;
+    //        }
+    //    }
         
-        /// <summary>
-        ///   Overrides the current thread's CurrentUICulture property for all
-        ///   resource lookups using this strongly typed resource class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
-        }
+    //    /// <summary>
+    //    ///   Overrides the current thread's CurrentUICulture property for all
+    //    ///   resource lookups using this strongly typed resource class.
+    //    /// </summary>
+    //    [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+    //    internal static global::System.Globalization.CultureInfo Culture {
+    //        get {
+    //            return resourceCulture;
+    //        }
+    //        set {
+    //            resourceCulture = value;
+    //        }
+    //    }
         
-        /// <summary>
-        ///   Looks up a localized resource of type System.Boolean similar to True.
-        /// </summary>
-        internal static bool ColumnCategoria_UserAddedColumn {
-            get {
-                object obj = ResourceManager.GetObject("ColumnCategoria.UserAddedColumn", resourceCulture);
-                return ((bool)(obj));
-            }
-        }
+    //    /// <summary>
+    //    ///   Looks up a localized resource of type System.Boolean similar to True.
+    //    /// </summary>
+    //    internal static bool ColumnCategoria_UserAddedColumn {
+    //        get {
+    //            object obj = ResourceManager.GetObject("ColumnCategoria.UserAddedColumn", resourceCulture);
+    //            return ((bool)(obj));
+    //        }
+    //    }
         
-        /// <summary>
-        ///   Looks up a localized resource of type System.Boolean similar to True.
-        /// </summary>
-        internal static bool ColumnHabilitado_UserAddedColumn {
-            get {
-                object obj = ResourceManager.GetObject("ColumnHabilitado.UserAddedColumn", resourceCulture);
-                return ((bool)(obj));
-            }
-        }
+    //    /// <summary>
+    //    ///   Looks up a localized resource of type System.Boolean similar to True.
+    //    /// </summary>
+    //    internal static bool ColumnHabilitado_UserAddedColumn {
+    //        get {
+    //            object obj = ResourceManager.GetObject("ColumnHabilitado.UserAddedColumn", resourceCulture);
+    //            return ((bool)(obj));
+    //        }
+    //    }
         
-        /// <summary>
-        ///   Looks up a localized resource of type System.Boolean similar to True.
-        /// </summary>
-        internal static bool ColumnNombreProducto_UserAddedColumn {
-            get {
-                object obj = ResourceManager.GetObject("ColumnNombreProducto.UserAddedColumn", resourceCulture);
-                return ((bool)(obj));
-            }
-        }
+    //    /// <summary>
+    //    ///   Looks up a localized resource of type System.Boolean similar to True.
+    //    /// </summary>
+    //    internal static bool ColumnNombreProducto_UserAddedColumn {
+    //        get {
+    //            object obj = ResourceManager.GetObject("ColumnNombreProducto.UserAddedColumn", resourceCulture);
+    //            return ((bool)(obj));
+    //        }
+    //    }
         
-        /// <summary>
-        ///   Looks up a localized resource of type System.Boolean similar to True.
-        /// </summary>
-        internal static bool ColumnProductoId_UserAddedColumn {
-            get {
-                object obj = ResourceManager.GetObject("ColumnProductoId.UserAddedColumn", resourceCulture);
-                return ((bool)(obj));
-            }
-        }
-    }
+    //    /// <summary>
+    //    ///   Looks up a localized resource of type System.Boolean similar to True.
+    //    /// </summary>
+    //    internal static bool ColumnProductoId_UserAddedColumn {
+    //        get {
+    //            object obj = ResourceManager.GetObject("ColumnProductoId.UserAddedColumn", resourceCulture);
+    //            return ((bool)(obj));
+    //        }
+    //    }
+    //}
 }

@@ -27,7 +27,7 @@ namespace WebApp.Controllers
         {
             var ViewModel = new CompraVM
             {
-                CompraLista = _productoBusiness.GetCompras()
+                //CompraLista = _productoBusiness.GetCompras()
 
             };
             return View(ViewModel);            
