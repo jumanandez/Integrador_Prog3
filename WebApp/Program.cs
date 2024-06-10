@@ -38,6 +38,7 @@ builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
 //se inyecta el repository que utiliza el ProductoBusiness class
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
+builder.Services.AddScoped<IVentaBusiness, VentaBusiness>();
 //Ademas el Repository necesita el Context el cual necesita una 
 //connectionString, que la tiene la Config class
 

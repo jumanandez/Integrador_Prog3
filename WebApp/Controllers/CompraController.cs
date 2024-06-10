@@ -34,7 +34,7 @@ namespace WebApp.Controllers
 
 
             compras = (from v in compras
-                       where v.Producto.CategoriaId == CategoriaId.Value
+                       where v.Producto.CategoriaId == CategoriaId
                        where v.Producto.Nombre.ToLower().StartsWith(NombreProducto.ToLower())
                        select v).ToList();
 

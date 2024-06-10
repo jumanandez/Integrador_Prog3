@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Proyecto.Core.Business;
+using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
@@ -14,10 +15,10 @@ namespace WebApp.Controllers
         private readonly ILogger<VentaController> _logger;        
 
         //Se inyecta las dependencias para usar el business de ejemplo
-        private readonly VentaBusiness _ventaBusiness;
-        private readonly ProductoBusiness _productoBusiness;
+        private readonly IVentaBusiness _ventaBusiness;
+        private readonly IProductoBusiness _productoBusiness;
 
-        public VentaController(VentaBusiness ventaBusiness, ProductoBusiness productoBusiness,
+        public VentaController(IVentaBusiness ventaBusiness, IProductoBusiness productoBusiness,
                                     ILogger<VentaController> logger)
         {
             _logger = logger;

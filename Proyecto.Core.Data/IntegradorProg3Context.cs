@@ -65,7 +65,7 @@ public partial class IntegradorProg3Context : DbContext
 
             entity.HasOne(d => d.Producto).WithMany(p => p.Compras)
                 .HasForeignKey(d => d.ProductoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)//al eliminar un producto tambien eliminas las compras de ese producto
                 .HasConstraintName("FK_Compra_Producto");
 
             entity.HasOne(d => d.Usuario).WithMany(p => p.Compras)
@@ -108,7 +108,7 @@ public partial class IntegradorProg3Context : DbContext
 
             entity.HasOne(d => d.Producto).WithMany(p => p.Venta)
                 .HasForeignKey(d => d.ProductoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)//al eliminar un producto tambien eliminas las ventas de ese producto
                 .HasConstraintName("FK_Venta_Producto");
 
             entity.HasOne(d => d.Usuario).WithMany(p => p.Venta)

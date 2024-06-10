@@ -3,7 +3,7 @@
 namespace WebApp.Models.ViewModels
 {
     public class CompraVM
-    {        
+    {
         public List<Compra> CompraLista { get; set; }
 
         public Compra _Compra { get; set; }
