@@ -40,6 +40,17 @@ namespace Proyecto.Core.Data
             return producto;
         }
 
+        public Producto GetProducto(int id)
+        {
+            var producto = new Producto();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                producto = dbcontext.Productos.Find(id);
+            }
+            return producto;
+        }
+
         public List<Producto> GetProductos()
         {
             var productos = new List<Producto>();
@@ -62,28 +73,28 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-		public void DeleteProducto(Producto producto)
-		{
+        public void DeleteProducto(Producto producto)
+        {
 
-			using (var dbcontext = new IntegradorProg3Context(_config))
-			{
-				dbcontext.Remove(producto);
-				dbcontext.SaveChanges();
-			}
-		}
-		public void ModifyProduct(Producto product)
-		{
-			using (var dbcontext = new IntegradorProg3Context(_config))
-			{
-				dbcontext.Update(product);
-				dbcontext.SaveChanges();
-			}
-		}
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Remove(producto);
+                dbcontext.SaveChanges();
+            }
+        }
+        public void ModifyProduct(Producto product)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Update(product);
+                dbcontext.SaveChanges();
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Region Compras
-		public List<Compra> GetCompras()
+        #region Region Compras
+        public List<Compra> GetCompras()
         {
             var compras = new List<Compra>();
 
@@ -94,7 +105,7 @@ namespace Proyecto.Core.Data
             return compras;
         }
 
-        
+
         public void AddCompra(Compra compra)
         {
 
@@ -121,37 +132,37 @@ namespace Proyecto.Core.Data
         #endregion
 
         #region Region Ventas
-        public List<Venta> GetVentas() 
-		{
+        public List<Venta> GetVentas()
+        {
             var ventas = new List<Venta>();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                ventas = dbcontext.Venta.Include(v => v.Producto).Include(v => v.Usuario).ToList();
+                ventas = dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario).ToList();
             }
             return ventas;
         }
-        
+
         public void AddVenta(Venta venta)
-    {
-    using (var dbcontext = new IntegradorProg3Context(_config))
-			  {
-      dbcontext.Add(venta);
-		  dbcontext.SaveChanges();
-      }
-     } 
-     public void DeleteVenta(int id)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Add(venta);
+                dbcontext.SaveChanges();
+            }
+        }
+        public void DeleteVenta(int id)
         {
             var venta = new Venta();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                venta = dbcontext.Venta.Find(id);
+                venta = dbcontext.Ventas.Find(id);
                 dbcontext.Remove(venta);
                 dbcontext.SaveChanges();
             }
         }
-     
+
         public List<string> GetAllNames()
         {
             var productos = new List<Producto>();
@@ -163,8 +174,8 @@ namespace Proyecto.Core.Data
                 return names;
             }
         }
-      #endregion
-      
+        #endregion
+
         public int GetStock(int usuarioId, int productoId)
         {
             int stock = 0;
@@ -174,7 +185,7 @@ namespace Proyecto.Core.Data
                                where c.ProductoId == productoId && c.UsuarioId == usuarioId
                                select c.Cantidad).Sum();
 
-                int ventas = (from v in dbcontext.Venta
+                int ventas = (from v in dbcontext.Ventas
                               where v.ProductoId == productoId && v.UsuarioId == usuarioId
                               select v.Cantidad).Sum();
 
@@ -196,7 +207,7 @@ namespace Proyecto.Core.Data
             return categorias;
         }
 
-        public bool AddCategoría(Categoria categoria)
+        public bool AddCategoria(Categoria categoria)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {

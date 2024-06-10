@@ -15,15 +15,15 @@ namespace Proyecto.Core.Data.Interfaces
         public List<string> GetAllNames();
         public List<Categoria> GetCategorias();
         public void ModifyProduct(Producto product);
-        public bool AddCategoría(Categoria categoria);
+        public bool AddCategori­a(Categoria categoria);
         public List<Compra> GetCompras();
         public List<Venta> GetVentas();
         public Producto GetProducto(int id);
         public void DeleteProducto(int id);
         public int GetStock(int usuarioId, int productoId);
-		public void AddCompra(Compra compra);
-		public void DeleteCompra(int id);
-		public void AddVenta(Venta venta);
-		public void DeleteVenta(int id);
-	}
+        public void AddCompra(Compra compra);
+        public void DeleteCompra(int id);
+        public void AddVenta(Venta venta);
+        public void DeleteVenta(int id);
+    }
 }

@@ -1,0 +1,20 @@
+﻿@model WebApp.Models.ViewModels.CompraVM
+@{
+    ViewData["Title"] = "Compra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ESTA ES LA SECCION DE COMPRAS DE LA WEB</h1>
+
+<ul>
+
+    @foreach (var v in Model.CompraLista)
+    {
+        <li>Usuario: @v.Usuario.Nombre</li>
+        <li>Item: @v.CompraId (@v.Producto.Nombre)</li>
+        <li>Fecha: @v.Fecha</li>
+        <li>Cantidad: @v.Cantidad</li>
+        
+    }
+
+</ul>

@@ -1,6 +1,7 @@
 ﻿using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
+using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,23 +11,22 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Core.Business
 {
-	public class CategoriaBusiness : ICatergoriaBusiness
+	public class CategoriaBusiness : ICategoriaBusiness
 	{
-		private readonly ProjectRepository _projetRepository;
-		public Config config = new();
-		public CategoriaBusiness()
+        private readonly IProjectRepository _projectRepository;
+
+        public CategoriaBusiness(IProjectRepository projectRepository)
+        {
+            _projectRepository = projectRepository;
+        }
+        public List<Categoria> GetAll()
 		{
-			config.ConnectionString = "Persist Security Info=True;Initial Catalog=IntegradorProg3;Data Source=.; Application Name=DemoApp; Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";
-			_projetRepository = new ProjectRepository(config);
-		}
-		public List<Categoria> GetAll()
-		{
-			return _projetRepository.GetCategorias();
+			return _projectRepository.GetCategorias();
 		}
 
 		public bool Add(Categoria categoriaNueva)
 		{
-			return _projetRepository.AddCategoría(categoriaNueva);
+			return _projectRepository.AddCategoria(categoriaNueva);
 		}
 	}
 }

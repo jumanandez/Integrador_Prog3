@@ -20,11 +20,11 @@ namespace WinForm
 	public partial class FormProducto : Form
 	{
 		private readonly ILogger _logger;
-		private readonly ICatergoriaBusiness _categoríaBusiness;
+		private readonly ICategoriaBusiness _categoríaBusiness;
 		private readonly IProductoBusiness _productoBusiness;
 		//private readonly IProjectRepository _projectRepository;
 		private Producto _productoACargar;
-		public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
+		public FormProducto(ILogger<FormProducto> logger, ICategoriaBusiness catbusi, IProductoBusiness produbusi/*, IProjectRepository prorepo*/)
 		{
 			_logger = logger;
 			_categoríaBusiness = catbusi;
@@ -62,9 +62,9 @@ namespace WinForm
 		}
 
 		//DESCOMENTAR LA REGION PARA CARGAR SUS PRODUCTOS
-		
+
 		#region BOTON DE PRIMERA CARGA
-		/*private void btnPrimerCarga_Click(object sender, EventArgs e)
+		private void btnPrimerCarga_Click(object sender, EventArgs e)
 		{
 			var categorias = _categoríaBusiness.GetAll();
 
@@ -72,9 +72,9 @@ namespace WinForm
 			var productos = new List<Producto>();
 
 			#region PRIMERA CARGA DE PRODUCTOS
-			//productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
+			productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Bloque del motor", CategoriaId = idMotor });
-			productos.Add(new Producto { Nombre = "Cilindros", CategoriaId = idMotor }); productos.Add(new Producto { Nombre = "Pistones", CategoriaId = idMotor });
+			productos.Add(new Producto { Nombre = "Cilindros", CategoriaId = idMotor }); 
 			productos.Add(new Producto { Nombre = "Bielas", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "cigueñal", CategoriaId = idMotor });
 			productos.Add(new Producto { Nombre = "Correa de distribución", CategoriaId = idMotor });
@@ -255,7 +255,7 @@ namespace WinForm
 			}
 
 			btnPrimerCarga.Visible = false;
-		}*/
+		}
 		#endregion NO TOCAR
 
 		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES

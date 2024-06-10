@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Core.Business.Interfaces
 {
-    public interface ICategoriaBusiness
+    public interface ICompraBusiness
     {
-        public List<Categoria> GetAll();
-        public bool Add(Categoria categoriaNueva);
+        public void AddCompra(Compra compra);
+
+        public void DeleteCompra(int id);
+
+        public List<Compra> GetCompras();
+
     }
 }
