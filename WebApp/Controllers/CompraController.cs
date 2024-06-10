@@ -17,6 +17,7 @@ namespace WebApp.Controllers
 
         //Se inyecta las dependencias para usar el business de ejemplo
         private readonly ICompraBusiness _compraBusiness;
+        private readonly ICatergoriaBusiness _catergoriaBusiness;
 
         public CompraController(ICompraBusiness compraBusiness,
                                     ILogger<CompraController> logger)
@@ -27,25 +28,15 @@ namespace WebApp.Controllers
 
         // GET: CompraController 
 
-        public ActionResult Index(int CategoriaId, string NombreProducto)
+        public ActionResult Index()
         {
-
-            var compras = _compraBusiness.GetCompras();
-
-
-            compras = (from v in compras
-                       where v.Producto.CategoriaId == CategoriaId.Value
-                       where v.Producto.Nombre.ToLower().StartsWith(NombreProducto.ToLower())
-                       select v).ToList();
-
 
             var ViewModel = new CompraVM()
             {
-                CompraLista = compras
+                CompraLista = _compraBusiness.GetCompras()
             };
 
             return View(ViewModel);
-
 
         }
 
