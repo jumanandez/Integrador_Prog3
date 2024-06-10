@@ -34,12 +34,13 @@
             txtNombreProducto = new TextBox();
             cmbBoxCategorias = new ComboBox();
             BTNCancelar = new Button();
+            checkHabilitado = new CheckBox();
             SuspendLayout();
             // 
             // btnCargarProducto
             // 
             btnCargarProducto.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCargarProducto.Location = new Point(12, 133);
+            btnCargarProducto.Location = new Point(12, 190);
             btnCargarProducto.Name = "btnCargarProducto";
             btnCargarProducto.Size = new Size(80, 29);
             btnCargarProducto.TabIndex = 12;
@@ -83,7 +84,7 @@
             // BTNCancelar
             // 
             BTNCancelar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNCancelar.Location = new Point(98, 133);
+            BTNCancelar.Location = new Point(98, 190);
             BTNCancelar.Name = "BTNCancelar";
             BTNCancelar.Size = new Size(85, 29);
             BTNCancelar.TabIndex = 13;
@@ -91,11 +92,22 @@
             BTNCancelar.UseVisualStyleBackColor = true;
             BTNCancelar.Click += BTNCancelar_Click;
             // 
+            // checkHabilitado
+            // 
+            checkHabilitado.AutoSize = true;
+            checkHabilitado.Location = new Point(54, 146);
+            checkHabilitado.Name = "checkHabilitado";
+            checkHabilitado.Size = new Size(81, 19);
+            checkHabilitado.TabIndex = 14;
+            checkHabilitado.Text = "Habilitado";
+            checkHabilitado.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(209, 196);
+            ClientSize = new Size(209, 231);
+            Controls.Add(checkHabilitado);
             Controls.Add(BTNCancelar);
             Controls.Add(btnCargarProducto);
             Controls.Add(lblCategoria);
@@ -116,5 +128,6 @@
         private TextBox txtNombreProducto;
         private ComboBox cmbBoxCategorias;
         private Button BTNCancelar;
+        private CheckBox checkHabilitado;
     }
 }
