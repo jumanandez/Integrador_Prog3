@@ -17,13 +17,18 @@ namespace WebApp.Controllers
 
         //Se inyecta las dependencias para usar el business de ejemplo
         private readonly ICompraBusiness _compraBusiness;
-        private readonly ICatergoriaBusiness _catergoriaBusiness;
+        private readonly IProductoBusiness _productoBusiness;
+        private readonly ICategoriaBusiness _categoriaBusiness;
+        
 
-        public CompraController(ICompraBusiness compraBusiness,
+        public CompraController(ICompraBusiness compraBusiness, IProductoBusiness productoBusiness, 
+                                    ICategoriaBusiness categoriaBusiness,
                                     ILogger<CompraController> logger)
         {
             _logger = logger;
             _compraBusiness = compraBusiness;
+            _productoBusiness = productoBusiness;
+            _categoriaBusiness = categoriaBusiness;
         }
 
         // GET: CompraController 
@@ -75,30 +80,32 @@ namespace WebApp.Controllers
             return View(CompraNueva);
         }
 
-        //post compra/create
-        //[HttpPost]
-        //public async Task<IActionResult> Create(CompraVM compraModel)
-        //{
-        //if (ModelState.IsValid)
-        //{
-        //    var compra = new Compra
-        //    {
-        //        ProductoId = compraModel._Compra.ProductoId,
-        //        Fecha = compraModel._Compra.Fecha,
-        //        Cantidad = compraModel._Compra.Cantidad,
-        //        UsuarioId = 1 // Ajusta esto según el usuario actual
-        //    };
+        // post compra/create
 
-        //    _compraBusiness.AddCompra(compra);
-        //    await _compraBusiness.SaveChangesAsync();
+        [HttpPost]
+        public async Task<IActionResult> Create(CompraVM compraModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var compra = new Compra
+                {
+                    ProductoId = compraModel._Compra.ProductoId,
+                    Fecha = compraModel._Compra.Fecha,
+                    Cantidad = compraModel._Compra.Cantidad,
+                    UsuarioId = 1 // Ajusta esto según el usuario actual
+                };
 
-        //    return RedirectToAction(nameof(Index));
-        //}
+                _compraBusiness.AddCompra(compra);
+                await _compraBusiness.SaveChangesAsync();
 
-        //// Si el modelo no es válido, vuelve a cargar la lista de productos
-        //compraModel.ProductoLista = _productoBusiness.GetAll().ToList();
-        //return View(viewModel);
-        // }
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            compraModel.ProductoLista = _productoBusiness.GetAll().ToList();
+
+            return View(viewModel);
+        }
 
 
 
