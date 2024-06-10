@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto.Core.Business;
+using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
@@ -13,13 +14,13 @@ namespace WebApp.Controllers
         private readonly ILogger<CompraController> _logger;
 
         //Se inyecta las dependencias para usar el business de ejemplo
-        private readonly ProductoBusiness _productoBusiness;
+        private readonly ICompraBusiness _compraBusiness;
 
-        public CompraController(ProductoBusiness productoBusiness,
+        public CompraController(ICompraBusiness compraBusiness,
                                     ILogger<CompraController> logger)
         {
             _logger = logger;
-            _productoBusiness = productoBusiness;
+            _compraBusiness = compraBusiness;
         }
 
         // GET: CompraController //peticion para mostrar las compras.
@@ -27,7 +28,7 @@ namespace WebApp.Controllers
         {
             var ViewModel = new CompraVM
             {
-                //CompraLista = _productoBusiness.GetCompras()
+                CompraLista = _compraBusiness.GetCompras()
 
             };
             return View(ViewModel);            

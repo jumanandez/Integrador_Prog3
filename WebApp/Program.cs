@@ -2,6 +2,7 @@ using Proyecto.Core.Entities;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
+using Proyecto.Core.Business.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,9 +31,9 @@ builder.Services.AddScoped<Config>(p =>
 // COLOQUE ESTE BUSINESS DE EJEMPLO PARA PROBAR LA CONEXIÓN, 
 // DESCONOZCO SI HABRÁ UNO POR CADA ENTIDAD, SUPONGO QUE SI
 
-
+builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //se inyecta el Business que utiliza ProductController 
-builder.Services.AddScoped<ProductoBusiness>();
+builder.Services.AddScoped<IProductoBusiness,ProductoBusiness>();
 //se inyecta el repository que utiliza el ProductoBusiness class
 builder.Services.AddScoped<ProjectRepository>();
 //Ademas el Repository necesita el Context el cual necesita una 
