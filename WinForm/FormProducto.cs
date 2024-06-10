@@ -88,14 +88,22 @@ namespace WinForm
 			dataGridViewProducto.AutoGenerateColumns = false;
 			dataGridViewProducto.DataSource = _productoBusiness.GetAll();
 			CargarStock();
+			textBox1.Clear();
+			cmbBoxCategorias.SelectedIndex = 0;
 			//ProductosConCategorias(_productoBusiness.GetAll(), _categoríaBusiness.GetAll());
 		}
+        private void RefreshGrid<T>(IEnumerable<T> source) // refresh grid que recibe listas filtradas, no reinicia cmbbox y txtbox
+        {
+            dataGridViewProducto.AutoGenerateColumns = false;
+			dataGridViewProducto.DataSource = source;
+            CargarStock();
+        }
 
 
-		//UTILIZAR LA PRIMERA VEZ Y NUNCA MAS, PARA CARGAR SU BASE DE DATOS CON LOS PRODUCTOS
+        //UTILIZAR LA PRIMERA VEZ Y NUNCA MAS, PARA CARGAR SU BASE DE DATOS CON LOS PRODUCTOS
 
-		#region BOTON DE PRIMERA CARGA
-		private void btnPrimerCarga_Click(object sender, EventArgs e)
+        #region BOTON DE PRIMERA CARGA
+        private void btnPrimerCarga_Click(object sender, EventArgs e)
 		{
 			var categorias = _categoríaBusiness.GetAll();
 
@@ -299,12 +307,12 @@ namespace WinForm
 
 			if (cmbBoxCategorias.SelectedIndex == 0)
 			{
-				var filteredProductos = from prod in productos
-										where prod.Nombre.ToLower().Contains(searchText)
-										select prod;
+				//var filteredProductos = from prod in productos
+				//						where prod.Nombre.ToLower().Contains(searchText)
+				//						select prod;
 
-				dataGridViewProducto.DataSource = filteredProductos.ToList();
-			}
+                RefreshGrid(FilterByText(productos, searchText));
+            }
 			else
 			{
 				var filteredProductos = from prod in productos
@@ -313,10 +321,10 @@ namespace WinForm
 													&&
 											  prod.Nombre.ToLower().Contains(searchText)
 										select prod;
-				
-				dataGridViewProducto.DataSource = filteredProductos.ToList();
-			
-			}
+
+                RefreshGrid(filteredProductos.ToList());
+
+            }
 		}
 
 		private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
@@ -327,16 +335,49 @@ namespace WinForm
 
 			if (cmbBoxCategorias.SelectedIndex == 0)
 			{
-				RefreshGrid();
+				if (textBox1.Text.Trim() == "") //condicion para checkear que textbox este vacia
+				{
+                    RefreshGrid();
+                }
+				else //en caso de tener algo escrito
+				{
+                    //string searchText = textBox1.Text.ToLower().Trim();
+
+                    //var filteredProductos = from prod in productos
+                    //                        where prod.Nombre.ToLower().Contains(searchText)
+                    //                        select prod;
+
+                    //RefreshGrid(filteredProductos.ToList());
+
+                    RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
+                }
+                
 			}
 			else
 			{
-				var filteredProductos = from p in productos
-										where p.CategoriaId == idSeleccionado
-										select p;
+				if (textBox1.Text.Trim() == "")
+				{
+					var filteredProductos = from p in productos
+											where p.CategoriaId == idSeleccionado
+											select p;
 
-				dataGridViewProducto.DataSource = filteredProductos.ToList();
-			}
+					RefreshGrid(filteredProductos.ToList());
+				}
+				else 
+				{
+                    //string searchText = textBox1.Text.ToLower().Trim();
+
+                    //var filteredProductos = from prod in productos
+                    //                        where prod.Nombre.ToLower().Contains(searchText)
+                    //                        select prod;
+
+                    var doublefilt = from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
+                                     where p.CategoriaId == idSeleccionado
+                                        select p;
+
+                    RefreshGrid(doublefilt.ToList());
+                }
+            }
 		}
 		private List<Categoria> CategoriasParaComboBox()
 		{
@@ -367,6 +408,14 @@ namespace WinForm
 										(producto.Venta.Select(v => v.Cantidad).Sum());//Ventas
 				}
 			}
+		}
+		public List<Producto> FilterByText(List<Producto> productos, string searchText) //funcion de filtrar por texto para no repetir code
+		{
+            var filteredProductos = from prod in productos
+                                    where prod.Nombre.ToLower().Contains(searchText)
+                                    select prod;
+
+            return filteredProductos.ToList();
 		}
 	}
 }
