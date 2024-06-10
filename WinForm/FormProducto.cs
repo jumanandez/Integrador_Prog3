@@ -62,7 +62,7 @@ namespace WinForm
 		}
 
 		//DESCOMENTAR LA REGION PARA CARGAR SUS PRODUCTOS
-		
+
 		#region BOTON DE PRIMERA CARGA
 		private void btnPrimerCarga_Click(object sender, EventArgs e)
 		{

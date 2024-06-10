@@ -32,9 +32,9 @@ builder.Services.AddScoped<Config>(p =>
 // COLOQUE ESTE BUSINESS DE EJEMPLO PARA PROBAR LA CONEXIÓN, 
 // DESCONOZCO SI HABRÁ UNO POR CADA ENTIDAD, SUPONGO QUE SI
 
-
+builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //se inyecta el Business que utiliza ProductController 
-builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
+builder.Services.AddScoped<ProductoBusiness>();
 //se inyecta el repository que utiliza el ProductoBusiness class
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 //Ademas el Repository necesita el Context el cual necesita una 
