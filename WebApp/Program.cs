@@ -37,6 +37,7 @@ builder.Services.AddScoped<ICategoriaBusiness, CategoriaBusiness>();
 builder.Services.AddScoped<IVentaBusiness, VentaBusiness>();
 builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
 
+builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //se inyecta el Business que utiliza ProductController 
 //builder.Services.AddScoped<ProductoBusiness>();
 //se inyecta el repository que utiliza el ProductoBusiness class
