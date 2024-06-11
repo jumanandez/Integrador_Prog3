@@ -37,7 +37,6 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ICategoriaBusiness, CategoriaBusiness>();
 builder.Services.AddScoped<IVentaBusiness, VentaBusiness>();
 builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
-
 builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //se inyecta el Business que utiliza ProductController 
 //builder.Services.AddScoped<ProductoBusiness>();
@@ -45,7 +44,7 @@ builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //builder.Services.AddScoped<ProjectRepository>();
 //Ademas el Repository necesita el Context el cual necesita una 
 //connectionString, que la tiene la Config class
-builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
+//builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
 
 #endregion
 
