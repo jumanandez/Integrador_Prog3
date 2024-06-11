@@ -239,7 +239,7 @@ namespace Proyecto.Core.Data
             return salt;
         }
 
-            public bool ChangePass(string Username, byte[] Password, byte[] salt) 
+        public bool ChangePass(string Username, byte[] Password, byte[] salt) 
             {
             bool positive = false;
 
@@ -275,6 +275,38 @@ namespace Proyecto.Core.Data
             byte[] enteredPasswordHash = HashingPassword.HashPassword(enteredPassword, storedSaltBytes);
             return (Convert.ToBase64String(enteredPasswordHash) == Convert.ToBase64String(storedHashedPassword));
         }
-        #endregion
-    }
+
+		public bool CreateUser(string Username, string password)
+		{
+            if (ComparteUserToDB(Username))
+            {
+                return false;
+            }
+            else
+            {
+                byte[] saltBytes = HashingPassword.GenerateSalt();
+                // Hash the password with the salt
+                byte[] hashedPassword = HashingPassword.HashPassword(password, saltBytes);
+
+                string base64Salt = Convert.ToBase64String(saltBytes);
+
+                byte[] retrievedSaltBytes = Convert.FromBase64String(base64Salt);
+
+                var user = new Usuario
+                {
+                    Nombre = Username,
+                    HashPassword = hashedPassword,
+                    Salt = retrievedSaltBytes
+                };
+
+                using (var _dbContext = new IntegradorProg3Context(_config))
+                {
+                    _dbContext.Usuarios.Add(user);
+                    _dbContext.SaveChanges();
+                }
+                return true;
+            }
+		}
+		#endregion
+	}
 }

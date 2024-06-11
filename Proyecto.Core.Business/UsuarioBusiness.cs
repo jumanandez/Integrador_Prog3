@@ -41,5 +41,10 @@ namespace Proyecto.Core.Business
         {
             return _projectRepository.VerifyPassword(Username, Password);
         }
-    }
+
+		public bool CreateUsuario(string userName, string password)
+		{
+			return _projectRepository.CreateUser(userName, password);
+		}
+	}
 }

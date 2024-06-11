@@ -18,13 +18,43 @@ namespace WinForm
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
             ConfigureServices(services);
-            using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-            {
-                var formprd = serviceProvider.GetRequiredService<FormProducto>();
-                Application.Run(formprd);
+            //using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+            //{
 
-            }
-        }
+            //    var login = serviceProvider.GetRequiredService<FormLogin>();
+            //    Application.Run(login);
+
+            //}
+
+			using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+			{
+				// Fetch the login form from the service provider
+				var login = serviceProvider.GetRequiredService<FormLogin>();
+
+				// Display the login form and handle the result
+				if (login.ShowDialog() == DialogResult.OK)
+				{
+					// Create necessary instances based on successful login
+					var usuarioBusiness = serviceProvider.GetRequiredService<IUsuarioBusiness>();
+					var formProducto = serviceProvider.GetRequiredService<FormProducto>();
+
+					// Set logged user if available (optional)
+					if (login.User != null)
+					{
+						formProducto.loggedUser = login.User;
+					}
+
+					// Launch the main application (FormProducto)
+					Application.Run(formProducto);
+				}
+				else
+				{
+					// Handle failed login (optional)
+					MessageBox.Show("Fallo al iniciar. La aplicacion se cerrará");
+					Application.Exit();
+				}
+			}
+		}
         private static void ConfigureServices(ServiceCollection services)
         {
             var connectionString = Properties.Settings.Default.Connection;
