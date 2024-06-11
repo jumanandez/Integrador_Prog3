@@ -13,9 +13,9 @@ namespace Proyecto.Core.Business
 {
 	public class ProductoBusiness : IProductoBusiness
     {
-		private readonly ProjectRepository _projectRepository;
+		private readonly IProjectRepository _projectRepository;
 
-		public ProductoBusiness(ProjectRepository projectRepository)
+		public ProductoBusiness(IProjectRepository projectRepository)
 		{
 			_projectRepository = projectRepository;
 		}
@@ -44,5 +44,6 @@ namespace Proyecto.Core.Business
 		{
 			return _projectRepository.GetStock(usuarioId, productoId);
 		}
-	}
+
+    }
 }

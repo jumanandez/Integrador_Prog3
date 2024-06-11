@@ -2,6 +2,10 @@ using Proyecto.Core.Entities;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
+using Proyecto.Core.Data.Interfaces;
+using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Data.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,18 +34,31 @@ builder.Services.AddScoped<Config>(p =>
 // COLOQUE ESTE BUSINESS DE EJEMPLO PARA PROBAR LA CONEXIÓN, 
 // DESCONOZCO SI HABRÁ UNO POR CADA ENTIDAD, SUPONGO QUE SI
 
-
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<ICategoriaBusiness, CategoriaBusiness>();
+builder.Services.AddScoped<IVentaBusiness, VentaBusiness>();
+builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
+builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //se inyecta el Business que utiliza ProductController 
-builder.Services.AddScoped<ProductoBusiness>();
+//builder.Services.AddScoped<ProductoBusiness>();
 //se inyecta el repository que utiliza el ProductoBusiness class
-builder.Services.AddScoped<ProjectRepository>();
+//builder.Services.AddScoped<ProjectRepository>();
 //Ademas el Repository necesita el Context el cual necesita una 
 //connectionString, que la tiene la Config class
+builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
+builder.Services.AddScoped<IntegradorProg3Context>();
 
 #endregion
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	.AddCookie(options =>
+	{
+		options.LoginPath = "/Account/Login";
+		options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+	});
 
 var app = builder.Build();
 
@@ -58,10 +75,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+	pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
