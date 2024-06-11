@@ -16,7 +16,7 @@ namespace Proyecto.Core.Data
 
         public static byte[] HashPassword(string password, byte[] salt)
         {
-            using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, 10000))
+            using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, 10000, HashAlgorithmName.SHA256))
             {
                 return rfc2898.GetBytes(256);
             }
