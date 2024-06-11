@@ -5,20 +5,40 @@
 }
 
 <h1>Bienvenido a la sección de Ventas</h1>
-
-<a class="btn btn-primary" asp-controller="Venta" asp-action="Create">Nueva Venta</a>
-
-
-<ul>
+<hr>
+<h3>
     @foreach (var v in Model.VentaLista)
     {
-        <li>Usuario: @v.Usuario.Nombre</li>
-
-        <li>Item: @v.VentaId (@v.Producto.Nombre)</li>
-        <li>Fecha: @v.Fecha</li>
-        <li>Cantidad: @v.Cantidad</li>
- 
+       @v.Usuario.Nombre
     }
+</h3>
+<hr>
+<a class="btn btn-primary" asp-controller="Venta" asp-action="CategoriaSelect">Nueva Venta</a>
+
+
+<hr>
+<ul>
     
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">VentaID</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>             
+            </tr>
+        </thead>
+        @foreach (var v in Model.VentaLista)
+        {
+            <tbody>
+                <tr>       
+                    <td>@v.VentaId</td>
+                    <td>@v.Fecha</td>
+                    <td>@v.Producto.Nombre</td>
+                    <td>@v.Cantidad</td>                
+            </tbody>
+        }
+    </table>
+
 
 </ul>

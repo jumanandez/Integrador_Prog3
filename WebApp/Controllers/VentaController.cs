@@ -47,14 +47,14 @@ namespace WebApp.Controllers
         }
 
         // GET: VentaController/Details/5
-        public ActionResult Details(int? CategoriaID, int id)
+        public ActionResult Details(int id)
         {
 
             var ventas = _ventaBusiness.GetVentas();
 
             ventas = (from v in ventas
-                      where v.Producto.CategoriaId == CategoriaID.Value
-                      where v.ProductoId == id
+                      where v.VentaId == id
+                      
                       select v).ToList();
 
 
@@ -66,30 +66,70 @@ namespace WebApp.Controllers
             return View(ViewModel);
         }
 
-        // GET: VentaController/Create
-        public ActionResult Create()
-        {
-            var usuariosID = 1;
 
+        // GET: VentaController/CategoriaSelect
+        public ActionResult CategoriaSelect()
+        {
+            
+            var CategoriaObj = new Models.ViewModels.VentaVM()
+            {
+
+                CategoriaLista = _categoriaBusiness.GetAll(),  
+                
+            };
+
+            return View(CategoriaObj);
+        }
+
+        // POST: VentaController/Create
+        [HttpPost]
+        public ActionResult CategoriaSelect(VentaVM model)
+        {
+            try
+            {
+                var categoriaSeleccionada = model._Producto.CategoriaId;
+                return RedirectToAction(nameof(Create), new { categoriaSeleccionada });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        // GET: VentaController/Create
+        public ActionResult Create(int categoriaSeleccionada)
+        {
+            var usuariosID = 2;
+
+            var productoCategoria = (from p in _productoBusiness.GetAll()
+                                    where p.CategoriaId == categoriaSeleccionada
+                                     select p).ToList();
 
             var VentaObj = new Models.ViewModels.VentaVM()
             {
-                ProductoLista = _productoBusiness.GetAll()
+
+                ProductoLista = productoCategoria,
+                VentaLista = _ventaBusiness.GetVentas(),
+                CategoriaLista = _categoriaBusiness.GetAll()
 
             };
 
-            return View();
+            return View(VentaObj);
         }
 
         // POST: VentaController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(Venta venta)
+        public ActionResult Create(VentaVM model)
         {
             try
             {
+                var usuariosID = 2;
+                
 
                 return RedirectToAction(nameof(Index));
+
             }
             catch
             {
@@ -117,5 +157,7 @@ namespace WebApp.Controllers
                 return View();
             }
         }
+
+
     }
 }
