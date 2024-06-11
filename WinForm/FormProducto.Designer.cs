@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             dataGridViewProducto = new DataGridView();
+            ColumnProductoId = new DataGridViewTextBoxColumn();
+            ColumnNombreProducto = new DataGridViewTextBoxColumn();
+            ColumnCategoria = new DataGridViewTextBoxColumn();
+            ColumnStock = new DataGridViewTextBoxColumn();
+            ColumnHabilitado = new DataGridViewCheckBoxColumn();
             lblTitulo = new Label();
             lblProductos = new Label();
             BTNdelete = new Button();
@@ -42,11 +47,7 @@
             numericUpDown1 = new NumericUpDown();
             BtnCompra = new Button();
             pictureBox1 = new PictureBox();
-            ColumnProductoId = new DataGridViewTextBoxColumn();
-            ColumnNombreProducto = new DataGridViewTextBoxColumn();
-            ColumnCategoria = new DataGridViewTextBoxColumn();
-            ColumnStock = new DataGridViewTextBoxColumn();
-            ColumnHabilitado = new DataGridViewCheckBoxColumn();
+            LblBienvenido = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -64,6 +65,42 @@
             dataGridViewProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewProducto.Size = new Size(564, 257);
             dataGridViewProducto.TabIndex = 0;
+            // 
+            // ColumnProductoId
+            // 
+            ColumnProductoId.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            ColumnProductoId.DataPropertyName = "ProductoId";
+            ColumnProductoId.HeaderText = "ID Producto";
+            ColumnProductoId.MinimumWidth = 3;
+            ColumnProductoId.Name = "ColumnProductoId";
+            ColumnProductoId.Width = 95;
+            // 
+            // ColumnNombreProducto
+            // 
+            ColumnNombreProducto.DataPropertyName = "Nombre";
+            ColumnNombreProducto.HeaderText = "Nombre";
+            ColumnNombreProducto.Name = "ColumnNombreProducto";
+            ColumnNombreProducto.ReadOnly = true;
+            // 
+            // ColumnCategoria
+            // 
+            ColumnCategoria.DataPropertyName = "Categoria";
+            ColumnCategoria.HeaderText = "Categoria";
+            ColumnCategoria.Name = "ColumnCategoria";
+            ColumnCategoria.ReadOnly = true;
+            // 
+            // ColumnStock
+            // 
+            ColumnStock.HeaderText = "Stock";
+            ColumnStock.Name = "ColumnStock";
+            ColumnStock.ReadOnly = true;
+            // 
+            // ColumnHabilitado
+            // 
+            ColumnHabilitado.DataPropertyName = "Habilitado";
+            ColumnHabilitado.HeaderText = "Habilitado";
+            ColumnHabilitado.Name = "ColumnHabilitado";
+            ColumnHabilitado.ReadOnly = true;
             // 
             // lblTitulo
             // 
@@ -219,41 +256,15 @@
             pictureBox1.TabIndex = 22;
             pictureBox1.TabStop = false;
             // 
-            // ColumnProductoId
+            // LblBienvenido
             // 
-            ColumnProductoId.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            ColumnProductoId.DataPropertyName = "ProductoId";
-            ColumnProductoId.HeaderText = "ID Producto";
-            ColumnProductoId.MinimumWidth = 3;
-            ColumnProductoId.Name = "ColumnProductoId";
-            ColumnProductoId.Width = 95;
-            // 
-            // ColumnNombreProducto
-            // 
-            ColumnNombreProducto.DataPropertyName = "Nombre";
-            ColumnNombreProducto.HeaderText = "Nombre";
-            ColumnNombreProducto.Name = "ColumnNombreProducto";
-            ColumnNombreProducto.ReadOnly = true;
-            // 
-            // ColumnCategoria
-            // 
-            ColumnCategoria.DataPropertyName = "Categoria";
-            ColumnCategoria.HeaderText = "Categoria";
-            ColumnCategoria.Name = "ColumnCategoria";
-            ColumnCategoria.ReadOnly = true;
-            // 
-            // ColumnStock
-            // 
-            ColumnStock.HeaderText = "Stock";
-            ColumnStock.Name = "ColumnStock";
-            ColumnStock.ReadOnly = true;
-            // 
-            // ColumnHabilitado
-            // 
-            ColumnHabilitado.DataPropertyName = "Habilitado";
-            ColumnHabilitado.HeaderText = "Habilitado";
-            ColumnHabilitado.Name = "ColumnHabilitado";
-            ColumnHabilitado.ReadOnly = true;
+            LblBienvenido.AutoSize = true;
+            LblBienvenido.Font = new Font("Segoe UI", 20F);
+            LblBienvenido.Location = new Point(333, 9);
+            LblBienvenido.Name = "LblBienvenido";
+            LblBienvenido.Size = new Size(90, 37);
+            LblBienvenido.TabIndex = 23;
+            LblBienvenido.Text = "label1";
             // 
             // FormProducto
             // 
@@ -261,6 +272,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(814, 474);
+            Controls.Add(LblBienvenido);
             Controls.Add(pictureBox1);
             Controls.Add(BtnCompra);
             Controls.Add(numericUpDown1);
@@ -307,5 +319,6 @@
         private DataGridViewTextBoxColumn ColumnCategoria;
         private DataGridViewTextBoxColumn ColumnStock;
         private DataGridViewCheckBoxColumn ColumnHabilitado;
+        private Label LblBienvenido;
     }
 }

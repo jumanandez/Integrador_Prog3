@@ -19,19 +19,35 @@ namespace WinForm
 {
     public partial class FormProducto : Form
     {
-        private readonly ILogger _logger;
-        private readonly ICatergoriaBusiness _categoríaBusiness;
+        private readonly ICategoriaBusiness _categoríaBusiness;
         private readonly IProductoBusiness _productoBusiness;
+        private readonly IUsuarioBusiness _usuarioBusiness;
         private Producto _productoACargar;
         private Producto _productoSeleccionado;
+        private readonly Usuario _loggedUser;
 
-        public FormProducto(ILogger<FormProducto> logger, ICatergoriaBusiness catbusi, IProductoBusiness produbusi)
+        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi)
         {
-            _logger = logger;
             _categoríaBusiness = catbusi;
             _productoBusiness = produbusi;
+            _usuarioBusiness = usuariobusi;
             _productoACargar = new Producto();
             InitializeComponent();
+            //while (_loggedUser == null)//error de logica
+            //{
+                using (FormLogin Login = new FormLogin(usuariobusi))
+                {
+                    if (Login.ShowDialog() == DialogResult.OK)
+                    {
+                        _loggedUser = Login._User;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Operacion cancelardadsda.");
+                    }
+                }
+            //}
+            LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
             numericUpDown1.Value = 1;
         }
 
@@ -429,7 +445,7 @@ namespace WinForm
             {
                 if (((int)numericUpDown1.Value) >= 1)
                 {
-                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = 1 });
+                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
                     _productoBusiness.ModifyProduct(producomp);
                     MessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
                 }

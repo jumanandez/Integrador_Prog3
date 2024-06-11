@@ -18,11 +18,11 @@ namespace WinForm
     public partial class Form2 : Form
     {
         private readonly ILogger _logger;
-        private readonly ICatergoriaBusiness _categoríaBusiness;
+        private readonly ICategoriaBusiness _categoríaBusiness;
         private readonly IProductoBusiness _productoBusiness;
         private readonly Producto _productorSeleccionado;
         private bool _new; //booleando que cambia de valor dependiendo del constructor llamado
-        public Form2(Producto productin, ICatergoriaBusiness catbusi, IProductoBusiness productoBusiness)
+        public Form2(Producto productin, ICategoriaBusiness catbusi, IProductoBusiness productoBusiness)
         {
             _productorSeleccionado = productin;
             _categoríaBusiness = catbusi;
@@ -37,7 +37,7 @@ namespace WinForm
             checkHabilitado.Checked = productin.Habilitado;
         }
 
-        public Form2(ICatergoriaBusiness catbusi, IProductoBusiness productoBusiness)
+        public Form2(ICategoriaBusiness catbusi, IProductoBusiness productoBusiness)
         {
             _categoríaBusiness = catbusi;
             _productoBusiness = productoBusiness;

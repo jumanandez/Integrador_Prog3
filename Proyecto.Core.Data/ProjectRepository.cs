@@ -64,28 +64,28 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-		public void DeleteProducto(Producto producto)
-		{
+        public void DeleteProducto(Producto producto)
+        {
 
-			using (var dbcontext = new IntegradorProg3Context(_config))
-			{
-				dbcontext.Remove(producto);
-				dbcontext.SaveChanges();
-			}
-		}
-		public void ModifyProduct(Producto product)
-		{
-			using (var dbcontext = new IntegradorProg3Context(_config))
-			{
-				dbcontext.Update(product);
-				dbcontext.SaveChanges();
-			}
-		}
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Remove(producto);
+                dbcontext.SaveChanges();
+            }
+        }
+        public void ModifyProduct(Producto product)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Update(product);
+                dbcontext.SaveChanges();
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Region Compras
-		public List<Compra> GetCompras()
+        #region Region Compras
+        public List<Compra> GetCompras()
         {
             var compras = new List<Compra>();
 
@@ -96,7 +96,7 @@ namespace Proyecto.Core.Data
             return compras;
         }
 
-        
+
         public void AddCompra(Compra compra)
         {
 
@@ -123,8 +123,8 @@ namespace Proyecto.Core.Data
         #endregion
 
         #region Region Ventas
-        public List<Venta> GetVentas() 
-		{
+        public List<Venta> GetVentas()
+        {
             var ventas = new List<Venta>();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
@@ -133,16 +133,16 @@ namespace Proyecto.Core.Data
             }
             return ventas;
         }
-        
+
         public void AddVenta(Venta venta)
-    {
-    using (var dbcontext = new IntegradorProg3Context(_config))
-			  {
-            dbcontext.Add(venta);
-		    dbcontext.SaveChanges();
-      }
-     } 
-     public void DeleteVenta(int id)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Add(venta);
+                dbcontext.SaveChanges();
+            }
+        }
+        public void DeleteVenta(int id)
         {
             var venta = new Venta();
 
@@ -153,7 +153,7 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-     
+
         public List<string> GetAllNames()
         {
             var productos = new List<Producto>();
@@ -165,8 +165,8 @@ namespace Proyecto.Core.Data
                 return names;
             }
         }
-      #endregion
-      
+        #endregion
+
         public int GetStock(int usuarioId, int productoId)
         {
             int stock = 0;
@@ -198,7 +198,7 @@ namespace Proyecto.Core.Data
             return categorias;
         }
 
-        public bool AddCategoría(Categoria categoria)
+        public bool AddCategoria(Categoria categoria)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
@@ -208,6 +208,73 @@ namespace Proyecto.Core.Data
             return true;
         }
 
+        #endregion
+        #region Region Usuario
+        public bool ComparteUserToDB(string Username)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var UserExist = dbcontext.Usuarios.Any(b => b.Nombre == Username);
+                return UserExist;
+            }
+        }
+        public byte[] GetUsuarioHash(string Username)
+        {
+            byte[] hash;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                hash = User.HashPassword;
+            }
+            return hash;
+        }
+        public byte[] GetUsuarioSalt(string Username)
+        {
+            byte[] salt;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                salt = User.Salt;
+            }
+            return salt;
+        }
+
+            public bool ChangePass(string Username, byte[] Password, byte[] salt) 
+            {
+            bool positive = false;
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                User.HashPassword = Password;
+                User.Salt = salt;
+                dbcontext.Update(User);
+                dbcontext.SaveChanges();
+                positive = true;
+            }
+
+            return positive;
+        }
+        public Usuario ObtainUsuario(string Username)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                return User;
+            }
+        }
+        public bool VerifyPassword(string Username, string Password)
+        {
+            byte[] storedHashedPassword = GetUsuarioHash(Username);
+            byte[] storedSaltBytes = GetUsuarioSalt(Username);
+            string enteredPassword = Password;
+            byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
+            byte[] saltedPassword = new byte[enteredPasswordBytes.Length + storedSaltBytes.Length];
+            Buffer.BlockCopy(enteredPasswordBytes, 0, saltedPassword, 0, enteredPasswordBytes.Length);
+            Buffer.BlockCopy(storedSaltBytes, 0, saltedPassword, enteredPasswordBytes.Length, storedSaltBytes.Length);
+            byte[] enteredPasswordHash = HashingPassword.HashPassword(enteredPassword, storedSaltBytes);
+            return (Convert.ToBase64String(enteredPasswordHash) == Convert.ToBase64String(storedHashedPassword));
+        }
         #endregion
     }
 }

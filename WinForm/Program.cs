@@ -35,7 +35,7 @@ namespace WinForm
                 ConnectionString = connectionString
             };
 
-            
+
 
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
@@ -44,11 +44,24 @@ namespace WinForm
                     {
                         return config;
                     })
-                    .AddScoped<ICatergoriaBusiness, CategoriaBusiness>()
+                    .AddScoped<ICategoriaBusiness, CategoriaBusiness>()
                     .AddScoped<IProjectRepository, ProjectRepository>()
                     .AddScoped<IProductoBusiness, ProductoBusiness>()
+                    .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
                     .AddTransient<FormProducto>()
-                    .AddTransient<Form2>();
+                    .AddTransient<Form2>()
+                    .AddTransient<FormLogin>();
+
+            //ServiceProvider serviceLogin = services.BuildServiceProvider();
+            //services.AddLogging(configure => configure.AddConsole())
+            //        .AddScoped<Config>(p =>
+            //        {
+            //            return config;
+            //        })
+            //        .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
+            //        .AddScoped<IProjectRepository, ProjectRepository>()
+            //        .AddTransient<FormLogin>();
+
         }
     }
 }

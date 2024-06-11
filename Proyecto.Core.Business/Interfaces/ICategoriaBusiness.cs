@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Core.Business.Interfaces
 {
-    public interface ICatergoriaBusiness
+    public interface ICategoriaBusiness
     {
         public List<Categoria> GetAll();
         public bool Add(Categoria categoriaNueva);

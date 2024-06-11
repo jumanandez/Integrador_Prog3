@@ -15,7 +15,7 @@ namespace Proyecto.Core.Data.Interfaces
         public List<string> GetAllNames();
         public List<Categoria> GetCategorias();
         public void ModifyProduct(Producto product);
-        public bool AddCategoría(Categoria categoria);
+        public bool AddCategoria(Categoria categoria);
         public List<Compra> GetCompras();
         public List<Venta> GetVentas();
         public Producto GetProducto(int id);
@@ -25,5 +25,11 @@ namespace Proyecto.Core.Data.Interfaces
 		public void DeleteCompra(int id);
 		public void AddVenta(Venta venta);
 		public void DeleteVenta(int id);
-	}
+        public bool ComparteUserToDB(string Username);
+        public byte[] GetUsuarioHash(string Username);
+        public byte[] GetUsuarioSalt(string Username);
+        public bool ChangePass(string Username, byte[] Password, byte[] salt);
+        public Usuario ObtainUsuario(string Username);
+        public bool VerifyPassword(string Username, string Password);
+    }
 }
