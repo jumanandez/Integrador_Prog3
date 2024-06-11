@@ -15,7 +15,6 @@ namespace Proyecto.Core.Business.Interfaces
         public byte[] GetUsuarioSalt(string Username);
         public bool ChangePass(string Username, byte[] Password, byte[] salt);
         public Usuario ObtainUsuario(string Username);
-        public bool VerifyPassword(string Username, string Password);
         public bool CreateUsuario(string userName, string password);
 
 	}

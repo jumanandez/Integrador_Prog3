@@ -30,7 +30,6 @@ namespace WinForm
 			if(_usuarioBusiness.CreateUsuario(username, pass))
 			{
 				this.DialogResult = DialogResult.OK;
-				MessageBox.Show("Bienvenenido");
 				this.Close();
 			}
 			else if (txtNombreUsuario.Text.Trim() == "")

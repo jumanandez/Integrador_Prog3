@@ -52,6 +52,23 @@ namespace Proyecto.Core.Data
             }
             return productos;
         }
+        public int GetStock(int usuarioId, int productoId)
+        {
+            int stock = 0;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var compras = (from c in dbcontext.Compras
+                               where c.ProductoId == productoId && c.UsuarioId == usuarioId
+                               select c.Cantidad).Sum();
+
+                int ventas = (from v in dbcontext.Ventas
+                              where v.ProductoId == productoId && v.UsuarioId == usuarioId
+                              select v.Cantidad).Sum();
+
+                stock = compras - ventas;
+            }
+            return stock;
+        }
 
         public void DeleteProducto(int id)
         {
@@ -167,24 +184,6 @@ namespace Proyecto.Core.Data
         }
         #endregion
 
-        public int GetStock(int usuarioId, int productoId)
-        {
-            int stock = 0;
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                var compras = (from c in dbcontext.Compras
-                               where c.ProductoId == productoId && c.UsuarioId == usuarioId
-                               select c.Cantidad).Sum();
-
-                int ventas = (from v in dbcontext.Ventas
-                              where v.ProductoId == productoId && v.UsuarioId == usuarioId
-                              select v.Cantidad).Sum();
-
-                stock = compras - ventas;
-            }
-            return stock;
-        }
-
         #region Region Categoria
         public List<Categoria> GetCategorias()
         {
@@ -264,19 +263,6 @@ namespace Proyecto.Core.Data
                 return User;
             }
         }
-        public bool VerifyPassword(string Username, string Password)
-        {
-            byte[] storedHashedPassword = GetUsuarioHash(Username);
-            byte[] storedSaltBytes = GetUsuarioSalt(Username);
-            string enteredPassword = Password;
-            byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
-            byte[] saltedPassword = new byte[enteredPasswordBytes.Length + storedSaltBytes.Length];
-            Buffer.BlockCopy(enteredPasswordBytes, 0, saltedPassword, 0, enteredPasswordBytes.Length);
-            Buffer.BlockCopy(storedSaltBytes, 0, saltedPassword, enteredPasswordBytes.Length, storedSaltBytes.Length);
-            byte[] enteredPasswordHash = HashingPassword.HashPassword(enteredPassword, storedSaltBytes);
-            return (Convert.ToBase64String(enteredPasswordHash) == Convert.ToBase64String(storedHashedPassword));
-        }
-
 		public bool CreateUser(string Username, string password)
 		{
             if (ComparteUserToDB(Username))

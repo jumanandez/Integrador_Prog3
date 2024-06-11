@@ -19,38 +19,37 @@ namespace WinForm
 {
     public partial class FormProducto : Form
     {
-        private readonly ICategoriaBusiness _categoríaBusiness;
+        private readonly ICategoriaBusiness _categoriaBusiness;
         private readonly IProductoBusiness _productoBusiness;
         private readonly IUsuarioBusiness _usuarioBusiness;
         private Producto _productoACargar;
         private Producto _productoSeleccionado;
-        public Usuario loggedUser;
+        public Usuario _loggedUser;
 
-        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi /*Usuario loggedUser*/)
+        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi)
         {
-            _categoríaBusiness = catbusi;
+            _categoriaBusiness = catbusi;
             _productoBusiness = produbusi;
             _usuarioBusiness = usuariobusi;
             _productoACargar = new Producto();
-            loggedUser = new Usuario();
+            _loggedUser = new Usuario();
             InitializeComponent();
-
-            LblBienvenido.Text = ($"Bienvenenido {loggedUser.Nombre}");
+            LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
             numericUpDown1.Value = 1;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            var i = dataGridViewProducto.CurrentRow.Index;
-            var prod = dataGridViewProducto.SelectedRows[0];
-            _productoSeleccionado = (Producto)prod.DataBoundItem;
-
-            if (i >= 0)
+            if (dataGridViewProducto.CurrentRow != null)
             {
-                Form2 AddAPart = new Form2(_productoSeleccionado, _categoríaBusiness, _productoBusiness);
+
+                var i = dataGridViewProducto.CurrentRow.Index;
+                var prod = dataGridViewProducto.SelectedRows[0];
+                _productoSeleccionado = (Producto)prod.DataBoundItem;
+                Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
                 AddAPart.ShowDialog();
             }
-            else
+            else 
             {
                 MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
             }
@@ -65,16 +64,16 @@ namespace WinForm
 
         private void BTNdelete_Click(object sender, EventArgs e)
         {
-            var i = dataGridViewProducto.CurrentRow.Index;
-            var prod = dataGridViewProducto.SelectedRows[0];
-            _productoSeleccionado = (Producto)prod.DataBoundItem;
-            if (i >= 0)
+            if (dataGridViewProducto.CurrentRow != null)
             {
+                var i = dataGridViewProducto.CurrentRow.Index;
+                var prod = dataGridViewProducto.SelectedRows[0];
+                _productoSeleccionado = (Producto)prod.DataBoundItem;
                 DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    _productoBusiness.DeleteProducto(_productoSeleccionado);
-                }
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        _productoBusiness.DeleteProducto(_productoSeleccionado);
+                    }
             }
             else
             {
@@ -84,7 +83,7 @@ namespace WinForm
         }
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
-            Form2 AddAPart = new Form2(_categoríaBusiness, _productoBusiness);
+            Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
             AddAPart.ShowDialog();
         }
 
@@ -110,7 +109,7 @@ namespace WinForm
         #region BOTON DE PRIMERA CARGA
         private void btnPrimerCarga_Click(object sender, EventArgs e)
         {
-            var categorias = _categoríaBusiness.GetAll();
+            var categorias = _categoriaBusiness.GetAll();
 
             var idMotor = categorias[0].CategoriaId;
             var productos = new List<Producto>();
@@ -308,7 +307,7 @@ namespace WinForm
         {
             string searchText = textBox1.Text.ToLower().Trim();
             var productos = _productoBusiness.GetAll();
-            var categorias = _categoríaBusiness.GetAll();
+            var categorias = _categoriaBusiness.GetAll();
 
             if (cmbBoxCategorias.SelectedIndex == 0)
             {
@@ -390,7 +389,7 @@ namespace WinForm
 
             categorias.Add(new Categoria { Nombre = "Todos" });
 
-            var cateBasicas = _categoríaBusiness.GetAll();
+            var cateBasicas = _categoriaBusiness.GetAll();
 
             foreach (Categoria categoria in cateBasicas)
             {
@@ -433,7 +432,7 @@ namespace WinForm
             {
                 if (((int)numericUpDown1.Value) >= 1)
                 {
-                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = loggedUser.UsuarioId });
+                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
                     _productoBusiness.ModifyProduct(producomp);
                     MessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
                 }

@@ -65,7 +65,7 @@ namespace WinForm
 		}
 		private void IngresarAlaAplicacion()
 		{
-			this.User = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+			User = _usuarioBusiness.ObtainUsuario(textBox1.Text);
 			this.DialogResult = DialogResult.OK;
 			MessageBox.Show("Bienvenenido");
 			this.Close();
