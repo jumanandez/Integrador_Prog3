@@ -24,30 +24,18 @@ namespace WinForm
         private readonly IUsuarioBusiness _usuarioBusiness;
         private Producto _productoACargar;
         private Producto _productoSeleccionado;
-        private readonly Usuario _loggedUser;
+        public Usuario loggedUser;
 
-        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi)
+        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi /*Usuario loggedUser*/)
         {
             _categoríaBusiness = catbusi;
             _productoBusiness = produbusi;
             _usuarioBusiness = usuariobusi;
             _productoACargar = new Producto();
+            loggedUser = new Usuario();
             InitializeComponent();
-            //while (_loggedUser == null)//error de logica
-            //{
-                using (FormLogin Login = new FormLogin(usuariobusi))
-                {
-                    if (Login.ShowDialog() == DialogResult.OK)
-                    {
-                        _loggedUser = Login._User;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Operacion cancelardadsda.");
-                    }
-                }
-            //}
-            LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
+
+            LblBienvenido.Text = ($"Bienvenenido {loggedUser.Nombre}");
             numericUpDown1.Value = 1;
         }
 
@@ -445,7 +433,7 @@ namespace WinForm
             {
                 if (((int)numericUpDown1.Value) >= 1)
                 {
-                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
+                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = loggedUser.UsuarioId });
                     _productoBusiness.ModifyProduct(producomp);
                     MessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
                 }
