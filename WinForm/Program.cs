@@ -43,7 +43,7 @@ namespace WinForm
                     {
                         return config;
                     })
-                    .AddScoped<ICatergoriaBusiness, CategoriaBusiness>()
+                    .AddScoped<ICategoriaBusiness, CategoriaBusiness>()
                     .AddScoped<IProjectRepository, ProjectRepository>()
                     .AddScoped<IProductoBusiness, ProductoBusiness>()
                     .AddTransient<FormProducto>();

@@ -1,0 +1,26 @@
+﻿@model WebApp.Models.ViewModels.CompraVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="_Compra.ProductoId"></label>
+        <select asp-for="_Compra.ProductoId" class="form-control" asp-items="@(new SelectList(Model.ProductoLista, "Id", "Nombre"))"></select>
+        <span asp-validation-for="_Compra.ProductoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="_Compra.FechaCompra"></label>
+        <input asp-for="_Compra.FechaCompra" class="form-control" type="date" />
+        <span asp-validation-for="_Compra.FechaCompra" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="_Compra.Cantidad"></label>
+        <input asp-for="_Compra.Cantidad" class="form-control" />
+        <span asp-validation-for="_Compra.Cantidad" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

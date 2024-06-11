@@ -4,17 +4,51 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ESTA ES LA SECCION DE COMPRAS DE LA WEB</h1>
+<h3>ESTA ES LA SECCION DE COMPRAS DE LA WEB</h3>
 
-<ul>
-
-    @foreach (var v in Model.CompraLista)
+<h5>
+    @foreach(var c in Model.CompraLista)
     {
-        <li>Usuario: @v.Usuario.Nombre</li>
-        <li>Item: @v.CompraId (@v.Producto.Nombre)</li>
-        <li>Fecha: @v.Fecha</li>
-        <li>Cantidad: @v.Cantidad</li>
+        <text >Bienvenido @c.Usuario.Nombre</text>
+        //@c.Usuario.Nombre
         
     }
 
+</h5>
+
+<a class="btn btn-primary" asp-controller="Compra" asp-action="Create">REGISTRAR UNA COMPRA NUEVA</a>
+
+<ul>
+    <table class="table">
+         
+        <thead>
+            <tr>
+                <th scope="col">CompraID</th>
+                <th scope="col">producto</th>
+                <th scope="col">cantidad</th>
+                <th scope="col">fecha</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var c in Model.CompraLista)
+            {
+                <tr>
+                    <td>@c.CompraId</td>
+                    <td>@c.ProductoId</td>
+                    <td>@c.Cantidad</td>
+                    <td>@c.Fecha</td>
+                    <td>
+                        <a class=" btn btn-primary btn-sm" asp-action="Details" asp-controller="Compra" asp-route-CompraId="@c.CompraId">Editar</a>
+                        <a class=" btn btn-danger btn-sm" asp-action="Delete" asp-controller="Compra" asp-route-CompraId="@c.CompraId">Eliminar</a>
+                    </td>
+                </tr>   
+            }
+
+        </tbody>
+
+    </table>
+    
 </ul>

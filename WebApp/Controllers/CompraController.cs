@@ -45,23 +45,37 @@ namespace WebApp.Controllers
 
         }
 
-        public IActionResult Details(int? CategoriaId, int id)
+        [HttpGet]
+        public IActionResult Details()
         {
+
             var compras = _compraBusiness.GetCompras();
 
             compras = (from c in compras
-                       where c.Producto.CategoriaId == CategoriaId.Value
-                       where c.ProductoId == id
+                       where c.Producto.CategoriaId == 1 && c.ProductoId == 10
+                       //where c.ProductoId == 10
                        select c).ToList();
 
             var ViewModel = new CompraVM
             {
-
                 CompraLista = compras
-
             };
 
             return View(ViewModel);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult Details(CompraVM compraVM)
+        {
+
+            if (compraVM._Compra.CompraId != 0)
+            {
+                _compraBusiness.AddCompra(compraVM._Compra);
+            }
+
+            return View();
 
         }
 
@@ -70,45 +84,38 @@ namespace WebApp.Controllers
         public IActionResult Create()
         {
 
-            var CompraNueva = new Models.ViewModels.CompraVM()
+            var ViewModel = new CompraVM()
             {
-
-                CompraLista = _compraBusiness.GetCompras()
+                _Compra = new Compra(),
+                ProductoLista = new List<Producto>()
             };
 
 
-            return View(CompraNueva);
+            return View(ViewModel);
         }
 
-        // post compra/create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Create(CompraVM compraVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        compraVM._Producto = _productoBusiness.GetProducto(10);
+        //        return View(compraVM);
+        //    }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(CompraVM compraModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var compra = new Compra
-                {
-                    ProductoId = compraModel._Compra.ProductoId,
-                    Fecha = compraModel._Compra.Fecha,
-                    Cantidad = compraModel._Compra.Cantidad,
-                    UsuarioId = 1 // Ajusta esto según el usuario actual
-                };
+        //    var fechaActual = DateTime.Now;
+        //    if (compraVM._Compra.Fecha > fechaActual || compraVM._Compra.Fecha < fechaActual.AddDays(-7))
+        //    {
+        //        ModelState.AddModelError("FechaCompra", "La fecha de la compra no puede ser mayor a 7 días atrás ni una fecha futura.");
+        //        compraVM._Producto = _productoBusiness.GetProducto(10);
+        //        return View(compraVM);
+        //    }
 
-                _compraBusiness.AddCompra(compra);
-                await _compraBusiness.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
-            }
-
-
-            compraModel.ProductoLista = _productoBusiness.GetAll().ToList();
-
-            return View(viewModel);
-        }
-
-
-
-
+        //    _compraBusiness.AddCompra(compraVM._Compra);
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
+
+   
 }
