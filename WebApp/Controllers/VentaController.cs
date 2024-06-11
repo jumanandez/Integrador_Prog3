@@ -81,19 +81,12 @@ namespace WebApp.Controllers
 
         // POST: VentaController/Create
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult CategoriaSelect(VentaVM model)
         {
             try
             {
-                var categoriaSeleccionada = model.CategoriaLista;
-
-                var productosEnCategoria = (from p in _productoBusiness.GetAll()
-                                           where p.Categoria.Productos == categoriaSeleccionada
-                                           select p);
-
-                return RedirectToAction(nameof(Create));
-
+                var categoriaSeleccionada = model._Producto.CategoriaId;
+                return RedirectToAction(nameof(Create), new { categoriaSeleccionada });
             }
             catch
             {
@@ -108,13 +101,15 @@ namespace WebApp.Controllers
             var usuariosID = 2;
 
             var productoCategoria = (from p in _productoBusiness.GetAll()
-                                    where p.Categoria.CategoriaId == categoriaSeleccionada
-                                    select p).ToList();
+                                    where p.CategoriaId == categoriaSeleccionada
+                                     select p).ToList();
 
             var VentaObj = new Models.ViewModels.VentaVM()
             {
+
                 ProductoLista = productoCategoria,
-                VentaLista = _ventaBusiness.GetVentas()
+                VentaLista = _ventaBusiness.GetVentas(),
+                CategoriaLista = _categoriaBusiness.GetAll()
 
             };
 

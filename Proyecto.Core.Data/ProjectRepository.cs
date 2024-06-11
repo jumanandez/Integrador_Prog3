@@ -38,7 +38,7 @@ namespace Proyecto.Core.Data
                 producto = dbcontext.Productos.Find(id);
             }
             return producto;
-        }
+        }       
 
         public List<Producto> GetProductos()
         {

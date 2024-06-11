@@ -14,8 +14,7 @@
             <div class="mb-2">
                 <label class="form-label" asp-for="@Model.VentaLista.">Producto</label>
                 @Html.DropDownListFor(model => model._Producto.ProductoId, new SelectList(Model.ProductoLista, "ProductoId", "Nombre"), "Seleccione un producto", new { @class = "form-control form-control-sm" })
-            </div>
-           
+            </div>           
             
            <div class="mb-2">
                 <label class="form-label" asp-for="@Model.VentaLista.">Cantidad</label>

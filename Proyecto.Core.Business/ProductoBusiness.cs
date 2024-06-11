@@ -44,5 +44,6 @@ namespace Proyecto.Core.Business
 		{
 			return _projectRepository.GetStock(usuarioId, productoId);
 		}
-	}
+
+    }
 }
