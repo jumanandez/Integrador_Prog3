@@ -47,12 +47,18 @@ namespace WinForm
 		private void linkRegistrarse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			FormRegister registrarse = new FormRegister(_usuarioBusiness);
+			this.Hide();
 			
 			if (registrarse.ShowDialog() == DialogResult.OK)
 			{
 				this.User = _usuarioBusiness.ObtainUsuario(textBox1.Text);
-				this.DialogResult = DialogResult.OK;
-				this.Close();
+                MessageBox.Show("Registrado Correctamente!");
+                this.Show();
+			}
+			else
+			{
+                MessageBox.Show("Operacion cancelada!");
+                this.Show();
 			}
 		}
 		private void IngresarAlaAplicacion()

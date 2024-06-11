@@ -55,12 +55,14 @@
             // 
             // dataGridViewProducto
             // 
+            dataGridViewProducto.AllowUserToOrderColumns = true;
             dataGridViewProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewProducto.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProducto.Columns.AddRange(new DataGridViewColumn[] { ColumnProductoId, ColumnNombreProducto, ColumnCategoria, ColumnStock, ColumnHabilitado });
             dataGridViewProducto.Location = new Point(243, 164);
             dataGridViewProducto.MinimumSize = new Size(538, 257);
+            dataGridViewProducto.MultiSelect = false;
             dataGridViewProducto.Name = "dataGridViewProducto";
             dataGridViewProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewProducto.Size = new Size(564, 257);
@@ -81,6 +83,7 @@
             ColumnNombreProducto.HeaderText = "Nombre";
             ColumnNombreProducto.Name = "ColumnNombreProducto";
             ColumnNombreProducto.ReadOnly = true;
+            ColumnNombreProducto.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // ColumnCategoria
             // 
@@ -101,6 +104,7 @@
             ColumnHabilitado.HeaderText = "Habilitado";
             ColumnHabilitado.Name = "ColumnHabilitado";
             ColumnHabilitado.ReadOnly = true;
+            ColumnHabilitado.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // lblTitulo
             // 
@@ -314,11 +318,11 @@
         private NumericUpDown numericUpDown1;
         private Button BtnCompra;
         private PictureBox pictureBox1;
+        private Label LblBienvenido;
         private DataGridViewTextBoxColumn ColumnProductoId;
         private DataGridViewTextBoxColumn ColumnNombreProducto;
         private DataGridViewTextBoxColumn ColumnCategoria;
         private DataGridViewTextBoxColumn ColumnStock;
         private DataGridViewCheckBoxColumn ColumnHabilitado;
-        private Label LblBienvenido;
     }
 }
