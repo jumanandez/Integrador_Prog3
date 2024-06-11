@@ -2,6 +2,7 @@
 using System.Text;
 using System.Security.Cryptography;
 using Proyecto.Core.Entities;
+using Proyecto.Core.Data;
 
 namespace WinForm
 {
@@ -20,8 +21,9 @@ namespace WinForm
 			bool pass;
 			if (_usuarioBusiness.CompareUserToDB(textBox1.Text))
 			{
-				pass = _usuarioBusiness.VerifyPassword(textBox1.Text, textBox2.Text);
-				if (pass)
+                var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
+                pass = hashnew.SequenceEqual(_usuarioBusiness.GetUsuarioHash(textBox1.Text));
+                if (pass)
 				{
 					IngresarAlaAplicacion();
 				}

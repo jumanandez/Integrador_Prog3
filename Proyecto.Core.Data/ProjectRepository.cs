@@ -209,6 +209,7 @@ namespace Proyecto.Core.Data
         }
 
         #endregion
+
         #region Region Usuario
         public bool ComparteUserToDB(string Username)
         {
@@ -284,9 +285,9 @@ namespace Proyecto.Core.Data
             }
             else
             {
-                byte[] saltBytes = HashingPassword.GenerateSalt();
+                byte[] saltBytes = CryptoHelper.GenerateSalt();
                 // Hash the password with the salt
-                byte[] hashedPassword = HashingPassword.HashPassword(password, saltBytes);
+                byte[] hashedPassword = CryptoHelper.HashPassword(password, saltBytes);
 
                 string base64Salt = Convert.ToBase64String(saltBytes);
 
