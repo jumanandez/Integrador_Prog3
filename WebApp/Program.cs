@@ -46,6 +46,7 @@ builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //Ademas el Repository necesita el Context el cual necesita una 
 //connectionString, que la tiene la Config class
 builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
+builder.Services.AddScoped<IntegradorProg3Context>();
 
 #endregion
 

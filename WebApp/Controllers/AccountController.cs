@@ -5,6 +5,7 @@ using Proyecto.Core.Helpers;
 using WebApp.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
