@@ -6,6 +6,9 @@ using WebApp.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models.ViewModels;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WebApp.Controllers
 {
@@ -31,7 +34,7 @@ namespace WebApp.Controllers
             {
                 if (_context.Usuarios.Any(u => u.Nombre == model.Username))
                 {
-                    ModelState.AddModelError("", "Username already exists");
+                    ViewData["ExistUser"] = "El usuario ya existe";
                     return View(model);
                 }
 
@@ -70,12 +73,29 @@ namespace WebApp.Controllers
                     byte[] hashPassword = CryptoHelper.HashPassword(model.Password, user.Salt);
                     if (user.HashPassword.SequenceEqual(hashPassword))
                     {
-                        // FALTA LOGICA DE INICIO DE SESION Y ESTABLECER SESION
+                        List<Claim> claims = new List<Claim>()
+                        {
+                            new Claim(ClaimTypes.Name, user.Nombre),
+                            new Claim(ClaimTypes.NameIdentifier, user.UsuarioId.ToString())
+                        };
+
+                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        AuthenticationProperties properties = new AuthenticationProperties()
+                        {
+                            AllowRefresh = true,
+                        };
+
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity),
+                            properties
+                            );
+
                         return RedirectToAction("Index", "Home");
                     }
                 }
 
-                ModelState.AddModelError("", "Invalid username or password");
+                ViewData["LoginError"] = "Usuario o contraseña incorrecta";
             }
             return View(model);
         }
