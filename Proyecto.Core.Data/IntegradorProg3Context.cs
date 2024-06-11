@@ -98,7 +98,7 @@ public partial class IntegradorProg3Context : DbContext
             entity.Property(e => e.HashPassword).HasMaxLength(256);
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.Salt).HasMaxLength(16);
-            //entity.Property(e => e.Email).HasMaxLength(256);
+            
         });
 
         modelBuilder.Entity<Venta>(entity =>
