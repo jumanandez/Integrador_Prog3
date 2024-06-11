@@ -5,6 +5,7 @@ using Proyecto.Core.Business;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,13 +47,19 @@ builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 //Ademas el Repository necesita el Context el cual necesita una 
 //connectionString, que la tiene la Config class
 builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
+builder.Services.AddScoped<IntegradorProg3Context>();
 
 #endregion
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	.AddCookie(options =>
+	{
+		options.LoginPath = "/Account/Login";
+		options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+	});
 
 var app = builder.Build();
 
@@ -69,10 +76,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+	pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

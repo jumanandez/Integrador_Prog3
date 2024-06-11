@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class CompraController : Controller
     {
         private readonly ILogger<CompraController> _logger;
