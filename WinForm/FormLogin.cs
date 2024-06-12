@@ -10,16 +10,16 @@ namespace WinForm
 	public partial class FormLogin : Form
 	{
 		private readonly IUsuarioBusiness _usuarioBusiness;
-        private readonly ICategoriaBusiness _categoriaBusiness;
-        private readonly IProductoBusiness _productoBusiness;
-        public Usuario _loggedUser;
-        public FormLogin(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuarioBusiness)
+		private readonly ICategoriaBusiness _categoriaBusiness;
+		private readonly IProductoBusiness _productoBusiness;
+		public Usuario _loggedUser;
+		public FormLogin(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuarioBusiness)
 		{
 
 			_usuarioBusiness = usuarioBusiness;
-            _categoriaBusiness = catbusi;
-            _productoBusiness = produbusi;
-            InitializeComponent();
+			_categoriaBusiness = catbusi;
+			_productoBusiness = produbusi;
+			InitializeComponent();
 			textBox2.UseSystemPasswordChar = true;
 		}
 
@@ -55,7 +55,12 @@ namespace WinForm
 								"Pruebe otro Usuario y/o Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		private void linkRegistrarse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		private void linkCambioContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			
+		}
+		
+		private void btnRegistrarse_Click(object sender, EventArgs e)
 		{
 			FormRegister registrarse = new FormRegister(_usuarioBusiness);
 			Hide();
@@ -78,17 +83,17 @@ namespace WinForm
 					}
 					else
 					{
-                        registrarse.ShowDialog();
-                    }
+						registrarse.ShowDialog();
+					}
 				}
-                Show();
-            }
+				Show();
+			}
 		}
 		private void IngresarAlaAplicacion()
 		{
 			_loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
 			Hide();
-            FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
+			FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
 			if (productosesion.ShowDialog() == DialogResult.OK)
 			{
 				MessageBox.Show("Rompiste todo!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -110,9 +115,7 @@ namespace WinForm
 				}
 			}
 
-            DialogResult = DialogResult.OK;
+			DialogResult = DialogResult.OK;
 		}
-
-		
 	}
 }
