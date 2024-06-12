@@ -472,6 +472,25 @@ namespace WinForm
 				RefreshGrid(Doublefilter(productos));
 			}
 		}
+		private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
+			switch (columnName)
+			{
+				case "ColumnNombreProducto":
+					MessageBox.Show("Nombre");
+					break;
+				case "ColumnCategoria":
+					MessageBox.Show("Catergoriar");
+					break;
+				case "ColumnStock":
+					MessageBox.Show("Stokk");
+					break;
+				case "ColumnHabilitado":
+					MessageBox.Show("abilitadon");
+					break;
+			}
+		}
 
 		//funciones de filtrar para no repetir code
 		private List<Producto> Doublefilter(List<Producto> productos)
@@ -499,28 +518,7 @@ namespace WinForm
 			return filteredProductos.ToList();
 		}
 
-	}
         }
-
-        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
-            switch(columnName){
-                case "ColumnNombreProducto":
-                    MessageBox.Show("Nombre");
-                        break;
-                case "ColumnCategoria":
-                    MessageBox.Show("Catergoriar");
-                    break;
-                case "ColumnStock":
-                    MessageBox.Show("Stokk");
-                    break;
-                case "ColumnHabilitado":
-                    MessageBox.Show("abilitadon");
-                    break;
-            }
-        }
-    }
 }
 
 
