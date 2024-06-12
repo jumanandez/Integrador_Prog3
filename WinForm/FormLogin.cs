@@ -28,58 +28,89 @@ namespace WinForm
 			bool pass;
 			if (_usuarioBusiness.CompareUserToDB(textBox1.Text))//obtener salt ya
 			{
-                var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
-                
+				var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
+
 				pass = hashnew.SequenceEqual(_usuarioBusiness.GetUsuarioHash(textBox1.Text));
-               
+
 				if (pass)
 				{
 					IngresarAlaAplicacion();
 				}
 				else
 				{
-					MessageBox.Show("Contraseña Incorrecta");
+					MessageBox.Show("Contraseña Incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 			else if (textBox1.Text.Trim() == "")
 			{
-				MessageBox.Show("Usuario no puede estar vacio!");
+				MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 			else if (textBox2.Text.Trim() == "")
 			{
-				MessageBox.Show("Ingrese una contraseña!");
+				MessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 			else
 			{
 				MessageBox.Show("Usuario y/o Contraseña Incorrecto!",
-								"Pruebe otro Usuario y/o Contraseña");
+								"Pruebe otro Usuario y/o Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 		private void linkRegistrarse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			FormRegister registrarse = new FormRegister(_usuarioBusiness);
-			this.Hide();
-			
+			Hide();
+
 			if (registrarse.ShowDialog() == DialogResult.OK)
 			{
-				this._loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
-                MessageBox.Show("Registrado Correctamente!");
-                this.Show();
+				_loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+				MessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				Show();
 			}
 			else
 			{
-                MessageBox.Show("Operacion cancelada!");
-                this.Show();
-			}
+				bool exit = false;
+				while (!exit)
+				{
+					DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+					if (operao == DialogResult.Yes)
+					{
+						exit = true;
+					}
+					else
+					{
+                        registrarse.ShowDialog();
+                    }
+				}
+                Show();
+            }
 		}
 		private void IngresarAlaAplicacion()
 		{
 			_loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
-            MessageBox.Show("Bienvenido!!");
 			Hide();
             FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
-			productosesion.ShowDialog();
-			DialogResult = DialogResult.OK;
+			if (productosesion.ShowDialog() == DialogResult.OK)
+			{
+				MessageBox.Show("Rompiste todo!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				bool exit = false;
+				while (!exit)
+				{
+					DialogResult operao = MessageBox.Show("Salir?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+					if (operao == DialogResult.Yes)
+					{
+						exit = true;
+					}
+					else
+					{
+						productosesion.ShowDialog();
+					}
+				}
+			}
+
+            DialogResult = DialogResult.OK;
 		}
 
 		

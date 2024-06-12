@@ -32,6 +32,8 @@
             ColumnNombreProducto = new DataGridViewTextBoxColumn();
             ColumnCategoria = new DataGridViewTextBoxColumn();
             ColumnStock = new DataGridViewTextBoxColumn();
+            ColumnCompras = new DataGridViewTextBoxColumn();
+            ColumnVentas = new DataGridViewTextBoxColumn();
             ColumnHabilitado = new DataGridViewCheckBoxColumn();
             lblTitulo = new Label();
             lblProductos = new Label();
@@ -50,6 +52,7 @@
             rdiobtnHabilitado = new RadioButton();
             rdiobtnDeshabilitado = new RadioButton();
             rdiobtnTodos = new RadioButton();
+            BtnRfrs = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -64,10 +67,9 @@
             dataGridViewProducto.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dataGridViewProducto.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProducto.Columns.AddRange(new DataGridViewColumn[] { ColumnNombreProducto, ColumnCategoria, ColumnStock, ColumnHabilitado });
+            dataGridViewProducto.Columns.AddRange(new DataGridViewColumn[] { ColumnNombreProducto, ColumnCategoria, ColumnStock, ColumnCompras, ColumnVentas, ColumnHabilitado });
             dataGridViewProducto.Location = new Point(243, 164);
             dataGridViewProducto.MinimumSize = new Size(538, 257);
-            dataGridViewProducto.MultiSelect = false;
             dataGridViewProducto.Name = "dataGridViewProducto";
             dataGridViewProducto.ReadOnly = true;
             dataGridViewProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -95,6 +97,20 @@
             ColumnStock.HeaderText = "Stock";
             ColumnStock.Name = "ColumnStock";
             ColumnStock.ReadOnly = true;
+            // 
+            // ColumnCompras
+            // 
+            ColumnCompras.HeaderText = "Compras";
+            ColumnCompras.Name = "ColumnCompras";
+            ColumnCompras.ReadOnly = true;
+            ColumnCompras.Width = 80;
+            // 
+            // ColumnVentas
+            // 
+            ColumnVentas.HeaderText = "Ventas";
+            ColumnVentas.Name = "ColumnVentas";
+            ColumnVentas.ReadOnly = true;
+            ColumnVentas.Width = 66;
             // 
             // ColumnHabilitado
             // 
@@ -304,12 +320,24 @@
             rdiobtnTodos.UseVisualStyleBackColor = true;
             rdiobtnTodos.CheckedChanged += rdiobtnTodos_CheckedChanged;
             // 
+            // BtnRfrs
+            // 
+            BtnRfrs.Font = new Font("Wingdings 3", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            BtnRfrs.Location = new Point(777, 131);
+            BtnRfrs.Name = "BtnRfrs";
+            BtnRfrs.Size = new Size(30, 30);
+            BtnRfrs.TabIndex = 27;
+            BtnRfrs.Text = "Q";
+            BtnRfrs.UseVisualStyleBackColor = true;
+            BtnRfrs.Click += button1_Click;
+            // 
             // FormProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(814, 474);
+            Controls.Add(BtnRfrs);
             Controls.Add(rdiobtnTodos);
             Controls.Add(rdiobtnDeshabilitado);
             Controls.Add(rdiobtnHabilitado);
@@ -356,12 +384,15 @@
         private Button BtnCompra;
         private PictureBox pictureBox1;
         private Label LblBienvenido;
-		private DataGridViewTextBoxColumn ColumnNombreProducto;
-		private DataGridViewTextBoxColumn ColumnCategoria;
-		private DataGridViewTextBoxColumn ColumnStock;
-		private DataGridViewCheckBoxColumn ColumnHabilitado;
 		private RadioButton rdiobtnHabilitado;
 		private RadioButton rdiobtnDeshabilitado;
 		private RadioButton rdiobtnTodos;
-	}
+        private DataGridViewTextBoxColumn ColumnNombreProducto;
+        private DataGridViewTextBoxColumn ColumnCategoria;
+        private DataGridViewTextBoxColumn ColumnStock;
+        private DataGridViewTextBoxColumn ColumnCompras;
+        private DataGridViewTextBoxColumn ColumnVentas;
+        private DataGridViewCheckBoxColumn ColumnHabilitado;
+        private Button BtnRfrs;
+    }
 }
