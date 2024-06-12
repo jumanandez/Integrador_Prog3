@@ -263,31 +263,22 @@ namespace Proyecto.Core.Data
                 return User;
             }
         }
-		public bool CreateUser(string Username, byte[] hashedPassword, byte[] saltBytes)
-		{
-            if (CompareUserToDB(Username))
+        public bool CreateUser(string Username, byte[] hashedPassword, byte[] saltBytes)
+        {
+            var user = new Usuario
             {
-                return false;
-            }
-            else
+                Nombre = Username,
+                HashPassword = hashedPassword,
+                Salt = saltBytes
+            };
+
+            using (var _dbContext = new IntegradorProg3Context(_config))
             {
-               
-
-                var user = new Usuario
-                {
-                    Nombre = Username,
-                    HashPassword = hashedPassword,
-                    Salt = saltBytes
-                };
-
-                using (var _dbContext = new IntegradorProg3Context(_config))
-                {
-                    _dbContext.Usuarios.Add(user);
-                    _dbContext.SaveChanges();
-                }
-                return true;
+                _dbContext.Usuarios.Add(user);
+                _dbContext.SaveChanges();
             }
-		}
+            return true;
+        }
 		#endregion
 	}
 }

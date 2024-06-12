@@ -10,11 +10,16 @@ namespace WinForm
 	public partial class FormLogin : Form
 	{
 		private readonly IUsuarioBusiness _usuarioBusiness;
-		public Usuario User;
-		public FormLogin(IUsuarioBusiness usuarioBusiness)
+        private readonly ICategoriaBusiness _categoriaBusiness;
+        private readonly IProductoBusiness _productoBusiness;
+        public Usuario _loggedUser;
+        public FormLogin(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuarioBusiness)
 		{
+
 			_usuarioBusiness = usuarioBusiness;
-			InitializeComponent();
+            _categoriaBusiness = catbusi;
+            _productoBusiness = produbusi;
+            InitializeComponent();
 			textBox2.UseSystemPasswordChar = true;
 		}
 
@@ -57,7 +62,7 @@ namespace WinForm
 			
 			if (registrarse.ShowDialog() == DialogResult.OK)
 			{
-				this.User = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+				this._loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
                 MessageBox.Show("Registrado Correctamente!");
                 this.Show();
 			}
@@ -69,10 +74,12 @@ namespace WinForm
 		}
 		private void IngresarAlaAplicacion()
 		{
-			User = _usuarioBusiness.ObtainUsuario(textBox1.Text);
-			this.DialogResult = DialogResult.OK;
-			MessageBox.Show("Bienvenido");
-			this.Close();
+			_loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+            MessageBox.Show("Bienvenido!!");
+			Hide();
+            FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
+			productosesion.ShowDialog();
+			DialogResult = DialogResult.OK;
 		}
 
 		

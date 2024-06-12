@@ -26,13 +26,13 @@ namespace WinForm
         private Producto _productoSeleccionado;
         public Usuario _loggedUser;
 
-        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi)
+        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
         {
             _categoriaBusiness = catbusi;
             _productoBusiness = produbusi;
             _usuarioBusiness = usuariobusi;
             _productoACargar = new Producto();
-            _loggedUser = new Usuario();
+            _loggedUser = usalog;
             InitializeComponent();
             LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
             numericUpDown1.Value = 1;
@@ -49,7 +49,7 @@ namespace WinForm
                 Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
                 AddAPart.ShowDialog();
             }
-            else 
+            else
             {
                 MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
             }
@@ -70,10 +70,10 @@ namespace WinForm
                 var prod = dataGridViewProducto.SelectedRows[0];
                 _productoSeleccionado = (Producto)prod.DataBoundItem;
                 DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        _productoBusiness.DeleteProducto(_productoSeleccionado);
-                    }
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _productoBusiness.DeleteProducto(_productoSeleccionado);
+                }
             }
             else
             {
@@ -403,7 +403,7 @@ namespace WinForm
         {
             var Stock = dataGridViewProducto.Columns["ColumnStock"].Index;
 
-			foreach (DataGridViewRow row in dataGridViewProducto.Rows)
+            foreach (DataGridViewRow row in dataGridViewProducto.Rows)
             {
                 if (!row.IsNewRow)
                 {
@@ -454,6 +454,25 @@ namespace WinForm
         {
             BtnCompra.Enabled = true;
 
+        }
+
+        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
+            switch(columnName){
+                case "ColumnNombreProducto":
+                    MessageBox.Show("Nombre");
+                        break;
+                case "ColumnCategoria":
+                    MessageBox.Show("Catergoriar");
+                    break;
+                case "ColumnStock":
+                    MessageBox.Show("Stokk");
+                    break;
+                case "ColumnHabilitado":
+                    MessageBox.Show("abilitadon");
+                    break;
+            }
         }
     }
 }
