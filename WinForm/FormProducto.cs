@@ -401,15 +401,17 @@ namespace WinForm
 
         public void CargarStock()
         {
-            foreach (DataGridViewRow row in dataGridViewProducto.Rows)
+            var Stock = dataGridViewProducto.Columns["ColumnStock"].Index;
+
+			foreach (DataGridViewRow row in dataGridViewProducto.Rows)
             {
                 if (!row.IsNewRow)
                 {
                     var producto = (Producto)row.DataBoundItem;
 
-                    row.Cells[3].Value = (producto.Compras.Select(c => c.Cantidad).Sum()) //Compras
+                    row.Cells[Stock].Value = (producto.Compras.Select(c => c.Cantidad).Sum()) //Compras
                                             - //menos
-                                        (producto.Venta.Select(v => v.Cantidad).Sum());//Ventas
+                                            (producto.Venta.Select(v => v.Cantidad).Sum());//Ventas
                 }
             }
         }
