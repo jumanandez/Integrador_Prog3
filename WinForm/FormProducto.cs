@@ -27,8 +27,16 @@ namespace WinForm
             LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
             numericUpDown1.Value = 1;
         }
+		//AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
+		private void FormProducto_Activated(object sender, EventArgs e)
+		{
+			cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
+			cmbBoxCategorias.DisplayMember = "Nombre";
+			RefreshGrid(null);
+		}
 
-        private void btnModificar_Click(object sender, EventArgs e)
+		#region ABM DE PRODUCTOS
+		private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dataGridViewProducto.CurrentRow != null)
             {
@@ -51,14 +59,6 @@ namespace WinForm
                 MessageBox.Show("No se ha seleccionado ningun producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
-        private void FormProducto_Activated(object sender, EventArgs e)
-        {
-            cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
-            cmbBoxCategorias.DisplayMember = "Nombre";
-            RefreshGrid();
-        }
-
         private void BTNdelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewProducto.SelectedRows.Count < 2)
@@ -103,43 +103,26 @@ namespace WinForm
                     }
                 }
             }
-            RefreshGrid();
+            RefreshGrid(null);
         }
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
             Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
             AddAPart.ShowDialog();
         }
+		#endregion
 
-        private void RefreshGrid()
-        {
-            dataGridViewProducto.AutoGenerateColumns = false;
-
-            dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-			textBox1.Clear();
-			cmbBoxCategorias.SelectedIndex = 0;
-
-			CargarEstadoStock();
-            //ProductosConCategorias(_productoBusiness.GetAll(), _categoríaBusiness.GetAll());
-        }
-        private void RefreshGrid<T>(IEnumerable<T> source) // refresh grid que recibe listas filtradas, no reinicia cmbbox y txtbox
-        {
-            dataGridViewProducto.AutoGenerateColumns = false;
-
-            dataGridViewProducto.DataSource = source;
-            _orderType = "x";
-
-            CargarEstadoStock();
-        }
-		private void RefreshGrid(List<Producto>? source)
+		//REFACTORIZACION DE METODO REFRESHGRID
+		public void RefreshGrid(List<Producto> ? source )
         {
 			dataGridViewProducto.AutoGenerateColumns = false;
+
             if(source != null)
             {
 				dataGridViewProducto.DataSource = source;
 				_orderType = "x";
 			}
-            else
+            else//RefreshGrid(null) debe ser la llamada para que funcione
             {
 				dataGridViewProducto.DataSource = _productoBusiness.GetAll();
 				textBox1.Clear();
@@ -147,10 +130,43 @@ namespace WinForm
 			}
 
 			CargarEstadoStock();
-		}//PROPUESTA DE REFACTORIZACION DE METODO REFRESHGRID
+		}
+		private List<Categoria> CategoriasParaComboBox()
+		{
+			var categorias = new List<Categoria>();
 
+			categorias.Add(new Categoria { Nombre = "Todos" });
+
+			var cateBasicas = _categoriaBusiness.GetAll();
+
+			foreach (Categoria categoria in cateBasicas)
+			{
+				categorias.Add(categoria);
+			}
+
+			return categorias;
+		}
+		public void CargarEstadoStock()
+		{
+			var Stock = dataGridViewProducto.Columns["ColumnStock"].Index;
+			var Compras = dataGridViewProducto.Columns["ColumnCompras"].Index;
+			var Ventas = dataGridViewProducto.Columns["ColumnVentas"].Index;
+
+			foreach (DataGridViewRow row in dataGridViewProducto.Rows)
+			{
+				if (!row.IsNewRow)
+				{
+					var producto = (Producto)row.DataBoundItem;
+
+					row.Cells[Compras].Value = producto.Compras.Select(c => c.Cantidad).Sum();
+
+					row.Cells[Ventas].Value = producto.Venta.Select(c => c.Cantidad).Sum();
+
+					row.Cells[Stock].Value = (int)row.Cells[Compras].Value - (int)row.Cells[Ventas].Value;
+				}
+			}
+		}
 		//UTILIZAR LA PRIMERA VEZ Y NUNCA MAS, PARA CARGAR SU BASE DE DATOS CON LOS PRODUCTOS
-
 		#region BOTON DE PRIMERA CARGA
 		private void btnPrimerCarga_Click(object sender, EventArgs e)
         {
@@ -344,49 +360,59 @@ namespace WinForm
 
             btnPrimerCarga.Enabled = false;
         }
-        #endregion NO TOCAR
+		#endregion NO TOCAR
+		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
 
-        //COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
+		#region FILTRADO DE DATAGRID
+		private void textBox1_TextChanged(object sender, EventArgs e)
         {
             string searchText = textBox1.Text.ToLower().Trim();
             var productos = _productoBusiness.GetAll();
-            var categorias = _categoriaBusiness.GetAll();
 
             if (cmbBoxCategorias.SelectedIndex == 0)
             {
-                //var filteredProductos = from prod in productos
-                //						where prod.Nombre.ToLower().Contains(searchText)
-                //						select prod;
-
-                RefreshGrid(FilterByText(productos, searchText));
+                if (rdiobtnTodos.Checked)
+                {
+					RefreshGrid(FilterByText(productos, searchText));
+				}				
+                else if (rdiobtnHabilitado.Checked)
+                {
+                    RefreshGrid(FilterByTextHabilitado(productos, true));
+                }
+                else if(rdiobtnDeshabilitado.Checked)
+                {
+					RefreshGrid(FilterByTextHabilitado(productos, false));
+				}
+                
             }
             else
             {
-                var filteredProductos = from prod in productos
-                                        where prod.CategoriaId ==
-                                              ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
-                                                    &&
-                                              prod.Nombre.ToLower().Contains(searchText)
-                                        select prod;
-
-                RefreshGrid(filteredProductos.ToList());
-
-            }
+                if (rdiobtnTodos.Checked)
+                {
+					RefreshGrid(FilterCategoriaYTexto(productos));
+				}
+                else if(rdiobtnHabilitado.Checked)
+                {
+                    RefreshGrid(TripleFilter(productos, true));
+                }
+				else if (rdiobtnDeshabilitado.Checked)
+				{
+					RefreshGrid(TripleFilter(productos, false));
+				}
+			}
         }
-
         private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var idSeleccionado = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
 
             var productos = _productoBusiness.GetAll();
 
             if (cmbBoxCategorias.SelectedIndex == 0)
-            {
+            {//SELECIONADO 'Todos' EN COMBOBOX
+
+                //NO HAY TEXTO EN EL TEXTBOX
                 if (textBox1.Text.Trim() == "" && rdiobtnTodos.Checked) //condicion para checkear que textbox este vacia
                 {
-                    RefreshGrid();
+                    RefreshGrid(null);
                 }
                 else if (textBox1.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
@@ -396,6 +422,8 @@ namespace WinForm
                 {
 					RefreshGrid(FilterHabilitados(productos, false));//Deshabilitados
 				}
+
+                //HAY TEXTO EN EL TEXTBOX
                 else if (rdiobtnTodos.Checked) //en caso de tener algo escrito
                 {
                     RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
@@ -410,55 +438,102 @@ namespace WinForm
 				}
             }
             else
-            {
-                if (textBox1.Text.Trim() == "")
+			{//SELECION DISTINTA DE 'Todos' EN COMBOBOX
+
+                //NO HAY TEXTO EN EL TEXTBOX
+				if (textBox1.Text.Trim() == "" && rdiobtnTodos.Checked)
                 {
                     RefreshGrid(FilterByCategoria(productos));
                 }
-                else
+                else if(textBox1.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
-                    RefreshGrid(FilterCategoryAndText(productos));
-                }
-            }
-        }
-        private List<Categoria> CategoriasParaComboBox()
-        {
-            var categorias = new List<Categoria>();
-
-            categorias.Add(new Categoria { Nombre = "Todos" });
-
-            var cateBasicas = _categoriaBusiness.GetAll();
-
-            foreach (Categoria categoria in cateBasicas)
-            {
-                categorias.Add(categoria);
-            }
-
-            return categorias;
-        }
-
-        public void CargarEstadoStock()
-        {
-            var Stock = dataGridViewProducto.Columns["ColumnStock"].Index;
-            var Compras = dataGridViewProducto.Columns["ColumnCompras"].Index;
-            var Ventas = dataGridViewProducto.Columns["ColumnVentas"].Index;
-
-            foreach (DataGridViewRow row in dataGridViewProducto.Rows)
-            {
-                if (!row.IsNewRow)
+                    RefreshGrid(FilterByCategoriaHabilitado(productos, true));
+				}
+				else if (textBox1.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
                 {
-                    var producto = (Producto)row.DataBoundItem;
+					RefreshGrid(FilterByCategoriaHabilitado(productos, false));
+				}
 
-                    row.Cells[Compras].Value = producto.Compras.Select(c => c.Cantidad).Sum();
-
-                    row.Cells[Ventas].Value = producto.Venta.Select(c => c.Cantidad).Sum();
-
-                    row.Cells[Stock].Value = (int)row.Cells[Compras].Value - (int)row.Cells[Ventas].Value;
+                //HAY TEXTO EN EL TEXTBOX
+				else if(rdiobtnTodos.Checked)
+                {
+                    RefreshGrid(FilterCategoriaYTexto(productos));
                 }
-            }
+                else if(rdiobtnHabilitado.Checked)
+                {
+                    RefreshGrid(TripleFilter(productos, true));
+                }
+				else if (rdiobtnDeshabilitado.Checked)
+				{
+                    RefreshGrid(TripleFilter(productos, false));
+				}
+			}
         }
+		private void rdiobtnHabilitado_CheckedChanged(object sender, EventArgs e)
+		{
+			var productos = _productoBusiness.GetAll();
+			if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+			{
+				RefreshGrid(FilterHabilitados(productos, true));
+			}
+			else if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
+			{
+				RefreshGrid(FilterByTextHabilitado(productos, true));//Filtra Texto y Habilitados
+			}
+			else if (rdiobtnHabilitado.Checked && textBox1.Text.Trim() == "")
+			{
+				RefreshGrid(FilterByCategoriaHabilitado(productos, true));//Filtra Combo y Habilitados
+			}
+			else if (rdiobtnHabilitado.Checked)
+			{
+				RefreshGrid(TripleFilter(productos, true));//Filtra texto, Combo y Habilitados
+			}
+		}
+		private void rdiobtnDeshabilitado_CheckedChanged(object sender, EventArgs e)
+		{
+			var productos = _productoBusiness.GetAll();
+			if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+			{
+				RefreshGrid(FilterHabilitados(productos, false));//false busca Deshabilitados
+			}
+			else if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
+			{
+				RefreshGrid(FilterByTextHabilitado(productos, false));//Filtra Texto y Deshabilitados
+			}
+			else if (rdiobtnDeshabilitado.Checked && textBox1.Text.Trim() == "")
+			{
+				RefreshGrid(FilterByCategoriaHabilitado(productos, false));//Filtra Combo y Deshabilitado
+			}
+			else if (rdiobtnDeshabilitado.Checked)
+			{
+				RefreshGrid(TripleFilter(productos, false));// Filtra Texto, Combo y Deshabilitados
+			}
+		}
+		private void rdiobtnTodos_CheckedChanged(object sender, EventArgs e)
+		{
+			var idSeleccionado = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
 
-        private void BtnCompra_Click(object sender, EventArgs e)
+			var productos = _productoBusiness.GetAll();
+			if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+			{
+				RefreshGrid(null);
+			}
+			else if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0)
+			{
+				RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
+			}
+			else if (rdiobtnTodos.Checked && textBox1.Text.Trim() == "")
+			{
+				RefreshGrid(FilterByCategoria(productos));
+			}
+			else
+			{
+				RefreshGrid(FilterCategoriaYTexto(productos));
+			}
+		}
+		#endregion
+
+		private void BtnCompra_Click(object sender, EventArgs e)
         {
             var i = dataGridViewProducto.CurrentRow.Index;//
             var prod = dataGridViewProducto.SelectedRows[0];//
@@ -484,55 +559,15 @@ namespace WinForm
                 MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
             }
         }
-
         private void numericUpDown1_Click(object sender, EventArgs e)
         {
             BtnCompra.Enabled = true;
 
         }
-
-        private void rdiobtnHabilitado_CheckedChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            var productos = _productoBusiness.GetAll();
-            if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterHabilitados(productos, true));
-			}
-			else if(rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
-            {
-				RefreshGrid(FilterByTextHabilitado(productos, true));//Filtra Texto y Habilitados
-				
-
-			}
-            else if(rdiobtnHabilitado.Checked && textBox1.Text.Trim() == "")
-            {
-				RefreshGrid(FilterByCategoriaHabilitado(productos, true));//Filtra Combo y Habilitados
-			}
-            else if(rdiobtnHabilitado.Checked)
-            {
-                RefreshGrid(TripleFilter(productos, true));
-            }
+            RefreshGrid(null);
         }
-		private void rdiobtnDeshabilitado_CheckedChanged(object sender, EventArgs e)
-        {
-            var productos = _productoBusiness.GetAll();
-			if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterHabilitados(productos, false));//false busca Deshabilitados
-			}
-			else if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
-			{
-				RefreshGrid(FilterByTextHabilitado(productos, false));//Filtra Texto y Deshabilitados
-            }
-			else if (rdiobtnDeshabilitado.Checked && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterByCategoriaHabilitado(productos, false));//Filtra Combo y Deshabilitado
-			}
-			else if (rdiobtnDeshabilitado.Checked)
-			{
-				RefreshGrid(TripleFilter(productos, false));// Filtra Texto, Combo y Deshabilitados
-			}
-		}
 		private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
@@ -620,37 +655,15 @@ namespace WinForm
 
             }
         }
-        private void rdiobtnTodos_CheckedChanged(object sender, EventArgs e)
-        {
-            var idSeleccionado = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
-
-            var productos = _productoBusiness.GetAll();
-            if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
-            {
-                RefreshGrid();
-            }
-            else if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0)
-            {
-                RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
-            }
-            else if (rdiobtnTodos.Checked && textBox1.Text.Trim() == "")
-            {
-                RefreshGrid(FilterByCategoria(productos));
-            }
-            else
-            {
-                RefreshGrid(FilterCategoryAndText(productos));
-            }
-        }
-
-		//funciones de filtrar para no repetir code
+       
+		#region FUNCIONES DE FILTRADO PARA NO REPETIR CODE
 		private List<Producto> TripleFilter(List<Producto> productos, bool valor)
 		{
-			return (from p in FilterCategoryAndText(productos)
+			return (from p in FilterCategoriaYTexto(productos)
 					where p.Habilitado == valor
 					select p).ToList();
 		}
-		public List<Producto> FilterCategoryAndText(List<Producto> productos)
+		public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
         {
             var doublefilt = from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
                              where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
@@ -692,11 +705,8 @@ namespace WinForm
 					where prod.Habilitado == valor
 					select prod).ToList();
 		}
-		private void button1_Click(object sender, EventArgs e)
-        {
-            RefreshGrid();
-        }
-    }
+		#endregion
+	}
 }
 
 
