@@ -112,6 +112,7 @@ namespace WinForm
         }
 		#endregion
 
+
 		//REFACTORIZACION DE METODO REFRESHGRID
 		public void RefreshGrid(List<Producto> ? source )
         {
