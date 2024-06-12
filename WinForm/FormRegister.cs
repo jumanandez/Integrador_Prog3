@@ -20,13 +20,14 @@ namespace WinForm
 		{
 			_usuarioBusiness = usuarioBusiness;
 			InitializeComponent();
+			txtContraseña.UseSystemPasswordChar = true;
 		}
 
 		private void btnRegistrarse_Click(object sender, EventArgs e)
 		{
 			string username = txtNombreUsuario.Text;
 			string pass = txtContraseña.Text;
-
+			
 			if(_usuarioBusiness.CreateUsuario(username, pass))
 			{
 				this.DialogResult = DialogResult.OK;

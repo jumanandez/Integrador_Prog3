@@ -210,7 +210,7 @@ namespace Proyecto.Core.Data
         #endregion
 
         #region Region Usuario
-        public bool ComparteUserToDB(string Username)
+        public bool CompareUserToDB(string Username)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
@@ -263,18 +263,14 @@ namespace Proyecto.Core.Data
                 return User;
             }
         }
-		public bool CreateUser(string Username, string password)
+		public bool CreateUser(string Username, byte[] hashedPassword, byte[] saltBytes)
 		{
-            if (ComparteUserToDB(Username))
+            if (CompareUserToDB(Username))
             {
                 return false;
             }
             else
             {
-                byte[] saltBytes = CryptoHelper.GenerateSalt();
-                // Hash the password with the salt
-                byte[] hashedPassword = CryptoHelper.HashPassword(password, saltBytes);
-
                 string base64Salt = Convert.ToBase64String(saltBytes);
 
                 byte[] retrievedSaltBytes = Convert.FromBase64String(base64Salt);

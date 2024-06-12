@@ -25,12 +25,12 @@ namespace Proyecto.Core.Data.Interfaces
 		public void DeleteCompra(int id);
 		public void AddVenta(Venta venta);
 		public void DeleteVenta(int id);
-        public bool ComparteUserToDB(string Username);
+        public bool CompareUserToDB(string Username);
         public byte[] GetUsuarioHash(string Username);
         public byte[] GetUsuarioSalt(string Username);
         public bool ChangePass(string Username, byte[] Password, byte[] salt);
         public Usuario ObtainUsuario(string Username);
-        public bool CreateUser(string Username, string password);
+        public bool CreateUser(string Username, byte[] hashPassword, byte[] salt);
 
 	}
 }

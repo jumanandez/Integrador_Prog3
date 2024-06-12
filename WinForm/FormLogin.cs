@@ -3,6 +3,7 @@ using System.Text;
 using System.Security.Cryptography;
 using Proyecto.Core.Entities;
 using Proyecto.Core.Data;
+using Proyecto.Core.Business;
 
 namespace WinForm
 {
@@ -14,6 +15,7 @@ namespace WinForm
 		{
 			_usuarioBusiness = usuarioBusiness;
 			InitializeComponent();
+			textBox2.UseSystemPasswordChar = true;
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -22,8 +24,10 @@ namespace WinForm
 			if (_usuarioBusiness.CompareUserToDB(textBox1.Text))
 			{
                 var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
-                pass = hashnew.SequenceEqual(_usuarioBusiness.GetUsuarioHash(textBox1.Text));
-                if (pass)
+                
+				pass = hashnew.SequenceEqual(_usuarioBusiness.GetUsuarioHash(textBox1.Text));
+               
+				if (pass)
 				{
 					IngresarAlaAplicacion();
 				}
@@ -67,7 +71,7 @@ namespace WinForm
 		{
 			User = _usuarioBusiness.ObtainUsuario(textBox1.Text);
 			this.DialogResult = DialogResult.OK;
-			MessageBox.Show("Bienvenenido");
+			MessageBox.Show("Bienvenido");
 			this.Close();
 		}
 
