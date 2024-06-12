@@ -21,7 +21,7 @@ namespace WinForm
 		private void button1_Click(object sender, EventArgs e)
 		{
 			bool pass;
-			if (_usuarioBusiness.CompareUserToDB(textBox1.Text))
+			if (_usuarioBusiness.CompareUserToDB(textBox1.Text))//obtener salt ya
 			{
                 var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
                 

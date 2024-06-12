@@ -271,15 +271,13 @@ namespace Proyecto.Core.Data
             }
             else
             {
-                string base64Salt = Convert.ToBase64String(saltBytes);
-
-                byte[] retrievedSaltBytes = Convert.FromBase64String(base64Salt);
+               
 
                 var user = new Usuario
                 {
                     Nombre = Username,
                     HashPassword = hashedPassword,
-                    Salt = retrievedSaltBytes
+                    Salt = saltBytes
                 };
 
                 using (var _dbContext = new IntegradorProg3Context(_config))
