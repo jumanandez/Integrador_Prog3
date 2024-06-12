@@ -26,66 +26,66 @@ namespace WinForm
 		private Producto _productoSeleccionado;
 		public Usuario _loggedUser;
 
-		public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi)
-		{
-			_categoriaBusiness = catbusi;
-			_productoBusiness = produbusi;
-			_usuarioBusiness = usuariobusi;
-			_productoACargar = new Producto();
-			_loggedUser = new Usuario();
-			InitializeComponent();
-			LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
-			numericUpDown1.Value = 1;
-		}
+        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
+        {
+            _categoriaBusiness = catbusi;
+            _productoBusiness = produbusi;
+            _usuarioBusiness = usuariobusi;
+            _productoACargar = new Producto();
+            _loggedUser = usalog;
+            InitializeComponent();
+            LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
+            numericUpDown1.Value = 1;
+        }
 
 		private void btnModificar_Click(object sender, EventArgs e)
 		{
 			if (dataGridViewProducto.CurrentRow != null)
 			{
 
-				var i = dataGridViewProducto.CurrentRow.Index;
-				var prod = dataGridViewProducto.SelectedRows[0];
-				_productoSeleccionado = (Producto)prod.DataBoundItem;
-				Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
-				AddAPart.ShowDialog();
-			}
-			else
-			{
-				MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
-			}
-		}
-		//AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
-		private void FormProducto_Activated(object sender, EventArgs e)
-		{
-			cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
-			cmbBoxCategorias.DisplayMember = "Nombre";
-			RefreshGrid();
-		}
+                var i = dataGridViewProducto.CurrentRow.Index;
+                var prod = dataGridViewProducto.SelectedRows[0];
+                _productoSeleccionado = (Producto)prod.DataBoundItem;
+                Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
+                AddAPart.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+            }
+        }
+        //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
+        private void FormProducto_Activated(object sender, EventArgs e)
+        {
+            cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
+            cmbBoxCategorias.DisplayMember = "Nombre";
+            RefreshGrid();
+        }
 
-		private void BTNdelete_Click(object sender, EventArgs e)
-		{
-			if (dataGridViewProducto.CurrentRow != null)
-			{
-				var i = dataGridViewProducto.CurrentRow.Index;
-				var prod = dataGridViewProducto.SelectedRows[0];
-				_productoSeleccionado = (Producto)prod.DataBoundItem;
-				DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
-				if (dialogResult == DialogResult.Yes)
-				{
-					_productoBusiness.DeleteProducto(_productoSeleccionado);
-				}
-			}
-			else
-			{
-				MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
-			}
-			RefreshGrid();
-		}
-		private void btnNuevoProducto_Click(object sender, EventArgs e)
-		{
-			Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
-			AddAPart.ShowDialog();
-		}
+        private void BTNdelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProducto.CurrentRow != null)
+            {
+                var i = dataGridViewProducto.CurrentRow.Index;
+                var prod = dataGridViewProducto.SelectedRows[0];
+                _productoSeleccionado = (Producto)prod.DataBoundItem;
+                DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _productoBusiness.DeleteProducto(_productoSeleccionado);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+            }
+            RefreshGrid();
+        }
+        private void btnNuevoProducto_Click(object sender, EventArgs e)
+        {
+            Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
+            AddAPart.ShowDialog();
+        }
 
 		private void RefreshGrid()
 		{
@@ -500,6 +500,27 @@ namespace WinForm
 		}
 
 	}
+        }
+
+        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
+            switch(columnName){
+                case "ColumnNombreProducto":
+                    MessageBox.Show("Nombre");
+                        break;
+                case "ColumnCategoria":
+                    MessageBox.Show("Catergoriar");
+                    break;
+                case "ColumnStock":
+                    MessageBox.Show("Stokk");
+                    break;
+                case "ColumnHabilitado":
+                    MessageBox.Show("abilitadon");
+                    break;
+            }
+        }
+    }
 }
 
 

@@ -40,11 +40,19 @@ namespace Proyecto.Core.Business
         }
 		public bool CreateUsuario(string userName, string password)
 		{
-            var saltBytes = CryptoHelper.GenerateSalt();
+            if (CompareUserToDB(userName))
+            {
+                return false;
+            }
+            else
+            {
 
-			byte[] hashedPassword = CryptoHelper.HashPassword(password, saltBytes);
+                var saltBytes = CryptoHelper.GenerateSalt();
 
-			return _projectRepository.CreateUser(userName, hashedPassword, saltBytes);
+                byte[] hashedPassword = CryptoHelper.HashPassword(password, saltBytes);
+
+                return _projectRepository.CreateUser(userName, hashedPassword, saltBytes);
+            }
 		}
 
 	}
