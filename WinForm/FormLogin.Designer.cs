@@ -145,7 +145,7 @@
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			Name = "FormLogin";
 			StartPosition = FormStartPosition.CenterScreen;
-			Text = "Login";
+			Text = "Inicio";
 			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
 			ResumeLayout(false);
 			PerformLayout();
