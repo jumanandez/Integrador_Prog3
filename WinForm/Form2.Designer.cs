@@ -115,6 +115,7 @@
             Controls.Add(txtNombreProducto);
             Controls.Add(cmbBoxCategorias);
             Name = "Form2";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Form2";
             ResumeLayout(false);
             PerformLayout();

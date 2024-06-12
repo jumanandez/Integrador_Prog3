@@ -3,6 +3,7 @@ using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace Proyecto.Core.Business
         }
         public bool CompareUserToDB(string Username)
         {
-            return _projectRepository.ComparteUserToDB(Username);
+            return _projectRepository.CompareUserToDB(Username);
         }
         public byte[] GetUsuarioHash(string Username)
         {
@@ -37,14 +38,22 @@ namespace Proyecto.Core.Business
         {
             return _projectRepository.ObtainUsuario(Username);
         }
-        public bool VerifyPassword(string Username, string Password)
-        {
-            return _projectRepository.VerifyPassword(Username, Password);
-        }
-
 		public bool CreateUsuario(string userName, string password)
 		{
-			return _projectRepository.CreateUser(userName, password);
+            if (CompareUserToDB(userName))
+            {
+                return false;
+            }
+            else
+            {
+
+                var saltBytes = CryptoHelper.GenerateSalt();
+
+                byte[] hashedPassword = CryptoHelper.HashPassword(password, saltBytes);
+
+                return _projectRepository.CreateUser(userName, hashedPassword, saltBytes);
+            }
 		}
+
 	}
 }

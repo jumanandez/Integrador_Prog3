@@ -52,6 +52,23 @@ namespace Proyecto.Core.Data
             }
             return productos;
         }
+        public int GetStock(int usuarioId, int productoId)
+        {
+            int stock = 0;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var compras = (from c in dbcontext.Compras
+                               where c.ProductoId == productoId && c.UsuarioId == usuarioId
+                               select c.Cantidad).Sum();
+
+                int ventas = (from v in dbcontext.Ventas
+                              where v.ProductoId == productoId && v.UsuarioId == usuarioId
+                              select v.Cantidad).Sum();
+
+                stock = compras - ventas;
+            }
+            return stock;
+        }
 
         public void DeleteProducto(int id)
         {
@@ -167,24 +184,6 @@ namespace Proyecto.Core.Data
         }
         #endregion
 
-        public int GetStock(int usuarioId, int productoId)
-        {
-            int stock = 0;
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                var compras = (from c in dbcontext.Compras
-                               where c.ProductoId == productoId && c.UsuarioId == usuarioId
-                               select c.Cantidad).Sum();
-
-                int ventas = (from v in dbcontext.Ventas
-                              where v.ProductoId == productoId && v.UsuarioId == usuarioId
-                              select v.Cantidad).Sum();
-
-                stock = compras - ventas;
-            }
-            return stock;
-        }
-
         #region Region Categoria
         public List<Categoria> GetCategorias()
         {
@@ -209,8 +208,9 @@ namespace Proyecto.Core.Data
         }
 
         #endregion
+
         #region Region Usuario
-        public bool ComparteUserToDB(string Username)
+        public bool CompareUserToDB(string Username)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
@@ -263,50 +263,22 @@ namespace Proyecto.Core.Data
                 return User;
             }
         }
-        public bool VerifyPassword(string Username, string Password)
+        public bool CreateUser(string Username, byte[] hashedPassword, byte[] saltBytes)
         {
-            byte[] storedHashedPassword = GetUsuarioHash(Username);
-            byte[] storedSaltBytes = GetUsuarioSalt(Username);
-            string enteredPassword = Password;
-            byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
-            byte[] saltedPassword = new byte[enteredPasswordBytes.Length + storedSaltBytes.Length];
-            Buffer.BlockCopy(enteredPasswordBytes, 0, saltedPassword, 0, enteredPasswordBytes.Length);
-            Buffer.BlockCopy(storedSaltBytes, 0, saltedPassword, enteredPasswordBytes.Length, storedSaltBytes.Length);
-            byte[] enteredPasswordHash = HashingPassword.HashPassword(enteredPassword, storedSaltBytes);
-            return (Convert.ToBase64String(enteredPasswordHash) == Convert.ToBase64String(storedHashedPassword));
+            var user = new Usuario
+            {
+                Nombre = Username,
+                HashPassword = hashedPassword,
+                Salt = saltBytes
+            };
+
+            using (var _dbContext = new IntegradorProg3Context(_config))
+            {
+                _dbContext.Usuarios.Add(user);
+                _dbContext.SaveChanges();
+            }
+            return true;
         }
-
-		public bool CreateUser(string Username, string password)
-		{
-            if (ComparteUserToDB(Username))
-            {
-                return false;
-            }
-            else
-            {
-                byte[] saltBytes = HashingPassword.GenerateSalt();
-                // Hash the password with the salt
-                byte[] hashedPassword = HashingPassword.HashPassword(password, saltBytes);
-
-                string base64Salt = Convert.ToBase64String(saltBytes);
-
-                byte[] retrievedSaltBytes = Convert.FromBase64String(base64Salt);
-
-                var user = new Usuario
-                {
-                    Nombre = Username,
-                    HashPassword = hashedPassword,
-                    Salt = retrievedSaltBytes
-                };
-
-                using (var _dbContext = new IntegradorProg3Context(_config))
-                {
-                    _dbContext.Usuarios.Add(user);
-                    _dbContext.SaveChanges();
-                }
-                return true;
-            }
-		}
 		#endregion
 	}
 }

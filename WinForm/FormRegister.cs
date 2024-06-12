@@ -20,6 +20,7 @@ namespace WinForm
 		{
 			_usuarioBusiness = usuarioBusiness;
 			InitializeComponent();
+			txtContraseña.UseSystemPasswordChar = true;
 		}
 
 		private void btnRegistrarse_Click(object sender, EventArgs e)
@@ -27,23 +28,22 @@ namespace WinForm
 			string username = txtNombreUsuario.Text;
 			string pass = txtContraseña.Text;
 
-			if(_usuarioBusiness.CreateUsuario(username, pass))
+			if (txtNombreUsuario.Text.Trim() != "" && txtContraseña.Text.Trim() != "" && _usuarioBusiness.CreateUsuario(username, pass)) 
 			{
-				this.DialogResult = DialogResult.OK;
-				MessageBox.Show("Bienvenenido");
-				this.Close();
+				DialogResult = DialogResult.OK;
+				Close();
 			}
-			else if (txtNombreUsuario.Text.Trim() == "")
+			if (txtNombreUsuario.Text.Trim() == "")
 			{
-				MessageBox.Show("Usuario no puede estar vacio!");
+				MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 			else if (txtContraseña.Text.Trim() == "")
 			{
-				MessageBox.Show("Ingrese una contraseña!");
+				MessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 			else
 			{
-				MessageBox.Show("Usuario y/o contraseña Existente!");
+					MessageBox.Show("Usuario existente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 		}
 	}
