@@ -25,6 +25,7 @@ namespace WinForm
         private Producto _productoACargar;
         private Producto _productoSeleccionado;
         public Usuario _loggedUser;
+        private string _orderType = " ";
 
         public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
         {
@@ -409,9 +410,9 @@ namespace WinForm
                 {
                     var producto = (Producto)row.DataBoundItem;
 
-                    row.Cells[Stock].Value = (producto.Compras.Select(c => c.Cantidad).Sum()) //Compras
+                    row.Cells[Stock].Value = producto.Compras.Select(c => c.Cantidad).Sum() //Compras
                                             - //menos
-                                            (producto.Venta.Select(v => v.Cantidad).Sum());//Ventas
+                                            producto.Venta.Select(v => v.Cantidad).Sum();//Ventas
                 }
             }
         }
@@ -459,19 +460,61 @@ namespace WinForm
         private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
-            switch(columnName){
+            List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
+            switch (columnName){
                 case "ColumnNombreProducto":
-                    MessageBox.Show("Nombre");
+                    if (_orderType == "n")
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
+                        _orderType = "x";
                         break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
+                        _orderType = "n";
+                        break;
+                    }
                 case "ColumnCategoria":
-                    MessageBox.Show("Catergoriar");
-                    break;
+                    if (_orderType != "c")
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
+                        _orderType = "c";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
+                        _orderType = "x";
+                        break;
+                    }
                 case "ColumnStock":
-                    MessageBox.Show("Stokk");
-                    break;
+                    if (_orderType != "s")
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                        _orderType = "s";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                        _orderType = "x";
+                        break;
+                    }
                 case "ColumnHabilitado":
-                    MessageBox.Show("abilitadon");
-                    break;
+                    if (_orderType != "h") 
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
+                        _orderType = "h";
+                        break;
+                    }
+                    else 
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+
             }
         }
     }
