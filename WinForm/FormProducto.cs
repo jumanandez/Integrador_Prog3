@@ -17,76 +17,76 @@ using System.Windows.Forms;
 
 namespace WinForm
 {
-    public partial class FormProducto : Form
-    {
-        private readonly ICategoriaBusiness _categoriaBusiness;
-        private readonly IProductoBusiness _productoBusiness;
-        private readonly IUsuarioBusiness _usuarioBusiness;
-        private Producto _productoACargar;
-        private Producto _productoSeleccionado;
-        public Usuario _loggedUser;
-        private string _orderType = " ";
+	public partial class FormProducto : Form
+	{
+		private readonly ICategoriaBusiness _categoriaBusiness;
+		private readonly IProductoBusiness _productoBusiness;
+		private readonly IUsuarioBusiness _usuarioBusiness;
+		private Producto _productoACargar;
+		private Producto _productoSeleccionado;
+		public Usuario _loggedUser;
+		private string _orderType = " ";
 
-        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
-        {
-            _categoriaBusiness = catbusi;
-            _productoBusiness = produbusi;
-            _usuarioBusiness = usuariobusi;
-            _productoACargar = new Producto();
-            _loggedUser = usalog;
-            InitializeComponent();
-            LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
-            numericUpDown1.Value = 1;
-        }
+		public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
+		{
+			_categoriaBusiness = catbusi;
+			_productoBusiness = produbusi;
+			_usuarioBusiness = usuariobusi;
+			_productoACargar = new Producto();
+			_loggedUser = usalog;
+			InitializeComponent();
+			LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
+			numericUpDown1.Value = 1;
+		}
 
 		private void btnModificar_Click(object sender, EventArgs e)
 		{
 			if (dataGridViewProducto.CurrentRow != null)
 			{
 
-                var i = dataGridViewProducto.CurrentRow.Index;
-                var prod = dataGridViewProducto.SelectedRows[0];
-                _productoSeleccionado = (Producto)prod.DataBoundItem;
-                Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
-                AddAPart.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
-            }
-        }
-        //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
-        private void FormProducto_Activated(object sender, EventArgs e)
-        {
-            cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
-            cmbBoxCategorias.DisplayMember = "Nombre";
-            RefreshGrid();
-        }
+				var i = dataGridViewProducto.CurrentRow.Index;
+				var prod = dataGridViewProducto.SelectedRows[0];
+				_productoSeleccionado = (Producto)prod.DataBoundItem;
+				Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
+				AddAPart.ShowDialog();
+			}
+			else
+			{
+				MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+			}
+		}
+		//AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
+		private void FormProducto_Activated(object sender, EventArgs e)
+		{
+			cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
+			cmbBoxCategorias.DisplayMember = "Nombre";
+			RefreshGrid();
+		}
 
-        private void BTNdelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewProducto.CurrentRow != null)
-            {
-                var i = dataGridViewProducto.CurrentRow.Index;
-                var prod = dataGridViewProducto.SelectedRows[0];
-                _productoSeleccionado = (Producto)prod.DataBoundItem;
-                DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    _productoBusiness.DeleteProducto(_productoSeleccionado);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
-            }
-            RefreshGrid();
-        }
-        private void btnNuevoProducto_Click(object sender, EventArgs e)
-        {
-            Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
-            AddAPart.ShowDialog();
-        }
+		private void BTNdelete_Click(object sender, EventArgs e)
+		{
+			if (dataGridViewProducto.CurrentRow != null)
+			{
+				var i = dataGridViewProducto.CurrentRow.Index;
+				var prod = dataGridViewProducto.SelectedRows[0];
+				_productoSeleccionado = (Producto)prod.DataBoundItem;
+				DialogResult dialogResult = MessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.Yes)
+				{
+					_productoBusiness.DeleteProducto(_productoSeleccionado);
+				}
+			}
+			else
+			{
+				MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+			}
+			RefreshGrid();
+		}
+		private void btnNuevoProducto_Click(object sender, EventArgs e)
+		{
+			Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
+			AddAPart.ShowDialog();
+		}
 
 		private void RefreshGrid()
 		{
@@ -101,6 +101,7 @@ namespace WinForm
 		{
 			dataGridViewProducto.AutoGenerateColumns = false;
 			dataGridViewProducto.DataSource = source;
+			_orderType = "x";
 			CargarStock();
 		}
 
@@ -387,26 +388,18 @@ namespace WinForm
 				{
 					var producto = (Producto)row.DataBoundItem;
 
-                    row.Cells[Stock].Value = producto.Compras.Select(c => c.Cantidad).Sum() //Compras
-                                            - //menos
-                                            producto.Venta.Select(v => v.Cantidad).Sum();//Ventas
-                }
-            }
-        }
-        public List<Producto> FilterByText(List<Producto> productos, string searchText) //funcion de filtrar por texto para no repetir code
-        {
-            var filteredProductos = from prod in productos
-                                    where prod.Nombre.ToLower().Contains(searchText)
-                                    select prod;
+					row.Cells[Stock].Value = producto.Compras.Select(c => c.Cantidad).Sum() //Compras
+											- //menos
+											producto.Venta.Select(v => v.Cantidad).Sum();//Ventas
+				}
+			}
+		}
 
-            return filteredProductos.ToList();
-        }
-
-        private void BtnCompra_Click(object sender, EventArgs e)
-        {
-            var i = dataGridViewProducto.CurrentRow.Index;//
-            var prod = dataGridViewProducto.SelectedRows[0];//
-            var producomp = (Producto)prod.DataBoundItem;//codigo se repite hacer una funcion de esta parte
+		private void BtnCompra_Click(object sender, EventArgs e)
+		{
+			var i = dataGridViewProducto.CurrentRow.Index;//
+			var prod = dataGridViewProducto.SelectedRows[0];//
+			var producomp = (Producto)prod.DataBoundItem;//codigo se repite hacer una funcion de esta parte
 
 			if (i >= 0)
 			{
@@ -459,67 +452,67 @@ namespace WinForm
 			}
 		}
 
-        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
-            List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
-            switch (columnName){
-                case "ColumnNombreProducto":
-                    if (_orderType == "n")
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
-                        _orderType = "n";
-                        break;
-                    }
-                case "ColumnCategoria":
-                    if (_orderType != "c")
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
-                        _orderType = "c";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                case "ColumnStock":
-                    if (_orderType != "s")
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
-                        _orderType = "s";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                case "ColumnHabilitado":
-                    if (_orderType != "h") 
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
-                        _orderType = "h";
-                        break;
-                    }
-                    else 
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
-                        _orderType = "x";
-                        break;
-                    }
+		private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
+			List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
+			switch (columnName)
+			{
+				case "ColumnNombreProducto":
+					if (_orderType == "n")
+					{
+						RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
+						_orderType = "x";
+						break;
+					}
+					else
+					{
+						RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
+						_orderType = "n";
+						break;
+					}
+				case "ColumnCategoria":
+					if (_orderType != "c")
+					{
+						RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
+						_orderType = "c";
+						break;
+					}
+					else
+					{
+						RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
+						_orderType = "x";
+						break;
+					}
+				case "ColumnStock":
+					if (_orderType != "s")
+					{
+						RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+						_orderType = "s";
+						break;
+					}
+					else
+					{
+						RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+						_orderType = "x";
+						break;
+					}
+				case "ColumnHabilitado":
+					if (_orderType != "h")
+					{
+						RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
+						_orderType = "h";
+						break;
+					}
+					else
+					{
+						RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
+						_orderType = "x";
+						break;
+					}
 
-            }
-        }
-    }
+			}
+		}
 		private void rdiobtnTodos_CheckedChanged(object sender, EventArgs e)
 		{
 			var idSeleccionado = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
@@ -529,36 +522,17 @@ namespace WinForm
 			{
 				RefreshGrid(productos);
 			}
-			else if(rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0)
+			else if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0)
 			{
 				RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
 			}
-			else if(rdiobtnTodos.Checked && textBox1.Text.Trim() == "")
+			else if (rdiobtnTodos.Checked && textBox1.Text.Trim() == "")
 			{
 				RefreshGrid(FilterByCategoria(productos));
 			}
 			else
 			{
 				RefreshGrid(Doublefilter(productos));
-			}
-		}
-		private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-		{
-			string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
-			switch (columnName)
-			{
-				case "ColumnNombreProducto":
-					MessageBox.Show("Nombre");
-					break;
-				case "ColumnCategoria":
-					MessageBox.Show("Catergoriar");
-					break;
-				case "ColumnStock":
-					MessageBox.Show("Stokk");
-					break;
-				case "ColumnHabilitado":
-					MessageBox.Show("abilitadon");
-					break;
 			}
 		}
 
@@ -579,7 +553,7 @@ namespace WinForm
 
 			return filtradosCategoria.ToList();
 		}
-		public List<Producto> FilterByText(List<Producto> productos, string searchText) 
+		public List<Producto> FilterByText(List<Producto> productos, string searchText)
 		{
 			var filteredProductos = from prod in productos
 									where prod.Nombre.ToLower().Contains(searchText)
@@ -588,7 +562,7 @@ namespace WinForm
 			return filteredProductos.ToList();
 		}
 
-        }
+	}
 }
 
 
