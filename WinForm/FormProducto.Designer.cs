@@ -29,6 +29,10 @@
 		private void InitializeComponent()
 		{
 			dataGridViewProducto = new DataGridView();
+			ColumnNombreProducto = new DataGridViewTextBoxColumn();
+			ColumnCategoria = new DataGridViewTextBoxColumn();
+			ColumnStock = new DataGridViewTextBoxColumn();
+			ColumnHabilitado = new DataGridViewCheckBoxColumn();
 			lblTitulo = new Label();
 			lblProductos = new Label();
 			BTNdelete = new Button();
@@ -43,10 +47,9 @@
 			BtnCompra = new Button();
 			pictureBox1 = new PictureBox();
 			LblBienvenido = new Label();
-			ColumnNombreProducto = new DataGridViewTextBoxColumn();
-			ColumnCategoria = new DataGridViewTextBoxColumn();
-			ColumnStock = new DataGridViewTextBoxColumn();
-			ColumnHabilitado = new DataGridViewCheckBoxColumn();
+			rdiobtnHabilitado = new RadioButton();
+			rdiobtnDeshabilitado = new RadioButton();
+			rdiobtnTodos = new RadioButton();
 			((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
 			((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -66,6 +69,35 @@
 			dataGridViewProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 			dataGridViewProducto.Size = new Size(564, 257);
 			dataGridViewProducto.TabIndex = 0;
+			// 
+			// ColumnNombreProducto
+			// 
+			ColumnNombreProducto.DataPropertyName = "Nombre";
+			ColumnNombreProducto.HeaderText = "Nombre";
+			ColumnNombreProducto.Name = "ColumnNombreProducto";
+			ColumnNombreProducto.ReadOnly = true;
+			ColumnNombreProducto.SortMode = DataGridViewColumnSortMode.Programmatic;
+			// 
+			// ColumnCategoria
+			// 
+			ColumnCategoria.DataPropertyName = "Categoria";
+			ColumnCategoria.HeaderText = "Categoria";
+			ColumnCategoria.Name = "ColumnCategoria";
+			ColumnCategoria.ReadOnly = true;
+			// 
+			// ColumnStock
+			// 
+			ColumnStock.HeaderText = "Stock";
+			ColumnStock.Name = "ColumnStock";
+			ColumnStock.ReadOnly = true;
+			// 
+			// ColumnHabilitado
+			// 
+			ColumnHabilitado.DataPropertyName = "Habilitado";
+			ColumnHabilitado.HeaderText = "Habilitado";
+			ColumnHabilitado.Name = "ColumnHabilitado";
+			ColumnHabilitado.ReadOnly = true;
+			ColumnHabilitado.SortMode = DataGridViewColumnSortMode.Programmatic;
 			// 
 			// lblTitulo
 			// 
@@ -231,34 +263,41 @@
 			LblBienvenido.TabIndex = 23;
 			LblBienvenido.Text = "label1";
 			// 
-			// ColumnNombreProducto
+			// rdiobtnHabilitado
 			// 
-			ColumnNombreProducto.DataPropertyName = "Nombre";
-			ColumnNombreProducto.HeaderText = "Nombre";
-			ColumnNombreProducto.Name = "ColumnNombreProducto";
-			ColumnNombreProducto.ReadOnly = true;
-			ColumnNombreProducto.SortMode = DataGridViewColumnSortMode.Programmatic;
+			rdiobtnHabilitado.AutoSize = true;
+			rdiobtnHabilitado.Location = new Point(12, 273);
+			rdiobtnHabilitado.Name = "rdiobtnHabilitado";
+			rdiobtnHabilitado.Size = new Size(85, 19);
+			rdiobtnHabilitado.TabIndex = 24;
+			rdiobtnHabilitado.TabStop = true;
+			rdiobtnHabilitado.Text = "Habilitados";
+			rdiobtnHabilitado.UseVisualStyleBackColor = true;
+			rdiobtnHabilitado.CheckedChanged += rdiobtnHabilitado_CheckedChanged;
 			// 
-			// ColumnCategoria
+			// rdiobtnDeshabilitado
 			// 
-			ColumnCategoria.DataPropertyName = "Categoria";
-			ColumnCategoria.HeaderText = "Categoria";
-			ColumnCategoria.Name = "ColumnCategoria";
-			ColumnCategoria.ReadOnly = true;
+			rdiobtnDeshabilitado.AutoSize = true;
+			rdiobtnDeshabilitado.Location = new Point(12, 298);
+			rdiobtnDeshabilitado.Name = "rdiobtnDeshabilitado";
+			rdiobtnDeshabilitado.Size = new Size(102, 19);
+			rdiobtnDeshabilitado.TabIndex = 25;
+			rdiobtnDeshabilitado.TabStop = true;
+			rdiobtnDeshabilitado.Text = "Deshabilitados";
+			rdiobtnDeshabilitado.UseVisualStyleBackColor = true;
+			rdiobtnDeshabilitado.CheckedChanged += rdiobtnDeshabilitado_CheckedChanged;
 			// 
-			// ColumnStock
+			// rdiobtnTodos
 			// 
-			ColumnStock.HeaderText = "Stock";
-			ColumnStock.Name = "ColumnStock";
-			ColumnStock.ReadOnly = true;
-			// 
-			// ColumnHabilitado
-			// 
-			ColumnHabilitado.DataPropertyName = "Habilitado";
-			ColumnHabilitado.HeaderText = "Habilitado";
-			ColumnHabilitado.Name = "ColumnHabilitado";
-			ColumnHabilitado.ReadOnly = true;
-			ColumnHabilitado.SortMode = DataGridViewColumnSortMode.Programmatic;
+			rdiobtnTodos.AutoSize = true;
+			rdiobtnTodos.Location = new Point(12, 323);
+			rdiobtnTodos.Name = "rdiobtnTodos";
+			rdiobtnTodos.Size = new Size(56, 19);
+			rdiobtnTodos.TabIndex = 26;
+			rdiobtnTodos.TabStop = true;
+			rdiobtnTodos.Text = "Todos";
+			rdiobtnTodos.UseVisualStyleBackColor = true;
+			rdiobtnTodos.CheckedChanged += rdiobtnTodos_CheckedChanged;
 			// 
 			// FormProducto
 			// 
@@ -266,6 +305,9 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			ClientSize = new Size(814, 474);
+			Controls.Add(rdiobtnTodos);
+			Controls.Add(rdiobtnDeshabilitado);
+			Controls.Add(rdiobtnHabilitado);
 			Controls.Add(LblBienvenido);
 			Controls.Add(pictureBox1);
 			Controls.Add(BtnCompra);
@@ -313,5 +355,8 @@
 		private DataGridViewTextBoxColumn ColumnCategoria;
 		private DataGridViewTextBoxColumn ColumnStock;
 		private DataGridViewCheckBoxColumn ColumnHabilitado;
+		private RadioButton rdiobtnHabilitado;
+		private RadioButton rdiobtnDeshabilitado;
+		private RadioButton rdiobtnTodos;
 	}
 }
