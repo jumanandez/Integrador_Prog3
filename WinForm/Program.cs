@@ -6,6 +6,7 @@ using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Data;
 using Proyecto.Core.Configurations;
 using System;
+using Krypton.Toolkit;
 
 namespace WinForm
 {
@@ -18,23 +19,58 @@ namespace WinForm
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
             ConfigureServices(services);
+            //using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+            //{
+
+            //    var login = serviceProvider.GetRequiredService<FormLogin>();
+            //    Application.Run(login);
+
+            //}
+
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
-                var formprd = serviceProvider.GetRequiredService<FormProducto>();
-                Application.Run(formprd);
+                var login = serviceProvider.GetRequiredService<FormLogin>();
+
+                if (login.ShowDialog() != DialogResult.OK)
+                {
+                    bool exit = false;
+                    while (!exit)
+                    {
+                        DialogResult dialogResult = KryptonMessageBox.Show("Salir del programa?", "Confirmar", KryptonMessageBoxButtons.OKCancel, KryptonMessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            Application.Exit();
+                            exit = true;
+                        }
+                        else
+                        {
+                            login.ShowDialog();
+                        }
+                    }
+                }
+
+
+                //if (login.ShowDialog() == DialogResult.OK)
+                //{
+                //            }
+                //            else
+                //{
+                //	// Handle failed login (optional)
+                //               MessageBox.Show("Operacion cancelada", "Aviso", MessageBoxButtons.);
+                //Application.Exit();
             }
         }
         private static void ConfigureServices(ServiceCollection services)
         {
-            var connectionString = "Persist Security Info=True;Initial Catalog=IntegradorProg3;Data Source=.; Application Name=DemoApp; Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";
+            var connectionString = Properties.Settings.Default.Connection;
 
             //Se setea la connectionstring en nuestra clase de configuracion
-            var config = new Proyecto.Core.Configurations.Config()
+            var config = new Config()
             {
                 ConnectionString = connectionString
             };
 
-            var projectgay = new ProjectRepository(config);
+
 
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
@@ -46,7 +82,21 @@ namespace WinForm
                     .AddScoped<ICategoriaBusiness, CategoriaBusiness>()
                     .AddScoped<IProjectRepository, ProjectRepository>()
                     .AddScoped<IProductoBusiness, ProductoBusiness>()
-                    .AddTransient<FormProducto>();
+                    .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
+                    .AddTransient<FormProducto>()
+                    .AddTransient<Form2>()
+                    .AddTransient<FormLogin>();
+
+            //ServiceProvider serviceLogin = services.BuildServiceProvider();
+            //services.AddLogging(configure => configure.AddConsole())
+            //        .AddScoped<Config>(p =>
+            //        {
+            //            return config;
+            //        })
+            //        .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
+            //        .AddScoped<IProjectRepository, ProjectRepository>()
+            //        .AddTransient<FormLogin>();
+
         }
     }
 }
