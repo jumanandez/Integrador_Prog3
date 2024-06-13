@@ -6,6 +6,7 @@ using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Data;
 using Proyecto.Core.Configurations;
 using System;
+using Krypton.Toolkit;
 
 namespace WinForm
 {
@@ -35,7 +36,7 @@ namespace WinForm
                     bool exit = false;
                     while (!exit)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Salir del programa?", "Confirmar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        DialogResult dialogResult = KryptonMessageBox.Show("Salir del programa?", "Confirmar", KryptonMessageBoxButtons.OKCancel, KryptonMessageBoxIcon.Question);
                         if (dialogResult == DialogResult.OK)
                         {
                             Application.Exit();
