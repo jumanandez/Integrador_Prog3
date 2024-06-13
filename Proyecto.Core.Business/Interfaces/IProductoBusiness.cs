@@ -17,5 +17,6 @@ namespace Proyecto.Core.Business.Interfaces
 
         public void DeleteProducto(int id);
 
+        public List<Producto> GetProductosByCategoria(int categoriaId);
     }
 }

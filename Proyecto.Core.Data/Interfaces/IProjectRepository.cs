@@ -25,5 +25,6 @@ namespace Proyecto.Core.Data.Interfaces
         public void DeleteCompra(int id);
         public void AddVenta(Venta venta);
         public void DeleteVenta(int id);
+        public List<Producto> GetProductosByCategoria(int categoriaId);
     }
 }

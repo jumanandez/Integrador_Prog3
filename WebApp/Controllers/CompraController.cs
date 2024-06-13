@@ -8,6 +8,7 @@ using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
+using System.Security.Claims;
 using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
@@ -19,13 +20,20 @@ namespace WebApp.Controllers
 
         //Se inyecta las dependencias para usar el business de ejemplo
         private readonly ICompraBusiness _compraBusiness;
-        private readonly ICategoriaBusiness _catergoriaBusiness;
+        private readonly ICategoriaBusiness _categoriaBusiness;
+        private readonly IProductoBusiness _productoBusiness;
+
+
 
         public CompraController(ICompraBusiness compraBusiness,
-                                    ILogger<CompraController> logger)
+                                ICategoriaBusiness categoriaBusiness,
+                                IProductoBusiness productoBusiness,
+                                ILogger<CompraController> logger)
         {
             _logger = logger;
             _compraBusiness = compraBusiness;
+            _categoriaBusiness = categoriaBusiness;
+            _productoBusiness = productoBusiness;
         }
 
         // GET: CompraController 
@@ -67,9 +75,9 @@ namespace WebApp.Controllers
         public IActionResult Create()
         {
 
-            var CompraNueva = new Models.ViewModels.CompraVM()
+            var CompraNueva = new CompraVM()
             {
-
+                CategoriaLista = _categoriaBusiness.GetAll(),
                 CompraLista = _compraBusiness.GetCompras()
             };
 
@@ -77,30 +85,45 @@ namespace WebApp.Controllers
             return View(CompraNueva);
         }
 
+        [HttpGet]
+        public JsonResult GetProductosByCategoria(int categoriaId)
+        {
+            var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
+            return Json(productos);
+        }
+
         //post compra/create
-        //[HttpPost]
-        //public async Task<IActionResult> Create(CompraVM compraModel)
-        //{
-        //if (ModelState.IsValid)
-        //{
-        //    var compra = new Compra
-        //    {
-        //        ProductoId = compraModel._Compra.ProductoId,
-        //        Fecha = compraModel._Compra.Fecha,
-        //        Cantidad = compraModel._Compra.Cantidad,
-        //        UsuarioId = 1 // Ajusta esto según el usuario actual
-        //    };
+        [HttpPost]
+        public IActionResult Create(CompraVM compraModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Log errors
+                var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
 
-        //    _compraBusiness.AddCompra(compra);
-        //    await _compraBusiness.SaveChangesAsync();
+                // Vuelve a cargar la lista de categorías y productos en caso de error de validación
+                compraModel.CategoriaLista = _categoriaBusiness.GetAll();
+                compraModel.ProductoLista = _productoBusiness.GetAll();
+                return View(compraModel);
+            }
 
-        //    return RedirectToAction(nameof(Index));
-        //}
+            var compra = new Compra
+            {
+                ProductoId = compraModel.ProductoId,
+                Fecha = DateTime.Now,
+                Cantidad = compraModel.ProductoCantidad,
+                UsuarioId = int.Parse(User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault())
+            };
 
-        //// Si el modelo no es válido, vuelve a cargar la lista de productos
-        //compraModel.ProductoLista = _productoBusiness.GetAll().ToList();
-        //return View(viewModel);
-        // }
+            _compraBusiness.AddCompra(compra);
+
+            return RedirectToAction("Create", "Compra");
+        }
+
 
 
 
