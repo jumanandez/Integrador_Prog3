@@ -1,4 +1,6 @@
-﻿namespace WinForm
+﻿using Krypton.Toolkit;
+
+namespace WinForm
 {
 	partial class FormProducto
 	{
@@ -20,7 +22,7 @@
 			base.Dispose(disposing);
 		}
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
 		/// <summary>
 		/// Required method for Designer support - do not modify
@@ -372,7 +374,7 @@
 		}
 		#endregion
 
-		private DataGridView dataGridViewProducto;
+        private DataGridView dataGridViewProducto;
 		private Label lblTitulo;
 		private Label lblProductos;
         private Button BTNdelete;
@@ -397,5 +399,7 @@
 		private DataGridViewTextBoxColumn ColumnCompras;
 		private DataGridViewTextBoxColumn ColumnVentas;
 		private DataGridViewCheckBoxColumn ColumnHabilitado;
-	}
+        private Krypton.Toolkit.KryptonCustomPaletteBase kryptonCustomPaletteBase1;
+        private DataGridViewTextBoxColumn Column1;
+    }
 }
