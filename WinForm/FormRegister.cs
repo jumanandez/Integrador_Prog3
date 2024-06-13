@@ -30,7 +30,7 @@ namespace WinForm
             string username = txtNombreUsuario.Text;
             string pass = txtContraseña.Text;
 
-            if (txtNombreUsuario.Text.Trim() != "" && txtContraseña.Text.Trim() != "" && _usuarioBusiness.CreateUsuario(username, pass))
+            if (txtNombreUsuario.Text.Trim() != "" && txtContraseña.Text != "Ingrese una contraseña" && txtContraseña.Text.Trim() != "" && _usuarioBusiness.CreateUsuario(username, pass))
             {
                 DialogResult = DialogResult.OK;
                 Close();
@@ -39,7 +39,7 @@ namespace WinForm
             {
                 MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (txtContraseña.Text.Trim() == "")
+            else if (txtContraseña.Text.Trim() == "" || txtContraseña.Text == "Ingrese una contraseña")
             {
                 MessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

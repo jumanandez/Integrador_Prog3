@@ -79,5 +79,17 @@ namespace WinForm
                 e.Handled = true;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txtNuevaContrasena.UseSystemPasswordChar == true)
+            {
+                txtNuevaContrasena.UseSystemPasswordChar = false;
+            }
+            else 
+            {
+                txtNuevaContrasena.UseSystemPasswordChar = true;
+            }
+        }
     }
 }
