@@ -35,7 +35,7 @@ namespace WinForm
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            if (txtNombreUsuario.Text.Trim() == "")
+            else if (txtNombreUsuario.Text.Trim() == "")
             {
                 MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

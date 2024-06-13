@@ -1,10 +1,11 @@
 ﻿using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Entities;
 using System.Data;
+using Krypton.Toolkit;
 
 namespace WinForm
 {
-	public partial class FormProducto : Form
+    public partial class FormProducto : KryptonForm
     {
         private readonly ICategoriaBusiness _categoriaBusiness;
         private readonly IProductoBusiness _productoBusiness;
@@ -13,6 +14,8 @@ namespace WinForm
         private Producto _productoSeleccionado;
         public Usuario _loggedUser;
         private string _orderType = " ";
+        bool sidebaropen;
+        bool filteropen;
 
         public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
         {
@@ -24,19 +27,19 @@ namespace WinForm
             //         button1.Font = new Font("Wingdings 3", 16, FontStyle.Bold);
             //button1.Text = Char.ConvertFromUtf32(81);
             InitializeComponent();
-            LblBienvenido.Text = ($"Bienvenenido {_loggedUser.Nombre}");
+            LblBienvenido.Text = ($"Bienvenenido \n{_loggedUser.Nombre}");
             numericUpDown1.Value = 1;
         }
-		//AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
-		private void FormProducto_Activated(object sender, EventArgs e)
-		{
-			cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
-			cmbBoxCategorias.DisplayMember = "Nombre";
-			RefreshGrid(null);
-		}
+        //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
+        private void FormProducto_Activated(object sender, EventArgs e)
+        {
+            cmbBoxCategorias.DataSource = CategoriasParaComboBox();// Linea 340
+            cmbBoxCategorias.DisplayMember = "Nombre";
+            RefreshGrid(null);
+        }
 
-		#region ABM DE PRODUCTOS
-		private void btnModificar_Click(object sender, EventArgs e)
+        #region ABM DE PRODUCTOS
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dataGridViewProducto.CurrentRow != null)
             {
@@ -110,66 +113,66 @@ namespace WinForm
             Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
             AddAPart.ShowDialog();
         }
-		#endregion
+        #endregion
 
 
-		//REFACTORIZACION DE METODO REFRESHGRID
-		public void RefreshGrid(List<Producto> ? source )
+        //REFACTORIZACION DE METODO REFRESHGRID
+        public void RefreshGrid(List<Producto>? source)
         {
-			dataGridViewProducto.AutoGenerateColumns = false;
+            dataGridViewProducto.AutoGenerateColumns = false;
 
-            if(source != null)
+            if (source != null)
             {
-				dataGridViewProducto.DataSource = source;
-				_orderType = "x";
-			}
+                dataGridViewProducto.DataSource = source;
+                _orderType = "x";
+            }
             else//RefreshGrid(null) debe ser la llamada para que funcione
             {
-				dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-				textBox1.Clear();
-				cmbBoxCategorias.SelectedIndex = 0;
-			}
+                dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+                textBox1.Clear();
+                cmbBoxCategorias.SelectedIndex = 0;
+            }
 
-			CargarEstadoStock();
-		}
-		private List<Categoria> CategoriasParaComboBox()
-		{
-			var categorias = new List<Categoria>();
+            CargarEstadoStock();
+        }
+        private List<Categoria> CategoriasParaComboBox()
+        {
+            var categorias = new List<Categoria>();
 
-			categorias.Add(new Categoria { Nombre = "Todos" });
+            categorias.Add(new Categoria { Nombre = "Todos" });
 
-			var cateBasicas = _categoriaBusiness.GetAll();
+            var cateBasicas = _categoriaBusiness.GetAll();
 
-			foreach (Categoria categoria in cateBasicas)
-			{
-				categorias.Add(categoria);
-			}
+            foreach (Categoria categoria in cateBasicas)
+            {
+                categorias.Add(categoria);
+            }
 
-			return categorias;
-		}
-		public void CargarEstadoStock()
-		{
-			var Stock = dataGridViewProducto.Columns["ColumnStock"].Index;
-			var Compras = dataGridViewProducto.Columns["ColumnCompras"].Index;
-			var Ventas = dataGridViewProducto.Columns["ColumnVentas"].Index;
+            return categorias;
+        }
+        public void CargarEstadoStock()
+        {
+            var Stock = dataGridViewProducto.Columns["ColumnStock"].Index;
+            var Compras = dataGridViewProducto.Columns["ColumnCompras"].Index;
+            var Ventas = dataGridViewProducto.Columns["ColumnVentas"].Index;
 
-			foreach (DataGridViewRow row in dataGridViewProducto.Rows)
-			{
-				if (!row.IsNewRow)
-				{
-					var producto = (Producto)row.DataBoundItem;
+            foreach (DataGridViewRow row in dataGridViewProducto.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    var producto = (Producto)row.DataBoundItem;
 
-					row.Cells[Compras].Value = producto.Compras.Select(c => c.Cantidad).Sum();
+                    row.Cells[Compras].Value = producto.Compras.Select(c => c.Cantidad).Sum();
 
-					row.Cells[Ventas].Value = producto.Venta.Select(c => c.Cantidad).Sum();
+                    row.Cells[Ventas].Value = producto.Venta.Select(c => c.Cantidad).Sum();
 
-					row.Cells[Stock].Value = (int)row.Cells[Compras].Value - (int)row.Cells[Ventas].Value;
-				}
-			}
-		}
-		//UTILIZAR LA PRIMERA VEZ Y NUNCA MAS, PARA CARGAR SU BASE DE DATOS CON LOS PRODUCTOS
-		#region BOTON DE PRIMERA CARGA
-		private void btnPrimerCarga_Click(object sender, EventArgs e)
+                    row.Cells[Stock].Value = (int)row.Cells[Compras].Value - (int)row.Cells[Ventas].Value;
+                }
+            }
+        }
+        //UTILIZAR LA PRIMERA VEZ Y NUNCA MAS, PARA CARGAR SU BASE DE DATOS CON LOS PRODUCTOS
+        #region BOTON DE PRIMERA CARGA
+        private void btnPrimerCarga_Click(object sender, EventArgs e)
         {
             var categorias = _categoriaBusiness.GetAll();
 
@@ -361,11 +364,11 @@ namespace WinForm
 
             btnPrimerCarga.Enabled = false;
         }
-		#endregion NO TOCAR
-		//COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
+        #endregion NO TOCAR
+        //COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
 
-		#region FILTRADO DE DATAGRID
-		private void textBox1_TextChanged(object sender, EventArgs e)
+        #region FILTRADO DE DATAGRID
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
             string searchText = textBox1.Text.ToLower().Trim();
             var productos = _productoBusiness.GetAll();
@@ -374,33 +377,33 @@ namespace WinForm
             {
                 if (rdiobtnTodos.Checked)
                 {
-					RefreshGrid(FilterByText(productos, searchText));
-				}				
+                    RefreshGrid(FilterByText(productos, searchText));
+                }
                 else if (rdiobtnHabilitado.Checked)
                 {
                     RefreshGrid(FilterByTextHabilitado(productos, true));
                 }
-                else if(rdiobtnDeshabilitado.Checked)
+                else if (rdiobtnDeshabilitado.Checked)
                 {
-					RefreshGrid(FilterByTextHabilitado(productos, false));
-				}
-                
+                    RefreshGrid(FilterByTextHabilitado(productos, false));
+                }
+
             }
             else
             {
                 if (rdiobtnTodos.Checked)
                 {
-					RefreshGrid(FilterCategoriaYTexto(productos));
-				}
-                else if(rdiobtnHabilitado.Checked)
+                    RefreshGrid(FilterCategoriaYTexto(productos));
+                }
+                else if (rdiobtnHabilitado.Checked)
                 {
                     RefreshGrid(TripleFilter(productos, true));
                 }
-				else if (rdiobtnDeshabilitado.Checked)
-				{
-					RefreshGrid(TripleFilter(productos, false));
-				}
-			}
+                else if (rdiobtnDeshabilitado.Checked)
+                {
+                    RefreshGrid(TripleFilter(productos, false));
+                }
+            }
         }
         private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -417,124 +420,124 @@ namespace WinForm
                 }
                 else if (textBox1.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
-					RefreshGrid(FilterHabilitados(productos, true));//Habilitados 
-				}
-                else if(textBox1.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
+                    RefreshGrid(FilterHabilitados(productos, true));//Habilitados 
+                }
+                else if (textBox1.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
                 {
-					RefreshGrid(FilterHabilitados(productos, false));//Deshabilitados
-				}
+                    RefreshGrid(FilterHabilitados(productos, false));//Deshabilitados
+                }
 
                 //HAY TEXTO EN EL TEXTBOX
                 else if (rdiobtnTodos.Checked) //en caso de tener algo escrito
                 {
                     RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
                 }
-                else if(rdiobtnHabilitado.Checked)
+                else if (rdiobtnHabilitado.Checked)
                 {
-					RefreshGrid(FilterByTextHabilitado(productos, true));//Busca texto y Habilitados 
-				}
-                else if(rdiobtnDeshabilitado.Checked)
+                    RefreshGrid(FilterByTextHabilitado(productos, true));//Busca texto y Habilitados 
+                }
+                else if (rdiobtnDeshabilitado.Checked)
                 {
-					RefreshGrid(FilterByTextHabilitado(productos, false));//Busca texto y Deshabilitados
-				}
+                    RefreshGrid(FilterByTextHabilitado(productos, false));//Busca texto y Deshabilitados
+                }
             }
             else
-			{//SELECION DISTINTA DE 'Todos' EN COMBOBOX
+            {//SELECION DISTINTA DE 'Todos' EN COMBOBOX
 
                 //NO HAY TEXTO EN EL TEXTBOX
-				if (textBox1.Text.Trim() == "" && rdiobtnTodos.Checked)
+                if (textBox1.Text.Trim() == "" && rdiobtnTodos.Checked)
                 {
                     RefreshGrid(FilterByCategoria(productos));
                 }
-                else if(textBox1.Text.Trim() == "" && rdiobtnHabilitado.Checked)
+                else if (textBox1.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
                     RefreshGrid(FilterByCategoriaHabilitado(productos, true));
-				}
-				else if (textBox1.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
+                }
+                else if (textBox1.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
                 {
-					RefreshGrid(FilterByCategoriaHabilitado(productos, false));
-				}
+                    RefreshGrid(FilterByCategoriaHabilitado(productos, false));
+                }
 
                 //HAY TEXTO EN EL TEXTBOX
-				else if(rdiobtnTodos.Checked)
+                else if (rdiobtnTodos.Checked)
                 {
                     RefreshGrid(FilterCategoriaYTexto(productos));
                 }
-                else if(rdiobtnHabilitado.Checked)
+                else if (rdiobtnHabilitado.Checked)
                 {
                     RefreshGrid(TripleFilter(productos, true));
                 }
-				else if (rdiobtnDeshabilitado.Checked)
-				{
+                else if (rdiobtnDeshabilitado.Checked)
+                {
                     RefreshGrid(TripleFilter(productos, false));
-				}
-			}
+                }
+            }
         }
-		private void rdiobtnHabilitado_CheckedChanged(object sender, EventArgs e)
-		{
-			var productos = _productoBusiness.GetAll();
-			if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterHabilitados(productos, true));
-			}
-			else if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
-			{
-				RefreshGrid(FilterByTextHabilitado(productos, true));//Filtra Texto y Habilitados
-			}
-			else if (rdiobtnHabilitado.Checked && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterByCategoriaHabilitado(productos, true));//Filtra Combo y Habilitados
-			}
-			else if (rdiobtnHabilitado.Checked)
-			{
-				RefreshGrid(TripleFilter(productos, true));//Filtra texto, Combo y Habilitados
-			}
-		}
-		private void rdiobtnDeshabilitado_CheckedChanged(object sender, EventArgs e)
-		{
-			var productos = _productoBusiness.GetAll();
-			if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterHabilitados(productos, false));//false busca Deshabilitados
-			}
-			else if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
-			{
-				RefreshGrid(FilterByTextHabilitado(productos, false));//Filtra Texto y Deshabilitados
-			}
-			else if (rdiobtnDeshabilitado.Checked && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterByCategoriaHabilitado(productos, false));//Filtra Combo y Deshabilitado
-			}
-			else if (rdiobtnDeshabilitado.Checked)
-			{
-				RefreshGrid(TripleFilter(productos, false));// Filtra Texto, Combo y Deshabilitados
-			}
-		}
-		private void rdiobtnTodos_CheckedChanged(object sender, EventArgs e)
-		{
-			var idSeleccionado = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
+        private void rdiobtnHabilitado_CheckedChanged(object sender, EventArgs e)
+        {
+            var productos = _productoBusiness.GetAll();
+            if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+            {
+                RefreshGrid(FilterHabilitados(productos, true));
+            }
+            else if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
+            {
+                RefreshGrid(FilterByTextHabilitado(productos, true));//Filtra Texto y Habilitados
+            }
+            else if (rdiobtnHabilitado.Checked && textBox1.Text.Trim() == "")
+            {
+                RefreshGrid(FilterByCategoriaHabilitado(productos, true));//Filtra Combo y Habilitados
+            }
+            else if (rdiobtnHabilitado.Checked)
+            {
+                RefreshGrid(TripleFilter(productos, true));//Filtra texto, Combo y Habilitados
+            }
+        }
+        private void rdiobtnDeshabilitado_CheckedChanged(object sender, EventArgs e)
+        {
+            var productos = _productoBusiness.GetAll();
+            if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+            {
+                RefreshGrid(FilterHabilitados(productos, false));//false busca Deshabilitados
+            }
+            else if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0)
+            {
+                RefreshGrid(FilterByTextHabilitado(productos, false));//Filtra Texto y Deshabilitados
+            }
+            else if (rdiobtnDeshabilitado.Checked && textBox1.Text.Trim() == "")
+            {
+                RefreshGrid(FilterByCategoriaHabilitado(productos, false));//Filtra Combo y Deshabilitado
+            }
+            else if (rdiobtnDeshabilitado.Checked)
+            {
+                RefreshGrid(TripleFilter(productos, false));// Filtra Texto, Combo y Deshabilitados
+            }
+        }
+        private void rdiobtnTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            var idSeleccionado = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
 
-			var productos = _productoBusiness.GetAll();
-			if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(null);
-			}
-			else if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0)
-			{
-				RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
-			}
-			else if (rdiobtnTodos.Checked && textBox1.Text.Trim() == "")
-			{
-				RefreshGrid(FilterByCategoria(productos));
-			}
-			else
-			{
-				RefreshGrid(FilterCategoriaYTexto(productos));
-			}
-		}
-		#endregion
+            var productos = _productoBusiness.GetAll();
+            if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+            {
+                RefreshGrid(null);
+            }
+            else if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0)
+            {
+                RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
+            }
+            else if (rdiobtnTodos.Checked && textBox1.Text.Trim() == "")
+            {
+                RefreshGrid(FilterByCategoria(productos));
+            }
+            else
+            {
+                RefreshGrid(FilterCategoriaYTexto(productos));
+            }
+        }
+        #endregion
 
-		private void BtnCompra_Click(object sender, EventArgs e)
+        private void BtnCompra_Click(object sender, EventArgs e)
         {
             var i = dataGridViewProducto.CurrentRow.Index;//
             var prod = dataGridViewProducto.SelectedRows[0];//
@@ -569,7 +572,7 @@ namespace WinForm
         {
             RefreshGrid(null);
         }
-		private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
             List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
@@ -653,18 +656,18 @@ namespace WinForm
                         _orderType = "x";
                         break;
                     }
-
             }
         }
-       
-		#region FUNCIONES DE FILTRADO PARA NO REPETIR CODE
-		private List<Producto> TripleFilter(List<Producto> productos, bool valor)
-		{
-			return (from p in FilterCategoriaYTexto(productos)
-					where p.Habilitado == valor
-					select p).ToList();
-		}
-		public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
+
+
+        #region FUNCIONES DE FILTRADO PARA NO REPETIR CODE
+        private List<Producto> TripleFilter(List<Producto> productos, bool valor)
+        {
+            return (from p in FilterCategoriaYTexto(productos)
+                    where p.Habilitado == valor
+                    select p).ToList();
+        }
+        public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
         {
             var doublefilt = from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
                              where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
@@ -680,13 +683,13 @@ namespace WinForm
 
             return filtradosCategoria.ToList();
         }
-		private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool valor)
-		{
-			return (from p in FilterByCategoria(productos)
-					where p.Habilitado == valor
-					select p).ToList();
-		}
-		public List<Producto> FilterByText(List<Producto> productos, string searchText)
+        private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool valor)
+        {
+            return (from p in FilterByCategoria(productos)
+                    where p.Habilitado == valor
+                    select p).ToList();
+        }
+        public List<Producto> FilterByText(List<Producto> productos, string searchText)
         {
             var filteredProductos = from prod in productos
                                     where prod.Nombre.ToLower().Contains(searchText)
@@ -694,20 +697,87 @@ namespace WinForm
 
             return filteredProductos.ToList();
         }
-		public List<Producto> FilterByTextHabilitado(List<Producto> productos, bool valor)
-		{
-			return (from p in FilterByText(productos, textBox1.Text.ToLower().Trim())
-									where p.Habilitado == valor
-									select p).ToList();
-		}
-		public static List<Producto> FilterHabilitados(List<Producto> productos, bool valor)
-		{
-			return (from prod in productos
-					where prod.Habilitado == valor
-					select prod).ToList();
-		}
-		#endregion
-	}
+        public List<Producto> FilterByTextHabilitado(List<Producto> productos, bool valor)
+        {
+            return (from p in FilterByText(productos, textBox1.Text.ToLower().Trim())
+                    where p.Habilitado == valor
+                    select p).ToList();
+        }
+        public static List<Producto> FilterHabilitados(List<Producto> productos, bool valor)
+        {
+            return (from prod in productos
+                    where prod.Habilitado == valor
+                    select prod).ToList();
+        }
+        #endregion
+
+        private void sidebartimer_Tick(object sender, EventArgs e)
+        {
+            if (sidebaropen)
+            {
+                sidebarpanel.Width -= 10;
+                if (sidebarpanel.Width == sidebarpanel.MinimumSize.Width)
+                {
+                    sidebaropen = false;
+                    sidebartimer.Stop();
+                    kryptonButton1.Enabled = false;
+                }
+            }
+            else
+            {
+                sidebarpanel.Width += 10;
+                if (sidebarpanel.Width == sidebarpanel.MaximumSize.Width)
+                {
+                    sidebaropen = true;
+                    sidebartimer.Stop();
+                    kryptonButton1.Enabled = true;
+                }
+            }
+
+        }
+
+        private void menubutton_Click(object sender, EventArgs e)
+        {
+            if (!filteropen)
+            {
+                filtercontainer.Height = filtercontainer.MinimumSize.Height;
+            }
+            sidebartimer.Start();
+        }
+
+        private void filtertimer_Tick(object sender, EventArgs e)
+        {
+            if (filteropen)
+            {
+                filtercontainer.Height += 10;
+                if (filtercontainer.Height == filtercontainer.MaximumSize.Height)
+                {
+                    filteropen = false;
+                    filtertimer.Stop();
+                }
+            }
+            else if (!filteropen)
+            {
+                filtercontainer.Height -= 10;
+                if (filtercontainer.Height == filtercontainer.MinimumSize.Height)
+                {
+                    filteropen = true;
+                    filtertimer.Stop();
+                }
+            }
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            filtertimer.Start();
+        }
+
+        private void sidebarpanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+    }
 }
 
 
