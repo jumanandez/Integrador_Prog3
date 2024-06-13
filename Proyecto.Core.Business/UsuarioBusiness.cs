@@ -30,9 +30,31 @@ namespace Proyecto.Core.Business
         {
             return _projectRepository.GetUsuarioSalt(Username);
         }
-        public bool ChangePass(string Username, byte[] Password, byte[] salt)
+        public bool ? ChangePass(string username, string passwordActual, string  passwordNueva)
         {
-            return _projectRepository.ChangePass(Username, Password, salt);
+            var usuarioAux = ObtainUsuario(username);
+
+            if (usuarioAux != null)
+            {
+                var hashGenerado = CryptoHelper.HashPassword(passwordActual, usuarioAux.Salt);
+
+                var coincideConDB = hashGenerado.SequenceEqual(usuarioAux.HashPassword);
+
+                if (coincideConDB)
+                {
+                    usuarioAux.HashPassword = CryptoHelper.HashPassword(passwordNueva, usuarioAux.Salt);
+
+                    return _projectRepository.ChangePass(usuarioAux);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return null;
+            }	
         }
         public Usuario ObtainUsuario(string Username)
         {

@@ -5,6 +5,7 @@ using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -239,21 +240,14 @@ namespace Proyecto.Core.Data
             return salt;
         }
 
-        public bool ChangePass(string Username, byte[] Password, byte[] salt) 
-            {
-            bool positive = false;
-
+        public bool ChangePass(Usuario usuario) 
+        {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
-                User.HashPassword = Password;
-                User.Salt = salt;
-                dbcontext.Update(User);
+                dbcontext.Update(usuario);
                 dbcontext.SaveChanges();
-                positive = true;
+                 return true;
             }
-
-            return positive;
         }
         public Usuario ObtainUsuario(string Username)
         {

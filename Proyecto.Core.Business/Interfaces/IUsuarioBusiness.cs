@@ -13,9 +13,10 @@ namespace Proyecto.Core.Business.Interfaces
         public byte[] GetUsuarioHash(string Username);
 
         public byte[] GetUsuarioSalt(string Username);
-        public bool ChangePass(string Username, byte[] Password, byte[] salt);
+        //public bool ? ChangePass(string Username, string PasswordActual, string PasswordNueva);
         public Usuario ObtainUsuario(string Username);
         public bool CreateUsuario(string userName, string password);
 
+        public bool? ChangePass(string username, string passwordActual, string passwordNueva);
 	}
 }
