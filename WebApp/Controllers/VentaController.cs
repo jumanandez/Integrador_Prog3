@@ -42,7 +42,7 @@ namespace WebApp.Controllers
             var ViewModel = new VentaVM()
             {
                 VentaLista = ventas,
-                CategoriaLista = _categoriaBusiness.GetAll()
+                //CategoriaLista = _categoriaBusiness.GetAll()
             };
 
             return View(ViewModel);

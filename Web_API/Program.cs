@@ -20,19 +20,14 @@ var config = new Proyecto.Core.Configurations.Config()
 	ConnectionString = connectionString
 };
 
-
-
-
 //Se inyecta los servicios que requiere el Config
 builder.Services.AddScoped<Config>(p =>
 {
 	return config;
 });
 
-
 // COLOQUE ESTE BUSINESS DE EJEMPLO PARA PROBAR LA CONEXIÓN, 
 // DESCONOZCO SI HABRÁ UNO POR CADA ENTIDAD, SUPONGO QUE SI
-
 
 //se inyecta el Business que utiliza ProductController 
 builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();

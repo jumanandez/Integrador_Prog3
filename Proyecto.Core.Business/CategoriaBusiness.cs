@@ -20,13 +20,13 @@ namespace Proyecto.Core.Business
             _projectRepository = projectRepository;
         }
         public List<Categoria> GetAll()
-		{
-			return _projectRepository.GetCategorias();
-		}
+        {
+          return _projectRepository.GetCategorias();
+        }
 
-		public bool Add(Categoria categoriaNueva)
-		{
-			return _projectRepository.AddCategoria(categoriaNueva);
-		}
+        public bool Add(Categoria categoriaNueva)
+        {
+			    return _projectRepository.AddCategoria(categoriaNueva);
+        }
 	}
 }

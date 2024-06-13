@@ -5,6 +5,7 @@ using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,9 +47,28 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                productos = dbcontext.Productos.ToList();
+                productos = dbcontext.Productos.Include(p => p.Categoria)
+                                               .Include(p => p.Compras)
+                                               .Include(p => p.Venta).ToList();
             }
             return productos;
+        }
+        public int GetStock(int usuarioId, int productoId)
+        {
+            int stock = 0;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var compras = (from c in dbcontext.Compras
+                               where c.ProductoId == productoId && c.UsuarioId == usuarioId
+                               select c.Cantidad).Sum();
+
+                int ventas = (from v in dbcontext.Ventas
+                              where v.ProductoId == productoId && v.UsuarioId == usuarioId
+                              select v.Cantidad).Sum();
+
+                stock = compras - ventas;
+            }
+            return stock;
         }
 
         public List<Producto> GetProductosByCategoria(int categoriaId)
@@ -203,7 +223,6 @@ namespace Proyecto.Core.Data
         }
 
         #endregion
-
         public int GetStock(int usuarioId, int productoId)
         {
             int stock = 0;
@@ -221,5 +240,69 @@ namespace Proyecto.Core.Data
             }
             return stock;
         }
-    }
+        #region Region Usuario
+        public bool CompareUserToDB(string Username)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var UserExist = dbcontext.Usuarios.Any(b => b.Nombre == Username);
+                return UserExist;
+            }
+        }
+        public byte[] GetUsuarioHash(string Username)
+        {
+            byte[] hash;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                hash = User.HashPassword;
+            }
+            return hash;
+        }
+        public byte[] GetUsuarioSalt(string Username)
+        {
+            byte[] salt;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                salt = User.Salt;
+            }
+            return salt;
+        }
+
+        public bool ChangePass(Usuario usuario) 
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Update(usuario);
+                dbcontext.SaveChanges();
+                 return true;
+            }
+        }
+        public Usuario ObtainUsuario(string Username)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                return User;
+            }
+        }
+        public bool CreateUser(string Username, byte[] hashedPassword, byte[] saltBytes)
+        {
+            var user = new Usuario
+            {
+                Nombre = Username,
+                HashPassword = hashedPassword,
+                Salt = saltBytes
+            };
+
+            using (var _dbContext = new IntegradorProg3Context(_config))
+            {
+                _dbContext.Usuarios.Add(user);
+                _dbContext.SaveChanges();
+            }
+            return true;
+        }
+		#endregion
+	}
 }
