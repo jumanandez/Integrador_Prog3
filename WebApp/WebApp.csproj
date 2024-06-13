@@ -21,11 +21,4 @@
     <ProjectReference Include="..\Proyecto.Core.Entities\Proyecto.Core.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Views\Compra\CategoriaSelect.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

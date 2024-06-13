@@ -9,16 +9,17 @@ using WebApp.Models.ViewModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Proyecto.Core.Business.Interfaces;
 
 namespace WebApp.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IntegradorProg3Context _context;
+        private readonly IUsuarioBusiness _usuarioBusiness;
 
-        public AccountController(IntegradorProg3Context context)
+        public AccountController(IUsuarioBusiness usuarioBusiness)
         {
-            _context = context;
+            _usuarioBusiness = usuarioBusiness;
         }
 
         [HttpGet]
@@ -29,28 +30,15 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public IActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (_context.Usuarios.Any(u => u.Nombre == model.Username))
+                if (!_usuarioBusiness.CreateUsuario(model.Username, model.Password))
                 {
                     ViewData["ExistUser"] = "El usuario ya existe";
                     return View(model);
                 }
-
-                byte[] salt = CryptoHelper.GenerateSalt();
-                byte[] hashPassword = CryptoHelper.HashPassword(model.Password, salt);
-
-                var user = new Usuario
-                {
-                    Nombre = model.Username,
-                    HashPassword = hashPassword,
-                    Salt = salt
-                };
-
-                _context.Usuarios.Add(user);
-                await _context.SaveChangesAsync();
 
                 return RedirectToAction("Login", "Account");
             }
@@ -69,7 +57,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Nombre == model.Username);
+                var user = _usuarioBusiness.ObtainUsuario(model.Username);
                 if (user != null)
                 {
                     byte[] hashPassword = CryptoHelper.HashPassword(model.Password, user.Salt);

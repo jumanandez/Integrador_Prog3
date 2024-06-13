@@ -14,9 +14,9 @@ public partial class Usuario
 
     public byte[] Salt { get; set; } = null!;
 
-   
-    
     public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
 
     public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
+
+
 }

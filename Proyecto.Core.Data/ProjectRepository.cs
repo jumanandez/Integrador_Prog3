@@ -5,6 +5,7 @@ using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,18 +118,19 @@ namespace Proyecto.Core.Data
         #endregion
 
         #region Region Compras
-        public List<Compra> GetCompras()
+        public List<Compra> GetCompras(int usuarioId)
         {
             var compras = new List<Compra>();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                //compras = dbcontext.Compras.Include(c => c.Producto).Include(c => c.Usuario).ToList();
-                compras = dbcontext.Compras
-                                   .Include(c => c.Producto)
-                                   .Include(c => c.Usuario)
-                                   .OrderByDescending(c => c.Fecha) 
-                                   .ToList();
+                compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId) 
+                                           .Include(c => c.Producto)
+                                           .Include(c => c.Usuario)
+                                           .Where(c => c.Producto.Habilitado == true)
+                                           .OrderByDescending(c => c.Fecha).ToList();
+
+                //Paginado 
             }
             return compras;
         }

@@ -28,6 +28,10 @@ namespace WebApp.Models.ViewModels
         public int CategoriaId { get; set; }
 
         public string? NombreProducto { get; set; }
+
+
+        [Required(ErrorMessage = "La fecha de compra es requerida")]
+        public DateTime FechaCompra { get; set; }
     }
 
 
