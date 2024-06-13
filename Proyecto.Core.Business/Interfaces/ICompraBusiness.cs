@@ -15,5 +15,6 @@ namespace Proyecto.Core.Business.Interfaces
 
         public List<Compra> GetCompras();
 
+        
     }
 }

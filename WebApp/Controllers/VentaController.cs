@@ -7,6 +7,7 @@ using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
+using System.Security.Claims;
 using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
@@ -36,13 +37,12 @@ namespace WebApp.Controllers
         // GET: VentaController
         public ActionResult Index()
         {
-
-            var ventas = _ventaBusiness.GetVentas();        
-                           
-            var ViewModel = new VentaVM()
+           
+            var ventas = _ventaBusiness.GetVentas();
+            
+           var ViewModel = new VentaVM()
             {
-                VentaLista = ventas,
-                CategoriaLista = _categoriaBusiness.GetAll()
+                VentaLista = ventas
             };
 
             return View(ViewModel);
@@ -83,7 +83,7 @@ namespace WebApp.Controllers
             return View(CategoriaObj);
         }
 
-        // POST: VentaController/Create
+        // POST: VentaController/CategoriaSelect
         [HttpPost]
         public ActionResult CategoriaSelect(VentaVM model)
         {
@@ -102,7 +102,6 @@ namespace WebApp.Controllers
         // GET: VentaController/Create
         public ActionResult Create(int categoriaSeleccionada)
         {
-            var usuariosID = 2;
 
             var productoCategoria = (from p in _productoBusiness.GetAll()
                                     where p.CategoriaId == categoriaSeleccionada
@@ -113,7 +112,7 @@ namespace WebApp.Controllers
 
                 ProductoLista = productoCategoria,
                 VentaLista = _ventaBusiness.GetVentas(),
-                CategoriaLista = _categoriaBusiness.GetAll()
+                CategoriaLista = _categoriaBusiness.GetAll(),
 
             };
 
@@ -127,9 +126,16 @@ namespace WebApp.Controllers
         {
             try
             {
-                var usuariosID = 2;
-                
 
+                var nuevaVenta = new Venta
+                {
+                    Fecha = DateTime.Now,
+                    ProductoId = model._Producto.ProductoId,
+                    Cantidad = model.Cantidad,
+                    UsuarioId = int.Parse(User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault())
+                };
+
+                _ventaBusiness.AddVenta(nuevaVenta);
                 return RedirectToAction(nameof(Index));
 
             }

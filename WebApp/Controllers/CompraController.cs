@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Proyecto.Core.Business;
 using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
@@ -32,11 +33,10 @@ namespace WebApp.Controllers
         {
             _logger = logger;
             _compraBusiness = compraBusiness;
-            _categoriaBusiness = categoriaBusiness;
-            _productoBusiness = productoBusiness;
         }
 
         // GET: CompraController 
+
 
         public ActionResult Index()
         {
@@ -47,37 +47,45 @@ namespace WebApp.Controllers
             };
 
             return View(ViewModel);
-
         }
 
-        public IActionResult Details(int? CategoriaId, int id)
+        [HttpGet]
+        public IActionResult Details()
         {
+
             var compras = _compraBusiness.GetCompras();
 
             compras = (from c in compras
-                       where c.Producto.CategoriaId == CategoriaId.Value
-                       where c.ProductoId == id
+                       where c.Producto.CategoriaId == 1 && c.ProductoId == 10
+                       //where c.ProductoId == 10
                        select c).ToList();
 
             var ViewModel = new CompraVM
             {
-
                 CompraLista = compras
-
             };
 
             return View(ViewModel);
 
         }
 
-
-        //Get  compra/create
-        public IActionResult Create()
+        [HttpPost]
+        public IActionResult Details(CompraVM compraVM)
         {
 
-            var CompraNueva = new CompraVM()
+            if (compraVM._Compra.CompraId != 0)
             {
-                CategoriaLista = _categoriaBusiness.GetAll(),
+                _compraBusiness.AddCompra(compraVM._Compra);
+                return RedirectToAction("Index");
+            }
+
+            return View(compraVM);
+
+        }
+
+            var CompraNueva = new Models.ViewModels.CompraVM()
+            {
+
                 CompraLista = _compraBusiness.GetCompras()
             };
 
@@ -85,12 +93,22 @@ namespace WebApp.Controllers
             return View(CompraNueva);
         }
 
-        [HttpGet]
-        public JsonResult GetProductosByCategoria(int categoriaId)
-        {
-            var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
-            return Json(productos);
-        }
+        //post compra/create
+        //[HttpPost]
+        //public async Task<IActionResult> Create(CompraVM compraModel)
+        //{
+        //if (ModelState.IsValid)
+        //{
+        //    var compra = new Compra
+        //    {
+        //        ProductoId = compraModel._Compra.ProductoId,
+        //        Fecha = compraModel._Compra.Fecha,
+        //        Cantidad = compraModel._Compra.Cantidad,
+        //        UsuarioId = 1 // Ajusta esto según el usuario actual
+        //    };
+
+        //    _compraBusiness.AddCompra(compra);
+        //    await _compraBusiness.SaveChangesAsync();
 
         //post compra/create
         [HttpPost]

@@ -1,4 +1,5 @@
-﻿using Proyecto.Core.Business.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
@@ -33,6 +34,9 @@ namespace Proyecto.Core.Business
         {
             _projectRepository.DeleteCompra(id);
         }
+
+       
+    
 
     }
 }

@@ -7,26 +7,15 @@
 <h1>Seccion de compras</h1>
 <hr>
 
-<a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
+<ul>
 
-<hr>
- <table class="table table-hover">
-     <thead>
-         <tr>
-             <th>CompraID</th>
-             <th>Fecha</th>
-             <th>Producto</th>
-             <th>Cantidad</th>
-         </tr>
-     </thead>
-     @foreach (var v in Model.CompraLista)
-     {
-         <tbody>
-             <tr>
-                 <td>@v.CompraId</td>
-                 <td>@v.Fecha</td>
-                 <td>@v.Producto.Nombre</td>
-                 <td>@v.Cantidad</td>
-         </tbody>
-     }
- </table>
+    @foreach (var v in Model.CompraLista)
+    {
+        <li>Usuario: @v.Usuario.Nombre</li>
+        <li>Item: @v.CompraId (@v.Producto.Nombre)</li>
+        <li>Fecha: @v.Fecha</li>
+        <li>Cantidad: @v.Cantidad</li>
+        
+    }
+
+</ul>
