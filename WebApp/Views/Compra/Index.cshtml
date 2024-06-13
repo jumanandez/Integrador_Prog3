@@ -9,14 +9,13 @@
 <h5>
     @foreach(var c in Model.CompraLista)
     {
-        <text >Bienvenido @c.Usuario.Nombre</text>
-        //@c.Usuario.Nombre
+        <p>Bienvenido @c.Usuario.Nombre</p>
         
     }
 
 </h5>
 
-<a class="btn btn-primary" asp-controller="Compra" asp-action="Create">REGISTRAR UNA COMPRA NUEVA</a>
+<a class="btn btn-primary" asp-controller="Compra" asp-action="CategoriaSelect">REGISTRAR UNA COMPRA NUEVA</a>
 
 <ul>
     <table class="table">

@@ -19,5 +19,7 @@ namespace WebApp.Models.ViewModels
         public int? CategoriaId { get; set; }
 
         public string NombreProducto { get; set; }
+
+        public int Cantidad {  get; set; }
     }
 }

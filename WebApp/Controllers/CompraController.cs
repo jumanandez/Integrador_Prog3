@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Proyecto.Core.Business;
 using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
@@ -67,7 +68,6 @@ namespace WebApp.Controllers
 
         }
 
-
         [HttpPost]
         public IActionResult Details(CompraVM compraVM)
         {
@@ -75,49 +75,80 @@ namespace WebApp.Controllers
             if (compraVM._Compra.CompraId != 0)
             {
                 _compraBusiness.AddCompra(compraVM._Compra);
+                return RedirectToAction("Index");
             }
 
-            return View();
+            return View(compraVM);
 
         }
 
-
-        //Get  compra/create
-        public IActionResult Create()
+        // GET: CompraController/CategoriaSelect
+        public ActionResult CategoriaSelect()
         {
-
-            var ViewModel = new CompraVM()
-            {
-                _Compra = new Compra(),
-                ProductoLista = new List<Producto>()
+            var CategoriaObj = new CompraVM()
+            { 
+                CategoriaLista = _categoriaBusiness.GetAll(),
             };
 
-
-            return View(ViewModel);
+            return View(CategoriaObj);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Create(CompraVM compraVM)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        compraVM._Producto = _productoBusiness.GetProducto(10);
-        //        return View(compraVM);
-        //    }
+        // POST: compraController/Create
+        [HttpPost]
+        public ActionResult CategoriaSelect(CompraVM model)
+        {
+            try
+            {
+                var categoriaSeleccionada = model._Producto.CategoriaId;
+                return RedirectToAction(nameof(Create), new { categoriaSeleccionada });
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-        //    var fechaActual = DateTime.Now;
-        //    if (compraVM._Compra.Fecha > fechaActual || compraVM._Compra.Fecha < fechaActual.AddDays(-7))
-        //    {
-        //        ModelState.AddModelError("FechaCompra", "La fecha de la compra no puede ser mayor a 7 días atrás ni una fecha futura.");
-        //        compraVM._Producto = _productoBusiness.GetProducto(10);
-        //        return View(compraVM);
-        //    }
+        // GET: compraController/Create
+        public ActionResult Create(int categoriaSeleccionada)
+        {
+            //var usuariosID = 1;
 
-        //    _compraBusiness.AddCompra(compraVM._Compra);
-        //    return RedirectToAction(nameof(Index));
-        //}
+            var productoCategoria = (from p in _productoBusiness.GetAll()
+                                     where p.CategoriaId == categoriaSeleccionada
+                                     select p).ToList();
+
+            var CompraObj = new CompraVM()
+            {
+
+                ProductoLista= productoCategoria,
+                CompraLista = _compraBusiness.GetCompras(),
+                CategoriaLista = _categoriaBusiness.GetAll()
+
+
+            };
+
+            return View(CompraObj);
+        }
+
+        // POST: compraController/Create
+        [HttpPost]
+        public ActionResult Create(CompraVM model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _compraBusiness.AddCompra(model._Compra);
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(model);
+            }
+            catch
+            {
+                return View(model);
+            }
+        }
     }
 
-   
+
 }

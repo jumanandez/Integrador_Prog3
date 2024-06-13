@@ -1,26 +1,29 @@
 ﻿@model WebApp.Models.ViewModels.CompraVM
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registrar compra";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>REGISTRO DE COMPRA</h1>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="_Compra.ProductoId"></label>
-        <select asp-for="_Compra.ProductoId" class="form-control" asp-items="@(new SelectList(Model.ProductoLista, "Id", "Nombre"))"></select>
-        <span asp-validation-for="_Compra.ProductoId" class="text-danger"></span>
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+
+        <form asp-action="Create" asp-controller="Compra" method="post">
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="@Model.CompraLista.">Producto</label>
+                @Html.DropDownListFor(model => model._Producto.ProductoId, new SelectList(Model.ProductoLista, "ProductoId", "Nombre"), "Seleccione un producto", new { @class = "form-control form-control-sm" })
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="@Model.CompraLista.">Cantidad</label>
+                <input class="form-control form-control-sm" asp-for="Cantidad" type="number" min="0" max="50000" />
+            </div>
+
+
+
+        </form>
+
     </div>
-    <div class="form-group">
-        <label asp-for="_Compra.FechaCompra"></label>
-        <input asp-for="_Compra.FechaCompra" class="form-control" type="date" />
-        <span asp-validation-for="_Compra.FechaCompra" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="_Compra.Cantidad"></label>
-        <input asp-for="_Compra.Cantidad" class="form-control" />
-        <span asp-validation-for="_Compra.Cantidad" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
+</div>
