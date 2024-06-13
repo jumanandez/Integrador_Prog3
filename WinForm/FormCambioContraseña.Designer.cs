@@ -30,11 +30,11 @@
 		{
 			btnCambiarContraseña = new Button();
 			pictureBox1 = new PictureBox();
-			txtContraseña = new TextBox();
+			txtContraseñaActual = new TextBox();
 			txtNombreUsuario = new TextBox();
 			label2 = new Label();
 			label1 = new Label();
-			textBox1 = new TextBox();
+			txtNuevaContraseña = new TextBox();
 			label3 = new Label();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			SuspendLayout();
@@ -52,19 +52,19 @@
 			// pictureBox1
 			// 
 			pictureBox1.Image = Properties.Resources.LogoFashero;
-			pictureBox1.Location = new Point(86, 55);
+			pictureBox1.Location = new Point(73, 57);
 			pictureBox1.Name = "pictureBox1";
 			pictureBox1.Size = new Size(225, 155);
 			pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
 			pictureBox1.TabIndex = 34;
 			pictureBox1.TabStop = false;
 			// 
-			// txtContraseña
+			// txtContraseñaActual
 			// 
-			txtContraseña.Location = new Point(62, 308);
-			txtContraseña.Name = "txtContraseña";
-			txtContraseña.Size = new Size(249, 23);
-			txtContraseña.TabIndex = 33;
+			txtContraseñaActual.Location = new Point(62, 308);
+			txtContraseñaActual.Name = "txtContraseñaActual";
+			txtContraseñaActual.Size = new Size(249, 23);
+			txtContraseñaActual.TabIndex = 33;
 			// 
 			// txtNombreUsuario
 			// 
@@ -93,12 +93,12 @@
 			label1.TabIndex = 30;
 			label1.Text = "Nombre de Usuario";
 			// 
-			// textBox1
+			// txtNuevaContraseña
 			// 
-			textBox1.Location = new Point(62, 363);
-			textBox1.Name = "textBox1";
-			textBox1.Size = new Size(249, 23);
-			textBox1.TabIndex = 37;
+			txtNuevaContraseña.Location = new Point(62, 363);
+			txtNuevaContraseña.Name = "txtNuevaContraseña";
+			txtNuevaContraseña.Size = new Size(249, 23);
+			txtNuevaContraseña.TabIndex = 37;
 			// 
 			// label3
 			// 
@@ -115,11 +115,11 @@
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(383, 481);
-			Controls.Add(textBox1);
+			Controls.Add(txtNuevaContraseña);
 			Controls.Add(label3);
 			Controls.Add(btnCambiarContraseña);
 			Controls.Add(pictureBox1);
-			Controls.Add(txtContraseña);
+			Controls.Add(txtContraseñaActual);
 			Controls.Add(txtNombreUsuario);
 			Controls.Add(label2);
 			Controls.Add(label1);
@@ -135,11 +135,11 @@
 
 		private Button btnCambiarContraseña;
 		private PictureBox pictureBox1;
-		private TextBox txtContraseña;
+		private TextBox txtContraseñaActual;
 		private TextBox txtNombreUsuario;
 		private Label label2;
 		private Label label1;
-		private TextBox textBox1;
+		private TextBox txtNuevaContraseña;
 		private Label label3;
 	}
 }

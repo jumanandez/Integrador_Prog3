@@ -57,9 +57,34 @@ namespace WinForm
 		}
 		private void linkCambioContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			
+			FormCambioContraseña formCambioContraseña = new FormCambioContraseña(_usuarioBusiness);
+			Hide();
+
+			if (formCambioContraseña.ShowDialog() == DialogResult.OK)
+			{
+				_loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+				MessageBox.Show("Contraseña Cambiada Con Exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				Show();
+			}
+			else
+			{
+				bool exit = false;
+				while (!exit)
+				{
+					DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+					if (operao == DialogResult.Yes)
+					{
+						exit = true;
+					}
+					else
+					{
+						formCambioContraseña.ShowDialog();
+					}
+				}
+				Show();
+			}
 		}
-		
+
 		private void btnRegistrarse_Click(object sender, EventArgs e)
 		{
 			FormRegister registrarse = new FormRegister(_usuarioBusiness);
