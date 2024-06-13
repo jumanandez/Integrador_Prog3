@@ -13,57 +13,71 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinForm
 {
-	public partial class FormCambioContraseña : Form
-	{
-		private readonly IUsuarioBusiness _usuarioBusiness;
-		public FormCambioContraseña(IUsuarioBusiness usuarioBusiness)
-		{
-			_usuarioBusiness = usuarioBusiness;
-			InitializeComponent();
-		}
+    public partial class FormCambioContrasena : Form
+    {
+        private readonly IUsuarioBusiness _usuarioBusiness;
+        public FormCambioContrasena(IUsuarioBusiness usuarioBusiness)
+        {
+            _usuarioBusiness = usuarioBusiness;
+            InitializeComponent();
+            txtContraseñaActual.UseSystemPasswordChar = true;
+            txtConfirmarContrasena.UseSystemPasswordChar = true;
+            txtNuevaContrasena.UseSystemPasswordChar = true;
+        }
 
-		private void btnCambiarContraseña_Click(object sender, EventArgs e)
-		{
-			string username = txtNombreUsuario.Text.Trim();
-			string passActual = txtContraseñaActual.Text.Trim();
-			string passNueva = txtNuevaContraseña.Text.Trim();
+        private void btnCambiarContraseña_Click(object sender, EventArgs e)
+        {
+            string username = txtNombreUsuario.Text.Trim();
+            string passActual = txtContraseñaActual.Text.Trim();
+            string passNueva = txtNuevaContrasena.Text.Trim();
 
-			bool coincideContraActual;
+            bool coincideContraActual;
+            if (txtNuevaContrasena.Text != txtConfirmarContrasena.Text)
+            {
+                MessageBox.Show("La nueva contraseña y la confirmacion no coinciden!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtNombreUsuario.Text.Trim() == "")
+            {
+                MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtContraseñaActual.Text.Trim() == "")
+            {
+                MessageBox.Show("Contraseña Actual Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtNuevaContrasena.Text.Trim() == "")
+            {
+                MessageBox.Show("Contraseña Nueva Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtContraseñaActual.Text != txtNuevaContrasena.Text)
+            {
+                bool? result = _usuarioBusiness.ChangePass(username, passActual, passNueva);
 
-			if (txtNombreUsuario.Text.Trim() == "")
-			{
-				MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			}
-			else if (txtContraseñaActual.Text.Trim() == "")
-			{
-				MessageBox.Show("Contraseña Actual Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			}
-			else if (txtNuevaContraseña.Text.Trim() == "")
-			{
-				MessageBox.Show("Contraseña Nueva Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			}
-			else if (txtContraseñaActual.Text != txtNuevaContraseña.Text)
-			{
-				bool? result = _usuarioBusiness.ChangePass(username, passActual, passNueva);
-				
-				if (result == true)
-				{
-					DialogResult = DialogResult.OK;
-					Close();
-				}
-				else if(result == false)
-				{
-					MessageBox.Show("La Contraseña Actual NO coincide!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
-				else if (result == null)
-				{
-					MessageBox.Show("Usuario No Encontrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
-			}
-			else
-			{
-				MessageBox.Show("La Contraseña Nueva NO puede coincidir con la Actual!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			}
-		}
-	}
+                if (result == true)
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else if (result == false)
+                {
+                    MessageBox.Show("La Contraseña Actual NO coincide!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else if (result == null)
+                {
+                    MessageBox.Show("Usuario No Encontrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("La Contraseña Nueva NO puede coincidir con la Actual!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void txtContraseñaActual_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = true;
+            }
+        }
+    }
 }

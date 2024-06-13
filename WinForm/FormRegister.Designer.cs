@@ -71,6 +71,7 @@ namespace WinForm
             txtContraseña.TabStop = false;
             txtContraseña.Text = "Ingrese una contraseña";
             txtContraseña.Click += textBox2_Click;
+            txtContraseña.KeyPress += txtContraseña_KeyPress;
             // 
             // txtNombreUsuario
             // 
@@ -153,6 +154,7 @@ namespace WinForm
             // 
             // btnRegistrarse
             // 
+            btnRegistrarse.Enabled = false;
             btnRegistrarse.Location = new Point(116, 355);
             btnRegistrarse.Name = "btnRegistrarse";
             btnRegistrarse.OverrideDefault.Back.Color1 = Color.FromArgb(0, 0, 192);
@@ -177,6 +179,13 @@ namespace WinForm
             btnRegistrarse.StateCommon.Content.ShortText.Color1 = Color.White;
             btnRegistrarse.StateCommon.Content.ShortText.Color2 = Color.White;
             btnRegistrarse.StateCommon.Content.ShortText.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
+            btnRegistrarse.StateDisabled.Back.Color1 = Color.FromArgb(64, 64, 64);
+            btnRegistrarse.StateDisabled.Back.Color2 = Color.FromArgb(64, 64, 64);
+            btnRegistrarse.StateDisabled.Border.Color1 = Color.FromArgb(64, 64, 64);
+            btnRegistrarse.StateDisabled.Border.Color2 = Color.Gray;
+            btnRegistrarse.StateDisabled.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnRegistrarse.StateDisabled.Content.ShortText.Color1 = Color.Silver;
+            btnRegistrarse.StateDisabled.Content.ShortText.Color2 = Color.Silver;
             btnRegistrarse.StatePressed.Back.Color1 = Color.FromArgb(0, 0, 64);
             btnRegistrarse.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 84);
             btnRegistrarse.StatePressed.Back.ColorAngle = 45F;

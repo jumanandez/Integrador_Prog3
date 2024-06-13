@@ -22,8 +22,8 @@ namespace WinForm
             base.Dispose(disposing);
         }
 
-		#region Windows Form Designer generated code
-      
+        #region Windows Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -143,6 +143,7 @@ namespace WinForm
             textBox2.TabStop = false;
             textBox2.Text = "Ingrese una contraseña";
             textBox2.Click += textBox2_Click;
+            textBox2.KeyPress += textBox2_KeyPress;
             // 
             // button1
             // 
@@ -170,6 +171,13 @@ namespace WinForm
             button1.StateCommon.Content.ShortText.Color1 = Color.White;
             button1.StateCommon.Content.ShortText.Color2 = Color.White;
             button1.StateCommon.Content.ShortText.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
+            button1.StateDisabled.Back.Color1 = Color.FromArgb(64, 64, 64);
+            button1.StateDisabled.Back.Color2 = Color.FromArgb(64, 64, 64);
+            button1.StateDisabled.Border.Color1 = Color.FromArgb(64, 64, 64);
+            button1.StateDisabled.Border.Color2 = Color.Gray;
+            button1.StateDisabled.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            button1.StateDisabled.Content.ShortText.Color1 = Color.Silver;
+            button1.StateDisabled.Content.ShortText.Color2 = Color.Silver;
             button1.StatePressed.Back.Color1 = Color.FromArgb(0, 0, 64);
             button1.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 92);
             button1.StatePressed.Back.ColorAngle = 45F;
@@ -289,14 +297,13 @@ namespace WinForm
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar Sesion";
             TitleStyle = KryptonFormTitleStyle.Classic;
-            Load += FormLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-		#endregion
-      
+        #endregion
+
         private KryptonLabel label1;
         private KryptonLabel label2;
         private KryptonTextBox textBox1;
