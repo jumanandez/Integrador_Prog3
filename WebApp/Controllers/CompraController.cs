@@ -75,7 +75,7 @@ namespace WebApp.Controllers
 
             var CompraNueva = new Models.ViewModels.CompraVM()
             {
-
+                CategoriaLista = _categoriaBusiness.GetAll(),
                 CompraLista = _compraBusiness.GetCompras()
             };
 
