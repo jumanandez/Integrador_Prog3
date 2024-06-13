@@ -6,6 +6,7 @@ using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("connection");
 
 //Se setea la connectionstring en nuestra clase de configuracion
-var config = new Proyecto.Core.Configurations.Config()
+var config = new Config()
 {
     ConnectionString = connectionString
 };
+
 
 
 
@@ -39,6 +41,7 @@ builder.Services.AddScoped<ICategoriaBusiness, CategoriaBusiness>();
 builder.Services.AddScoped<IVentaBusiness, VentaBusiness>();
 builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
 builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
+builder.Services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
 builder.Services.AddScoped<IntegradorProg3Context>();
 
 #endregion

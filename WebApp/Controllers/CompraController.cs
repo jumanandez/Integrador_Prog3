@@ -25,7 +25,6 @@ namespace WebApp.Controllers
         private readonly IProductoBusiness _productoBusiness;
 
 
-
         public CompraController(ICompraBusiness compraBusiness,
                                 ICategoriaBusiness categoriaBusiness,
                                 IProductoBusiness productoBusiness,
@@ -33,6 +32,8 @@ namespace WebApp.Controllers
         {
             _logger = logger;
             _compraBusiness = compraBusiness;
+            _categoriaBusiness = categoriaBusiness;
+            _productoBusiness = productoBusiness;
         }
 
         // GET: CompraController 
@@ -40,104 +41,61 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var ViewModel = new CompraVM()
             {
-                CompraLista = _compraBusiness.GetCompras()
+                CompraLista = _compraBusiness.GetCompras(userId)
             };
 
             return View(ViewModel);
+        }
+
+        public IActionResult Create()
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var CompraNueva = new CompraVM()
+            {
+                CategoriaLista = _categoriaBusiness.GetAll(),
+                CompraLista = _compraBusiness.GetCompras(userId)
+            };
+
+            return View(CompraNueva);
+
         }
 
         [HttpGet]
-        public IActionResult Details()
+        public JsonResult GetProductosByCategoria(int categoriaId)
         {
+            var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
 
-            var compras = _compraBusiness.GetCompras();
-
-            compras = (from c in compras
-                       where c.Producto.CategoriaId == 1 && c.ProductoId == 10
-                       //where c.ProductoId == 10
-                       select c).ToList();
-
-            var ViewModel = new CompraVM
-            {
-                CompraLista = compras
-            };
-
-            return View(ViewModel);
-
+            return Json(productos);
         }
 
-        [HttpPost]
-        public IActionResult Details(CompraVM compraVM)
-        {
-
-            if (compraVM._Compra.CompraId != 0)
-            {
-                _compraBusiness.AddCompra(compraVM._Compra);
-                return RedirectToAction("Index");
-            }
-
-            return View(compraVM);
-
-        }
-
-            var CompraNueva = new Models.ViewModels.CompraVM()
-            {
-
-                CompraLista = _compraBusiness.GetCompras()
-            };
-
-
-            return View(CompraNueva);
-        }
-
-        //post compra/create
-        //[HttpPost]
-        //public async Task<IActionResult> Create(CompraVM compraModel)
-        //{
-        //if (ModelState.IsValid)
-        //{
-        //    var compra = new Compra
-        //    {
-        //        ProductoId = compraModel._Compra.ProductoId,
-        //        Fecha = compraModel._Compra.Fecha,
-        //        Cantidad = compraModel._Compra.Cantidad,
-        //        UsuarioId = 1 // Ajusta esto según el usuario actual
-        //    };
-
-        //    _compraBusiness.AddCompra(compra);
-        //    await _compraBusiness.SaveChangesAsync();
-
-        //post compra/create
         [HttpPost]
         public IActionResult Create(CompraVM compraModel)
         {
             if (ModelState.IsValid)
             {
-                var fechaActual = DateTime.Now;
-                var fechaLimitePasada = fechaActual.AddDays(-7);
-                var fechaLimiteFutura = fechaActual;
-
-                if (compraModel.FechaCompra < fechaLimitePasada || compraModel.FechaCompra > fechaLimiteFutura)
+                
+                if (_compraBusiness.VerificarFecha(compraModel.FechaCompra))
                 {
                     ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
                 }
 
                 if (ModelState.IsValid)
                 {
+                    int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
                     var compra = new Compra
                     {
                         ProductoId = compraModel.ProductoId,
                         Fecha = compraModel.FechaCompra,
                         Cantidad = compraModel.ProductoCantidad,
-                        UsuarioId = int.Parse(User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault())
+                        UsuarioId = userId
                     };
 
                     _compraBusiness.AddCompra(compra);
 
-                    return RedirectToAction("Create", "Compra");
+                    return RedirectToAction("Index", "Compra");
                 }
             }
 
