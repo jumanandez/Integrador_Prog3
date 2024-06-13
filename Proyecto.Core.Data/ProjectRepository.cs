@@ -123,7 +123,12 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                compras = dbcontext.Compras.Include(c => c.Producto).Include(c => c.Usuario).ToList();
+                //compras = dbcontext.Compras.Include(c => c.Producto).Include(c => c.Usuario).ToList();
+                compras = dbcontext.Compras
+                                   .Include(c => c.Producto)
+                                   .Include(c => c.Usuario)
+                                   .OrderByDescending(c => c.Fecha) 
+                                   .ToList();
             }
             return compras;
         }
