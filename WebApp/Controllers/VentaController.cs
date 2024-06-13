@@ -21,8 +21,10 @@ namespace WebApp.Controllers
         private readonly IProductoBusiness _productoBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
 
-        public VentaController(IVentaBusiness ventaBusiness, IProductoBusiness productoBusiness, ICategoriaBusiness categoriaBusiness,
-                                    ILogger<VentaController> logger)
+        public VentaController(IVentaBusiness ventaBusiness,
+                               IProductoBusiness productoBusiness,
+                               ICategoriaBusiness categoriaBusiness,
+                               ILogger<VentaController> logger)
         {
             _logger = logger;
             _ventaBusiness = ventaBusiness;
