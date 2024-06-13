@@ -96,33 +96,39 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CompraVM compraModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                // Log errors
-                var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
-                foreach (var error in errors)
+                var fechaActual = DateTime.Now;
+                var fechaLimitePasada = fechaActual.AddDays(-7);
+                var fechaLimiteFutura = fechaActual;
+
+                if (compraModel.FechaCompra < fechaLimitePasada || compraModel.FechaCompra > fechaLimiteFutura)
                 {
-                    Console.WriteLine(error.ErrorMessage);
+                    ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
                 }
 
-                // Vuelve a cargar la lista de categorías y productos en caso de error de validación
-                compraModel.CategoriaLista = _categoriaBusiness.GetAll();
-                compraModel.ProductoLista = _productoBusiness.GetAll();
-                return View(compraModel);
+                if (ModelState.IsValid)
+                {
+                    var compra = new Compra
+                    {
+                        ProductoId = compraModel.ProductoId,
+                        Fecha = compraModel.FechaCompra,
+                        Cantidad = compraModel.ProductoCantidad,
+                        UsuarioId = int.Parse(User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault())
+                    };
+
+                    _compraBusiness.AddCompra(compra);
+
+                    return RedirectToAction("Create", "Compra");
+                }
             }
 
-            var compra = new Compra
-            {
-                ProductoId = compraModel.ProductoId,
-                Fecha = DateTime.Now,
-                Cantidad = compraModel.ProductoCantidad,
-                UsuarioId = int.Parse(User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault())
-            };
-
-            _compraBusiness.AddCompra(compra);
-
-            return RedirectToAction("Create", "Compra");
+            // Vuelve a cargar la lista de categorías y productos en caso de error de validación
+            compraModel.CategoriaLista = _categoriaBusiness.GetAll();
+            compraModel.ProductoLista = _productoBusiness.GetAll();
+            return View(compraModel);
         }
+
 
 
 
