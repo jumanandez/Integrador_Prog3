@@ -1,45 +1,57 @@
 ﻿@model WebApp.Models.ViewModels.LoginViewModel
 
+@{
+    Layout = null; // Esta línea evita que esta vista use el layout predeterminado
+}
 
-<div class="row mt-5 justify-content-center">
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-header">
-                <h2>Iniciar Sesion</h2>
-            </div>
-            <div class="card-body">
-                <form asp-action="Login" method="post">
-                    <div class="form-group">
-                        <label asp-for="Username">Usuario</label>
-                        <input asp-for="Username" class="form-control" />
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label asp-for="Password">Contraseña</label>
-                        <input asp-for="Password" type="password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="d-grid gap-2 mb-3">
-                        <button type="submit" class="btn btn-primary">Ingresar</button>
-                    </div>
-                    @if(ViewData["LoginError"] != null)
-                    {
-                        <div class="alert alert-danger mt-2" role="alert">
-                            @ViewData["LoginError"]
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center" style=" height:100vh">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Iniciar Sesión</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Login" method="post">
+                        <div class="form-group">
+                            <label asp-for="Username">Usuario</label>
+                            <input asp-for="Username" class="form-control" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
-                    }
-                    ¿No tiene un usuario? <a asp-controller="Account" asp-action="Register">Crear Usuario</a>
-                </form>
+                        <div class="form-group mb-2">
+                            <label asp-for="Password">Contraseña</label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid gap-2 mb-3">
+                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                        </div>
+                        @if (ViewData["LoginError"] != null)
+                        {
+                            <div class="alert alert-danger mt-2" role="alert">
+                                @ViewData["LoginError"]
+                            </div>
+                        }
+                        ¿No tiene un usuario? <a asp-controller="Account" asp-action="Register">Crear Usuario</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
-@section Scripts {
-    @{
-      
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-       
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
     }
-}
+
+</body>
+</html>

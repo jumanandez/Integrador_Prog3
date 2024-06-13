@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Proyecto.Core.Helpers
+namespace Proyecto.Core.Business
 {
     public static class CryptoHelper
     {

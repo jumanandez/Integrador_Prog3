@@ -9,6 +9,7 @@ using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
+using System.Security.Claims;
 using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
@@ -20,21 +21,22 @@ namespace WebApp.Controllers
 
         //Se inyecta las dependencias para usar el business de ejemplo
         private readonly ICompraBusiness _compraBusiness;
-        private readonly IProductoBusiness _productoBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
-        
+        private readonly IProductoBusiness _productoBusiness;
 
-        public CompraController(ICompraBusiness compraBusiness, IProductoBusiness productoBusiness, 
-                                    ICategoriaBusiness categoriaBusiness,
-                                    ILogger<CompraController> logger)
+
+
+        public CompraController(ICompraBusiness compraBusiness,
+                                ICategoriaBusiness categoriaBusiness,
+                                IProductoBusiness productoBusiness,
+                                ILogger<CompraController> logger)
         {
             _logger = logger;
             _compraBusiness = compraBusiness;
-            _productoBusiness = productoBusiness;
-            _categoriaBusiness = categoriaBusiness;
         }
 
         // GET: CompraController 
+
 
         public ActionResult Index()
         {
@@ -45,7 +47,6 @@ namespace WebApp.Controllers
             };
 
             return View(ViewModel);
-
         }
 
         [HttpGet]
@@ -82,72 +83,49 @@ namespace WebApp.Controllers
 
         }
 
-        // GET: CompraController/CategoriaSelect
-        public ActionResult CategoriaSelect()
-        {
-            var CategoriaObj = new CompraVM()
-            { 
-                CategoriaLista = _categoriaBusiness.GetAll(),
+            var CompraNueva = new Models.ViewModels.CompraVM()
+            {
+
+                CompraLista = _compraBusiness.GetCompras()
             };
 
-            return View(CategoriaObj);
+
+            return View(CompraNueva);
         }
 
-        // POST: compraController/Create
-        [HttpPost]
-        public ActionResult CategoriaSelect(CompraVM model)
-        {
-            try
-            {
-                var categoriaSeleccionada = model._Producto.CategoriaId;
-                return RedirectToAction(nameof(Create), new { categoriaSeleccionada });
+        //post compra/create
+        //[HttpPost]
+        //public async Task<IActionResult> Create(CompraVM compraModel)
+        //{
+        //if (ModelState.IsValid)
+        //{
+        //    var compra = new Compra
+        //    {
+        //        ProductoId = compraModel._Compra.ProductoId,
+        //        Fecha = compraModel._Compra.Fecha,
+        //        Cantidad = compraModel._Compra.Cantidad,
+        //        UsuarioId = 1 // Ajusta esto según el usuario actual
+        //    };
+
+        //    _compraBusiness.AddCompra(compra);
+        //    await _compraBusiness.SaveChangesAsync();
+
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        //// Si el modelo no es válido, vuelve a cargar la lista de productos
+        //compraModel.ProductoLista = _productoBusiness.GetAll().ToList();
+        //return View(viewModel);
+        // }
+
+                // Vuelve a cargar la lista de categorías y productos en caso de error de validación
+                compraModel.CategoriaLista = _categoriaBusiness.GetAll();
+                compraModel.ProductoLista = _productoBusiness.GetAll();
+                return View(compraModel);
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: compraController/Create
-        public ActionResult Create(int categoriaSeleccionada)
-        {
-            //var usuariosID = 1;
-
-            var productoCategoria = (from p in _productoBusiness.GetAll()
-                                     where p.CategoriaId == categoriaSeleccionada
-                                     select p).ToList();
-
-            var CompraObj = new CompraVM()
-            {
-
-                ProductoLista= productoCategoria,
-                CompraLista = _compraBusiness.GetCompras(),
-                CategoriaLista = _categoriaBusiness.GetAll()
 
 
-            };
 
-            return View(CompraObj);
-        }
-
-        // POST: compraController/Create
-        [HttpPost]
-        public ActionResult Create(CompraVM model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    _compraBusiness.AddCompra(model._Compra);
-                    return RedirectToAction(nameof(Index));
-                }
-                return View(model);
-            }
-            catch
-            {
-                return View(model);
-            }
-        }
     }
 
 

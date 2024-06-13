@@ -25,10 +25,22 @@ namespace Proyecto.Core.Business
 			 _projectRepository.AddProducto(producto);
 		}
 
-		public List<Producto> GetAll()
+        public void DeleteProducto(Producto product)
+		{
+			_projectRepository.DeleteProducto(product);
+		}
+
+        public void ModifyProduct(Producto product)
+		{
+			_projectRepository.ModifyProduct(product);
+		}
+
+
+        public List<Producto> GetAll()
 		{
 			return _projectRepository.GetProductos();
 		}
+
 
         public Producto GetProducto(int id)
 		{
@@ -45,5 +57,15 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetStock(usuarioId, productoId);
 		}
 
+    public List<Producto> GetProductosByCategoria(int categoriaId)
+    {
+        return _projectRepository.GetProductosByCategoria(categoriaId);
     }
+    
+		public List<string> GetAllNames()
+		{
+			return _projectRepository.GetAllNames();
+
+		}
+  }
 }
