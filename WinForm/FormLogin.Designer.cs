@@ -22,8 +22,8 @@ namespace WinForm
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
+		#region Windows Form Designer generated code
+      
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -212,7 +212,7 @@ namespace WinForm
             linkRegistrarse.TabIndex = 24;
             linkRegistrarse.TabStop = true;
             linkRegistrarse.Text = "Cambiar contraseña";
-            linkRegistrarse.LinkClicked += linkRegistrarse_LinkClicked;
+            linkRegistrarse.LinkClicked += linkCambioContraseña_LinkClicked;
             // 
             // kryptonButton1
             // 
@@ -263,7 +263,7 @@ namespace WinForm
             kryptonButton1.StateTracking.Content.ShortText.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
             kryptonButton1.TabIndex = 26;
             kryptonButton1.Values.Text = "Registrarse";
-            kryptonButton1.Click += kryptonButton1_Click;
+            kryptonButton1.Click += btnRegistrarse_Click;
             // 
             // FormLogin
             // 
@@ -295,15 +295,15 @@ namespace WinForm
             PerformLayout();
         }
 
-        #endregion
-
+		#endregion
+      
         private KryptonLabel label1;
         private KryptonLabel label2;
         private KryptonTextBox textBox1;
         private KryptonTextBox textBox2;
         private KryptonButton button1;
-		private PictureBox pictureBox1;
-		private LinkLabel linkRegistrarse;
+		    private PictureBox pictureBox1;
+		    private LinkLabel linkRegistrarse;
         private Krypton.Toolkit.KryptonCustomPaletteBase kryptonCustomPaletteBase1;
         private KryptonButton kryptonButton1;
     }

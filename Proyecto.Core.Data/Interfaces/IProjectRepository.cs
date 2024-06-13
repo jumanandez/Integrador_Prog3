@@ -28,7 +28,7 @@ namespace Proyecto.Core.Data.Interfaces
         public bool CompareUserToDB(string Username);
         public byte[] GetUsuarioHash(string Username);
         public byte[] GetUsuarioSalt(string Username);
-        public bool ChangePass(string Username, byte[] Password, byte[] salt);
+        public bool ChangePass(Usuario usuario);
         public Usuario ObtainUsuario(string Username);
         public bool CreateUser(string Username, byte[] hashPassword, byte[] salt);
 
