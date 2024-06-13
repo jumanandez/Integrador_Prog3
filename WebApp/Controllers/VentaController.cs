@@ -81,7 +81,7 @@ namespace WebApp.Controllers
             return View(CategoriaObj);
         }
 
-        // POST: VentaController/Create
+        // POST: VentaController/CategoriaSelect
         [HttpPost]
         public ActionResult CategoriaSelect(VentaVM model)
         {
@@ -126,8 +126,15 @@ namespace WebApp.Controllers
             try
             {
                 var usuariosID = 2;
-                
+                var nuevaVenta = new Venta
+                {
+                    Fecha = DateTime.Now,
+                    ProductoId = model._Producto.ProductoId,
+                    Cantidad = model.Cantidad,
+                    UsuarioId = usuariosID
+                };
 
+                _ventaBusiness.AddVenta(nuevaVenta);
                 return RedirectToAction(nameof(Index));
 
             }
