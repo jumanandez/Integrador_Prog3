@@ -223,23 +223,7 @@ namespace Proyecto.Core.Data
         }
 
         #endregion
-        public int GetStock(int usuarioId, int productoId)
-        {
-            int stock = 0;
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                var compras = (from c in dbcontext.Compras
-                               where c.ProductoId == productoId && c.UsuarioId == usuarioId
-                               select c.Cantidad).Sum();
 
-                int ventas = (from v in dbcontext.Ventas
-                              where v.ProductoId == productoId && v.UsuarioId == usuarioId
-                              select v.Cantidad).Sum();
-
-                stock = compras - ventas;
-            }
-            return stock;
-        }
         #region Region Usuario
         public bool CompareUserToDB(string Username)
         {
