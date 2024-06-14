@@ -155,13 +155,18 @@ namespace Proyecto.Core.Data
         #endregion
 
         #region Region Ventas
-        public List<Venta> GetVentas()
+        public List<Venta> GetVentas(int usuarioId)
         {
             var ventas = new List<Venta>();
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                ventas = dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario).ToList();
+
+                ventas = (from v in dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario)
+                          where v.UsuarioId == usuarioId
+                          select v).ToList();       
+
+                //ventas = dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario).ToList();
             }
             return ventas;
         }

@@ -21,25 +21,29 @@ namespace WebApp.Controllers
         private readonly IVentaBusiness _ventaBusiness;
         private readonly IProductoBusiness _productoBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
+        private readonly IUsuarioBusiness _usuarioBusiness;
+
 
         public VentaController(IVentaBusiness ventaBusiness,
                                IProductoBusiness productoBusiness,
                                ICategoriaBusiness categoriaBusiness,
+                               IUsuarioBusiness usuarioBusiness,
                                ILogger<VentaController> logger)
         {
             _logger = logger;
             _ventaBusiness = ventaBusiness;
             _productoBusiness = productoBusiness;
             _categoriaBusiness = categoriaBusiness;
+            _usuarioBusiness = usuarioBusiness;
+
         }
 
 
         // GET: VentaController
-        public ActionResult Index()
+        public ActionResult Index(int usuarioId)
         {
-           
-            var ventas = _ventaBusiness.GetVentas();
-            
+           var ventas = _ventaBusiness.GetVentas(usuarioId);
+
            var ViewModel = new VentaVM()
             {
                 VentaLista = ventas
@@ -49,10 +53,10 @@ namespace WebApp.Controllers
         }
 
         // GET: VentaController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, int usuarioId)
         {
 
-            var ventas = _ventaBusiness.GetVentas();
+            var ventas = _ventaBusiness.GetVentas(usuarioId);
 
             ventas = (from v in ventas
                       where v.VentaId == id
@@ -110,8 +114,7 @@ namespace WebApp.Controllers
             var VentaObj = new Models.ViewModels.VentaVM()
             {
 
-                ProductoLista = productoCategoria,
-                VentaLista = _ventaBusiness.GetVentas(),
+                ProductoLista = productoCategoria,                
                 CategoriaLista = _categoriaBusiness.GetAll(),
 
             };
@@ -122,7 +125,7 @@ namespace WebApp.Controllers
         // POST: VentaController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(VentaVM model)
+        public ActionResult Create(VentaVM model, int usuarioId)
         {
             try
             {
@@ -132,7 +135,7 @@ namespace WebApp.Controllers
                     Fecha = DateTime.Now,
                     ProductoId = model._Producto.ProductoId,
                     Cantidad = model.Cantidad,
-                    UsuarioId = int.Parse(User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault())
+                    UsuarioId = usuarioId
                 };
 
                 _ventaBusiness.AddVenta(nuevaVenta);
