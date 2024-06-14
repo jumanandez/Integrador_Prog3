@@ -75,7 +75,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap check_mini {
             get {
-                object obj = ResourceManager.GetObject("check mini", resourceCulture);
+                object obj = ResourceManager.GetObject("check_mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap medium_filter {
             get {
-                object obj = ResourceManager.GetObject("medium filter", resourceCulture);
+                object obj = ResourceManager.GetObject("medium_filter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap Micro_arrow {
             get {
-                object obj = ResourceManager.GetObject("Micro arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("Micro_arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -125,7 +125,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap micro_cate {
             get {
-                object obj = ResourceManager.GetObject("micro cate", resourceCulture);
+                object obj = ResourceManager.GetObject("micro_cate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,7 +135,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap Mini_borrar {
             get {
-                object obj = ResourceManager.GetObject("Mini borrar", resourceCulture);
+                object obj = ResourceManager.GetObject("Mini_borrar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -145,7 +145,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap mini_details {
             get {
-                object obj = ResourceManager.GetObject("mini details", resourceCulture);
+                object obj = ResourceManager.GetObject("mini_details", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -155,7 +155,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap Mini_modif {
             get {
-                object obj = ResourceManager.GetObject("Mini modif", resourceCulture);
+                object obj = ResourceManager.GetObject("Mini_modif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -165,7 +165,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap Mini_refresh {
             get {
-                object obj = ResourceManager.GetObject("Mini refresh", resourceCulture);
+                object obj = ResourceManager.GetObject("Mini_refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -175,7 +175,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap mini_search {
             get {
-                object obj = ResourceManager.GetObject("mini search", resourceCulture);
+                object obj = ResourceManager.GetObject("mini_search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -195,7 +195,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap sort_mini {
             get {
-                object obj = ResourceManager.GetObject("sort mini", resourceCulture);
+                object obj = ResourceManager.GetObject("sort_mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -205,7 +205,7 @@ namespace WinForm.Properties {
         /// </summary>
         public static System.Drawing.Bitmap unchecked_mini {
             get {
-                object obj = ResourceManager.GetObject("unchecked mini", resourceCulture);
+                object obj = ResourceManager.GetObject("unchecked_mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

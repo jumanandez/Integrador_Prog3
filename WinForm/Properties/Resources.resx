@@ -118,49 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="check mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="check_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="medium filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="medium_filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\medium filter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mini borrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mini borrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mini details" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mini_details" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mini search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mini_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="addmini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addmini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mini modif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Mini_modif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mini modif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LogoFashero" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\300806039_376649571296722_5764856203891840847_n.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="unchecked mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="unchecked_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unchecked mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Micro arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Micro_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Micro arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="micro cate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="micro_cate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\micro cate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sort mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="sort_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sort mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="read_more_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\read_more_24dp_FILL0_wght400_GRAD0_opsz24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mini refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Mini_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mini refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mini_borrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mini borrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -149,7 +149,7 @@ namespace WinForm
             contextMenuRow.Items.AddRange(new ToolStripItem[] { nuevoToolStrip, ordenarToolStripMenuItem1, modificarToolStripMenuItem, eliminarToolStripMenuItem, detallesToolStripMenuItem, refrescarToolStripMenuItem1 });
             contextMenuRow.Name = "contextMenuStrip1";
             contextMenuRow.RenderMode = ToolStripRenderMode.System;
-            contextMenuRow.Size = new Size(181, 158);
+            contextMenuRow.Size = new Size(126, 136);
             // 
             // nuevoToolStrip
             // 
@@ -157,7 +157,7 @@ namespace WinForm
             nuevoToolStrip.ForeColor = SystemColors.ButtonFace;
             nuevoToolStrip.Image = Properties.Resources.addmini;
             nuevoToolStrip.Name = "nuevoToolStrip";
-            nuevoToolStrip.Size = new Size(180, 22);
+            nuevoToolStrip.Size = new Size(125, 22);
             nuevoToolStrip.Text = "Nuevo";
             nuevoToolStrip.Click += toolStripMenuItem1ToolStripMenuItem_Click;
             // 
@@ -167,7 +167,7 @@ namespace WinForm
             ordenarToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
             ordenarToolStripMenuItem1.Image = Properties.Resources.sort_mini;
             ordenarToolStripMenuItem1.Name = "ordenarToolStripMenuItem1";
-            ordenarToolStripMenuItem1.Size = new Size(180, 22);
+            ordenarToolStripMenuItem1.Size = new Size(125, 22);
             ordenarToolStripMenuItem1.Text = "Ordenar";
             ordenarToolStripMenuItem1.Click += ordenarToolStripMenuItem1_Click;
             // 
@@ -185,7 +185,7 @@ namespace WinForm
             modificarToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
             modificarToolStripMenuItem.Image = Properties.Resources.Mini_modif;
             modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            modificarToolStripMenuItem.Size = new Size(180, 22);
+            modificarToolStripMenuItem.Size = new Size(125, 22);
             modificarToolStripMenuItem.Text = "Modificar";
             modificarToolStripMenuItem.Click += modificarToolStripMenuItem_Click;
             // 
@@ -194,7 +194,7 @@ namespace WinForm
             eliminarToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
             eliminarToolStripMenuItem.Image = Properties.Resources.Mini_borrar;
             eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            eliminarToolStripMenuItem.Size = new Size(180, 22);
+            eliminarToolStripMenuItem.Size = new Size(125, 22);
             eliminarToolStripMenuItem.Text = "Eliminar";
             eliminarToolStripMenuItem.Click += eliminarToolStripMenuItem_Click;
             // 
@@ -203,7 +203,7 @@ namespace WinForm
             detallesToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
             detallesToolStripMenuItem.Image = Properties.Resources.read_more_24dp_FILL0_wght400_GRAD0_opsz24;
             detallesToolStripMenuItem.Name = "detallesToolStripMenuItem";
-            detallesToolStripMenuItem.Size = new Size(180, 22);
+            detallesToolStripMenuItem.Size = new Size(125, 22);
             detallesToolStripMenuItem.Text = "Detalles";
             detallesToolStripMenuItem.Click += detallesToolStripMenuItem_Click;
             // 
@@ -212,7 +212,7 @@ namespace WinForm
             refrescarToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
             refrescarToolStripMenuItem1.Image = Properties.Resources.Mini_refresh;
             refrescarToolStripMenuItem1.Name = "refrescarToolStripMenuItem1";
-            refrescarToolStripMenuItem1.Size = new Size(180, 22);
+            refrescarToolStripMenuItem1.Size = new Size(125, 22);
             refrescarToolStripMenuItem1.Text = "Refrescar";
             refrescarToolStripMenuItem1.Click += refrescarToolStripMenuItem_Click;
             // 
@@ -426,7 +426,7 @@ namespace WinForm
             BTNdelete.StateCommon.Content.ShortText.Color2 = Color.WhiteSmoke;
             BTNdelete.StateCommon.Content.ShortText.ColorAngle = 45F;
             BTNdelete.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
-            BTNdelete.StateCommon.Content.ShortText.Font = new Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BTNdelete.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BTNdelete.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             BTNdelete.StateTracking.Border.Rounding = 8F;
             BTNdelete.TabIndex = 11;
@@ -462,7 +462,7 @@ namespace WinForm
             BTNmodif.StateCommon.Content.ShortText.Color2 = Color.WhiteSmoke;
             BTNmodif.StateCommon.Content.ShortText.ColorAngle = 45F;
             BTNmodif.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
-            BTNmodif.StateCommon.Content.ShortText.Font = new Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BTNmodif.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BTNmodif.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             BTNmodif.StateTracking.Border.Rounding = 8F;
             BTNmodif.TabIndex = 12;
@@ -497,7 +497,7 @@ namespace WinForm
             btnNuevoProducto.StateCommon.Content.ShortText.Color2 = Color.WhiteSmoke;
             btnNuevoProducto.StateCommon.Content.ShortText.ColorAngle = 45F;
             btnNuevoProducto.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
-            btnNuevoProducto.StateCommon.Content.ShortText.Font = new Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNuevoProducto.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNuevoProducto.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             btnNuevoProducto.StateTracking.Border.Rounding = 8F;
             btnNuevoProducto.TabIndex = 14;
@@ -638,7 +638,7 @@ namespace WinForm
             LblBienvenido.StateNormal.ShortText.Color2 = Color.White;
             LblBienvenido.StateNormal.ShortText.ColorAngle = 45F;
             LblBienvenido.StateNormal.ShortText.ColorStyle = PaletteColorStyle.Solid;
-            LblBienvenido.StateNormal.ShortText.Font = new Font("Poppins", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblBienvenido.StateNormal.ShortText.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblBienvenido.StateNormal.ShortText.MultiLine = InheritBool.True;
             LblBienvenido.StateNormal.ShortText.MultiLineH = PaletteRelativeAlign.Near;
             LblBienvenido.StateNormal.ShortText.TextV = PaletteRelativeAlign.Near;
@@ -734,11 +734,11 @@ namespace WinForm
             label1.Name = "label1";
             label1.Palette = kryptonCustomPaletteBase1;
             label1.PaletteMode = PaletteMode.Custom;
-            label1.Size = new Size(127, 35);
+            label1.Size = new Size(115, 29);
             label1.StateCommon.ShortText.Color1 = Color.FromArgb(120, 140, 200);
             label1.StateCommon.ShortText.Color2 = Color.FromArgb(120, 140, 200);
             label1.StateCommon.ShortText.ColorAngle = 45F;
-            label1.StateCommon.ShortText.Font = new Font("Poppins", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.TabIndex = 29;
             label1.Values.Text = "Productos";
             // 
@@ -845,13 +845,13 @@ namespace WinForm
             // 
             kryptonLabel2.Location = new Point(58, 6);
             kryptonLabel2.Name = "kryptonLabel2";
-            kryptonLabel2.Size = new Size(335, 40);
+            kryptonLabel2.Size = new Size(319, 35);
             kryptonLabel2.StateCommon.Padding = new Padding(6, 2, 2, 2);
             kryptonLabel2.StateCommon.ShortText.Color1 = Color.FromArgb(250, 252, 252);
             kryptonLabel2.StateCommon.ShortText.Color2 = Color.FromArgb(250, 252, 252);
             kryptonLabel2.StateCommon.ShortText.ColorAngle = 135F;
             kryptonLabel2.StateCommon.ShortText.ColorStyle = PaletteColorStyle.Dashed;
-            kryptonLabel2.StateCommon.ShortText.Font = new Font("Noto Sans", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonLabel2.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonLabel2.TabIndex = 1;
             kryptonLabel2.Values.Text = "Sistema de control de stock";
             kryptonLabel2.MouseDown += kryptonLabel2_MouseDown;
