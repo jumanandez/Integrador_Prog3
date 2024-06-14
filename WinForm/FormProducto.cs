@@ -2,6 +2,9 @@
 using Proyecto.Core.Entities;
 using System.Data;
 using Krypton.Toolkit;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinForm
 {
@@ -576,86 +579,93 @@ namespace WinForm
         {
             string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
             List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
-            switch (columnName)
+            if (e.Button == MouseButtons.Right)
             {
-                case "ColumnNombreProducto":
-                    if (_orderType == "n")
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
-                        _orderType = "n";
-                        break;
-                    }
-                case "ColumnCategoria":
-                    if (_orderType != "c")
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
-                        _orderType = "c";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                case "ColumnStock":
-                    if (_orderType != "s")
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
-                        _orderType = "s";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                case "ColumnHabilitado":
-                    if (_orderType != "h")
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
-                        _orderType = "h";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                case "ColumnCompras":
-                    if (_orderType != "cp")
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
-                        _orderType = "cp";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
-                        _orderType = "x";
-                        break;
-                    }
-                case "ColumnVentas":
-                    if (_orderType != "v")
-                    {
-                        RefreshGrid(on.OrderByDescending(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
-                        _orderType = "v";
-                        break;
-                    }
-                    else
-                    {
-                        RefreshGrid(on.OrderBy(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
-                        _orderType = "x";
-                        break;
-                    }
+                contextMenuStrip2.Show(Cursor.Position);
+            }
+            else
+            {
+                switch (columnName)
+                {
+                    case "ColumnNombreProducto":
+                        if (_orderType == "n")
+                        {
+                            RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
+                            _orderType = "x";
+                            break;
+                        }
+                        else
+                        {
+                            RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
+                            _orderType = "n";
+                            break;
+                        }
+                    case "ColumnCategoria":
+                        if (_orderType != "c")
+                        {
+                            RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
+                            _orderType = "c";
+                            break;
+                        }
+                        else
+                        {
+                            RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
+                            _orderType = "x";
+                            break;
+                        }
+                    case "ColumnStock":
+                        if (_orderType != "s")
+                        {
+                            RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                            _orderType = "s";
+                            break;
+                        }
+                        else
+                        {
+                            RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                            _orderType = "x";
+                            break;
+                        }
+                    case "ColumnHabilitado":
+                        if (_orderType != "h")
+                        {
+                            RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
+                            _orderType = "h";
+                            break;
+                        }
+                        else
+                        {
+                            RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
+                            _orderType = "x";
+                            break;
+                        }
+                    case "ColumnCompras":
+                        if (_orderType != "cp")
+                        {
+                            RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
+                            _orderType = "cp";
+                            break;
+                        }
+                        else
+                        {
+                            RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
+                            _orderType = "x";
+                            break;
+                        }
+                    case "ColumnVentas":
+                        if (_orderType != "v")
+                        {
+                            RefreshGrid(on.OrderByDescending(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
+                            _orderType = "v";
+                            break;
+                        }
+                        else
+                        {
+                            RefreshGrid(on.OrderBy(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
+                            _orderType = "x";
+                            break;
+                        }
+                }
             }
         }
 
@@ -711,46 +721,49 @@ namespace WinForm
         }
         #endregion
 
-        private void sidebartimer_Tick(object sender, EventArgs e)
+        #region Codigo UI/UEX
+        private void sidebartimer_Tick(object sender, EventArgs e)//Timer de animacion de menu
         {
             if (sidebaropen)
             {
-                sidebarpanel.Width -= 10;
-                if (sidebarpanel.Width == sidebarpanel.MinimumSize.Width)
+                menupanel.Width -= 10;
+                if (menupanel.Width == menupanel.MinimumSize.Width)
                 {
                     sidebaropen = false;
+                    filteropen = false;
                     sidebartimer.Stop();
                     kryptonButton1.Enabled = false;
                 }
             }
             else
             {
-                sidebarpanel.Width += 10;
-                if (sidebarpanel.Width == sidebarpanel.MaximumSize.Width)
+                menupanel.Width += 10;
+                if (menupanel.Width == menupanel.MaximumSize.Width)
                 {
                     sidebaropen = true;
                     sidebartimer.Stop();
-                    kryptonButton1.Enabled = true;
                 }
             }
 
         }
 
-        private void menubutton_Click(object sender, EventArgs e)
+        private void menubutton_Click(object sender, EventArgs e)//Inicio de timer de boton menu
         {
             if (!filteropen)
             {
-                filtercontainer.Height = filtercontainer.MinimumSize.Height;
+                flowLayoutPanel1.Height = flowLayoutPanel1.MinimumSize.Height;
+                kryptonButton1.Enabled = true;
+                filteropen = false;
             }
             sidebartimer.Start();
         }
 
-        private void filtertimer_Tick(object sender, EventArgs e)
+        private void filtertimer_Tick(object sender, EventArgs e)//Timer de animacion de filtros
         {
             if (filteropen)
             {
-                filtercontainer.Height += 10;
-                if (filtercontainer.Height == filtercontainer.MaximumSize.Height)
+                flowLayoutPanel1.Height += 10;
+                if (flowLayoutPanel1.Height == flowLayoutPanel1.MaximumSize.Height)
                 {
                     filteropen = false;
                     filtertimer.Stop();
@@ -758,8 +771,8 @@ namespace WinForm
             }
             else if (!filteropen)
             {
-                filtercontainer.Height -= 10;
-                if (filtercontainer.Height == filtercontainer.MinimumSize.Height)
+                flowLayoutPanel1.Height -= 10;
+                if (flowLayoutPanel1.Height == flowLayoutPanel1.MinimumSize.Height)
                 {
                     filteropen = true;
                     filtertimer.Stop();
@@ -768,15 +781,81 @@ namespace WinForm
 
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private void kryptonButton1_Click(object sender, EventArgs e)//Inicio de timer de filtros
         {
             filtertimer.Start();
         }
+        #region Codigo para mover la forma presionando donde sea
+        private void FormProducto_MouseDown(object sender, MouseEventArgs e)// al presionar en la forma
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        private void kryptonLabel2_MouseDown(object sender, MouseEventArgs e)//al presionar el text label
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
 
-        private void sidebarpanel_Paint(object sender, PaintEventArgs e)
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+        #endregion
+        private void dataGridViewProducto_MouseDown(object sender, MouseEventArgs e)//Seleccionar un objeto al abrir el menu contextual
+        {
+            //if (dataGridViewProducto.SelectedColumns == null)
+            //{
+            if (e.Button == MouseButtons.Right)
+            {
+                var hti = dataGridViewProducto.HitTest(e.X, e.Y);
+                dataGridViewProducto.ClearSelection();
+                if (hti.RowIndex != -1)
+                {
+                    dataGridViewProducto.Rows[hti.RowIndex].Selected = true;
+                }
+            }
+            //}
+        }
+        private void toolStripMenuItem1ToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de agregar nuevo del menu contextual
+        {
+            btnNuevoProducto_Click(sender, e);
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de eliminar del menu contextual
+        {
+            BTNdelete_Click(sender, e);
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de modificar del menu contextual
+        {
+            btnModificar_Click(sender, e);
+        }
+
+        private void detallesToolStripMenuItem_Click(object sender, EventArgs e)//No implementado, codigo para mostrar mas detalles de un elemento seleccionado
         {
 
         }
+
+        private void refrescarToolStripMenuItem_Click(object sender, EventArgs e)//refrescar datagrid menu contexto
+        {
+            RefreshGrid(null);
+        }
+
+        private void ordenarToolStripMenuItem1_Click(object sender, EventArgs e)//No implementado codigo para combo box de seleccionar orden
+        {
+
+        }
+        #endregion
+
     }
 }
 

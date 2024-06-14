@@ -21,7 +21,7 @@ namespace WinForm
             _categoriaBusiness = catbusi;
             _productoBusiness = produbusi;
             InitializeComponent();
-            button1.Enabled= false;
+            button1.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -187,11 +187,22 @@ namespace WinForm
             }
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)//Ignora  espacios en textbox
         {
             if (e.KeyChar == (char)Keys.Space)
             {
                 e.Handled = true;
+            }
+        }
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)//implementado a medias, codigo para presionar enter y logear
+        {
+            if ((e.KeyChar == (char)Keys.Enter))
+            {
+
+                if (textBox2.Text == "Ingrese una contraseña" || textBox2.Text == "".Trim())
+                {
+                    textBox2.Focus();
+                }
             }
         }
     }

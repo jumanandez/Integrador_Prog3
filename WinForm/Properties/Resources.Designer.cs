@@ -63,7 +63,7 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap addmini{
+        public static System.Drawing.Bitmap addmini {
             get {
                 object obj = ResourceManager.GetObject("addmini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,6 +113,16 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Micro_arrow {
+            get {
+                object obj = ResourceManager.GetObject("Micro arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap micro_cate {
             get {
                 object obj = ResourceManager.GetObject("micro cate", resourceCulture);
@@ -133,6 +143,16 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap mini_details {
+            get {
+                object obj = ResourceManager.GetObject("mini details", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Mini_modif {
             get {
                 object obj = ResourceManager.GetObject("Mini modif", resourceCulture);
@@ -143,9 +163,39 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Mini_refresh {
+            get {
+                object obj = ResourceManager.GetObject("Mini refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap mini_search {
             get {
                 object obj = ResourceManager.GetObject("mini search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap read_more_24dp_FILL0_wght400_GRAD0_opsz24 {
+            get {
+                object obj = ResourceManager.GetObject("read_more_24dp_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sort_mini {
+            get {
+                object obj = ResourceManager.GetObject("sort mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
