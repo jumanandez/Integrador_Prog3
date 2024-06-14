@@ -162,7 +162,7 @@ namespace Proyecto.Core.Data
         #endregion
 
         #region Region Ventas
-        public List<Venta> GetVentas(int usuarioId)
+        public List<Venta> GetVentas(int userId)
         {
             var ventas = new List<Venta>();
 
@@ -170,8 +170,8 @@ namespace Proyecto.Core.Data
             {
 
                 ventas = (from v in dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario)
-                          where v.UsuarioId == usuarioId
-                          select v).ToList();       
+                          where v.UsuarioId == userId
+                          select v).ToList();
 
                 //ventas = dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario).ToList();
             }
@@ -279,7 +279,7 @@ namespace Proyecto.Core.Data
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                var User = dbcontext.Usuarios.Include(v => v.Venta).Include(v => v.Compras).Where(b => b.Nombre == Username).FirstOrDefault();
                 return User;
             }
         }

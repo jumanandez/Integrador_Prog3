@@ -13,7 +13,7 @@ namespace Proyecto.Core.Business.Interfaces
 
         public void DeleteVenta(int id);
 
-        public List<Venta> GetVentas();
+        public List<Venta> GetVentas(int userId);
   
     }
 }

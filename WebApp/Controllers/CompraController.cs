@@ -49,38 +49,19 @@ namespace WebApp.Controllers
             return View(ViewModel);
         }
 
-        public IActionResult Create()
-        public IActionResult Details(int? CategoriaId, int id)
-        {
-            return View(CompraNueva);
 
-            compras = (from c in compras
-                       where c.Producto.CategoriaId == CategoriaId.Value
-                       where c.ProductoId == id
-                       select c).ToList();
-
-        [HttpGet]
-        public JsonResult GetProductosByCategoria(int categoriaId)
-        {
-            var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
-
-            return Json(productos);
-        }
-
-
-        //Get  compra/create
         public IActionResult Create()
         {
-
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var CompraNueva = new CompraVM()
             {
                 CategoriaLista = _categoriaBusiness.GetAll(),
-                CompraLista = _compraBusiness.GetCompras()
+                CompraLista = _compraBusiness.GetCompras(userId)
             };
 
             return View(CompraNueva);
-
         }
+
 
         [HttpGet]
         public JsonResult GetProductosByCategoria(int categoriaId)
@@ -112,7 +93,7 @@ namespace WebApp.Controllers
             var compra = new Compra
             {
                 ProductoId = compraModel.ProductoId,
-                Fecha = DateTime.Now,
+                Fecha = compraModel.FechaCompra,
                 Cantidad = compraModel.ProductoCantidad,
                 UsuarioId = int.Parse(User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault())
             };

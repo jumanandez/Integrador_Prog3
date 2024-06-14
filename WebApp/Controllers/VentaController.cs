@@ -40,12 +40,15 @@ namespace WebApp.Controllers
 
 
         // GET: VentaController
-        public ActionResult Index(int usuarioId)
+        public ActionResult Index()
         {
-           var ventas = _ventaBusiness.GetVentas(usuarioId);
+
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            var ventas = _ventaBusiness.GetVentas(userId);
 
            var ViewModel = new VentaVM()
-            {
+            {           
                 VentaLista = ventas
             };
 
@@ -53,10 +56,10 @@ namespace WebApp.Controllers
         }
 
         // GET: VentaController/Details/5
-        public ActionResult Details(int id, int usuarioId)
+        public ActionResult Details(int id, int userId)
         {
 
-            var ventas = _ventaBusiness.GetVentas(usuarioId);
+            var ventas = _ventaBusiness.GetVentas(userId);
 
             ventas = (from v in ventas
                       where v.VentaId == id
@@ -129,13 +132,14 @@ namespace WebApp.Controllers
         {
             try
             {
+                var usuario = _usuarioBusiness.ObtainUsuario("Administrador");
 
                 var nuevaVenta = new Venta
                 {
                     Fecha = DateTime.Now,
                     ProductoId = model._Producto.ProductoId,
                     Cantidad = model.Cantidad,
-                    UsuarioId = usuarioId
+                    UsuarioId = 4
                 };
 
                 _ventaBusiness.AddVenta(nuevaVenta);
