@@ -24,7 +24,6 @@ namespace WebApp.Controllers
         private readonly IProductoBusiness _productoBusiness;
 
 
-
         public CompraController(ICompraBusiness compraBusiness,
                                 ICategoriaBusiness categoriaBusiness,
                                 IProductoBusiness productoBusiness,
@@ -41,31 +40,31 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var ViewModel = new CompraVM()
             {
-                CompraLista = _compraBusiness.GetCompras()
+                CompraLista = _compraBusiness.GetCompras(userId)
             };
 
             return View(ViewModel);
         }
 
+        public IActionResult Create()
         public IActionResult Details(int? CategoriaId, int id)
         {
-            var compras = _compraBusiness.GetCompras();
+            return View(CompraNueva);
 
             compras = (from c in compras
                        where c.Producto.CategoriaId == CategoriaId.Value
                        where c.ProductoId == id
                        select c).ToList();
 
-            var ViewModel = new CompraVM
-            {
-                CompraLista = compras
-            };
+        [HttpGet]
+        public JsonResult GetProductosByCategoria(int categoriaId)
+        {
+            var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
 
-            return View(ViewModel);
-
+            return Json(productos);
         }
 
 
@@ -73,7 +72,7 @@ namespace WebApp.Controllers
         public IActionResult Create()
         {
 
-            var CompraNueva = new Models.ViewModels.CompraVM()
+            var CompraNueva = new CompraVM()
             {
                 CategoriaLista = _categoriaBusiness.GetAll(),
                 CompraLista = _compraBusiness.GetCompras()
@@ -87,6 +86,7 @@ namespace WebApp.Controllers
         public JsonResult GetProductosByCategoria(int categoriaId)
         {
             var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
+
             return Json(productos);
         }
 

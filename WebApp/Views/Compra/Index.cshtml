@@ -4,29 +4,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Seccion de compras</h1>
-<hr>
+<h1>Compras</h1>
 
+
+<hr>
 <a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
 
 <hr>
- <table class="table table-hover">
-     <thead>
-         <tr>
-             <th>CompraID</th>
-             <th>Fecha</th>
-             <th>Producto</th>
-             <th>Cantidad</th>
-         </tr>
-     </thead>
-     @foreach (var v in Model.CompraLista)
-     {
-         <tbody>
-             <tr>
-                 <td>@v.CompraId</td>
-                 <td>@v.Fecha</td>
-                 <td>@v.Producto.Nombre</td>
-                 <td>@v.Cantidad</td>
-         </tbody>
-     }
- </table>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">CompraID</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+        </tr>
+    </thead>
+
+    @foreach (var v in Model.CompraLista)
+    {
+        <tbody>
+            <tr>
+                <td>@v.CompraId</td>
+                <td>@v.Fecha</td>
+                <td>@v.Producto.Nombre</td>
+                <td>@v.Cantidad</td>
+        </tbody>
+    }
+</table>

@@ -1,4 +1,5 @@
-﻿using Proyecto.Core.Business.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
@@ -24,9 +25,9 @@ namespace Proyecto.Core.Business
             _projectRepository.AddCompra(compra);
         }
 
-        public List<Compra> GetCompras()
+        public List<Compra> GetCompras(int usuarioId)
         {
-            return _projectRepository.GetCompras();
+            return _projectRepository.GetCompras(usuarioId);
         }
 
         public void DeleteCompra(int id)
@@ -34,5 +35,18 @@ namespace Proyecto.Core.Business
             _projectRepository.DeleteCompra(id);
         }
 
+        public bool VerificarFecha(DateTime fecha)
+        {
+            var fechaActual = DateTime.Now;
+            var fechaLimitePasada = fechaActual.AddDays(-7);
+            var fechaLimiteFutura = fechaActual;
+
+            if (fecha < fechaLimitePasada || fecha > fechaLimiteFutura)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
