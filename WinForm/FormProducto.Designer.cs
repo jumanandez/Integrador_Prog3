@@ -90,6 +90,7 @@ namespace WinForm
             nuevoToolStripMenuItem1 = new ToolStripMenuItem();
             Usertimer = new System.Windows.Forms.Timer(components);
             filtertimer = new System.Windows.Forms.Timer(components);
+            datagridroudergropu = new ReaLTaiizor.Controls.CyberGroupBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
             contextMenuRow.SuspendLayout();
             contextMenuStrip2.SuspendLayout();
@@ -105,6 +106,7 @@ namespace WinForm
             panelfilter.SuspendLayout();
             panelUsuario1.SuspendLayout();
             panel2.SuspendLayout();
+            datagridroudergropu.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewProducto
@@ -127,14 +129,14 @@ namespace WinForm
             dataGridViewProducto.GridStyles.StyleColumn = GridStyle.Custom1;
             dataGridViewProducto.GridStyles.StyleDataCells = GridStyle.Custom1;
             dataGridViewProducto.GridStyles.StyleRow = GridStyle.Custom1;
-            dataGridViewProducto.Location = new Point(162, 214);
+            dataGridViewProducto.Location = new Point(2, 4);
             dataGridViewProducto.Name = "dataGridViewProducto";
             dataGridViewProducto.Palette = kryptonCustomPaletteBase1;
             dataGridViewProducto.PaletteMode = PaletteMode.Custom;
             dataGridViewProducto.ReadOnly = true;
             dataGridViewProducto.RowHeadersVisible = false;
             dataGridViewProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProducto.Size = new Size(618, 356);
+            dataGridViewProducto.Size = new Size(615, 356);
             dataGridViewProducto.StandardTab = true;
             dataGridViewProducto.TabIndex = 0;
             dataGridViewProducto.TabStop = false;
@@ -880,13 +882,14 @@ namespace WinForm
             // menubutton
             // 
             menubutton.Cursor = Cursors.Hand;
-            menubutton.Image = (Image)resources.GetObject("menubutton.Image");
-            menubutton.Location = new Point(3, 2);
+            menubutton.Location = new Point(3, 3);
             menubutton.Name = "menubutton";
             menubutton.Size = new Size(52, 49);
             menubutton.TabIndex = 1;
             menubutton.TabStop = false;
             menubutton.Click += menubutton_Click;
+            menubutton.MouseLeave += menubutton_MouseLeave;
+            menubutton.MouseHover += FormProducto_MouseHover;
             // 
             // panelhabilitados
             // 
@@ -996,7 +999,7 @@ namespace WinForm
             menupanel.MaximumSize = new Size(221, 581);
             menupanel.MinimumSize = new Size(53, 581);
             menupanel.Name = "menupanel";
-            menupanel.Size = new Size(53, 581);
+            menupanel.Size = new Size(221, 581);
             menupanel.TabIndex = 0;
             // 
             // panelfilter
@@ -1162,6 +1165,39 @@ namespace WinForm
             filtertimer.Interval = 15;
             filtertimer.Tick += filtertimer_Tick;
             // 
+            // datagridroudergropu
+            // 
+            datagridroudergropu.Alpha = 20;
+            datagridroudergropu.BackColor = Color.Transparent;
+            datagridroudergropu.Background = true;
+            datagridroudergropu.Background_WidthPen = 3F;
+            datagridroudergropu.BackgroundPen = true;
+            datagridroudergropu.ColorBackground = Color.FromArgb(48, 48, 56);
+            datagridroudergropu.ColorBackground_1 = Color.FromArgb(48, 48, 56);
+            datagridroudergropu.ColorBackground_2 = Color.FromArgb(48, 48, 56);
+            datagridroudergropu.ColorBackground_Pen = Color.FromArgb(56, 56, 56);
+            datagridroudergropu.ColorLighting = Color.FromArgb(56, 56, 56);
+            datagridroudergropu.ColorPen_1 = Color.FromArgb(56, 56, 56);
+            datagridroudergropu.ColorPen_2 = Color.FromArgb(255, 192, 192);
+            datagridroudergropu.Controls.Add(dataGridViewProducto);
+            datagridroudergropu.CyberGroupBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            datagridroudergropu.ForeColor = Color.FromArgb(245, 245, 245);
+            datagridroudergropu.Lighting = false;
+            datagridroudergropu.LinearGradient_Background = false;
+            datagridroudergropu.LinearGradientPen = false;
+            datagridroudergropu.Location = new Point(160, 211);
+            datagridroudergropu.Name = "datagridroudergropu";
+            datagridroudergropu.PenWidth = 15;
+            datagridroudergropu.RGB = false;
+            datagridroudergropu.Rounding = true;
+            datagridroudergropu.RoundingInt = 10;
+            datagridroudergropu.Size = new Size(617, 359);
+            datagridroudergropu.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            datagridroudergropu.TabIndex = 32;
+            datagridroudergropu.Tag = "Cyber";
+            datagridroudergropu.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            datagridroudergropu.Timer_RGB = 300;
+            // 
             // FormProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1183,8 +1219,8 @@ namespace WinForm
             Controls.Add(btnNuevoProducto);
             Controls.Add(BTNmodif);
             Controls.Add(BTNdelete);
-            Controls.Add(dataGridViewProducto);
             Controls.Add(panel5);
+            Controls.Add(datagridroudergropu);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "FormProducto";
             Palette = kryptonCustomPaletteBase1;
@@ -1212,6 +1248,7 @@ namespace WinForm
             panelfilter.ResumeLayout(false);
             panelUsuario1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            datagridroudergropu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1276,5 +1313,6 @@ namespace WinForm
         private System.Windows.Forms.Timer filtertimer;
         private Button btnlogout;
         private Panel panel2;
+        private ReaLTaiizor.Controls.CyberGroupBox datagridroudergropu;
     }
 }

@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Krypton.Toolkit;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinForm
 {
@@ -24,24 +25,31 @@ namespace WinForm
             InitializeComponent();
             _loggedUser = loggerUser;
             lblNombreProducto.Text = _loggedUser.Nombre;
-            ListViewGroup compras = new ListViewGroup("Compras", HorizontalAlignment.Left);
-            compras.CollapsedState = ListViewGroupCollapsedState.Collapsed;
-            listView1.Groups.Add(compras);
-            ListViewGroup ventas = new ListViewGroup("ventas", HorizontalAlignment.Right);
-            ventas.CollapsedState = ListViewGroupCollapsedState.Collapsed;
-            listView1.Groups.Add(ventas);
-            var compralist = from compra in _loggedUser.Compras
-                             select compra;
-            var i = 0;
 
-            foreach (var user in compralist)
-            {
-                ListViewItem Producto = new ListViewItem(user.Producto.Nombre, compras);
-                Producto.SubItems.Add(user.Fecha.ToString("d/M/Y"));
-                Producto.SubItems.Add(user.Cantidad.ToString());
-                listView1.Items.Add(Producto);
-                i++;
-            }
+            //listView1.Columns.Add("Producto", 200, HorizontalAlignment.Left);
+            //listView1.Columns.Add("Cantidad", 100, HorizontalAlignment.Left);
+            //listView1.Columns.Add("Fecha", 150, HorizontalAlignment.Left);
+
+            //var comprasGroup = new ListViewGroup("Compras", HorizontalAlignment.Left);
+            //var ventasGroup = new ListViewGroup("Ventas", HorizontalAlignment.Left);
+
+            //listView1.Groups.Add(comprasGroup);
+            //listView1.Groups.Add(ventasGroup);
+
+            //var compralist = from compra in _loggedUser.Compras
+            //                 select compra;
+
+            //var ventalist = from venta in _loggedUser.Venta
+            //                select venta;
+
+            //foreach (var user in compralist)
+            //{
+            //    listView1.Items.Add(new ListViewItem(new[] { user.Producto.Nombre, user.Cantidad.ToString(), user.Fecha.ToString("d/M/Y") }) { Group = comprasGroup });
+            //}
+            //foreach (var user in ventalist)
+            //{
+            //    listView1.Items.Add(new ListViewItem(new[] { user.Producto.Nombre, user.Cantidad.ToString(), user.Fecha.ToString("d/M/Y") }) { Group = ventasGroup });
+            //}
 
         }
         private void BTNCancelar_Click(object sender, EventArgs e)

@@ -3,8 +3,6 @@ using Proyecto.Core.Entities;
 using System.Data;
 using Krypton.Toolkit;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinForm
 {
@@ -906,6 +904,16 @@ namespace WinForm
         {
             var UserDetails = new FormUserDetails(_loggedUser);
             UserDetails.ShowDialog();
+        }
+
+        private void FormProducto_MouseHover(object sender, EventArgs e)
+        {
+            menubutton.Image = Properties.Resources.Medium_meno_tracked;
+        }
+
+        private void menubutton_MouseLeave(object sender, EventArgs e)
+        {
+            menubutton.Image = Properties.Resources.Medium_meno;
         }
     }
 }

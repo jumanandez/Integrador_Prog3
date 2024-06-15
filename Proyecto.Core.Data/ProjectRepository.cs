@@ -259,6 +259,7 @@ namespace Proyecto.Core.Data
                     .Include(c => c.Compras)
                         .ThenInclude(compra => compra.Producto)
                     .Include(c => c.Venta)
+                    .ThenInclude(venta => venta.Producto)
                     .FirstOrDefault();
 
                 return User;

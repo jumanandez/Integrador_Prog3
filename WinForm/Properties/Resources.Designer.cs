@@ -243,6 +243,26 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Medium_meno {
+            get {
+                object obj = ResourceManager.GetObject("Medium_meno", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Medium_meno_tracked {
+            get {
+                object obj = ResourceManager.GetObject("Medium_meno_tracked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Micro_arrow {
             get {
                 object obj = ResourceManager.GetObject("Micro_arrow", resourceCulture);
@@ -256,6 +276,16 @@ namespace WinForm.Properties {
         public static System.Drawing.Bitmap micro_cate {
             get {
                 object obj = ResourceManager.GetObject("micro_cate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap micro_cate1 {
+            get {
+                object obj = ResourceManager.GetObject("micro_cate1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -35,10 +35,14 @@ namespace WinForm
             lblCategoria = new Label();
             lblNombreProducto = new Label();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
-            BTNCancelar = new KryptonButton();
-            listView1 = new ListView();
             pictureBox1 = new PictureBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            panelfilter = new FlowLayoutPanel();
+            kryptonButton1 = new Button();
+            panelcategoria = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            panelfilter.SuspendLayout();
             SuspendLayout();
             // 
             // btnCargarProducto
@@ -268,71 +272,6 @@ namespace WinForm
             kryptonCustomPaletteBase1.ThemeName = "";
             kryptonCustomPaletteBase1.UseKryptonFileDialogs = true;
             // 
-            // BTNCancelar
-            // 
-            BTNCancelar.Anchor = AnchorStyles.Bottom;
-            BTNCancelar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNCancelar.Location = new Point(32, 449);
-            BTNCancelar.Name = "BTNCancelar";
-            BTNCancelar.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
-            BTNCancelar.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
-            BTNCancelar.OverrideDefault.Back.ColorAngle = 45F;
-            BTNCancelar.OverrideDefault.Back.ColorStyle = PaletteColorStyle.Dashed;
-            BTNCancelar.OverrideDefault.Border.Color1 = Color.FromArgb(60, 65, 190);
-            BTNCancelar.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
-            BTNCancelar.OverrideDefault.Border.ColorAngle = 45F;
-            BTNCancelar.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            BTNCancelar.OverrideDefault.Border.Rounding = 8F;
-            BTNCancelar.OverrideDefault.Content.DrawFocus = InheritBool.False;
-            BTNCancelar.Size = new Size(108, 29);
-            BTNCancelar.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
-            BTNCancelar.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
-            BTNCancelar.StateCommon.Back.ColorAngle = 45F;
-            BTNCancelar.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
-            BTNCancelar.StateCommon.Back.Image = Properties.Resources.close_24dp_FILL0_wght400_GRAD0_opsz24;
-            BTNCancelar.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
-            BTNCancelar.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterLeft;
-            BTNCancelar.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
-            BTNCancelar.StateCommon.Border.Color2 = Color.FromArgb(60, 60, 175);
-            BTNCancelar.StateCommon.Border.ColorAngle = 45F;
-            BTNCancelar.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            BTNCancelar.StateCommon.Border.Rounding = 8F;
-            BTNCancelar.StateCommon.Content.AdjacentGap = 1;
-            BTNCancelar.StateCommon.Content.Image.ImageColorTo = Color.White;
-            BTNCancelar.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
-            BTNCancelar.StateCommon.Content.ShortText.Color1 = Color.LightGray;
-            BTNCancelar.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
-            BTNCancelar.StateCommon.Content.ShortText.ColorAngle = 45F;
-            BTNCancelar.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
-            BTNCancelar.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BTNCancelar.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
-            BTNCancelar.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
-            BTNCancelar.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
-            BTNCancelar.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
-            BTNCancelar.StateTracking.Back.ColorAngle = 135F;
-            BTNCancelar.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            BTNCancelar.StateTracking.Border.Rounding = 8F;
-            BTNCancelar.StateTracking.Content.ShortText.Color1 = Color.White;
-            BTNCancelar.StateTracking.Content.ShortText.Color2 = Color.White;
-            BTNCancelar.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
-            BTNCancelar.TabIndex = 13;
-            BTNCancelar.Values.Text = "Cancelar";
-            BTNCancelar.Click += BTNCancelar_Click;
-            // 
-            // listView1
-            // 
-            listView1.BackColor = Color.FromArgb(64, 64, 64);
-            listView1.BorderStyle = BorderStyle.None;
-            listView1.Font = new Font("Segoe UI", 11F);
-            listView1.ForeColor = SystemColors.HighlightText;
-            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView1.Location = new Point(233, 46);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(422, 451);
-            listView1.TabIndex = 15;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.account_box_24dp_FILL0_wght400_GRAD0_opsz24;
@@ -343,15 +282,64 @@ namespace WinForm
             pictureBox1.TabIndex = 16;
             pictureBox1.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(panelfilter);
+            flowLayoutPanel1.Location = new Point(230, 12);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(430, 500);
+            flowLayoutPanel1.TabIndex = 17;
+            // 
+            // panelfilter
+            // 
+            panelfilter.BackColor = Color.FromArgb(70, 70, 80);
+            panelfilter.Controls.Add(kryptonButton1);
+            panelfilter.Controls.Add(panelcategoria);
+            panelfilter.Location = new Point(0, 0);
+            panelfilter.Margin = new Padding(0);
+            panelfilter.Name = "panelfilter";
+            panelfilter.Size = new Size(425, 250);
+            panelfilter.TabIndex = 1;
+            // 
+            // kryptonButton1
+            // 
+            kryptonButton1.BackColor = Color.FromArgb(56, 56, 68);
+            kryptonButton1.Cursor = Cursors.Hand;
+            kryptonButton1.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
+            kryptonButton1.FlatAppearance.BorderSize = 0;
+            kryptonButton1.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 72);
+            kryptonButton1.FlatAppearance.MouseOverBackColor = Color.FromArgb(42, 42, 48);
+            kryptonButton1.FlatStyle = FlatStyle.Flat;
+            kryptonButton1.Font = new Font("Segoe UI", 12F);
+            kryptonButton1.ForeColor = Color.Silver;
+            kryptonButton1.Image = Properties.Resources.medium_filter;
+            kryptonButton1.ImageAlign = ContentAlignment.MiddleLeft;
+            kryptonButton1.Location = new Point(0, 0);
+            kryptonButton1.Margin = new Padding(0);
+            kryptonButton1.Name = "kryptonButton1";
+            kryptonButton1.Size = new Size(430, 68);
+            kryptonButton1.TabIndex = 5;
+            kryptonButton1.Text = "Filtrar";
+            kryptonButton1.UseVisualStyleBackColor = false;
+            // 
+            // panelcategoria
+            // 
+            panelcategoria.BackColor = Color.FromArgb(50, 50, 56);
+            panelcategoria.Location = new Point(0, 68);
+            panelcategoria.Margin = new Padding(0);
+            panelcategoria.Name = "panelcategoria";
+            panelcategoria.Size = new Size(430, 182);
+            panelcategoria.TabIndex = 0;
+            // 
             // FormUserDetails
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(670, 525);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(pictureBox1);
-            Controls.Add(listView1);
-            Controls.Add(BTNCancelar);
             Controls.Add(btnCargarProducto);
             Controls.Add(lblCategoria);
             Controls.Add(lblNombreProducto);
@@ -365,6 +353,8 @@ namespace WinForm
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            panelfilter.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -374,9 +364,11 @@ namespace WinForm
         private KryptonButton btnCargarProducto;
         private Label lblCategoria;
         private Label lblNombreProducto;
-        private KryptonButton BTNCancelar;
         private KryptonCustomPaletteBase kryptonCustomPaletteBase1;
-        private ListView listView1;
         private PictureBox pictureBox1;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel panelfilter;
+        private Button kryptonButton1;
+        private Panel panelcategoria;
     }
 }
