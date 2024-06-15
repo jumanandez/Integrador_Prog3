@@ -48,5 +48,24 @@ namespace Proyecto.Core.Business
 
             return false;
         }
+
+        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId)
+        {
+            var compras = _projectRepository.GetCompras(usuarioId)
+                .Skip((pagina - 1) * itemsPorPagina)
+                .Take(itemsPorPagina)
+                .ToList();
+
+            var totalCompras = _projectRepository.GetCompras(usuarioId).Count();
+
+            return new Paginado<Compra>
+            {
+                Items = compras,
+                PaginaActual = pagina,
+                ItemsPorPagina = itemsPorPagina,
+                TotalPaginas = (int)Math.Ceiling(totalCompras / (double)itemsPorPagina)
+            };
+        }
+
     }
 }

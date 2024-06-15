@@ -124,7 +124,7 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId) 
+                compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
                                            .Include(c => c.Producto)
                                            .Include(c => c.Usuario)
                                            .Where(c => c.Producto.Habilitado == true)
@@ -159,6 +159,8 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
+
+       
         #endregion
 
         #region Region Ventas

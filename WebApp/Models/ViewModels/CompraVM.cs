@@ -7,12 +7,14 @@ namespace WebApp.Models.ViewModels
     {
         public List<Compra>? CompraLista { get; set; }
 
-        [Required(ErrorMessage = "El producto es requerido")]
-        public int ProductoId { get; set; }
+        public Paginado<Compra>? Paginado { get; set; }
 
-        [Required(ErrorMessage = "La cantidad del producto es requerida")]
+
+        public int? ProductoId { get; set; }
+
+        
         [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser mayor que cero")]
-        public int ProductoCantidad { get; set; }
+        public int? ProductoCantidad { get; set; }
 
         public Compra? _Compra { get; set; }
 
@@ -24,14 +26,13 @@ namespace WebApp.Models.ViewModels
 
         public Categoria? _Categoria { get; set; }
 
-        [Required(ErrorMessage = "La categoría es requerida")]
-        public int CategoriaId { get; set; }
+       
+        public int? CategoriaId { get; set; }
 
         public string? NombreProducto { get; set; }
 
 
-        [Required(ErrorMessage = "La fecha de compra es requerida")]
-        public DateTime FechaCompra { get; set; }
+        public DateTime? FechaCompra { get; set; }
     }
 
 

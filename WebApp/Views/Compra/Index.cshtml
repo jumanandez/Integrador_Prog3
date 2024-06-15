@@ -1,4 +1,5 @@
-﻿@model WebApp.Models.ViewModels.CompraVM
+﻿@using System.Security.Claims
+@model WebApp.Models.ViewModels.CompraVM
 @{
     ViewData["Title"] = "Registrar Compra";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,20 +14,33 @@
  <table class="table table-hover">
      <thead>
          <tr>
-             <th scope="col">CompraId</th>
-             <th scope="col">Fecha</th>
-             <th scope="col">Producto</th>
-             <th scope="col">Cantidad</th>
+             <th>Producto</th>
+             <th>Fecha</th>
+             <th>Cantidad</th>
          </tr>
      </thead>
-     @foreach (var v in Model.CompraLista)
-     {
-         <tbody>
-             <tr>
-                 <td>@v.CompraId</td>
-                 <td>@v.Fecha</td>
-                 <td>@v.Producto.Nombre</td>
-                 <td>@v.Cantidad</td>
-         </tbody>
-     }
- </table>
+     <tbody>
+        @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+        {
+            <tr>
+                <td>@c.Producto?.Nombre</td>
+                <td>@c.Fecha.ToShortDateString()</td>
+                <td>@c.Cantidad</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @if (Model.Paginado.PaginaActual > 1)
+    {
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
+    }
+
+    Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+
+    @if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
+    {
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
+    }
+</div>

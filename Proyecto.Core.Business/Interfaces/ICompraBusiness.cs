@@ -17,6 +17,8 @@ namespace Proyecto.Core.Business.Interfaces
 
         public bool VerificarFecha(DateTime fecha);
 
-        
+        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId);
+
+
     }
 }

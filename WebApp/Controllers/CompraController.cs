@@ -1,13 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using Proyecto.Core.Business;
 using Proyecto.Core.Business.Interfaces;
-using Proyecto.Core.Configurations;
-using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
 using System.Security.Claims;
 using WebApp.Models.ViewModels;
@@ -39,27 +32,27 @@ namespace WebApp.Controllers
         // GET: CompraController 
 
 
-        public ActionResult Index()
+        public ActionResult Index(int pagina = 1, int itemsPorPagina = 8)
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var ViewModel = new CompraVM()
+
+            var viewModel = new CompraVM
             {
-                CompraLista = _compraBusiness.GetCompras(userId)
+                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId)
             };
 
-            return View(ViewModel);
+            return View(viewModel);
         }
-
         public IActionResult Create()
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var CompraNueva = new CompraVM()
+            var oCompraVM = new CompraVM()
             {
                 CategoriaLista = _categoriaBusiness.GetAll(),
                 CompraLista = _compraBusiness.GetCompras(userId)
             };
 
-            return View(CompraNueva);
+            return View(oCompraVM);
 
         }
 
@@ -77,7 +70,7 @@ namespace WebApp.Controllers
             if (ModelState.IsValid)
             {
                 
-                if (_compraBusiness.VerificarFecha(compraModel.FechaCompra))
+                if (_compraBusiness.VerificarFecha((DateTime)compraModel.FechaCompra))
                 {
                     ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
                 }
@@ -87,9 +80,9 @@ namespace WebApp.Controllers
                     int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
                     var compra = new Compra
                     {
-                        ProductoId = compraModel.ProductoId,
-                        Fecha = compraModel.FechaCompra,
-                        Cantidad = compraModel.ProductoCantidad,
+                        ProductoId = (int)compraModel.ProductoId,
+                        Fecha = (DateTime)compraModel.FechaCompra,
+                        Cantidad = (int)compraModel.ProductoCantidad,
                         UsuarioId = userId
                     };
 
@@ -104,11 +97,6 @@ namespace WebApp.Controllers
             compraModel.ProductoLista = _productoBusiness.GetAll();
             return View(compraModel);
         }
-
-
-
-
-
 
     }
 }
