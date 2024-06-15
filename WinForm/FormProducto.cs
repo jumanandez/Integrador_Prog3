@@ -19,13 +19,13 @@ namespace WinForm
         bool filteropen = false;
         bool userbarcollapsed;
 
-        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
+        public FormProducto(ICategoriaBusiness categoriaBusiness, IProductoBusiness productoBusiness, IUsuarioBusiness usuarioBusiness, Usuario userLogged)
         {
-            _categoriaBusiness = catbusi;
-            _productoBusiness = produbusi;
-            _usuarioBusiness = usuariobusi;
+            _categoriaBusiness = categoriaBusiness;
+            _productoBusiness = productoBusiness;
+            _usuarioBusiness = usuarioBusiness;
             _productoACargar = new Producto();
-            _loggedUser = usalog;
+            _loggedUser = userLogged;
             //         button1.Font = new Font("Wingdings 3", 16, FontStyle.Bold);
             //button1.Text = Char.ConvertFromUtf32(81);
             InitializeComponent();
@@ -118,7 +118,7 @@ namespace WinForm
         #endregion
 
 
-        //REFACTORIZACION DE METODO REFRESHGRID
+        //Refrescar el DatagridView segun una lista especifica o como viene desde la base
         public void RefreshGrid(List<Producto>? source)
         {
             dataGridViewProducto.AutoGenerateColumns = false;
@@ -678,21 +678,17 @@ namespace WinForm
         }
         public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
         {
-            var doublefilt = from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
-                             where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
-                             select p;
-
-            return doublefilt.ToList();
+            return (from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
+                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
+                    select p).ToList();
         }
         public List<Producto> FilterByCategoria(List<Producto> productos)
         {
-            var filtradosCategoria = from p in productos
-                                     where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
-                                     select p;
-
-            return filtradosCategoria.ToList();
+            return (from p in productos
+                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
+                    select p).ToList();
         }
-        private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool valor)
+        private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool? valor)
         {
             return (from p in FilterByCategoria(productos)
                     where p.Habilitado == valor
@@ -700,11 +696,9 @@ namespace WinForm
         }
         public List<Producto> FilterByText(List<Producto> productos, string searchText)
         {
-            var filteredProductos = from prod in productos
-                                    where prod.Nombre.ToLower().Contains(searchText)
-                                    select prod;
-
-            return filteredProductos.ToList();
+            return (from prod in productos
+                    where prod.Nombre.ToLower().Contains(searchText)
+                    select prod).ToList();
         }
         public List<Producto> FilterByTextHabilitado(List<Producto> productos, bool valor)
         {
@@ -855,7 +849,7 @@ namespace WinForm
             }
             //}
         }
-        private void toolStripMenuItem1ToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de agregar nuevo del menu contextual
+        private void nuevoProductoToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de agregar nuevo del menu contextual
         {
             btnNuevoProducto_Click(sender, e);
         }
