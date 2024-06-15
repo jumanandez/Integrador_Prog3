@@ -5,6 +5,7 @@ using Proyecto.Core.Entities;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
 using Krypton.Toolkit;
+using System.Drawing;
 
 namespace WinForm
 {
@@ -23,7 +24,6 @@ namespace WinForm
             InitializeComponent();
             button1.Enabled = false;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             bool pass;
@@ -122,7 +122,7 @@ namespace WinForm
             FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
             if (productosesion.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Rompiste todo!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Show();
             }
             else
             {
@@ -133,6 +133,7 @@ namespace WinForm
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
+                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
@@ -140,7 +141,6 @@ namespace WinForm
                     }
                 }
             }
-            DialogResult = DialogResult.OK;
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -189,6 +189,13 @@ namespace WinForm
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)//Ignora  espacios en textbox
         {
+            if (e.KeyChar == (char)Keys.Enter && (textBox2.Text != "Ingrese una contraseña" || textBox2.Text == "".Trim()))
+            {
+                this.AcceptButton = button1;//aceptar enter como click
+                Point screenCoordinates = button1.PointToScreen(Point.Empty);//manda al puntero al centro del boton
+
+                Cursor.Position = new Point(screenCoordinates.X + button1.Width / 2, screenCoordinates.Y + button1.Height / 2);
+            }
             if (e.KeyChar == (char)Keys.Space)
             {
                 e.Handled = true;
@@ -196,14 +203,26 @@ namespace WinForm
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)//implementado a medias, codigo para presionar enter y logear
         {
-            if ((e.KeyChar == (char)Keys.Enter))
+            if (e.KeyChar == (char)Keys.Enter)
             {
 
                 if (textBox2.Text == "Ingrese una contraseña" || textBox2.Text == "".Trim())
                 {
+                    textBox2.UseSystemPasswordChar = true;
+                    textBox2.StateCommon.Content.Color1 = Color.White;
                     textBox2.Focus();
+                    textBox2.Clear();
+                }
+                else
+                {
+                    button1_Click(this, new EventArgs());
                 }
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
         }
     }
 }

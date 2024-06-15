@@ -12,10 +12,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 
 namespace WinForm
 {
-    public partial class Form2 : Form
+    public partial class Form2 : KryptonForm
     {
         private readonly ICategoriaBusiness _categoríaBusiness;
         private readonly IProductoBusiness _productoBusiness;
@@ -26,6 +27,7 @@ namespace WinForm
             _productorSeleccionado = productin;
             _categoríaBusiness = catbusi;
             _productoBusiness = productoBusiness;
+            this.Text = "     Modificar Elemento";
             InitializeComponent();
             _new = false; //llamado por boton de modificar
             cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
@@ -41,6 +43,7 @@ namespace WinForm
             _categoríaBusiness = catbusi;
             _productoBusiness = productoBusiness;
             _new = true;//llamado por boton de nuevo
+            this.Text = "     Añadir Elemento";
             InitializeComponent();
             cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
             cmbBoxCategorias.DisplayMember = "Nombre";
