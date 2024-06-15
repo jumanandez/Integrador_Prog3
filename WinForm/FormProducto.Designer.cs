@@ -159,7 +159,7 @@ namespace WinForm
             nuevoToolStrip.Name = "nuevoToolStrip";
             nuevoToolStrip.Size = new Size(125, 22);
             nuevoToolStrip.Text = "Nuevo";
-            nuevoToolStrip.Click += toolStripMenuItem1ToolStripMenuItem_Click;
+            nuevoToolStrip.Click += nuevoProductoToolStripMenuItem_Click;
             // 
             // ordenarToolStripMenuItem1
             // 
@@ -278,7 +278,7 @@ namespace WinForm
             nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             nuevoToolStripMenuItem.Size = new Size(122, 22);
             nuevoToolStripMenuItem.Text = "Nuevo";
-            nuevoToolStripMenuItem.Click += toolStripMenuItem1ToolStripMenuItem_Click;
+            nuevoToolStripMenuItem.Click += nuevoProductoToolStripMenuItem_Click;
             // 
             // ordenarToolStripMenuItem
             // 
