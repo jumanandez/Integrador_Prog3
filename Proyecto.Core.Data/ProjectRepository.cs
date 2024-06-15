@@ -253,7 +253,14 @@ namespace Proyecto.Core.Data
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                //var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                var User = dbcontext.Usuarios
+                    .Where(b => b.Nombre == Username)
+                    .Include(c => c.Compras)
+                        .ThenInclude(compra => compra.Producto)
+                    .Include(c => c.Venta)
+                    .FirstOrDefault();
+
                 return User;
             }
         }

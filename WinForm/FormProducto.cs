@@ -18,7 +18,8 @@ namespace WinForm
         public Usuario _loggedUser;
         private string _orderType = " ";
         bool sidebaropen;
-        bool filteropen;
+        bool filteropen = false;
+        bool userbarcollapsed;
 
         public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
         {
@@ -731,8 +732,8 @@ namespace WinForm
                 {
                     sidebaropen = false;
                     filteropen = false;
+                    userbarcollapsed = false;
                     sidebartimer.Stop();
-                    kryptonButton1.Enabled = false;
                 }
             }
             else
@@ -751,19 +752,19 @@ namespace WinForm
         {
             if (!filteropen)
             {
-                flowLayoutPanel1.Height = flowLayoutPanel1.MinimumSize.Height;
-                kryptonButton1.Enabled = true;
+                panelfilter.Height = panelfilter.MinimumSize.Height;
+                panelUsuario1.Height = panelUsuario1.MinimumSize.Height;
                 filteropen = false;
+                userbarcollapsed = false;
             }
             sidebartimer.Start();
         }
-
         private void filtertimer_Tick(object sender, EventArgs e)//Timer de animacion de filtros
         {
             if (filteropen)
             {
-                flowLayoutPanel1.Height += 10;
-                if (flowLayoutPanel1.Height == flowLayoutPanel1.MaximumSize.Height)
+                panelfilter.Height += 10;
+                if (panelfilter.Height == panelfilter.MaximumSize.Height)
                 {
                     filteropen = false;
                     filtertimer.Stop();
@@ -771,19 +772,50 @@ namespace WinForm
             }
             else if (!filteropen)
             {
-                flowLayoutPanel1.Height -= 10;
-                if (flowLayoutPanel1.Height == flowLayoutPanel1.MinimumSize.Height)
+                panelfilter.Height -= 10;
+                if (panelfilter.Height == panelfilter.MinimumSize.Height)
                 {
                     filteropen = true;
                     filtertimer.Stop();
                 }
             }
-
         }
-
         private void kryptonButton1_Click(object sender, EventArgs e)//Inicio de timer de filtros
         {
+            if (!sidebaropen)
+            {
+                sidebartimer.Start();
+            }
             filtertimer.Start();
+        }
+        private void Usertimer_Tick(object sender, EventArgs e)//timer de animacion de usuario
+        {
+            if (userbarcollapsed)
+            {
+                panelUsuario1.Height += 10;
+                if (panelUsuario1.Height == panelUsuario1.MaximumSize.Height)
+                {
+                    userbarcollapsed = false;
+                    Usertimer.Stop();
+                }
+            }
+            else if (!userbarcollapsed)
+            {
+                panelUsuario1.Height -= 10;
+                if (panelUsuario1.Height == panelUsuario1.MinimumSize.Height)
+                {
+                    userbarcollapsed = true;
+                    Usertimer.Stop();
+                }
+            }
+        }
+        private void button1_Click_1(object sender, EventArgs e)//boton de usuario
+        {
+            if (!sidebaropen)
+            {
+                sidebartimer.Start();
+            }
+            Usertimer.Start();
         }
         #region Codigo para mover la forma presionando donde sea
         private void FormProducto_MouseDown(object sender, MouseEventArgs e)// al presionar en la forma
@@ -842,7 +874,7 @@ namespace WinForm
 
         private void detallesToolStripMenuItem_Click(object sender, EventArgs e)//No implementado, codigo para mostrar mas detalles de un elemento seleccionado
         {
-
+            //este lo hago yo
         }
 
         private void refrescarToolStripMenuItem_Click(object sender, EventArgs e)//refrescar datagrid menu contexto
@@ -852,10 +884,29 @@ namespace WinForm
 
         private void ordenarToolStripMenuItem1_Click(object sender, EventArgs e)//No implementado codigo para combo box de seleccionar orden
         {
-
+            //Este si podes hacer re bien juan
         }
         #endregion
 
+        private void btnlogout_Click(object sender, EventArgs e)//boton de cerrar sesion
+        {
+            DialogResult operao = MessageBox.Show("Seguro que quiere cerrar sesión?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (operao == DialogResult.Yes)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                Show();
+            }
+        }
+
+        private void btninformacion_Click(object sender, EventArgs e)
+        {
+            var UserDetails = new FormUserDetails(_loggedUser);
+            UserDetails.ShowDialog();
+        }
     }
 }
 

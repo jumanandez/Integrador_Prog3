@@ -70,32 +70,41 @@ namespace WinForm
             kryptonPictureBox1 = new KryptonPictureBox();
             label1 = new KryptonLabel();
             menubutton = new KryptonPictureBox();
-            panel4 = new Panel();
-            panel3 = new Panel();
+            panelhabilitados = new Panel();
+            panelcategoria = new Panel();
             kryptonPictureBox2 = new KryptonPictureBox();
             sidebartimer = new System.Windows.Forms.Timer(components);
-            filtertimer = new System.Windows.Forms.Timer(components);
             pictureBox1 = new PictureBox();
             panel5 = new Panel();
+            label2 = new Label();
             controlBox1 = new ReaLTaiizor.Controls.ControlBox();
-            kryptonLabel2 = new KryptonLabel();
             menupanel = new FlowLayoutPanel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            panelfilter = new FlowLayoutPanel();
             kryptonButton1 = new Button();
+            panelUsuario1 = new FlowLayoutPanel();
+            button1 = new Button();
+            btninformacion = new Button();
+            btnchangepass = new Button();
+            panel2 = new Panel();
+            btnlogout = new Button();
             nuevoToolStripMenuItem1 = new ToolStripMenuItem();
+            Usertimer = new System.Windows.Forms.Timer(components);
+            filtertimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
             contextMenuRow.SuspendLayout();
             contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonPictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)menubutton).BeginInit();
-            panel4.SuspendLayout();
-            panel3.SuspendLayout();
+            panelhabilitados.SuspendLayout();
+            panelcategoria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel5.SuspendLayout();
             menupanel.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            panelfilter.SuspendLayout();
+            panelUsuario1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewProducto
@@ -118,14 +127,14 @@ namespace WinForm
             dataGridViewProducto.GridStyles.StyleColumn = GridStyle.Custom1;
             dataGridViewProducto.GridStyles.StyleDataCells = GridStyle.Custom1;
             dataGridViewProducto.GridStyles.StyleRow = GridStyle.Custom1;
-            dataGridViewProducto.Location = new Point(130, 212);
+            dataGridViewProducto.Location = new Point(162, 214);
             dataGridViewProducto.Name = "dataGridViewProducto";
             dataGridViewProducto.Palette = kryptonCustomPaletteBase1;
             dataGridViewProducto.PaletteMode = PaletteMode.Custom;
             dataGridViewProducto.ReadOnly = true;
             dataGridViewProducto.RowHeadersVisible = false;
             dataGridViewProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProducto.Size = new Size(612, 280);
+            dataGridViewProducto.Size = new Size(618, 356);
             dataGridViewProducto.StandardTab = true;
             dataGridViewProducto.TabIndex = 0;
             dataGridViewProducto.TabStop = false;
@@ -317,12 +326,74 @@ namespace WinForm
             kryptonCustomPaletteBase1.ButtonStyles.ButtonForm.StateTracking.Back.Color2 = Color.White;
             kryptonCustomPaletteBase1.ButtonStyles.ButtonForm.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.ButtonStyles.ButtonForm.StateTracking.Border.Width = 0;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedPressed.Back.Color1 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedPressed.Back.Color2 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedPressed.Content.ShortText.Color1 = Color.White;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedPressed.Content.ShortText.Color2 = Color.White;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Back.Color1 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Back.Color2 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Border.Color1 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Border.Color2 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Content.DrawFocus = InheritBool.False;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Content.ShortText.Color1 = Color.FromArgb(224, 224, 224);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Content.ShortText.Color2 = Color.FromArgb(224, 224, 224);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCheckedTracking.Content.ShortText.Prefix = PaletteTextHotkeyPrefix.Hide;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Back.ColorAlign = PaletteRectangleAlign.Local;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Back.ColorAngle = 45F;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Border.Color2 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Border.Rounding = 3F;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Content.ShortText.Color1 = Color.DarkGray;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateCommon.Content.ShortText.Color2 = Color.DarkGray;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Back.ColorAngle = 135F;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Back.ColorStyle = PaletteColorStyle.Dashed;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Border.Color1 = Color.FromArgb(35, 45, 150);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Content.ShortText.Color1 = Color.White;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StatePressed.Content.ShortText.Color2 = Color.White;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateTracking.Border.Color1 = Color.FromArgb(60, 65, 190);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateTracking.Border.Color2 = Color.FromArgb(55, 55, 170);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateTracking.Content.ShortText.Color1 = Color.FromArgb(224, 224, 224);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonInputControl.StateTracking.Content.ShortText.Color2 = Color.FromArgb(224, 224, 224);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateCommon.Border.Color2 = Color.FromArgb(64, 64, 64);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateCommon.Border.ColorAngle = 45F;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateCommon.Border.ColorStyle = PaletteColorStyle.Switch50;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateCommon.Content.ShortText.Color1 = Color.Silver;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateCommon.Content.ShortText.Color2 = Color.Silver;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Back.Color1 = Color.FromArgb(0, 0, 192);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Back.Color2 = Color.Navy;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Border.Color1 = Color.FromArgb(64, 64, 64);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Border.Color2 = Color.FromArgb(64, 64, 64);
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Content.DrawFocus = InheritBool.False;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Content.ShortText.Color1 = Color.White;
+            kryptonCustomPaletteBase1.ButtonStyles.ButtonListItem.StateTracking.Content.ShortText.Color2 = Color.White;
             kryptonCustomPaletteBase1.ContextMenu.StateCommon.ControlInner.Back.Color1 = Color.Gray;
             kryptonCustomPaletteBase1.ContextMenu.StateCommon.ControlInner.Back.Color2 = Color.Silver;
             kryptonCustomPaletteBase1.ContextMenu.StateCommon.ItemHighlight.Back.Color1 = Color.Lime;
             kryptonCustomPaletteBase1.ContextMenu.StateCommon.ItemHighlight.Back.Color2 = Color.FromArgb(0, 192, 0);
             kryptonCustomPaletteBase1.ContextMenu.StateHighlight.ItemHighlight.Back.Color1 = Color.Blue;
             kryptonCustomPaletteBase1.ContextMenu.StateHighlight.ItemHighlight.Back.Color2 = Color.FromArgb(128, 128, 255);
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Back.Color2 = Color.FromArgb(42, 42, 42);
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Back.ColorAngle = 45F;
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.Color2 = Color.FromArgb(64, 64, 64);
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.ColorAngle = 45F;
+            kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 32);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 32);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Draw = InheritBool.True;
@@ -333,11 +404,12 @@ namespace WinForm
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Draw = InheritBool.True;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.HighQuality;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Rounding = 20F;
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Rounding = 25F;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Width = 0;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.Color1 = Color.FromArgb(48, 48, 56);
-            kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.Color2 = Color.FromArgb(64, 64, 64);
-            kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.ColorStyle = PaletteColorStyle.Solid;
+            kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.Color2 = Color.FromArgb(51, 51, 60);
+            kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.ColorAngle = 135F;
+            kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.ColorStyle = PaletteColorStyle.Dashed;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.GraphicsHint = PaletteGraphicsHint.AntiAlias;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.BackStyle = PaletteBackStyle.GridBackgroundList;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.DataCell.Back.Color1 = Color.FromArgb(46, 46, 56);
@@ -393,9 +465,34 @@ namespace WinForm
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.Padding = new Padding(10, -1, -1, -1);
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Color1 = Color.LightGray;
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Back.Color2 = Color.FromArgb(36, 36, 36);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 66);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.Color2 = Color.FromArgb(50, 50, 56);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.ColorAlign = PaletteRectangleAlign.Local;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.ColorAngle = 45F;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.ColorStyle = PaletteColorStyle.GlassCenter;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.Rounding = 13F;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Content.ShortText.Color1 = Color.Silver;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Content.ShortText.Color2 = Color.Silver;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Content.ShortText.ColorAlign = PaletteRectangleAlign.Local;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Content.ShortText.ColorAngle = 45F;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Content.ShortText.Hint = PaletteTextHint.SystemDefault;
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateContextTracking.Back.Color1 = Color.FromArgb(48, 48, 48);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateContextTracking.Back.Color2 = Color.FromArgb(48, 48, 48);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateContextTracking.Border.Color1 = Color.FromArgb(48, 48, 48);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateContextTracking.Border.Color2 = Color.FromArgb(48, 48, 48);
+            kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateContextTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.DrawFocus = InheritBool.False;
-            kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Color1 = Color.LightGray;
+            kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Color1 = Color.FromArgb(0, 0, 64);
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.PanelStyles.PanelCustom1.StateCommon.Color1 = Color.FromArgb(56, 56, 64);
+            kryptonCustomPaletteBase1.PanelStyles.PanelCustom1.StateCommon.Color2 = Color.FromArgb(50, 50, 56);
+            kryptonCustomPaletteBase1.PanelStyles.PanelCustom1.StateCommon.ColorAlign = PaletteRectangleAlign.Local;
+            kryptonCustomPaletteBase1.PanelStyles.PanelCustom1.StateCommon.ColorAngle = 45F;
+            kryptonCustomPaletteBase1.PanelStyles.PanelCustom1.StateCommon.ColorStyle = PaletteColorStyle.Dashed;
             kryptonCustomPaletteBase1.ThemeName = "";
             kryptonCustomPaletteBase1.UseKryptonFileDialogs = true;
             // 
@@ -403,15 +500,26 @@ namespace WinForm
             // 
             BTNdelete.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             BTNdelete.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNdelete.Location = new Point(639, 499);
+            BTNdelete.Location = new Point(685, 584);
             BTNdelete.MaximumSize = new Size(95, 35);
             BTNdelete.MinimumSize = new Size(95, 35);
             BTNdelete.Name = "BTNdelete";
+            BTNdelete.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
+            BTNdelete.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
+            BTNdelete.OverrideDefault.Back.ColorAngle = 45F;
+            BTNdelete.OverrideDefault.Back.ColorStyle = PaletteColorStyle.Dashed;
+            BTNdelete.OverrideDefault.Border.Color1 = Color.FromArgb(60, 65, 190);
+            BTNdelete.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
+            BTNdelete.OverrideDefault.Border.ColorAngle = 45F;
+            BTNdelete.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            BTNdelete.OverrideDefault.Border.Rounding = 8F;
+            BTNdelete.OverrideDefault.Content.DrawFocus = InheritBool.False;
             BTNdelete.Size = new Size(95, 35);
             BTNdelete.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
-            BTNdelete.StateCommon.Back.Color2 = Color.FromArgb(60, 60, 175);
+            BTNdelete.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
             BTNdelete.StateCommon.Back.ColorAngle = 45F;
-            BTNdelete.StateCommon.Back.Image = Properties.Resources.Mini_borrar;
+            BTNdelete.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
+            BTNdelete.StateCommon.Back.Image = Properties.Resources.addmini;
             BTNdelete.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
             BTNdelete.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterLeft;
             BTNdelete.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
@@ -421,16 +529,23 @@ namespace WinForm
             BTNdelete.StateCommon.Border.Rounding = 8F;
             BTNdelete.StateCommon.Content.AdjacentGap = 1;
             BTNdelete.StateCommon.Content.Image.ImageColorTo = Color.White;
-            BTNdelete.StateCommon.Content.Padding = new Padding(25, -1, 0, -1);
-            BTNdelete.StateCommon.Content.ShortText.Color1 = Color.Gainsboro;
-            BTNdelete.StateCommon.Content.ShortText.Color2 = Color.WhiteSmoke;
+            BTNdelete.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
+            BTNdelete.StateCommon.Content.ShortText.Color1 = Color.LightGray;
+            BTNdelete.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
             BTNdelete.StateCommon.Content.ShortText.ColorAngle = 45F;
             BTNdelete.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
             BTNdelete.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BTNdelete.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
+            BTNdelete.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
+            BTNdelete.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
+            BTNdelete.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
+            BTNdelete.StateTracking.Back.ColorAngle = 135F;
             BTNdelete.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             BTNdelete.StateTracking.Border.Rounding = 8F;
-            BTNdelete.TabIndex = 11;
-            BTNdelete.TabStop = false;
+            BTNdelete.StateTracking.Content.ShortText.Color1 = Color.White;
+            BTNdelete.StateTracking.Content.ShortText.Color2 = Color.White;
+            BTNdelete.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
+            BTNdelete.TabIndex = 2;
             BTNdelete.Values.Text = "Eliminar";
             BTNdelete.Click += BTNdelete_Click;
             // 
@@ -438,35 +553,52 @@ namespace WinForm
             // 
             BTNmodif.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             BTNmodif.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNmodif.Location = new Point(528, 499);
+            BTNmodif.Location = new Point(578, 584);
             BTNmodif.MaximumSize = new Size(95, 35);
             BTNmodif.MinimumSize = new Size(95, 35);
             BTNmodif.Name = "BTNmodif";
+            BTNmodif.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
+            BTNmodif.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
+            BTNmodif.OverrideDefault.Back.ColorAngle = 45F;
+            BTNmodif.OverrideDefault.Back.ColorStyle = PaletteColorStyle.Dashed;
+            BTNmodif.OverrideDefault.Border.Color1 = Color.FromArgb(60, 65, 190);
+            BTNmodif.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
+            BTNmodif.OverrideDefault.Border.ColorAngle = 45F;
+            BTNmodif.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            BTNmodif.OverrideDefault.Border.Rounding = 8F;
+            BTNmodif.OverrideDefault.Content.DrawFocus = InheritBool.False;
             BTNmodif.Size = new Size(95, 35);
             BTNmodif.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
-            BTNmodif.StateCommon.Back.Color2 = Color.FromArgb(60, 60, 175);
+            BTNmodif.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
             BTNmodif.StateCommon.Back.ColorAngle = 45F;
-            BTNmodif.StateCommon.Back.Image = Properties.Resources.Mini_modif;
+            BTNmodif.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
+            BTNmodif.StateCommon.Back.Image = Properties.Resources.addmini;
             BTNmodif.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
             BTNmodif.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterLeft;
             BTNmodif.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
             BTNmodif.StateCommon.Border.Color2 = Color.FromArgb(60, 60, 175);
             BTNmodif.StateCommon.Border.ColorAngle = 45F;
             BTNmodif.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            BTNmodif.StateCommon.Border.ImageAlign = PaletteRectangleAlign.Local;
             BTNmodif.StateCommon.Border.Rounding = 8F;
             BTNmodif.StateCommon.Content.AdjacentGap = 1;
             BTNmodif.StateCommon.Content.Image.ImageColorTo = Color.White;
-            BTNmodif.StateCommon.Content.Padding = new Padding(26, -1, 0, -1);
-            BTNmodif.StateCommon.Content.ShortText.Color1 = Color.Gainsboro;
-            BTNmodif.StateCommon.Content.ShortText.Color2 = Color.WhiteSmoke;
+            BTNmodif.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
+            BTNmodif.StateCommon.Content.ShortText.Color1 = Color.LightGray;
+            BTNmodif.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
             BTNmodif.StateCommon.Content.ShortText.ColorAngle = 45F;
             BTNmodif.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
             BTNmodif.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BTNmodif.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
+            BTNmodif.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
+            BTNmodif.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
+            BTNmodif.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
+            BTNmodif.StateTracking.Back.ColorAngle = 135F;
             BTNmodif.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             BTNmodif.StateTracking.Border.Rounding = 8F;
-            BTNmodif.TabIndex = 12;
-            BTNmodif.TabStop = false;
+            BTNmodif.StateTracking.Content.ShortText.Color1 = Color.White;
+            BTNmodif.StateTracking.Content.ShortText.Color2 = Color.White;
+            BTNmodif.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
+            BTNmodif.TabIndex = 2;
             BTNmodif.Values.Text = "Modificar";
             BTNmodif.Click += btnModificar_Click;
             // 
@@ -474,14 +606,25 @@ namespace WinForm
             // 
             btnNuevoProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnNuevoProducto.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnNuevoProducto.Location = new Point(415, 499);
+            btnNuevoProducto.Location = new Point(470, 584);
             btnNuevoProducto.MaximumSize = new Size(95, 35);
             btnNuevoProducto.MinimumSize = new Size(95, 35);
             btnNuevoProducto.Name = "btnNuevoProducto";
+            btnNuevoProducto.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
+            btnNuevoProducto.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
+            btnNuevoProducto.OverrideDefault.Back.ColorAngle = 45F;
+            btnNuevoProducto.OverrideDefault.Back.ColorStyle = PaletteColorStyle.Dashed;
+            btnNuevoProducto.OverrideDefault.Border.Color1 = Color.FromArgb(60, 65, 190);
+            btnNuevoProducto.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
+            btnNuevoProducto.OverrideDefault.Border.ColorAngle = 45F;
+            btnNuevoProducto.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnNuevoProducto.OverrideDefault.Border.Rounding = 8F;
+            btnNuevoProducto.OverrideDefault.Content.DrawFocus = InheritBool.False;
             btnNuevoProducto.Size = new Size(95, 35);
             btnNuevoProducto.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
-            btnNuevoProducto.StateCommon.Back.Color2 = Color.FromArgb(60, 60, 175);
+            btnNuevoProducto.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
             btnNuevoProducto.StateCommon.Back.ColorAngle = 45F;
+            btnNuevoProducto.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
             btnNuevoProducto.StateCommon.Back.Image = Properties.Resources.addmini;
             btnNuevoProducto.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
             btnNuevoProducto.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterLeft;
@@ -493,15 +636,22 @@ namespace WinForm
             btnNuevoProducto.StateCommon.Content.AdjacentGap = 1;
             btnNuevoProducto.StateCommon.Content.Image.ImageColorTo = Color.White;
             btnNuevoProducto.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
-            btnNuevoProducto.StateCommon.Content.ShortText.Color1 = Color.Gainsboro;
-            btnNuevoProducto.StateCommon.Content.ShortText.Color2 = Color.WhiteSmoke;
+            btnNuevoProducto.StateCommon.Content.ShortText.Color1 = Color.LightGray;
+            btnNuevoProducto.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
             btnNuevoProducto.StateCommon.Content.ShortText.ColorAngle = 45F;
             btnNuevoProducto.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
             btnNuevoProducto.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNuevoProducto.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
+            btnNuevoProducto.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
+            btnNuevoProducto.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
+            btnNuevoProducto.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
+            btnNuevoProducto.StateTracking.Back.ColorAngle = 135F;
             btnNuevoProducto.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             btnNuevoProducto.StateTracking.Border.Rounding = 8F;
-            btnNuevoProducto.TabIndex = 14;
-            btnNuevoProducto.TabStop = false;
+            btnNuevoProducto.StateTracking.Content.ShortText.Color1 = Color.White;
+            btnNuevoProducto.StateTracking.Content.ShortText.Color2 = Color.White;
+            btnNuevoProducto.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
+            btnNuevoProducto.TabIndex = 2;
             btnNuevoProducto.ToolTipValues.Description = "Agregar elemento";
             btnNuevoProducto.Values.Text = "Agregar";
             btnNuevoProducto.Click += btnNuevoProducto_Click;
@@ -509,11 +659,10 @@ namespace WinForm
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(512, 184);
-            textBox1.MaximumSize = new Size(171, 23);
+            textBox1.Location = new Point(517, 175);
             textBox1.MinimumSize = new Size(171, 23);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(171, 23);
+            textBox1.Size = new Size(222, 31);
             textBox1.StateCommon.Back.Color1 = Color.FromArgb(48, 48, 56);
             textBox1.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             textBox1.StateCommon.Border.Color2 = Color.Gray;
@@ -523,46 +672,23 @@ namespace WinForm
             textBox1.StateCommon.Content.Color1 = Color.Gray;
             textBox1.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            textBox1.TabIndex = 15;
+            textBox1.TabIndex = 1;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // cmbBoxCategorias
             // 
             cmbBoxCategorias.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbBoxCategorias.DropBackStyle = PaletteBackStyle.ControlCustom1;
             cmbBoxCategorias.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxCategorias.DropDownWidth = 171;
             cmbBoxCategorias.FormattingEnabled = true;
-            cmbBoxCategorias.InputControlStyle = InputControlStyle.Ribbon;
             cmbBoxCategorias.IntegralHeight = false;
             cmbBoxCategorias.Location = new Point(71, 33);
             cmbBoxCategorias.Name = "cmbBoxCategorias";
-            cmbBoxCategorias.PaletteMode = PaletteMode.Office2010BlueDarkMode;
-            cmbBoxCategorias.Size = new Size(127, 18);
+            cmbBoxCategorias.Palette = kryptonCustomPaletteBase1;
+            cmbBoxCategorias.PaletteMode = PaletteMode.Custom;
+            cmbBoxCategorias.Size = new Size(127, 22);
             cmbBoxCategorias.StateActive.ComboBox.Border.DrawBorders = PaletteDrawBorders.None;
-            cmbBoxCategorias.StateCommon.ComboBox.Back.Color1 = Color.FromArgb(48, 48, 56);
-            cmbBoxCategorias.StateCommon.ComboBox.Border.Color1 = Color.FromArgb(48, 48, 56);
-            cmbBoxCategorias.StateCommon.ComboBox.Border.Color2 = Color.FromArgb(48, 48, 56);
-            cmbBoxCategorias.StateCommon.ComboBox.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            cmbBoxCategorias.StateCommon.ComboBox.Border.Rounding = 5F;
-            cmbBoxCategorias.StateCommon.ComboBox.Content.Color1 = Color.FromArgb(224, 224, 224);
-            cmbBoxCategorias.StateCommon.ComboBox.Content.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbBoxCategorias.StateCommon.DropBack.Color1 = Color.FromArgb(48, 48, 56);
-            cmbBoxCategorias.StateCommon.DropBack.Color2 = Color.FromArgb(48, 48, 56);
-            cmbBoxCategorias.StateCommon.DropBack.ColorAngle = 45F;
-            cmbBoxCategorias.StateCommon.Item.Border.Color1 = Color.FromArgb(64, 64, 64);
-            cmbBoxCategorias.StateCommon.Item.Border.Color2 = Color.FromArgb(64, 64, 64);
-            cmbBoxCategorias.StateCommon.Item.Border.ColorStyle = PaletteColorStyle.Solid;
-            cmbBoxCategorias.StateCommon.Item.Border.DrawBorders = PaletteDrawBorders.None;
-            cmbBoxCategorias.StateCommon.Item.Content.ShortText.Color1 = Color.White;
-            cmbBoxCategorias.StateCommon.Item.Content.ShortText.Color2 = Color.White;
-            cmbBoxCategorias.StateCommon.Item.Content.ShortText.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbBoxCategorias.StateTracking.Item.Back.Color1 = Color.FromArgb(64, 64, 64);
-            cmbBoxCategorias.StateTracking.Item.Back.Color2 = Color.FromArgb(64, 64, 64);
-            cmbBoxCategorias.StateTracking.Item.Border.Color1 = Color.FromArgb(48, 48, 56);
-            cmbBoxCategorias.StateTracking.Item.Border.Color2 = Color.FromArgb(48, 48, 56);
-            cmbBoxCategorias.StateTracking.Item.Border.ColorAngle = 45F;
-            cmbBoxCategorias.StateTracking.Item.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            cmbBoxCategorias.StateTracking.Item.Border.Rounding = 5F;
             cmbBoxCategorias.TabIndex = 17;
             cmbBoxCategorias.TabStop = false;
             cmbBoxCategorias.SelectedIndexChanged += cmbBoxCategorias_SelectedIndexChanged;
@@ -581,16 +707,18 @@ namespace WinForm
             lblCategorias.StateCommon.ShortText.ImageAlign = PaletteRectangleAlign.Local;
             lblCategorias.StateCommon.ShortText.ImageStyle = PaletteImageStyle.CenterMiddle;
             lblCategorias.TabIndex = 18;
+            lblCategorias.TabStop = false;
             lblCategorias.Values.Text = "Categorias";
             // 
             // btnPrimerCarga
             // 
             btnPrimerCarga.Enabled = false;
             btnPrimerCarga.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPrimerCarga.Location = new Point(323, 60);
+            btnPrimerCarga.Location = new Point(602, 335);
             btnPrimerCarga.Name = "btnPrimerCarga";
             btnPrimerCarga.Size = new Size(114, 81);
             btnPrimerCarga.TabIndex = 19;
+            btnPrimerCarga.TabStop = false;
             btnPrimerCarga.Values.Text = "Primera Carga de Productos ";
             btnPrimerCarga.Visible = false;
             btnPrimerCarga.Click += btnPrimerCarga_Click;
@@ -599,51 +727,53 @@ namespace WinForm
             // 
             numericUpDown1.Font = new Font("Segoe UI", 11F);
             numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Location = new Point(162, 505);
+            numericUpDown1.Location = new Point(224, 587);
             numericUpDown1.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(120, 22);
             numericUpDown1.TabIndex = 20;
+            numericUpDown1.TabStop = false;
             numericUpDown1.Value = new decimal(new int[] { 0, 0, 0, 0 });
-            numericUpDown1.Visible = false;
             numericUpDown1.Click += numericUpDown1_Click;
             // 
             // BtnCompra
             // 
             BtnCompra.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            BtnCompra.Enabled = false;
             BtnCompra.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnCompra.Location = new Point(288, 499);
+            BtnCompra.Location = new Point(359, 584);
             BtnCompra.MaximumSize = new Size(84, 29);
             BtnCompra.MinimumSize = new Size(84, 29);
             BtnCompra.Name = "BtnCompra";
             BtnCompra.Size = new Size(84, 29);
             BtnCompra.TabIndex = 21;
+            BtnCompra.TabStop = false;
             BtnCompra.Values.Text = "Comprar";
-            BtnCompra.Visible = false;
             BtnCompra.Click += BtnCompra_Click;
             // 
             // LblBienvenido
             // 
             LblBienvenido.AutoSize = false;
             LblBienvenido.Font = new Font("Segoe UI", 20F);
-            LblBienvenido.Location = new Point(227, 68);
+            LblBienvenido.Location = new Point(273, 63);
             LblBienvenido.Name = "LblBienvenido";
-            LblBienvenido.Size = new Size(282, 88);
+            LblBienvenido.Size = new Size(218, 88);
             LblBienvenido.StateCommon.Draw = InheritBool.True;
             LblBienvenido.StateCommon.DrawFocus = InheritBool.False;
-            LblBienvenido.StateCommon.ShortText.Color1 = Color.White;
-            LblBienvenido.StateNormal.ShortText.Color1 = SystemColors.ControlLight;
-            LblBienvenido.StateNormal.ShortText.Color2 = Color.White;
+            LblBienvenido.StateCommon.LongText.Color1 = Color.FromArgb(0, 0, 64);
+            LblBienvenido.StateCommon.LongText.Color2 = Color.Navy;
+            LblBienvenido.StateCommon.ShortText.Color1 = Color.FromArgb(0, 0, 64);
+            LblBienvenido.StateCommon.ShortText.Color2 = Color.Navy;
+            LblBienvenido.StateNormal.ShortText.Color1 = Color.FromArgb(224, 224, 224);
+            LblBienvenido.StateNormal.ShortText.Color2 = Color.LightGray;
             LblBienvenido.StateNormal.ShortText.ColorAngle = 45F;
-            LblBienvenido.StateNormal.ShortText.ColorStyle = PaletteColorStyle.Solid;
+            LblBienvenido.StateNormal.ShortText.ColorStyle = PaletteColorStyle.Dashed;
             LblBienvenido.StateNormal.ShortText.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblBienvenido.StateNormal.ShortText.MultiLine = InheritBool.True;
             LblBienvenido.StateNormal.ShortText.MultiLineH = PaletteRelativeAlign.Near;
-            LblBienvenido.StateNormal.ShortText.TextV = PaletteRelativeAlign.Near;
-            LblBienvenido.TabIndex = 23;
-            LblBienvenido.Values.Text = "Bienvenido \r\nThomas";
+            LblBienvenido.TabIndex = 0;
+            LblBienvenido.TabStop = false;
+            LblBienvenido.Values.Text = "Bienvenido \r\n              Thomas";
             // 
             // rdiobtnHabilitado
             // 
@@ -660,7 +790,8 @@ namespace WinForm
             rdiobtnHabilitado.PaletteMode = PaletteMode.Microsoft365BlackDarkMode;
             rdiobtnHabilitado.Size = new Size(116, 26);
             rdiobtnHabilitado.StateNormal.ShortText.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            rdiobtnHabilitado.TabIndex = 24;
+            rdiobtnHabilitado.TabIndex = 0;
+            rdiobtnHabilitado.TabStop = false;
             rdiobtnHabilitado.Values.Text = "Habilitados";
             rdiobtnHabilitado.CheckedChanged += rdiobtnHabilitado_CheckedChanged;
             // 
@@ -680,7 +811,8 @@ namespace WinForm
             rdiobtnDeshabilitado.PaletteMode = PaletteMode.Microsoft365BlackDarkMode;
             rdiobtnDeshabilitado.Size = new Size(141, 26);
             rdiobtnDeshabilitado.StateNormal.ShortText.Font = new Font("Segoe UI", 12F);
-            rdiobtnDeshabilitado.TabIndex = 25;
+            rdiobtnDeshabilitado.TabIndex = 0;
+            rdiobtnDeshabilitado.TabStop = false;
             rdiobtnDeshabilitado.Values.Text = "Deshabilitados";
             rdiobtnDeshabilitado.CheckedChanged += rdiobtnDeshabilitado_CheckedChanged;
             // 
@@ -701,17 +833,19 @@ namespace WinForm
             rdiobtnTodos.PaletteMode = PaletteMode.Microsoft365BlackDarkMode;
             rdiobtnTodos.Size = new Size(78, 26);
             rdiobtnTodos.StateCommon.ShortText.Font = new Font("Segoe UI", 12F);
-            rdiobtnTodos.TabIndex = 26;
+            rdiobtnTodos.TabIndex = 0;
+            rdiobtnTodos.TabStop = false;
             rdiobtnTodos.Values.Text = "Todos";
             rdiobtnTodos.CheckedChanged += rdiobtnTodos_CheckedChanged;
             // 
             // BtnRfrs
             // 
             BtnRfrs.Font = new Font("Wingdings 3", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 2);
-            BtnRfrs.Location = new Point(443, 73);
+            BtnRfrs.Location = new Point(512, 351);
             BtnRfrs.Name = "BtnRfrs";
             BtnRfrs.Size = new Size(30, 30);
             BtnRfrs.TabIndex = 27;
+            BtnRfrs.TabStop = false;
             BtnRfrs.Values.Text = "Q";
             BtnRfrs.Visible = false;
             BtnRfrs.Click += button1_Click;
@@ -719,7 +853,7 @@ namespace WinForm
             // kryptonPictureBox1
             // 
             kryptonPictureBox1.Image = Properties.Resources.mini_search;
-            kryptonPictureBox1.Location = new Point(686, 178);
+            kryptonPictureBox1.Location = new Point(748, 177);
             kryptonPictureBox1.Name = "kryptonPictureBox1";
             kryptonPictureBox1.Size = new Size(30, 30);
             kryptonPictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -730,7 +864,7 @@ namespace WinForm
             // 
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.LabelStyle = LabelStyle.Custom1;
-            label1.Location = new Point(130, 171);
+            label1.Location = new Point(162, 176);
             label1.Name = "label1";
             label1.Palette = kryptonCustomPaletteBase1;
             label1.PaletteMode = PaletteMode.Custom;
@@ -739,7 +873,8 @@ namespace WinForm
             label1.StateCommon.ShortText.Color2 = Color.FromArgb(120, 140, 200);
             label1.StateCommon.ShortText.ColorAngle = 45F;
             label1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.TabIndex = 29;
+            label1.TabIndex = 0;
+            label1.TabStop = false;
             label1.Values.Text = "Productos";
             // 
             // menubutton
@@ -753,29 +888,29 @@ namespace WinForm
             menubutton.TabStop = false;
             menubutton.Click += menubutton_Click;
             // 
-            // panel4
+            // panelhabilitados
             // 
-            panel4.BackColor = Color.FromArgb(70, 70, 80);
-            panel4.Controls.Add(rdiobtnTodos);
-            panel4.Controls.Add(rdiobtnDeshabilitado);
-            panel4.Controls.Add(rdiobtnHabilitado);
-            panel4.Location = new Point(0, 129);
-            panel4.Margin = new Padding(0);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(219, 86);
-            panel4.TabIndex = 33;
+            panelhabilitados.BackColor = Color.FromArgb(50, 50, 56);
+            panelhabilitados.Controls.Add(rdiobtnTodos);
+            panelhabilitados.Controls.Add(rdiobtnDeshabilitado);
+            panelhabilitados.Controls.Add(rdiobtnHabilitado);
+            panelhabilitados.Location = new Point(0, 132);
+            panelhabilitados.Margin = new Padding(0);
+            panelhabilitados.Name = "panelhabilitados";
+            panelhabilitados.Size = new Size(223, 86);
+            panelhabilitados.TabIndex = 33;
             // 
-            // panel3
+            // panelcategoria
             // 
-            panel3.BackColor = Color.FromArgb(70, 70, 80);
-            panel3.Controls.Add(kryptonPictureBox2);
-            panel3.Controls.Add(lblCategorias);
-            panel3.Controls.Add(cmbBoxCategorias);
-            panel3.Location = new Point(0, 65);
-            panel3.Margin = new Padding(0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(219, 64);
-            panel3.TabIndex = 32;
+            panelcategoria.BackColor = Color.FromArgb(50, 50, 56);
+            panelcategoria.Controls.Add(kryptonPictureBox2);
+            panelcategoria.Controls.Add(lblCategorias);
+            panelcategoria.Controls.Add(cmbBoxCategorias);
+            panelcategoria.Location = new Point(0, 68);
+            panelcategoria.Margin = new Padding(0);
+            panelcategoria.Name = "panelcategoria";
+            panelcategoria.Size = new Size(219, 64);
+            panelcategoria.TabIndex = 0;
             // 
             // kryptonPictureBox2
             // 
@@ -793,15 +928,10 @@ namespace WinForm
             sidebartimer.Interval = 12;
             sidebartimer.Tick += sidebartimer_Tick;
             // 
-            // filtertimer
-            // 
-            filtertimer.Interval = 15;
-            filtertimer.Tick += filtertimer_Tick;
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.logo;
-            pictureBox1.Location = new Point(527, 60);
+            pictureBox1.Location = new Point(537, 60);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(173, 110);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -810,83 +940,83 @@ namespace WinForm
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(26, 26, 28);
+            panel5.BackColor = Color.FromArgb(56, 56, 68);
+            panel5.Controls.Add(label2);
             panel5.Controls.Add(controlBox1);
-            panel5.Controls.Add(kryptonLabel2);
             panel5.Controls.Add(menubutton);
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(0, 0);
             panel5.Margin = new Padding(0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(777, 54);
-            panel5.TabIndex = 32;
+            panel5.Size = new Size(825, 54);
+            panel5.TabIndex = 0;
             panel5.MouseDown += FormProducto_MouseDown;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Poppins SemiBold", 16F, FontStyle.Bold);
+            label2.ForeColor = Color.WhiteSmoke;
+            label2.Location = new Point(59, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(333, 39);
+            label2.TabIndex = 0;
+            label2.Text = "Sistema de Control de Stock";
+            label2.MouseDown += FormProducto_MouseDown;
             // 
             // controlBox1
             // 
             controlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            controlBox1.BackColor = Color.FromArgb(26, 26, 28);
+            controlBox1.BackColor = Color.FromArgb(56, 56, 64);
             controlBox1.CloseHoverColor = Color.FromArgb(230, 17, 35);
             controlBox1.DefaultLocation = false;
             controlBox1.EnableHoverHighlight = true;
             controlBox1.EnableMaximizeButton = false;
             controlBox1.EnableMinimizeButton = true;
             controlBox1.ForeColor = Color.FromArgb(155, 155, 155);
-            controlBox1.Location = new Point(675, 15);
+            controlBox1.Location = new Point(723, 15);
             controlBox1.MaximizeHoverColor = Color.FromArgb(74, 74, 74);
             controlBox1.MinimizeHoverColor = Color.FromArgb(63, 63, 65);
             controlBox1.Name = "controlBox1";
             controlBox1.RightToLeft = RightToLeft.No;
             controlBox1.Size = new Size(90, 25);
-            controlBox1.TabIndex = 33;
+            controlBox1.TabIndex = 0;
+            controlBox1.TabStop = false;
             controlBox1.Text = "controlBox1";
-            // 
-            // kryptonLabel2
-            // 
-            kryptonLabel2.Location = new Point(58, 6);
-            kryptonLabel2.Name = "kryptonLabel2";
-            kryptonLabel2.Size = new Size(319, 35);
-            kryptonLabel2.StateCommon.Padding = new Padding(6, 2, 2, 2);
-            kryptonLabel2.StateCommon.ShortText.Color1 = Color.FromArgb(250, 252, 252);
-            kryptonLabel2.StateCommon.ShortText.Color2 = Color.FromArgb(250, 252, 252);
-            kryptonLabel2.StateCommon.ShortText.ColorAngle = 135F;
-            kryptonLabel2.StateCommon.ShortText.ColorStyle = PaletteColorStyle.Dashed;
-            kryptonLabel2.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonLabel2.TabIndex = 1;
-            kryptonLabel2.Values.Text = "Sistema de control de stock";
-            kryptonLabel2.MouseDown += kryptonLabel2_MouseDown;
             // 
             // menupanel
             // 
-            menupanel.BackColor = Color.FromArgb(56, 56, 64);
-            menupanel.Controls.Add(flowLayoutPanel1);
+            menupanel.BackColor = Color.FromArgb(56, 56, 68);
+            menupanel.Controls.Add(panelfilter);
+            menupanel.Controls.Add(panelUsuario1);
+            menupanel.Controls.Add(panel2);
             menupanel.Dock = DockStyle.Left;
             menupanel.Location = new Point(0, 54);
             menupanel.Margin = new Padding(0);
-            menupanel.MaximumSize = new Size(221, 498);
-            menupanel.MinimumSize = new Size(53, 498);
+            menupanel.MaximumSize = new Size(221, 581);
+            menupanel.MinimumSize = new Size(53, 581);
             menupanel.Name = "menupanel";
-            menupanel.Size = new Size(53, 498);
-            menupanel.TabIndex = 2;
+            menupanel.Size = new Size(53, 581);
+            menupanel.TabIndex = 0;
             // 
-            // flowLayoutPanel1
+            // panelfilter
             // 
-            flowLayoutPanel1.BackColor = Color.FromArgb(70, 70, 80);
-            flowLayoutPanel1.Controls.Add(kryptonButton1);
-            flowLayoutPanel1.Controls.Add(panel3);
-            flowLayoutPanel1.Controls.Add(panel4);
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.MaximumSize = new Size(221, 216);
-            flowLayoutPanel1.MinimumSize = new Size(221, 63);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(221, 63);
-            flowLayoutPanel1.TabIndex = 0;
+            panelfilter.BackColor = Color.FromArgb(70, 70, 80);
+            panelfilter.Controls.Add(kryptonButton1);
+            panelfilter.Controls.Add(panelcategoria);
+            panelfilter.Controls.Add(panelhabilitados);
+            panelfilter.Location = new Point(0, 0);
+            panelfilter.Margin = new Padding(0);
+            panelfilter.MaximumSize = new Size(221, 216);
+            panelfilter.MinimumSize = new Size(221, 63);
+            panelfilter.Name = "panelfilter";
+            panelfilter.Size = new Size(221, 63);
+            panelfilter.TabIndex = 0;
             // 
             // kryptonButton1
             // 
-            kryptonButton1.BackColor = Color.FromArgb(56, 56, 64);
-            kryptonButton1.Enabled = false;
+            kryptonButton1.BackColor = Color.FromArgb(56, 56, 68);
+            kryptonButton1.Cursor = Cursors.Hand;
             kryptonButton1.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
             kryptonButton1.FlatAppearance.BorderSize = 0;
             kryptonButton1.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 72);
@@ -899,11 +1029,122 @@ namespace WinForm
             kryptonButton1.Location = new Point(0, 0);
             kryptonButton1.Margin = new Padding(0);
             kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.Size = new Size(224, 65);
-            kryptonButton1.TabIndex = 33;
+            kryptonButton1.Size = new Size(224, 68);
+            kryptonButton1.TabIndex = 5;
             kryptonButton1.Text = "Filtrar";
             kryptonButton1.UseVisualStyleBackColor = false;
             kryptonButton1.Click += kryptonButton1_Click;
+            // 
+            // panelUsuario1
+            // 
+            panelUsuario1.Controls.Add(button1);
+            panelUsuario1.Controls.Add(btninformacion);
+            panelUsuario1.Controls.Add(btnchangepass);
+            panelUsuario1.Location = new Point(0, 63);
+            panelUsuario1.Margin = new Padding(0);
+            panelUsuario1.MaximumSize = new Size(221, 196);
+            panelUsuario1.MinimumSize = new Size(221, 63);
+            panelUsuario1.Name = "panelUsuario1";
+            panelUsuario1.Size = new Size(221, 63);
+            panelUsuario1.TabIndex = 32;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(56, 56, 68);
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 72);
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(42, 42, 48);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.ForeColor = Color.Silver;
+            button1.Image = Properties.Resources.user;
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(0, 0);
+            button1.Margin = new Padding(0);
+            button1.Name = "button1";
+            button1.Size = new Size(224, 65);
+            button1.TabIndex = 6;
+            button1.Text = "Usuario";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
+            // 
+            // btninformacion
+            // 
+            btninformacion.BackColor = Color.FromArgb(50, 50, 56);
+            btninformacion.Cursor = Cursors.Hand;
+            btninformacion.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
+            btninformacion.FlatAppearance.BorderSize = 0;
+            btninformacion.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 72);
+            btninformacion.FlatAppearance.MouseOverBackColor = Color.FromArgb(42, 42, 48);
+            btninformacion.FlatStyle = FlatStyle.Flat;
+            btninformacion.Font = new Font("Segoe UI", 10F);
+            btninformacion.ForeColor = Color.Silver;
+            btninformacion.Image = Properties.Resources.mini_infouser;
+            btninformacion.ImageAlign = ContentAlignment.MiddleLeft;
+            btninformacion.Location = new Point(0, 65);
+            btninformacion.Margin = new Padding(0);
+            btninformacion.Name = "btninformacion";
+            btninformacion.Size = new Size(224, 65);
+            btninformacion.TabIndex = 8;
+            btninformacion.Text = "Info. de usuario";
+            btninformacion.UseVisualStyleBackColor = false;
+            btninformacion.Click += btninformacion_Click;
+            // 
+            // btnchangepass
+            // 
+            btnchangepass.BackColor = Color.FromArgb(50, 50, 56);
+            btnchangepass.Cursor = Cursors.Hand;
+            btnchangepass.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
+            btnchangepass.FlatAppearance.BorderSize = 0;
+            btnchangepass.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 72);
+            btnchangepass.FlatAppearance.MouseOverBackColor = Color.FromArgb(42, 42, 48);
+            btnchangepass.FlatStyle = FlatStyle.Flat;
+            btnchangepass.Font = new Font("Segoe UI", 10F);
+            btnchangepass.ForeColor = Color.Silver;
+            btnchangepass.Image = Properties.Resources.mini_changepass;
+            btnchangepass.ImageAlign = ContentAlignment.MiddleLeft;
+            btnchangepass.Location = new Point(0, 130);
+            btnchangepass.Margin = new Padding(0);
+            btnchangepass.Name = "btnchangepass";
+            btnchangepass.Size = new Size(224, 65);
+            btnchangepass.TabIndex = 36;
+            btnchangepass.Text = "Cambiar contraseña";
+            btnchangepass.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btnlogout);
+            panel2.Location = new Point(0, 126);
+            panel2.Margin = new Padding(0);
+            panel2.MaximumSize = new Size(221, 63);
+            panel2.MinimumSize = new Size(221, 63);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(221, 63);
+            panel2.TabIndex = 35;
+            // 
+            // btnlogout
+            // 
+            btnlogout.BackColor = Color.FromArgb(56, 56, 68);
+            btnlogout.Cursor = Cursors.Hand;
+            btnlogout.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
+            btnlogout.FlatAppearance.BorderSize = 0;
+            btnlogout.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 72);
+            btnlogout.FlatAppearance.MouseOverBackColor = Color.FromArgb(42, 42, 48);
+            btnlogout.FlatStyle = FlatStyle.Flat;
+            btnlogout.Font = new Font("Segoe UI", 12F);
+            btnlogout.ForeColor = Color.Silver;
+            btnlogout.Image = Properties.Resources.medium_logout;
+            btnlogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnlogout.Location = new Point(0, 0);
+            btnlogout.Margin = new Padding(0);
+            btnlogout.Name = "btnlogout";
+            btnlogout.Size = new Size(224, 68);
+            btnlogout.TabIndex = 10;
+            btnlogout.Text = "Cerrar sesión";
+            btnlogout.UseVisualStyleBackColor = false;
+            btnlogout.Click += btnlogout_Click;
             // 
             // nuevoToolStripMenuItem1
             // 
@@ -911,13 +1152,23 @@ namespace WinForm
             nuevoToolStripMenuItem1.Size = new Size(180, 22);
             nuevoToolStripMenuItem1.Text = "Nuevo";
             // 
+            // Usertimer
+            // 
+            Usertimer.Interval = 15;
+            Usertimer.Tick += Usertimer_Tick;
+            // 
+            // filtertimer
+            // 
+            filtertimer.Interval = 15;
+            filtertimer.Tick += filtertimer_Tick;
+            // 
             // FormProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(30, 30, 32);
-            ClientSize = new Size(777, 551);
+            ClientSize = new Size(825, 635);
             ControlBox = false;
             Controls.Add(menupanel);
             Controls.Add(btnPrimerCarga);
@@ -949,16 +1200,18 @@ namespace WinForm
             ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonPictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)menubutton).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            panelhabilitados.ResumeLayout(false);
+            panelhabilitados.PerformLayout();
+            panelcategoria.ResumeLayout(false);
+            panelcategoria.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             menupanel.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
+            panelfilter.ResumeLayout(false);
+            panelUsuario1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -985,15 +1238,13 @@ namespace WinForm
         private KryptonLabel label1;
         private KryptonPictureBox menubutton;
         private System.Windows.Forms.Timer sidebartimer;
-        private System.Windows.Forms.Timer filtertimer;
-        private Panel panel3;
+        private Panel panelcategoria;
         private PictureBox pictureBox1;
-        private Panel panel4;
+        private Panel panelhabilitados;
         private KryptonPictureBox kryptonPictureBox2;
         private Panel panel5;
-        private KryptonLabel kryptonLabel2;
         private FlowLayoutPanel menupanel;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel panelfilter;
         private ReaLTaiizor.Controls.ControlBox controlBox1;
         private ContextMenuStrip contextMenuRow;
         private ToolStripMenuItem OrdenarToolStipMenuItem;
@@ -1016,5 +1267,14 @@ namespace WinForm
         private ToolStripMenuItem nuevoToolStrip;
         private ToolStripMenuItem refrescarToolStripMenuItem1;
         private ToolStripComboBox toolStripComboBox1;
+        private Label label2;
+        private Button btnchangepass;
+        private Button btninformacion;
+        private Button button1;
+        private FlowLayoutPanel panelUsuario1;
+        private System.Windows.Forms.Timer Usertimer;
+        private System.Windows.Forms.Timer filtertimer;
+        private Button btnlogout;
+        private Panel panel2;
     }
 }

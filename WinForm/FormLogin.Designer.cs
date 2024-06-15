@@ -85,7 +85,7 @@ namespace WinForm
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 12;
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.Padding = new Padding(10, -1, -1, -1);
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Color1 = Color.LightGray;
-            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Poppins", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.DrawFocus = InheritBool.False;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Color1 = Color.LightGray;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -119,9 +119,9 @@ namespace WinForm
             textBox1.StateCommon.Content.Color1 = Color.Gray;
             textBox1.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            textBox1.TabIndex = 2;
-            textBox1.TabStop = false;
+            textBox1.TabIndex = 1;
             textBox1.Text = "Ingrese su usuario";
+            textBox1.TextChanged += textBox1_TextChanged;
             textBox1.Click += textBox1_Click;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
@@ -140,7 +140,7 @@ namespace WinForm
             textBox2.StateCommon.Content.Color1 = Color.Gray;
             textBox2.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox2.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            textBox2.TabIndex = 3;
+            textBox2.TabIndex = 2;
             textBox2.TabStop = false;
             textBox2.Text = "Ingrese una contraseña";
             textBox2.Click += textBox2_Click;
@@ -197,7 +197,7 @@ namespace WinForm
             button1.StateTracking.Content.ShortText.Color1 = Color.Gainsboro;
             button1.StateTracking.Content.ShortText.Color2 = Color.Gainsboro;
             button1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.TabIndex = 4;
+            button1.TabIndex = 3;
             button1.Values.Text = "Iniciar Sesion";
             button1.Click += button1_Click;
             // 
@@ -218,7 +218,7 @@ namespace WinForm
             linkRegistrarse.Location = new Point(79, 411);
             linkRegistrarse.Name = "linkRegistrarse";
             linkRegistrarse.Size = new Size(113, 15);
-            linkRegistrarse.TabIndex = 24;
+            linkRegistrarse.TabIndex = 5;
             linkRegistrarse.TabStop = true;
             linkRegistrarse.Text = "Cambiar contraseña";
             linkRegistrarse.LinkClicked += linkCambioContraseña_LinkClicked;
@@ -270,7 +270,7 @@ namespace WinForm
             kryptonButton1.StateTracking.Content.ShortText.Color1 = Color.White;
             kryptonButton1.StateTracking.Content.ShortText.Color2 = Color.White;
             kryptonButton1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
-            kryptonButton1.TabIndex = 26;
+            kryptonButton1.TabIndex = 4;
             kryptonButton1.Values.Text = "Registrarse";
             kryptonButton1.Click += btnRegistrarse_Click;
             // 
@@ -278,7 +278,7 @@ namespace WinForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(32, 32, 32);
+            BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(384, 461);
             Controls.Add(kryptonButton1);
             Controls.Add(linkRegistrarse);

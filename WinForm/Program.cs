@@ -19,14 +19,6 @@ namespace WinForm
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
             ConfigureServices(services);
-            //using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-            //{
-
-            //    var login = serviceProvider.GetRequiredService<FormLogin>();
-            //    Application.Run(login);
-
-            //}
-
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
                 var login = serviceProvider.GetRequiredService<FormLogin>();
@@ -48,16 +40,6 @@ namespace WinForm
                         }
                     }
                 }
-
-
-                //if (login.ShowDialog() == DialogResult.OK)
-                //{
-                //            }
-                //            else
-                //{
-                //	// Handle failed login (optional)
-                //               MessageBox.Show("Operacion cancelada", "Aviso", MessageBoxButtons.);
-                //Application.Exit();
             }
         }
         private static void ConfigureServices(ServiceCollection services)
@@ -86,16 +68,6 @@ namespace WinForm
                     .AddTransient<FormProducto>()
                     .AddTransient<Form2>()
                     .AddTransient<FormLogin>();
-
-            //ServiceProvider serviceLogin = services.BuildServiceProvider();
-            //services.AddLogging(configure => configure.AddConsole())
-            //        .AddScoped<Config>(p =>
-            //        {
-            //            return config;
-            //        })
-            //        .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
-            //        .AddScoped<IProjectRepository, ProjectRepository>()
-            //        .AddTransient<FormLogin>();
 
         }
     }

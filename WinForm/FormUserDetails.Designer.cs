@@ -2,7 +2,7 @@
 
 namespace WinForm
 {
-    partial class Form2
+    partial class FormUserDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -34,19 +34,18 @@ namespace WinForm
             btnCargarProducto = new KryptonButton();
             lblCategoria = new Label();
             lblNombreProducto = new Label();
-            txtNombreProducto = new KryptonTextBox();
-            cmbBoxCategorias = new KryptonComboBox();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             BTNCancelar = new KryptonButton();
-            checkHabilitado = new KryptonCheckBox();
-            ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).BeginInit();
+            listView1 = new ListView();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnCargarProducto
             // 
             btnCargarProducto.Anchor = AnchorStyles.Bottom;
             btnCargarProducto.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCargarProducto.Location = new Point(12, 265);
+            btnCargarProducto.Location = new Point(32, 484);
             btnCargarProducto.Name = "btnCargarProducto";
             btnCargarProducto.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
             btnCargarProducto.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
@@ -91,68 +90,28 @@ namespace WinForm
             btnCargarProducto.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
             btnCargarProducto.TabIndex = 12;
             btnCargarProducto.Values.Text = "Guardar";
-            btnCargarProducto.Click += btnCargarProducto_Click;
             // 
             // lblCategoria
             // 
             lblCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblCategoria.AutoSize = true;
-            lblCategoria.Font = new Font("Segoe UI", 11F);
-            lblCategoria.Location = new Point(15, 54);
+            lblCategoria.Font = new Font("Montserrat Medium", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCategoria.Location = new Point(-6, 130);
             lblCategoria.Name = "lblCategoria";
-            lblCategoria.Size = new Size(74, 20);
+            lblCategoria.Size = new Size(214, 27);
             lblCategoria.TabIndex = 11;
-            lblCategoria.Text = "Categoria";
+            lblCategoria.Text = "Nombre de usuario:";
             // 
             // lblNombreProducto
             // 
             lblNombreProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblNombreProducto.AutoSize = true;
-            lblNombreProducto.Font = new Font("Segoe UI", 11F);
-            lblNombreProducto.Location = new Point(15, 132);
+            lblNombreProducto.Font = new Font("Montserrat Medium", 15F, FontStyle.Bold);
+            lblNombreProducto.Location = new Point(112, 187);
             lblNombreProducto.Name = "lblNombreProducto";
-            lblNombreProducto.Size = new Size(64, 20);
+            lblNombreProducto.Size = new Size(96, 27);
             lblNombreProducto.TabIndex = 10;
             lblNombreProducto.Text = "Nombre";
-            // 
-            // txtNombreProducto
-            // 
-            txtNombreProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombreProducto.Location = new Point(14, 156);
-            txtNombreProducto.Name = "txtNombreProducto";
-            txtNombreProducto.Size = new Size(222, 31);
-            txtNombreProducto.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
-            txtNombreProducto.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
-            txtNombreProducto.StateCommon.Border.Color2 = Color.Gray;
-            txtNombreProducto.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            txtNombreProducto.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            txtNombreProducto.StateCommon.Border.Rounding = 18F;
-            txtNombreProducto.StateCommon.Content.Color1 = Color.Silver;
-            txtNombreProducto.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombreProducto.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            txtNombreProducto.TabIndex = 9;
-            // 
-            // cmbBoxCategorias
-            // 
-            cmbBoxCategorias.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cmbBoxCategorias.DropBackStyle = PaletteBackStyle.ControlCustom1;
-            cmbBoxCategorias.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbBoxCategorias.DropDownWidth = 222;
-            cmbBoxCategorias.FormattingEnabled = true;
-            cmbBoxCategorias.IntegralHeight = false;
-            cmbBoxCategorias.Location = new Point(14, 78);
-            cmbBoxCategorias.Name = "cmbBoxCategorias";
-            cmbBoxCategorias.Palette = kryptonCustomPaletteBase1;
-            cmbBoxCategorias.PaletteMode = PaletteMode.Custom;
-            cmbBoxCategorias.Size = new Size(222, 32);
-            cmbBoxCategorias.StateCommon.ComboBox.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            cmbBoxCategorias.StateCommon.Item.Border.Color1 = Color.Navy;
-            cmbBoxCategorias.StateCommon.Item.Border.Color2 = Color.FromArgb(0, 0, 64);
-            cmbBoxCategorias.StateCommon.Item.Border.ColorAngle = 135F;
-            cmbBoxCategorias.StateCommon.Item.Border.ColorStyle = PaletteColorStyle.LinearShadow;
-            cmbBoxCategorias.StateCommon.Item.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            cmbBoxCategorias.StateCommon.Item.Content.DrawFocus = InheritBool.False;
-            cmbBoxCategorias.TabIndex = 8;
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -313,7 +272,7 @@ namespace WinForm
             // 
             BTNCancelar.Anchor = AnchorStyles.Bottom;
             BTNCancelar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNCancelar.Location = new Point(130, 265);
+            BTNCancelar.Location = new Point(32, 449);
             BTNCancelar.Name = "BTNCancelar";
             BTNCancelar.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
             BTNCancelar.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
@@ -360,56 +319,52 @@ namespace WinForm
             BTNCancelar.Values.Text = "Cancelar";
             BTNCancelar.Click += BTNCancelar_Click;
             // 
-            // checkHabilitado
+            // listView1
             // 
-            checkHabilitado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            checkHabilitado.Images.CheckedDisabled = Properties.Resources.disabled_checked;
-            checkHabilitado.Images.CheckedNormal = Properties.Resources.check_box_24dp_FILL0_wght400_GRAD0_opsz24;
-            checkHabilitado.Images.CheckedPressed = Properties.Resources.check_box_24dp_FILL0_wght400_GRAD0_opsz24;
-            checkHabilitado.Images.CheckedTracking = Properties.Resources.checked_Traced;
-            checkHabilitado.Images.Common = Properties.Resources.check_box_outline_blank_24dp_FILL0_wght400_GRAD0_opsz24;
-            checkHabilitado.Images.IndeterminateDisabled = Properties.Resources.disabled_unchecked;
-            checkHabilitado.Images.IndeterminateNormal = Properties.Resources.check_box_outline_blank_24dp_FILL0_wght400_GRAD0_opsz24;
-            checkHabilitado.Images.IndeterminatePressed = Properties.Resources.check_box_outline_blank_24dp_FILL0_wght400_GRAD0_opsz24;
-            checkHabilitado.Images.IndeterminateTracking = Properties.Resources.unchecked_trace;
-            checkHabilitado.Images.UncheckedDisabled = Properties.Resources.disabled_unchecked;
-            checkHabilitado.Images.UncheckedNormal = Properties.Resources.check_box_outline_blank_24dp_FILL0_wght400_GRAD0_opsz24;
-            checkHabilitado.Images.UncheckedPressed = Properties.Resources.check_box_outline_blank_24dp_FILL0_wght400_GRAD0_opsz24;
-            checkHabilitado.Images.UncheckedTracking = Properties.Resources.unchecked_trace;
-            checkHabilitado.Location = new Point(77, 219);
-            checkHabilitado.Name = "checkHabilitado";
-            checkHabilitado.Size = new Size(100, 24);
-            checkHabilitado.StateCommon.ShortText.Color1 = Color.Silver;
-            checkHabilitado.StateCommon.ShortText.Color2 = Color.FromArgb(224, 224, 224);
-            checkHabilitado.StateCommon.ShortText.ColorAngle = 45F;
-            checkHabilitado.StateCommon.ShortText.ColorStyle = PaletteColorStyle.HalfCut;
-            checkHabilitado.StateCommon.ShortText.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkHabilitado.TabIndex = 14;
-            checkHabilitado.Values.Text = "Habilitado";
+            listView1.BackColor = Color.FromArgb(64, 64, 64);
+            listView1.BorderStyle = BorderStyle.None;
+            listView1.Font = new Font("Segoe UI", 11F);
+            listView1.ForeColor = SystemColors.HighlightText;
+            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listView1.Location = new Point(233, 46);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(422, 451);
+            listView1.TabIndex = 15;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
             // 
-            // Form2
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.account_box_24dp_FILL0_wght400_GRAD0_opsz24;
+            pictureBox1.Location = new Point(56, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(96, 96);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 16;
+            pictureBox1.TabStop = false;
+            // 
+            // FormUserDetails
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(260, 306);
-            Controls.Add(checkHabilitado);
+            ClientSize = new Size(670, 525);
+            Controls.Add(pictureBox1);
+            Controls.Add(listView1);
             Controls.Add(BTNCancelar);
             Controls.Add(btnCargarProducto);
             Controls.Add(lblCategoria);
             Controls.Add(lblNombreProducto);
-            Controls.Add(txtNombreProducto);
-            Controls.Add(cmbBoxCategorias);
             ForeColor = Color.WhiteSmoke;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             FormTitleAlign = PaletteRelativeAlign.Inherit;
-            Name = "Form2";
+            Name = "FormUserDetails";
             Palette = kryptonCustomPaletteBase1;
             PaletteMode = PaletteMode.Custom;
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
-            ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -419,10 +374,9 @@ namespace WinForm
         private KryptonButton btnCargarProducto;
         private Label lblCategoria;
         private Label lblNombreProducto;
-        private KryptonTextBox txtNombreProducto;
-        private KryptonComboBox cmbBoxCategorias;
         private KryptonButton BTNCancelar;
-        private KryptonCheckBox checkHabilitado;
         private KryptonCustomPaletteBase kryptonCustomPaletteBase1;
+        private ListView listView1;
+        private PictureBox pictureBox1;
     }
 }
