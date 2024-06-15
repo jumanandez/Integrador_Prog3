@@ -17,7 +17,7 @@ namespace Proyecto.Core.Data.Interfaces
         public void ModifyProduct(Producto product);
         public bool AddCategoria(Categoria categoria);
         public List<Compra> GetCompras(int usuarioId);
-        public List<Venta> GetVentas();
+        public List<Venta> GetVentas(int userId);
         public Producto GetProducto(int id);
         public void DeleteProducto(int id);
         public int GetStock(int usuarioId, int productoId);

@@ -56,6 +56,7 @@ namespace WebApp.Controllers
 
         }
 
+
         [HttpGet]
         public JsonResult GetProductosByCategoria(int categoriaId)
         {
@@ -86,16 +87,9 @@ namespace WebApp.Controllers
                         UsuarioId = userId
                     };
 
-                    _compraBusiness.AddCompra(compra);
+            _compraBusiness.AddCompra(compra);
 
-                    return RedirectToAction("Index", "Compra");
-                }
-            }
-
-            // Vuelve a cargar la lista de categorías y productos en caso de error de validación
-            compraModel.CategoriaLista = _categoriaBusiness.GetAll();
-            compraModel.ProductoLista = _productoBusiness.GetAll();
-            return View(compraModel);
+            return RedirectToAction("Create", "Compra");
         }
 
     }

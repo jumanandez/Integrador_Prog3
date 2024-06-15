@@ -12,7 +12,7 @@
         <form asp-action="CategoriaSelect" asp-controller="Venta" method="post">
 
             <div class="mb-2">
-                <label class="form-label" asp-for="@Model.VentaLista.">Producto</label>
+                <label class="form-label" asp-for="@Model.ProductoLista.">Producto</label>
                 @Html.DropDownListFor(model => model._Producto.CategoriaId, new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"), "Seleccione una categoria", new { @class = "form-control form-control-sm", id = "categoriaDropdown" })
             </div>
 
