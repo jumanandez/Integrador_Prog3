@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Core.Entities
 {
-    public class CompraPaginada
+    public class Paginado<T>
     {
-        public List<Compra> Compras { get; set; }
+        public List<T> Items { get; set; }
         public int PaginaActual { get; set; }
         public int TotalPaginas { get; set; }
         public int ItemsPorPagina { get; set; }
