@@ -73,7 +73,8 @@ namespace WinForm
                     var i = dataGridViewProducto.CurrentRow.Index;
                     var prod = dataGridViewProducto.SelectedRows[0];
                     _productoSeleccionado = (Producto)prod.DataBoundItem;
-                    DialogResult dialogResult = MessageBox.Show("Eliminar este elemento?", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show($"Eliminar este elemento? \n\n{_productoSeleccionado.Nombre}"+
+                                                                    $"\n{_productoSeleccionado.Categoria} \nStock:{_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Compras.Select(c => c.Cantidad).Sum()}", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         _productoBusiness.DeleteProducto(_productoSeleccionado);
