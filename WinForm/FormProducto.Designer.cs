@@ -129,7 +129,7 @@ namespace WinForm
             dataGridViewProducto.GridStyles.StyleColumn = GridStyle.Custom1;
             dataGridViewProducto.GridStyles.StyleDataCells = GridStyle.Custom1;
             dataGridViewProducto.GridStyles.StyleRow = GridStyle.Custom1;
-            dataGridViewProducto.Location = new Point(26, 0);
+            dataGridViewProducto.Location = new Point(3, 0);
             dataGridViewProducto.Name = "dataGridViewProducto";
             dataGridViewProducto.Palette = kryptonCustomPaletteBase1;
             dataGridViewProducto.PaletteMode = PaletteMode.Custom;

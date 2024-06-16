@@ -871,7 +871,7 @@ namespace WinForm
 
             _productoSeleccionado = (Producto)row.DataBoundItem;
 
-            FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado);
+            FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
             form.ShowDialog();
         }
 
