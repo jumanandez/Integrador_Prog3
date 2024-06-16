@@ -1,5 +1,6 @@
 ﻿using Proyecto.Core.Business;
 using Proyecto.Core.Business.Interfaces;
+using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +17,24 @@ namespace WinForm
 	public partial class FormCambioContrasena : Form
 	{
 		private readonly IUsuarioBusiness _usuarioBusiness;
+		private readonly Usuario _loggerUser = null!;
 		public FormCambioContrasena(IUsuarioBusiness usuarioBusiness)
 		{
 			_usuarioBusiness = usuarioBusiness;
 			InitializeComponent();
 		}
+        public FormCambioContrasena(IUsuarioBusiness usuarioBusiness, Usuario loggeduser)
+        {
+            _usuarioBusiness = usuarioBusiness;
+			_loggerUser = loggeduser;
+			txtNombreUsuario.Text = _loggerUser.Nombre;
+			txtContrasenaActual.Focus();
+            InitializeComponent();
+        }
 
-		private void btnCambiarContraseña_Click(object sender, EventArgs e)
+        private void btnCambiarContraseña_Click(object sender, EventArgs e)
 		{
-			string username = txtNombreUsuario.Text.Trim();
+			string username = txtNombreUsuario.Text;
 			string passActual = txtContrasenaActual.Text.Trim();
 			string passNueva = txtNuevaContrasena.Text.Trim();
 

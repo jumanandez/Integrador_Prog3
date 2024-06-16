@@ -14,12 +14,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Krypton.Toolkit;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace WinForm
 {
     public partial class FormUserDetails : KryptonForm
     {
         private readonly Usuario _loggedUser;
+        bool comprascollapsed = true;
+        bool ventascollapsed = true;
         public FormUserDetails(Usuario loggerUser)
         {
             InitializeComponent();
@@ -36,23 +39,87 @@ namespace WinForm
             //listView1.Groups.Add(comprasGroup);
             //listView1.Groups.Add(ventasGroup);
 
-            //var compralist = from compra in _loggedUser.Compras
-            //                 select compra;
+            var compralist = from compra in _loggedUser.Compras
+                             select compra;
 
-            //var ventalist = from venta in _loggedUser.Venta
-            //                select venta;
+            var ventalist = from venta in _loggedUser.Venta
+                            select venta;
 
-            //foreach (var user in compralist)
-            //{
-            //    listView1.Items.Add(new ListViewItem(new[] { user.Producto.Nombre, user.Cantidad.ToString(), user.Fecha.ToString("d/M/Y") }) { Group = comprasGroup });
-            //}
-            //foreach (var user in ventalist)
-            //{
-            //    listView1.Items.Add(new ListViewItem(new[] { user.Producto.Nombre, user.Cantidad.ToString(), user.Fecha.ToString("d/M/Y") }) { Group = ventasGroup });
-            //}
+            //dataGridViewCompras.DataSource = compralist.ToList();
 
+
+            foreach (var user in compralist)
+            {
+                dataGridViewCompras.Rows.Add(user.Producto.Nombre, user.Cantidad, user.Fecha);
+            }
+            foreach (var user in ventalist)
+            {
+                VentasDataGridView.Rows.Add(user.Producto.Nombre, user.Cantidad, user.Fecha);
+            }
         }
+
         private void BTNCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void comprastimer_Tick(object sender, EventArgs e)
+        {
+            if (comprascollapsed)
+            {
+                panelfilter.Height += 15;
+                if (panelfilter.Height == panelfilter.MaximumSize.Height)
+                {
+                    comprascollapsed = false;
+                    comprastimer.Stop();
+                }
+            }
+            else if (!comprascollapsed)
+            {
+                panelfilter.Height -= 15;
+                if (panelfilter.Height == panelfilter.MinimumSize.Height)
+                {
+                    comprascollapsed = true;
+                    comprastimer.Stop();
+                }
+            }
+        }
+
+        private void panelfilter_Click(object sender, EventArgs e)
+        {
+            BtnCompras.Image = comprascollapsed ? Properties.Resources.big_button2 : Properties.Resources.big_buttonD;
+            comprastimer.Start();
+        }
+
+        private void Btnventas_Click(object sender, EventArgs e)
+        {
+            Btnventas.Image = ventascollapsed ? Properties.Resources.big_buttonVU : Properties.Resources.big_buttonVD;
+            ventastimer.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!ventascollapsed)
+            {
+                panelventas.Height -= 15;
+                if (panelventas.Height == panelventas.MinimumSize.Height)
+                {
+                    ventascollapsed = true;
+                    ventastimer.Stop();
+                }
+            }
+            else
+            {
+                panelventas.Height += 15;
+                if (panelventas.Height == panelventas.MaximumSize.Height)
+                {
+                    ventascollapsed = false;
+                    ventastimer.Stop();
+                }
+            }
+        }
+
+        private void btnlogout_Click(object sender, EventArgs e)
         {
             this.Close();
         }

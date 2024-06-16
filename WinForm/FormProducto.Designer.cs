@@ -882,6 +882,7 @@ namespace WinForm
             // menubutton
             // 
             menubutton.Cursor = Cursors.Hand;
+            menubutton.Image = Properties.Resources.Medium_meno;
             menubutton.Location = new Point(3, 3);
             menubutton.Name = "menubutton";
             menubutton.Size = new Size(52, 49);
@@ -999,7 +1000,7 @@ namespace WinForm
             menupanel.MaximumSize = new Size(221, 581);
             menupanel.MinimumSize = new Size(53, 581);
             menupanel.Name = "menupanel";
-            menupanel.Size = new Size(221, 581);
+            menupanel.Size = new Size(53, 581);
             menupanel.TabIndex = 0;
             // 
             // panelfilter
@@ -1115,6 +1116,7 @@ namespace WinForm
             btnchangepass.TabIndex = 36;
             btnchangepass.Text = "Cambiar contraseña";
             btnchangepass.UseVisualStyleBackColor = false;
+            btnchangepass.Click += btnchangepass_Click;
             // 
             // panel2
             // 
