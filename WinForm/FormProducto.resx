@@ -121,7 +121,7 @@
     <value>376, 15</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="iconSpec1.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec7.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAg1JREFUSEvF1d1KVFEYxvHx88hEUCoJgvACQr2CiOhkyDpQzCRvIFC8BQnUElJi
@@ -136,7 +136,7 @@
         ORrb3Fm1igAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="iconSpec2.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec1.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAdFJREFUSEvFlDtLXEEYhtfLFim8VSIBJSo2IirYR0gTjZfW/Qeivfor7LTQxkob
@@ -150,7 +150,7 @@
         Aq3gywVwYQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="iconSpec3.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec2.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAUFJREFUSEvdlb1OAkEcxO8IaknjQyiGgpYK4Qk1oSLRUhI/ouFNqGy0O/b2ZAtK
@@ -161,7 +161,7 @@
         WHeKwbM2NOHFVJsz1dWFV+kEG3jS/f3LieHKlHuHz3GUZb/ZlVtmZ7NpxgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="iconSpec4.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec3.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAaVJREFUSEu91L8rxHEcx/EzEKeTX4t0MbgMQkgYGE4pg1nkR2ExkMmixMwgyV9g
@@ -174,7 +174,7 @@
         UQ+/Ro7YTp1ijf4jPt87yrTJXuqL5eEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="iconSpec5.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec4.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAaNJREFUSEu9lM1Kw0AUhesPLa0v4FqkSEXc6EYEEWrFh5Hi0/gLYu37KOpCwZUI
@@ -190,7 +190,7 @@
   <metadata name="ColumnHabilitado.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="iconSpec6.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec5.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAK1JREFUSEtjGAUjGLx49Ub6xau3FlAudQDQUGGgoaeA+DcQG0GFKQNQQ48D8X8g
@@ -202,6 +202,12 @@
   <metadata name="contextMenuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>655, 18</value>
   </metadata>
+  <metadata name="kryptonCustomPaletteBase1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="sortcontext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>341, 44</value>
+  </metadata>
   <data name="nuevoToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -211,9 +217,6 @@
         as4T/5rx0PtiMy1GMzPUSW+cM7AxZkxS+gD1OKQkNuQN2wAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="kryptonCustomPaletteBase1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="lblCategorias.StateCommon.ShortText.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
