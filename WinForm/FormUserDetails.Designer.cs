@@ -80,10 +80,11 @@ namespace WinForm
             // 
             lblCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblCategoria.AutoSize = true;
-            lblCategoria.Font = new Font("Montserrat Medium", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCategoria.Location = new Point(-6, 125);
+            lblCategoria.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCategoria.ForeColor = Color.FromArgb(128, 159, 234);
+            lblCategoria.Location = new Point(2, 125);
             lblCategoria.Name = "lblCategoria";
-            lblCategoria.Size = new Size(214, 27);
+            lblCategoria.Size = new Size(220, 37);
             lblCategoria.TabIndex = 11;
             lblCategoria.Text = "Nombre de usuario:";
             // 
@@ -92,7 +93,7 @@ namespace WinForm
             lblNombreProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblNombreProducto.AutoSize = true;
             lblNombreProducto.Font = new Font("Montserrat Medium", 15F, FontStyle.Bold);
-            lblNombreProducto.Location = new Point(56, 181);
+            lblNombreProducto.Location = new Point(59, 181);
             lblNombreProducto.Name = "lblNombreProducto";
             lblNombreProducto.Size = new Size(96, 27);
             lblNombreProducto.TabIndex = 10;
@@ -313,7 +314,7 @@ namespace WinForm
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.account_box_24dp_FILL0_wght400_GRAD0_opsz24;
-            pictureBox1.Location = new Point(56, 12);
+            pictureBox1.Location = new Point(59, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(96, 96);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -407,6 +408,8 @@ namespace WinForm
             dataGridViewCompras.StateCommon.BackStyle = PaletteBackStyle.GridBackgroundCustom1;
             dataGridViewCompras.StateCommon.HeaderColumn.Back.Color1 = Color.FromArgb(60, 65, 190);
             dataGridViewCompras.StateCommon.HeaderColumn.Back.Color2 = Color.FromArgb(60, 65, 195);
+            dataGridViewCompras.StateTracking.HeaderColumn.Back.Color1 = Color.FromArgb(50, 55, 150);
+            dataGridViewCompras.StateTracking.HeaderColumn.Back.Color2 = Color.FromArgb(45, 50, 140);
             dataGridViewCompras.TabIndex = 1;
             dataGridViewCompras.TabStop = false;
             // 
@@ -528,6 +531,8 @@ namespace WinForm
             VentasDataGridView.StateCommon.BackStyle = PaletteBackStyle.GridBackgroundCustom1;
             VentasDataGridView.StateCommon.HeaderColumn.Back.Color1 = Color.FromArgb(60, 65, 190);
             VentasDataGridView.StateCommon.HeaderColumn.Back.Color2 = Color.FromArgb(60, 65, 195);
+            VentasDataGridView.StateTracking.HeaderColumn.Back.Color1 = Color.FromArgb(50, 55, 150);
+            VentasDataGridView.StateTracking.HeaderColumn.Back.Color2 = Color.FromArgb(45, 50, 140);
             VentasDataGridView.TabIndex = 1;
             VentasDataGridView.TabStop = false;
             // 
@@ -615,13 +620,15 @@ namespace WinForm
             Controls.Add(lblNombreProducto);
             ForeColor = Color.WhiteSmoke;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            FormTitleAlign = PaletteRelativeAlign.Inherit;
+            FormTitleAlign = PaletteRelativeAlign.Center;
             Name = "FormUserDetails";
             Palette = kryptonCustomPaletteBase1;
             PaletteMode = PaletteMode.Custom;
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
+            Text = "Informacion de usuario";
+            TitleStyle = KryptonFormTitleStyle.Modern;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             panelfilter.ResumeLayout(false);

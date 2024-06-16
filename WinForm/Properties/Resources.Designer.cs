@@ -93,6 +93,86 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap addmini_b {
+            get {
+                object obj = ResourceManager.GetObject("addmini_b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Arrow_back {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Arrow_backP {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_backP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Arrow_backS {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_backS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow_forward {
+            get {
+                object obj = ResourceManager.GetObject("arrow_forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow_forward1 {
+            get {
+                object obj = ResourceManager.GetObject("arrow_forward1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow_forwardP {
+            get {
+                object obj = ResourceManager.GetObject("arrow_forwardP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow_forwardS {
+            get {
+                object obj = ResourceManager.GetObject("arrow_forwardS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap big_button2 {
             get {
                 object obj = ResourceManager.GetObject("big_button2", resourceCulture);
@@ -163,9 +243,39 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap check_Dmini {
+            get {
+                object obj = ResourceManager.GetObject("check_Dmini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap check_mini {
             get {
                 object obj = ResourceManager.GetObject("check_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap check_Smini {
+            get {
+                object obj = ResourceManager.GetObject("check_Smini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap check_Umini {
+            get {
+                object obj = ResourceManager.GetObject("check_Umini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,6 +513,16 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap micro_compras {
+            get {
+                object obj = ResourceManager.GetObject("micro_compras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Mini_borrar {
             get {
                 object obj = ResourceManager.GetObject("Mini_borrar", resourceCulture);
@@ -426,6 +546,16 @@ namespace WinForm.Properties {
         public static System.Drawing.Bitmap mini_details {
             get {
                 object obj = ResourceManager.GetObject("mini_details", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_habi {
+            get {
+                object obj = ResourceManager.GetObject("mini_habi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -473,6 +603,16 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap mini_refresh_b {
+            get {
+                object obj = ResourceManager.GetObject("mini_refresh_b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap mini_right {
             get {
                 object obj = ResourceManager.GetObject("mini_right", resourceCulture);
@@ -486,6 +626,16 @@ namespace WinForm.Properties {
         public static System.Drawing.Bitmap mini_search {
             get {
                 object obj = ResourceManager.GetObject("mini_search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_stock {
+            get {
+                object obj = ResourceManager.GetObject("mini_stock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -533,6 +683,36 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap sort_mini_B {
+            get {
+                object obj = ResourceManager.GetObject("sort_mini_B", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap unchecked_Dmini {
+            get {
+                object obj = ResourceManager.GetObject("unchecked_Dmini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap unchecked_Dmini1 {
+            get {
+                object obj = ResourceManager.GetObject("unchecked_Dmini1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap unchecked_mini {
             get {
                 object obj = ResourceManager.GetObject("unchecked_mini", resourceCulture);
@@ -543,9 +723,29 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap unchecked_Smini {
+            get {
+                object obj = ResourceManager.GetObject("unchecked_Smini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap unchecked_trace {
             get {
                 object obj = ResourceManager.GetObject("unchecked_trace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap unchecked_Umini {
+            get {
+                object obj = ResourceManager.GetObject("unchecked_Umini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -566,6 +766,16 @@ namespace WinForm.Properties {
         public static System.Drawing.Bitmap ventas {
             get {
                 object obj = ResourceManager.GetObject("ventas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ventas1 {
+            get {
+                object obj = ResourceManager.GetObject("ventas1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

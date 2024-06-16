@@ -32,9 +32,21 @@ namespace WinForm
         {
             components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            IconSpec iconSpec1 = new IconSpec();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProducto));
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            IconSpec iconSpec2 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            IconSpec iconSpec3 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            IconSpec iconSpec4 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            IconSpec iconSpec5 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            IconSpec iconSpec6 = new IconSpec();
             dataGridViewProducto = new KryptonDataGridView();
-            ColumnNombreProducto = new DataGridViewTextBoxColumn();
+            ColumnNombreProducto = new KryptonDataGridViewTextBoxColumn();
             contextMenuRow = new ContextMenuStrip(components);
             nuevoToolStrip = new ToolStripMenuItem();
             ordenarToolStripMenuItem1 = new ToolStripMenuItem();
@@ -43,16 +55,20 @@ namespace WinForm
             eliminarToolStripMenuItem = new ToolStripMenuItem();
             detallesToolStripMenuItem = new ToolStripMenuItem();
             refrescarToolStripMenuItem1 = new ToolStripMenuItem();
-            ColumnCategoria = new DataGridViewTextBoxColumn();
-            ColumnStock = new DataGridViewTextBoxColumn();
-            ColumnCompras = new DataGridViewTextBoxColumn();
-            ColumnVentas = new DataGridViewTextBoxColumn();
-            ColumnHabilitado = new DataGridViewCheckBoxColumn();
+            ColumnCategoria = new KryptonDataGridViewTextBoxColumn();
+            ColumnStock = new KryptonDataGridViewTextBoxColumn();
+            ColumnCompras = new KryptonDataGridViewTextBoxColumn();
+            ColumnVentas = new KryptonDataGridViewTextBoxColumn();
+            ColumnHabilitado = new KryptonDataGridViewCheckBoxColumn();
             contextMenuStrip2 = new ContextMenuStrip(components);
+            nuevoToolStripMenuItem1 = new ToolStripMenuItem();
+            refrescarToolStripMenuItem2 = new ToolStripMenuItem();
+            ordenarStripMenuItem3 = new ToolStripMenuItem();
+            Nombre = new ToolStripMenuItem();
+            kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             nuevoToolStripMenuItem = new ToolStripMenuItem();
             ordenarToolStripMenuItem = new ToolStripMenuItem();
             refrescarToolStripMenuItem = new ToolStripMenuItem();
-            kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             BTNdelete = new KryptonButton();
             BTNmodif = new KryptonButton();
             btnNuevoProducto = new KryptonButton();
@@ -66,7 +82,6 @@ namespace WinForm
             rdiobtnHabilitado = new KryptonRadioButton();
             rdiobtnDeshabilitado = new KryptonRadioButton();
             rdiobtnTodos = new KryptonRadioButton();
-            BtnRfrs = new KryptonButton();
             kryptonPictureBox1 = new KryptonPictureBox();
             label1 = new KryptonLabel();
             menubutton = new KryptonPictureBox();
@@ -87,7 +102,6 @@ namespace WinForm
             btnchangepass = new Button();
             panel2 = new Panel();
             btnlogout = new Button();
-            nuevoToolStripMenuItem1 = new ToolStripMenuItem();
             Usertimer = new System.Windows.Forms.Timer(components);
             filtertimer = new System.Windows.Forms.Timer(components);
             datagridroudergropu = new ReaLTaiizor.Controls.CyberGroupBox();
@@ -136,7 +150,7 @@ namespace WinForm
             dataGridViewProducto.ReadOnly = true;
             dataGridViewProducto.RowHeadersVisible = false;
             dataGridViewProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewProducto.Size = new Size(615, 356);
+            dataGridViewProducto.Size = new Size(703, 356);
             dataGridViewProducto.StandardTab = true;
             dataGridViewProducto.TabIndex = 0;
             dataGridViewProducto.TabStop = false;
@@ -147,10 +161,14 @@ namespace WinForm
             // 
             ColumnNombreProducto.ContextMenuStrip = contextMenuRow;
             ColumnNombreProducto.DataPropertyName = "Nombre";
+            ColumnNombreProducto.DefaultCellStyle = dataGridViewCellStyle2;
             ColumnNombreProducto.HeaderText = "Nombre";
+            iconSpec1.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
+            ColumnNombreProducto.IconSpecs.Add(iconSpec1);
             ColumnNombreProducto.Name = "ColumnNombreProducto";
             ColumnNombreProducto.ReadOnly = true;
-            ColumnNombreProducto.SortMode = DataGridViewColumnSortMode.Programmatic;
+            ColumnNombreProducto.Resizable = DataGridViewTriState.True;
             ColumnNombreProducto.Width = 140;
             // 
             // contextMenuRow
@@ -231,84 +249,118 @@ namespace WinForm
             // 
             ColumnCategoria.ContextMenuStrip = contextMenuRow;
             ColumnCategoria.DataPropertyName = "Categoria";
+            ColumnCategoria.DefaultCellStyle = dataGridViewCellStyle3;
             ColumnCategoria.HeaderText = "Categoria";
+            iconSpec2.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
+            ColumnCategoria.IconSpecs.Add(iconSpec2);
             ColumnCategoria.Name = "ColumnCategoria";
             ColumnCategoria.ReadOnly = true;
-            ColumnCategoria.SortMode = DataGridViewColumnSortMode.Programmatic;
+            ColumnCategoria.Resizable = DataGridViewTriState.True;
             ColumnCategoria.Width = 140;
             // 
             // ColumnStock
             // 
             ColumnStock.ContextMenuStrip = contextMenuRow;
+            ColumnStock.DefaultCellStyle = dataGridViewCellStyle4;
             ColumnStock.HeaderText = "Stock";
+            iconSpec3.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
+            ColumnStock.IconSpecs.Add(iconSpec3);
             ColumnStock.Name = "ColumnStock";
             ColumnStock.ReadOnly = true;
-            ColumnStock.SortMode = DataGridViewColumnSortMode.Programmatic;
-            ColumnStock.Width = 60;
+            ColumnStock.Resizable = DataGridViewTriState.True;
+            ColumnStock.Width = 80;
             // 
             // ColumnCompras
             // 
             ColumnCompras.ContextMenuStrip = contextMenuRow;
+            ColumnCompras.DefaultCellStyle = dataGridViewCellStyle5;
             ColumnCompras.HeaderText = "Compras";
+            iconSpec4.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
+            ColumnCompras.IconSpecs.Add(iconSpec4);
             ColumnCompras.Name = "ColumnCompras";
             ColumnCompras.ReadOnly = true;
-            ColumnCompras.SortMode = DataGridViewColumnSortMode.Programmatic;
-            ColumnCompras.Width = 80;
+            ColumnCompras.Resizable = DataGridViewTriState.True;
+            ColumnCompras.Width = 105;
             // 
             // ColumnVentas
             // 
             ColumnVentas.ContextMenuStrip = contextMenuRow;
+            ColumnVentas.DefaultCellStyle = dataGridViewCellStyle6;
             ColumnVentas.HeaderText = "Ventas";
+            iconSpec5.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
+            ColumnVentas.IconSpecs.Add(iconSpec5);
             ColumnVentas.Name = "ColumnVentas";
             ColumnVentas.ReadOnly = true;
-            ColumnVentas.SortMode = DataGridViewColumnSortMode.Programmatic;
-            ColumnVentas.Width = 80;
+            ColumnVentas.Resizable = DataGridViewTriState.True;
+            ColumnVentas.Width = 100;
             // 
             // ColumnHabilitado
             // 
             ColumnHabilitado.ContextMenuStrip = contextMenuRow;
             ColumnHabilitado.DataPropertyName = "Habilitado";
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.NullValue = false;
+            ColumnHabilitado.DefaultCellStyle = dataGridViewCellStyle7;
+            ColumnHabilitado.FalseValue = null;
             ColumnHabilitado.HeaderText = "Habilitado";
+            iconSpec6.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
+            ColumnHabilitado.IconSpecs.Add(iconSpec6);
+            ColumnHabilitado.IndeterminateValue = null;
             ColumnHabilitado.Name = "ColumnHabilitado";
             ColumnHabilitado.ReadOnly = true;
-            ColumnHabilitado.SortMode = DataGridViewColumnSortMode.Programmatic;
+            ColumnHabilitado.Resizable = DataGridViewTriState.True;
+            ColumnHabilitado.SortMode = DataGridViewColumnSortMode.Automatic;
+            ColumnHabilitado.TrueValue = null;
+            ColumnHabilitado.Width = 120;
             // 
             // contextMenuStrip2
             // 
-            contextMenuStrip2.BackColor = Color.FromArgb(30, 30, 32);
+            contextMenuStrip2.BackColor = Color.FromArgb(64, 64, 64);
             contextMenuStrip2.Font = new Font("Segoe UI", 9F);
-            contextMenuStrip2.Items.AddRange(new ToolStripItem[] { nuevoToolStripMenuItem, ordenarToolStripMenuItem, refrescarToolStripMenuItem });
+            contextMenuStrip2.Items.AddRange(new ToolStripItem[] { nuevoToolStripMenuItem1, refrescarToolStripMenuItem2, ordenarStripMenuItem3 });
             contextMenuStrip2.Name = "contextMenuStrip2";
+            contextMenuStrip2.RenderMode = ToolStripRenderMode.System;
             contextMenuStrip2.Size = new Size(123, 70);
             // 
-            // nuevoToolStripMenuItem
+            // nuevoToolStripMenuItem1
             // 
-            nuevoToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
-            nuevoToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
-            nuevoToolStripMenuItem.Image = Properties.Resources.addmini;
-            nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            nuevoToolStripMenuItem.Size = new Size(122, 22);
-            nuevoToolStripMenuItem.Text = "Nuevo";
-            nuevoToolStripMenuItem.Click += nuevoProductoToolStripMenuItem_Click;
+            nuevoToolStripMenuItem1.BackColor = Color.RosyBrown;
+            nuevoToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            nuevoToolStripMenuItem1.Image = (Image)resources.GetObject("nuevoToolStripMenuItem1.Image");
+            nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
+            nuevoToolStripMenuItem1.Size = new Size(122, 22);
+            nuevoToolStripMenuItem1.Text = "Nuevo";
+            nuevoToolStripMenuItem1.Click += nuevoProductoToolStripMenuItem_Click;
             // 
-            // ordenarToolStripMenuItem
+            // refrescarToolStripMenuItem2
             // 
-            ordenarToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
-            ordenarToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
-            ordenarToolStripMenuItem.Image = Properties.Resources.sort_mini;
-            ordenarToolStripMenuItem.Name = "ordenarToolStripMenuItem";
-            ordenarToolStripMenuItem.Size = new Size(122, 22);
-            ordenarToolStripMenuItem.Text = "Ordenar";
+            refrescarToolStripMenuItem2.ForeColor = SystemColors.ButtonFace;
+            refrescarToolStripMenuItem2.Image = Properties.Resources.mini_refresh_b;
+            refrescarToolStripMenuItem2.Name = "refrescarToolStripMenuItem2";
+            refrescarToolStripMenuItem2.Size = new Size(122, 22);
+            refrescarToolStripMenuItem2.Text = "Refrescar";
+            refrescarToolStripMenuItem2.Click += refrescarToolStripMenuItem_Click;
             // 
-            // refrescarToolStripMenuItem
+            // ordenarStripMenuItem3
             // 
-            refrescarToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
-            refrescarToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
-            refrescarToolStripMenuItem.Image = Properties.Resources.Mini_refresh;
-            refrescarToolStripMenuItem.Name = "refrescarToolStripMenuItem";
-            refrescarToolStripMenuItem.Size = new Size(122, 22);
-            refrescarToolStripMenuItem.Text = "Refrescar";
-            refrescarToolStripMenuItem.Click += refrescarToolStripMenuItem_Click;
+            ordenarStripMenuItem3.DropDownItems.AddRange(new ToolStripItem[] { Nombre });
+            ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
+            ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
+            ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
+            ordenarStripMenuItem3.Size = new Size(122, 22);
+            ordenarStripMenuItem3.Text = "Ordenar";
+            // 
+            // Nombre
+            // 
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(118, 22);
+            Nombre.Text = "Nombre";
+            Nombre.Click += ordenarStripMenuItem3_Click;
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -388,6 +440,8 @@ namespace WinForm
             kryptonCustomPaletteBase1.ContextMenu.StateCommon.ItemHighlight.Back.Color2 = Color.FromArgb(0, 192, 0);
             kryptonCustomPaletteBase1.ContextMenu.StateHighlight.ItemHighlight.Back.Color1 = Color.Blue;
             kryptonCustomPaletteBase1.ContextMenu.StateHighlight.ItemHighlight.Back.Color2 = Color.FromArgb(128, 128, 255);
+            kryptonCustomPaletteBase1.ContextMenu.StateNormal.ItemHighlight.Back.Color1 = Color.Cyan;
+            kryptonCustomPaletteBase1.ContextMenu.StateNormal.ItemHighlight.Back.Color2 = Color.Yellow;
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Back.Color2 = Color.FromArgb(42, 42, 42);
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Back.ColorAngle = 45F;
@@ -498,11 +552,40 @@ namespace WinForm
             kryptonCustomPaletteBase1.ThemeName = "";
             kryptonCustomPaletteBase1.UseKryptonFileDialogs = true;
             // 
+            // nuevoToolStripMenuItem
+            // 
+            nuevoToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
+            nuevoToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
+            nuevoToolStripMenuItem.Image = Properties.Resources.addmini;
+            nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
+            nuevoToolStripMenuItem.Size = new Size(122, 22);
+            nuevoToolStripMenuItem.Text = "Nuevo";
+            nuevoToolStripMenuItem.Click += nuevoProductoToolStripMenuItem_Click;
+            // 
+            // ordenarToolStripMenuItem
+            // 
+            ordenarToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
+            ordenarToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
+            ordenarToolStripMenuItem.Image = Properties.Resources.sort_mini;
+            ordenarToolStripMenuItem.Name = "ordenarToolStripMenuItem";
+            ordenarToolStripMenuItem.Size = new Size(122, 22);
+            ordenarToolStripMenuItem.Text = "Ordenar";
+            // 
+            // refrescarToolStripMenuItem
+            // 
+            refrescarToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
+            refrescarToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
+            refrescarToolStripMenuItem.Image = Properties.Resources.Mini_refresh;
+            refrescarToolStripMenuItem.Name = "refrescarToolStripMenuItem";
+            refrescarToolStripMenuItem.Size = new Size(122, 22);
+            refrescarToolStripMenuItem.Text = "Refrescar";
+            refrescarToolStripMenuItem.Click += refrescarToolStripMenuItem_Click;
+            // 
             // BTNdelete
             // 
             BTNdelete.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             BTNdelete.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNdelete.Location = new Point(685, 584);
+            BTNdelete.Location = new Point(777, 581);
             BTNdelete.MaximumSize = new Size(95, 35);
             BTNdelete.MinimumSize = new Size(95, 35);
             BTNdelete.Name = "BTNdelete";
@@ -521,7 +604,7 @@ namespace WinForm
             BTNdelete.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
             BTNdelete.StateCommon.Back.ColorAngle = 45F;
             BTNdelete.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
-            BTNdelete.StateCommon.Back.Image = Properties.Resources.addmini;
+            BTNdelete.StateCommon.Back.Image = Properties.Resources.Mini_borrar;
             BTNdelete.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
             BTNdelete.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterLeft;
             BTNdelete.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
@@ -555,7 +638,7 @@ namespace WinForm
             // 
             BTNmodif.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             BTNmodif.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNmodif.Location = new Point(578, 584);
+            BTNmodif.Location = new Point(670, 581);
             BTNmodif.MaximumSize = new Size(95, 35);
             BTNmodif.MinimumSize = new Size(95, 35);
             BTNmodif.Name = "BTNmodif";
@@ -574,7 +657,7 @@ namespace WinForm
             BTNmodif.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
             BTNmodif.StateCommon.Back.ColorAngle = 45F;
             BTNmodif.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
-            BTNmodif.StateCommon.Back.Image = Properties.Resources.addmini;
+            BTNmodif.StateCommon.Back.Image = Properties.Resources.Mini_modif;
             BTNmodif.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
             BTNmodif.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterLeft;
             BTNmodif.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
@@ -608,7 +691,7 @@ namespace WinForm
             // 
             btnNuevoProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnNuevoProducto.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnNuevoProducto.Location = new Point(470, 584);
+            btnNuevoProducto.Location = new Point(562, 581);
             btnNuevoProducto.MaximumSize = new Size(95, 35);
             btnNuevoProducto.MinimumSize = new Size(95, 35);
             btnNuevoProducto.Name = "btnNuevoProducto";
@@ -661,10 +744,10 @@ namespace WinForm
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(517, 175);
+            textBox1.Location = new Point(569, 171);
             textBox1.MinimumSize = new Size(171, 23);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(222, 31);
+            textBox1.Size = new Size(262, 31);
             textBox1.StateCommon.Back.Color1 = Color.FromArgb(48, 48, 56);
             textBox1.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             textBox1.StateCommon.Border.Color2 = Color.Gray;
@@ -716,7 +799,7 @@ namespace WinForm
             // 
             btnPrimerCarga.Enabled = false;
             btnPrimerCarga.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPrimerCarga.Location = new Point(602, 335);
+            btnPrimerCarga.Location = new Point(482, 70);
             btnPrimerCarga.Name = "btnPrimerCarga";
             btnPrimerCarga.Size = new Size(114, 81);
             btnPrimerCarga.TabIndex = 19;
@@ -729,7 +812,7 @@ namespace WinForm
             // 
             numericUpDown1.Font = new Font("Segoe UI", 11F);
             numericUpDown1.Increment = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Location = new Point(224, 587);
+            numericUpDown1.Location = new Point(272, 585);
             numericUpDown1.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
@@ -743,7 +826,7 @@ namespace WinForm
             // 
             BtnCompra.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             BtnCompra.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnCompra.Location = new Point(359, 584);
+            BtnCompra.Location = new Point(407, 582);
             BtnCompra.MaximumSize = new Size(84, 29);
             BtnCompra.MinimumSize = new Size(84, 29);
             BtnCompra.Name = "BtnCompra";
@@ -779,19 +862,27 @@ namespace WinForm
             // 
             // rdiobtnHabilitado
             // 
-            rdiobtnHabilitado.Images.CheckedNormal = (Image)resources.GetObject("rdiobtnHabilitado.Images.CheckedNormal");
-            rdiobtnHabilitado.Images.CheckedPressed = (Image)resources.GetObject("rdiobtnHabilitado.Images.CheckedPressed");
-            rdiobtnHabilitado.Images.CheckedTracking = (Image)resources.GetObject("rdiobtnHabilitado.Images.CheckedTracking");
-            rdiobtnHabilitado.Images.Common = (Image)resources.GetObject("rdiobtnHabilitado.Images.Common");
-            rdiobtnHabilitado.Images.UncheckedDisabled = (Image)resources.GetObject("rdiobtnHabilitado.Images.UncheckedDisabled");
-            rdiobtnHabilitado.Images.UncheckedNormal = (Image)resources.GetObject("rdiobtnHabilitado.Images.UncheckedNormal");
-            rdiobtnHabilitado.Images.UncheckedPressed = (Image)resources.GetObject("rdiobtnHabilitado.Images.UncheckedPressed");
-            rdiobtnHabilitado.Images.UncheckedTracking = (Image)resources.GetObject("rdiobtnHabilitado.Images.UncheckedTracking");
+            rdiobtnHabilitado.Images.CheckedDisabled = Properties.Resources.check_Dmini;
+            rdiobtnHabilitado.Images.CheckedNormal = Properties.Resources.check_Umini;
+            rdiobtnHabilitado.Images.CheckedPressed = Properties.Resources.check_mini;
+            rdiobtnHabilitado.Images.CheckedTracking = Properties.Resources.check_Smini;
+            rdiobtnHabilitado.Images.Common = Properties.Resources.unchecked_Umini;
+            rdiobtnHabilitado.Images.UncheckedDisabled = Properties.Resources.unchecked_Dmini;
+            rdiobtnHabilitado.Images.UncheckedNormal = Properties.Resources.unchecked_Umini;
+            rdiobtnHabilitado.Images.UncheckedPressed = Properties.Resources.unchecked_mini;
+            rdiobtnHabilitado.Images.UncheckedTracking = Properties.Resources.unchecked_Smini;
             rdiobtnHabilitado.Location = new Point(64, 6);
             rdiobtnHabilitado.Name = "rdiobtnHabilitado";
-            rdiobtnHabilitado.PaletteMode = PaletteMode.Microsoft365BlackDarkMode;
+            rdiobtnHabilitado.OverrideFocus.ShortText.Color1 = Color.White;
+            rdiobtnHabilitado.OverrideFocus.ShortText.Color2 = Color.White;
+            rdiobtnHabilitado.Palette = kryptonCustomPaletteBase1;
+            rdiobtnHabilitado.PaletteMode = PaletteMode.Custom;
             rdiobtnHabilitado.Size = new Size(116, 26);
-            rdiobtnHabilitado.StateNormal.ShortText.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rdiobtnHabilitado.StateCommon.ShortText.Color1 = SystemColors.ControlLight;
+            rdiobtnHabilitado.StateCommon.ShortText.Color2 = SystemColors.ControlLight;
+            rdiobtnHabilitado.StateCommon.ShortText.Font = new Font("Segoe UI", 12F);
+            rdiobtnHabilitado.StateDisabled.ShortText.Color1 = Color.Gray;
+            rdiobtnHabilitado.StateDisabled.ShortText.Color2 = Color.Gray;
             rdiobtnHabilitado.TabIndex = 0;
             rdiobtnHabilitado.TabStop = false;
             rdiobtnHabilitado.Values.Text = "Habilitados";
@@ -799,20 +890,27 @@ namespace WinForm
             // 
             // rdiobtnDeshabilitado
             // 
-            rdiobtnDeshabilitado.Images.CheckedDisabled = Properties.Resources.check_mini;
-            rdiobtnDeshabilitado.Images.CheckedNormal = Properties.Resources.check_mini;
+            rdiobtnDeshabilitado.Images.CheckedDisabled = Properties.Resources.check_Dmini;
+            rdiobtnDeshabilitado.Images.CheckedNormal = Properties.Resources.check_Umini;
             rdiobtnDeshabilitado.Images.CheckedPressed = Properties.Resources.check_mini;
-            rdiobtnDeshabilitado.Images.CheckedTracking = Properties.Resources.check_mini;
-            rdiobtnDeshabilitado.Images.Common = Properties.Resources.unchecked_mini;
-            rdiobtnDeshabilitado.Images.UncheckedDisabled = Properties.Resources.unchecked_mini;
-            rdiobtnDeshabilitado.Images.UncheckedNormal = Properties.Resources.unchecked_mini;
+            rdiobtnDeshabilitado.Images.CheckedTracking = Properties.Resources.check_Smini;
+            rdiobtnDeshabilitado.Images.Common = Properties.Resources.unchecked_Umini;
+            rdiobtnDeshabilitado.Images.UncheckedDisabled = Properties.Resources.unchecked_Dmini;
+            rdiobtnDeshabilitado.Images.UncheckedNormal = Properties.Resources.unchecked_Umini;
             rdiobtnDeshabilitado.Images.UncheckedPressed = Properties.Resources.unchecked_mini;
-            rdiobtnDeshabilitado.Images.UncheckedTracking = Properties.Resources.unchecked_mini;
+            rdiobtnDeshabilitado.Images.UncheckedTracking = Properties.Resources.unchecked_Smini;
             rdiobtnDeshabilitado.Location = new Point(64, 31);
             rdiobtnDeshabilitado.Name = "rdiobtnDeshabilitado";
-            rdiobtnDeshabilitado.PaletteMode = PaletteMode.Microsoft365BlackDarkMode;
+            rdiobtnDeshabilitado.OverrideFocus.ShortText.Color1 = Color.White;
+            rdiobtnDeshabilitado.OverrideFocus.ShortText.Color2 = Color.White;
+            rdiobtnDeshabilitado.Palette = kryptonCustomPaletteBase1;
+            rdiobtnDeshabilitado.PaletteMode = PaletteMode.Custom;
             rdiobtnDeshabilitado.Size = new Size(141, 26);
-            rdiobtnDeshabilitado.StateNormal.ShortText.Font = new Font("Segoe UI", 12F);
+            rdiobtnDeshabilitado.StateCommon.ShortText.Color1 = SystemColors.ControlLight;
+            rdiobtnDeshabilitado.StateCommon.ShortText.Color2 = SystemColors.ControlLight;
+            rdiobtnDeshabilitado.StateCommon.ShortText.Font = new Font("Segoe UI", 12F);
+            rdiobtnDeshabilitado.StateDisabled.ShortText.Color1 = Color.Gray;
+            rdiobtnDeshabilitado.StateDisabled.ShortText.Color2 = Color.Gray;
             rdiobtnDeshabilitado.TabIndex = 0;
             rdiobtnDeshabilitado.TabStop = false;
             rdiobtnDeshabilitado.Values.Text = "Deshabilitados";
@@ -821,41 +919,36 @@ namespace WinForm
             // rdiobtnTodos
             // 
             rdiobtnTodos.Checked = true;
-            rdiobtnTodos.Images.CheckedDisabled = Properties.Resources.check_mini;
-            rdiobtnTodos.Images.CheckedNormal = Properties.Resources.check_mini;
+            rdiobtnTodos.Images.CheckedDisabled = Properties.Resources.check_Dmini;
+            rdiobtnTodos.Images.CheckedNormal = Properties.Resources.check_Umini;
             rdiobtnTodos.Images.CheckedPressed = Properties.Resources.check_mini;
-            rdiobtnTodos.Images.CheckedTracking = Properties.Resources.check_mini;
-            rdiobtnTodos.Images.Common = Properties.Resources.unchecked_mini;
-            rdiobtnTodos.Images.UncheckedDisabled = Properties.Resources.unchecked_mini;
-            rdiobtnTodos.Images.UncheckedNormal = Properties.Resources.unchecked_mini;
+            rdiobtnTodos.Images.CheckedTracking = Properties.Resources.check_Smini;
+            rdiobtnTodos.Images.Common = Properties.Resources.unchecked_Umini;
+            rdiobtnTodos.Images.UncheckedDisabled = Properties.Resources.unchecked_Dmini;
+            rdiobtnTodos.Images.UncheckedNormal = Properties.Resources.unchecked_Umini;
             rdiobtnTodos.Images.UncheckedPressed = Properties.Resources.unchecked_mini;
-            rdiobtnTodos.Images.UncheckedTracking = Properties.Resources.unchecked_mini;
+            rdiobtnTodos.Images.UncheckedTracking = Properties.Resources.unchecked_Smini;
             rdiobtnTodos.Location = new Point(64, 56);
             rdiobtnTodos.Name = "rdiobtnTodos";
-            rdiobtnTodos.PaletteMode = PaletteMode.Microsoft365BlackDarkMode;
+            rdiobtnTodos.OverrideFocus.ShortText.Color1 = Color.White;
+            rdiobtnTodos.OverrideFocus.ShortText.Color2 = Color.White;
+            rdiobtnTodos.Palette = kryptonCustomPaletteBase1;
+            rdiobtnTodos.PaletteMode = PaletteMode.Custom;
             rdiobtnTodos.Size = new Size(78, 26);
+            rdiobtnTodos.StateCommon.ShortText.Color1 = SystemColors.ControlLight;
+            rdiobtnTodos.StateCommon.ShortText.Color2 = SystemColors.ControlLight;
             rdiobtnTodos.StateCommon.ShortText.Font = new Font("Segoe UI", 12F);
+            rdiobtnTodos.StateDisabled.ShortText.Color1 = Color.Gray;
+            rdiobtnTodos.StateDisabled.ShortText.Color2 = Color.Gray;
             rdiobtnTodos.TabIndex = 0;
             rdiobtnTodos.TabStop = false;
             rdiobtnTodos.Values.Text = "Todos";
             rdiobtnTodos.CheckedChanged += rdiobtnTodos_CheckedChanged;
             // 
-            // BtnRfrs
-            // 
-            BtnRfrs.Font = new Font("Wingdings 3", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 2);
-            BtnRfrs.Location = new Point(512, 351);
-            BtnRfrs.Name = "BtnRfrs";
-            BtnRfrs.Size = new Size(30, 30);
-            BtnRfrs.TabIndex = 27;
-            BtnRfrs.TabStop = false;
-            BtnRfrs.Values.Text = "Q";
-            BtnRfrs.Visible = false;
-            BtnRfrs.Click += button1_Click;
-            // 
             // kryptonPictureBox1
             // 
             kryptonPictureBox1.Image = Properties.Resources.mini_search;
-            kryptonPictureBox1.Location = new Point(748, 177);
+            kryptonPictureBox1.Location = new Point(837, 171);
             kryptonPictureBox1.Name = "kryptonPictureBox1";
             kryptonPictureBox1.Size = new Size(30, 30);
             kryptonPictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -935,7 +1028,7 @@ namespace WinForm
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.logo;
-            pictureBox1.Location = new Point(537, 60);
+            pictureBox1.Location = new Point(627, 59);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(173, 110);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -952,7 +1045,7 @@ namespace WinForm
             panel5.Location = new Point(0, 0);
             panel5.Margin = new Padding(0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(825, 54);
+            panel5.Size = new Size(917, 54);
             panel5.TabIndex = 0;
             panel5.MouseDown += FormProducto_MouseDown;
             // 
@@ -978,7 +1071,7 @@ namespace WinForm
             controlBox1.EnableMaximizeButton = false;
             controlBox1.EnableMinimizeButton = true;
             controlBox1.ForeColor = Color.FromArgb(155, 155, 155);
-            controlBox1.Location = new Point(723, 15);
+            controlBox1.Location = new Point(815, 15);
             controlBox1.MaximizeHoverColor = Color.FromArgb(74, 74, 74);
             controlBox1.MinimizeHoverColor = Color.FromArgb(63, 63, 65);
             controlBox1.Name = "controlBox1";
@@ -1142,7 +1235,7 @@ namespace WinForm
             btnlogout.ForeColor = Color.Silver;
             btnlogout.Image = Properties.Resources.medium_logout;
             btnlogout.ImageAlign = ContentAlignment.MiddleLeft;
-            btnlogout.Location = new Point(0, 0);
+            btnlogout.Location = new Point(-2, 0);
             btnlogout.Margin = new Padding(0);
             btnlogout.Name = "btnlogout";
             btnlogout.Size = new Size(224, 68);
@@ -1151,12 +1244,6 @@ namespace WinForm
             btnlogout.UseVisualStyleBackColor = false;
             btnlogout.Click += btnlogout_Click;
             // 
-            // nuevoToolStripMenuItem1
-            // 
-            nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
-            nuevoToolStripMenuItem1.Size = new Size(180, 22);
-            nuevoToolStripMenuItem1.Text = "Nuevo";
-            // 
             // Usertimer
             // 
             Usertimer.Interval = 15;
@@ -1164,7 +1251,7 @@ namespace WinForm
             // 
             // filtertimer
             // 
-            filtertimer.Interval = 15;
+            filtertimer.Interval = 12;
             filtertimer.Tick += filtertimer_Tick;
             // 
             // datagridroudergropu
@@ -1193,7 +1280,7 @@ namespace WinForm
             datagridroudergropu.RGB = false;
             datagridroudergropu.Rounding = true;
             datagridroudergropu.RoundingInt = 10;
-            datagridroudergropu.Size = new Size(617, 359);
+            datagridroudergropu.Size = new Size(710, 357);
             datagridroudergropu.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             datagridroudergropu.TabIndex = 32;
             datagridroudergropu.Tag = "Cyber";
@@ -1206,14 +1293,13 @@ namespace WinForm
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(30, 30, 32);
-            ClientSize = new Size(825, 635);
+            ClientSize = new Size(917, 635);
             ControlBox = false;
             Controls.Add(menupanel);
             Controls.Add(btnPrimerCarga);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(kryptonPictureBox1);
-            Controls.Add(BtnRfrs);
             Controls.Add(LblBienvenido);
             Controls.Add(BtnCompra);
             Controls.Add(numericUpDown1);
@@ -1270,7 +1356,6 @@ namespace WinForm
 		private KryptonRadioButton rdiobtnHabilitado;
 		private KryptonRadioButton rdiobtnDeshabilitado;
 		private KryptonRadioButton rdiobtnTodos;
-        private KryptonButton BtnRfrs;
         private DataGridViewTextBoxColumn Column1;
         private KryptonCustomPaletteBase kryptonCustomPaletteBase1;
         private KryptonPictureBox kryptonPictureBox1;
@@ -1295,12 +1380,6 @@ namespace WinForm
         private ToolStripMenuItem refrescarToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip2;
         private ToolStripMenuItem ordenarToolStripMenuItem;
-        private DataGridViewTextBoxColumn ColumnNombreProducto;
-        private DataGridViewTextBoxColumn ColumnCategoria;
-        private DataGridViewTextBoxColumn ColumnStock;
-        private DataGridViewTextBoxColumn ColumnCompras;
-        private DataGridViewTextBoxColumn ColumnVentas;
-        private DataGridViewCheckBoxColumn ColumnHabilitado;
         private ToolStripMenuItem nuevoToolStripMenuItem1;
         private ToolStripMenuItem ordenarToolStripMenuItem1;
         private ToolStripMenuItem nuevoToolStrip;
@@ -1316,5 +1395,14 @@ namespace WinForm
         private Button btnlogout;
         private Panel panel2;
         private ReaLTaiizor.Controls.CyberGroupBox datagridroudergropu;
+        private ToolStripMenuItem refrescarToolStripMenuItem2;
+        private KryptonDataGridViewTextBoxColumn ColumnNombreProducto;
+        private KryptonDataGridViewTextBoxColumn ColumnCategoria;
+        private KryptonDataGridViewTextBoxColumn ColumnStock;
+        private KryptonDataGridViewTextBoxColumn ColumnCompras;
+        private KryptonDataGridViewTextBoxColumn ColumnVentas;
+        private KryptonDataGridViewCheckBoxColumn ColumnHabilitado;
+        private ToolStripMenuItem ordenarStripMenuItem3;
+        private ToolStripMenuItem Nombre;
     }
 }

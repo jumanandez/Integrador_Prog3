@@ -1,20 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Logging;
-using Proyecto.Core.Business;
-using Proyecto.Core.Business.Interfaces;
-using Proyecto.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Proyecto.Core.Entities;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Krypton.Toolkit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace WinForm
 {
