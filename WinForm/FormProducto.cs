@@ -16,7 +16,7 @@ namespace WinForm
         public Usuario _loggedUser;
         private string _orderType = " ";
         bool sidebaropen;
-        bool filteropen = false;
+        bool filteropen;
         bool userbarcollapsed;
 
         public FormProducto(ICategoriaBusiness categoriaBusiness, IProductoBusiness productoBusiness, IUsuarioBusiness usuarioBusiness, Usuario userLogged)
@@ -782,21 +782,22 @@ namespace WinForm
         }
         private void Usertimer_Tick(object sender, EventArgs e)//timer de animacion de usuario
         {
-            if (userbarcollapsed)
-            {
-                panelUsuario1.Height += 10;
-                if (panelUsuario1.Height == panelUsuario1.MaximumSize.Height)
-                {
-                    userbarcollapsed = false;
-                    Usertimer.Stop();
-                }
-            }
-            else if (!userbarcollapsed)
+
+            if (!userbarcollapsed)
             {
                 panelUsuario1.Height -= 10;
                 if (panelUsuario1.Height == panelUsuario1.MinimumSize.Height)
                 {
                     userbarcollapsed = true;
+                    Usertimer.Stop();
+                }
+            }
+            else if (userbarcollapsed)
+            {
+                panelUsuario1.Height += 10;
+                if (panelUsuario1.Height == panelUsuario1.MaximumSize.Height)
+                {
+                    userbarcollapsed = false;
                     Usertimer.Stop();
                 }
             }
@@ -908,6 +909,12 @@ namespace WinForm
         private void menubutton_MouseLeave(object sender, EventArgs e)
         {
             menubutton.Image = Properties.Resources.Medium_meno;
+        }
+
+        private void btnchangepass_Click(object sender, EventArgs e)
+        {
+            FormCambioContrasena LoggedChange = new FormCambioContrasena(_usuarioBusiness, _loggedUser);
+            LoggedChange.ShowDialog();
         }
     }
 }

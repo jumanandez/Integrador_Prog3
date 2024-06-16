@@ -142,8 +142,8 @@
   <data name="disabled_unchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\disabled unchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mini_modif" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mini modif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ventas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ventas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="guardar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\guardar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -153,6 +153,15 @@
   </data>
   <data name="down_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\down_mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="date" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\date.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="micro_cate1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\micro_cate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Medium_meno" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Medium meno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,11 +184,20 @@
   <data name="infouser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\infouser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cantidad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cantidad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="unchecked_trace" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unchecked_trace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="check_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\check mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Compras" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Compras.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mini_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mini refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Medium_meno_tracked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Medium_meno_tracked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check_box_outline_blank_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check_box_outline_blank_24dp_FILL0_wght400_GRAD0_opsz24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,8 +205,14 @@
   <data name="disabled_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\disabled checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="account_box_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\account_box_24dp_FILL0_wght400_GRAD0_opsz24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="mini_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mini_modif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mini modif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mini_details" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +220,11 @@
   <data name="mini_changepass" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini_changepass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="guardar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\guardar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="producto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\producto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="unchecked_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unchecked mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,22 +232,25 @@
   <data name="Micro_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Micro arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mini_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mini refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="big_buttonD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\big_buttonD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="guardar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\guardar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="medium_logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\medium_logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="account_box_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\account_box_24dp_FILL0_wght400_GRAD0_opsz24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="producto1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\producto1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Medium_meno" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Medium meno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="big_buttonVD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\big_buttonVD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Medium_meno_tracked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Medium_meno_tracked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="big_button2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\big_button2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="micro_cate1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\micro_cate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="big_buttonVU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\big_buttonVU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
