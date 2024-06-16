@@ -17,7 +17,6 @@ namespace WinForm
         public Usuario _loggedUser;
         public FormLogin(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuarioBusiness)
         {
-
             _usuarioBusiness = usuarioBusiness;
             _categoriaBusiness = catbusi;
             _productoBusiness = produbusi;

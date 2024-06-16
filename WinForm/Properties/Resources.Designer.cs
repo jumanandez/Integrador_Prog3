@@ -133,6 +133,26 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap chevron_left_24dp_FILL0_wght400_GRAD0_opsz24 {
+            get {
+                object obj = ResourceManager.GetObject("chevron_left_24dp_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap chevron_right_24dp_FILL0_wght400_GRAD0_opsz24 {
+            get {
+                object obj = ResourceManager.GetObject("chevron_right_24dp_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap close_24dp_FILL0_wght400_GRAD0_opsz24 {
             get {
                 object obj = ResourceManager.GetObject("close_24dp_FILL0_wght400_GRAD0_opsz24", resourceCulture);
@@ -196,6 +216,26 @@ namespace WinForm.Properties {
         public static System.Drawing.Bitmap infouser {
             get {
                 object obj = ResourceManager.GetObject("infouser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap keyboard_arrow_right_20dp_FILL0_wght400_GRAD0_opsz20 {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_right_20dp_FILL0_wght400_GRAD0_opsz20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap keyboard_arrow_right_20dp_FILL0_wght400_GRAD0_opsz20_1_ {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_right_20dp_FILL0_wght400_GRAD0_opsz20(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,6 +373,16 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap mini_left {
+            get {
+                object obj = ResourceManager.GetObject("mini_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Mini_modif {
             get {
                 object obj = ResourceManager.GetObject("Mini_modif", resourceCulture);
@@ -346,6 +396,16 @@ namespace WinForm.Properties {
         public static System.Drawing.Bitmap Mini_refresh {
             get {
                 object obj = ResourceManager.GetObject("Mini_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_right {
+            get {
+                object obj = ResourceManager.GetObject("mini_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

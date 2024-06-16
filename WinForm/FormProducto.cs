@@ -866,7 +866,12 @@ namespace WinForm
 
         private void detallesToolStripMenuItem_Click(object sender, EventArgs e)//No implementado, codigo para mostrar mas detalles de un elemento seleccionado
         {
-            //este lo hago yo
+            var row = dataGridViewProducto.SelectedRows[0];
+
+            _productoSeleccionado = (Producto)row.DataBoundItem;
+
+            FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado);
+            form.ShowDialog();
         }
 
         private void refrescarToolStripMenuItem_Click(object sender, EventArgs e)//refrescar datagrid menu contexto
