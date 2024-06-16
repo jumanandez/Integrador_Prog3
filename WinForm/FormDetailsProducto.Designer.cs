@@ -283,7 +283,7 @@
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderColumn.Content.Color2 = Color.White;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderColumn.Content.ColorAngle = 135F;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderColumn.Content.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderColumn.Content.Font = new Font("Nirmala UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderColumn.Content.Font = new Font("Nirmala UI", 10F, FontStyle.Bold);
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderColumn.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderColumn.Content.TextV = Krypton.Toolkit.PaletteRelativeAlign.Center;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.HeaderRow.Border.Color1 = Color.FromArgb(192, 192, 0);
@@ -468,9 +468,9 @@
             kryptonButton1.StateTracking.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
             kryptonButton1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
             kryptonButton1.TabIndex = 12;
-            kryptonButton1.ToolTipValues.Description = "";
+            kryptonButton1.ToolTipValues.Description = "Anterior";
             kryptonButton1.ToolTipValues.EnableToolTips = true;
-            kryptonButton1.ToolTipValues.Heading = "Anterior";
+            kryptonButton1.ToolTipValues.Heading = "";
             kryptonButton1.Values.Text = "";
             // 
             // chkHabilitado

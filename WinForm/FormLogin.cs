@@ -26,14 +26,16 @@ namespace WinForm
         private void button1_Click(object sender, EventArgs e)
         {
             bool pass;
-            if (_usuarioBusiness.CompareUserToDB(textBox1.Text))//obtener salt ya
+            var user = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+            if (user != null)
             {
-                var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
+                var hashnew = CryptoHelper.HashPassword(textBox2.Text, user.Salt);
 
-                pass = hashnew.SequenceEqual(_usuarioBusiness.GetUsuarioHash(textBox1.Text));
+                pass = hashnew.SequenceEqual(user.HashPassword);
 
                 if (pass)
                 {
+                    _loggedUser = user;
                     IngresarAlaAplicacion();
                 }
                 else
@@ -62,7 +64,6 @@ namespace WinForm
 
             if (formCambioContraseña.ShowDialog() == DialogResult.OK)
             {
-                _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
                 MessageBox.Show("Contraseña Cambiada Con Exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Show();
             }
@@ -116,12 +117,13 @@ namespace WinForm
         }
         private void IngresarAlaAplicacion()
         {
-            _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
             Hide();
             FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
             if (productosesion.ShowDialog() == DialogResult.OK)
             {
                 Show();
+                textBox1.Focus();
+                textBox2.Clear();
             }
             else
             {
