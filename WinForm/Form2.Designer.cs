@@ -384,6 +384,8 @@ namespace WinForm
             checkHabilitado.StateCommon.ShortText.ColorAngle = 45F;
             checkHabilitado.StateCommon.ShortText.ColorStyle = PaletteColorStyle.HalfCut;
             checkHabilitado.StateCommon.ShortText.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            checkHabilitado.StateDisabled.ShortText.Color1 = Color.Gray;
+            checkHabilitado.StateDisabled.ShortText.Color2 = Color.Gray;
             checkHabilitado.TabIndex = 14;
             checkHabilitado.Values.Text = "Habilitado";
             // 

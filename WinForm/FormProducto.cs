@@ -16,8 +16,8 @@ namespace WinForm
         public Usuario _loggedUser;
         private string _orderType = " ";
         bool sidebaropen;
-        bool filteropen;
-        bool userbarcollapsed;
+        bool filteropen = false;
+        bool userbarcollapsed = false;
 
         public FormProducto(ICategoriaBusiness categoriaBusiness, IProductoBusiness productoBusiness, IUsuarioBusiness usuarioBusiness, Usuario userLogged)
         {
@@ -568,7 +568,6 @@ namespace WinForm
         private void numericUpDown1_Click(object sender, EventArgs e)
         {
             BtnCompra.Enabled = true;
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -719,18 +718,18 @@ namespace WinForm
         {
             if (sidebaropen)
             {
-                menupanel.Width -= 10;
+                menupanel.Width -= 12;
                 if (menupanel.Width == menupanel.MinimumSize.Width)
                 {
                     sidebaropen = false;
-                    filteropen = false;
-                    userbarcollapsed = false;
+                    if (filteropen) filteropen = false;
+                    if (userbarcollapsed) userbarcollapsed = false;
                     sidebartimer.Stop();
                 }
             }
             else
             {
-                menupanel.Width += 10;
+                menupanel.Width += 12;
                 if (menupanel.Width == menupanel.MaximumSize.Width)
                 {
                     sidebaropen = true;
@@ -742,30 +741,32 @@ namespace WinForm
 
         private void menubutton_Click(object sender, EventArgs e)//Inicio de timer de boton menu
         {
-            if (!filteropen)
+            if (filteropen)
             {
-                panelfilter.Height = panelfilter.MinimumSize.Height;
-                panelUsuario1.Height = panelUsuario1.MinimumSize.Height;
-                filteropen = false;
-                userbarcollapsed = false;
+                filtertimer.Start();
             }
+            if (userbarcollapsed)
+            {
+                Usertimer.Start();
+            }
+
             sidebartimer.Start();
         }
         private void filtertimer_Tick(object sender, EventArgs e)//Timer de animacion de filtros
         {
             if (filteropen)
             {
-                panelfilter.Height += 10;
-                if (panelfilter.Height == panelfilter.MaximumSize.Height)
+                panelfilter.Height -= 12;
+                if (panelfilter.Height <= 63)
                 {
                     filteropen = false;
                     filtertimer.Stop();
                 }
             }
-            else if (!filteropen)
+            else
             {
-                panelfilter.Height -= 10;
-                if (panelfilter.Height == panelfilter.MinimumSize.Height)
+                panelfilter.Height += 12;
+                if (panelfilter.Height >= 216)
                 {
                     filteropen = true;
                     filtertimer.Stop();
@@ -783,21 +784,21 @@ namespace WinForm
         private void Usertimer_Tick(object sender, EventArgs e)//timer de animacion de usuario
         {
 
-            if (!userbarcollapsed)
+            if (userbarcollapsed)
             {
-                panelUsuario1.Height -= 10;
-                if (panelUsuario1.Height == panelUsuario1.MinimumSize.Height)
+                panelUsuario1.Height -= 12;
+                if (panelUsuario1.Height <= 63)
                 {
-                    userbarcollapsed = true;
+                    userbarcollapsed = false;
                     Usertimer.Stop();
                 }
             }
-            else if (userbarcollapsed)
+            else
             {
-                panelUsuario1.Height += 10;
-                if (panelUsuario1.Height == panelUsuario1.MaximumSize.Height)
+                panelUsuario1.Height += 12;
+                if (panelUsuario1.Height >= 196)
                 {
-                    userbarcollapsed = false;
+                    userbarcollapsed = true;
                     Usertimer.Stop();
                 }
             }
@@ -920,6 +921,20 @@ namespace WinForm
         {
             FormCambioContrasena LoggedChange = new FormCambioContrasena(_usuarioBusiness, _loggedUser);
             LoggedChange.ShowDialog();
+        }
+        private void ordenarStripMenuItem3_Click(object sender, EventArgs e)//boton ordenar por nombre
+        {
+            List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;//codigo repetido, se podria hacer una funcion para utilizar en las dos formas de ordenar(menu de contexto y clickeando columnas)
+            if (_orderType == "n")
+            {
+                RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
+                _orderType = "x";
+            }
+            else
+            {
+                RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
+                _orderType = "n";
+            }
         }
     }
 }

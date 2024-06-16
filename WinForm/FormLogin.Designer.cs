@@ -48,11 +48,11 @@ namespace WinForm
             // 
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.LabelStyle = LabelStyle.Custom1;
-            label1.Location = new Point(82, 179);
+            label1.Location = new Point(82, 177);
             label1.Name = "label1";
             label1.Palette = kryptonCustomPaletteBase1;
             label1.PaletteMode = PaletteMode.Custom;
-            label1.Size = new Size(57, 19);
+            label1.Size = new Size(69, 23);
             label1.TabIndex = 0;
             label1.Values.Text = "Usuario";
             // 
@@ -88,7 +88,7 @@ namespace WinForm
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Poppins", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.DrawFocus = InheritBool.False;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Color1 = Color.LightGray;
-            kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonCustomPaletteBase1.ThemeName = "";
             kryptonCustomPaletteBase1.UseKryptonFileDialogs = true;
             // 
@@ -96,40 +96,45 @@ namespace WinForm
             // 
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.LabelStyle = LabelStyle.Custom1;
-            label2.Location = new Point(82, 263);
+            label2.Location = new Point(82, 261);
             label2.Name = "label2";
             label2.Palette = kryptonCustomPaletteBase1;
             label2.PaletteMode = PaletteMode.Custom;
-            label2.Size = new Size(80, 19);
+            label2.Size = new Size(97, 23);
             label2.TabIndex = 1;
             label2.Values.Text = "Contraseña";
             // 
             // textBox1
             // 
             textBox1.AlwaysActive = false;
+            textBox1.CueHint.Color1 = Color.Gray;
+            textBox1.CueHint.CueHintText = "Ingrese su usuario";
+            textBox1.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(74, 207);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(249, 32);
+            textBox1.Size = new Size(249, 31);
             textBox1.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             textBox1.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             textBox1.StateCommon.Border.Color2 = Color.Gray;
             textBox1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             textBox1.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
             textBox1.StateCommon.Border.Rounding = 18F;
-            textBox1.StateCommon.Content.Color1 = Color.Gray;
+            textBox1.StateCommon.Content.Color1 = Color.Gainsboro;
             textBox1.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             textBox1.TabIndex = 1;
-            textBox1.Text = "Ingrese su usuario";
             textBox1.TextChanged += textBox1_TextChanged;
             textBox1.Click += textBox1_Click;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
             // textBox2
             // 
+            textBox2.CueHint.Color1 = Color.Gray;
+            textBox2.CueHint.CueHintText = "Ingrese una contraseña";
+            textBox2.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(74, 291);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(249, 32);
+            textBox2.Size = new Size(249, 31);
             textBox2.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             textBox2.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             textBox2.StateCommon.Border.Color2 = Color.Gray;
@@ -137,12 +142,11 @@ namespace WinForm
             textBox2.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
             textBox2.StateCommon.Border.Rounding = 16F;
             textBox2.StateCommon.Border.Width = 2;
-            textBox2.StateCommon.Content.Color1 = Color.Gray;
+            textBox2.StateCommon.Content.Color1 = Color.Gainsboro;
             textBox2.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox2.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             textBox2.TabIndex = 2;
             textBox2.TabStop = false;
-            textBox2.Text = "Ingrese una contraseña";
             textBox2.Click += textBox2_Click;
             textBox2.KeyPress += textBox2_KeyPress;
             // 
@@ -295,6 +299,7 @@ namespace WinForm
             Palette = kryptonCustomPaletteBase1;
             PaletteMode = PaletteMode.Custom;
             ShowIcon = false;
+            SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar Sesion";
             TitleStyle = KryptonFormTitleStyle.Classic;

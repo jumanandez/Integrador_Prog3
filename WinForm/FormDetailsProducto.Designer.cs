@@ -29,64 +29,33 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec3 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec1 = new Krypton.Toolkit.IconSpec();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetailsProducto));
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec4 = new Krypton.Toolkit.IconSpec();
-            controlBox1 = new ReaLTaiizor.Controls.ControlBox();
-            klblNombre = new Krypton.Toolkit.KryptonLabel();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec2 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             crownDockPanel1 = new ReaLTaiizor.Docking.Crown.CrownDockPanel();
             lblCategoria = new Label();
             lblCompra = new Label();
             datagridCompras = new Krypton.Toolkit.KryptonDataGridView();
+            ColumnFecha = new Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            ColumnCantidad = new Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            kryptonCustomPaletteBase1 = new Krypton.Toolkit.KryptonCustomPaletteBase(components);
             datagridVentas = new Krypton.Toolkit.KryptonDataGridView();
             ColumnFecha2 = new DataGridViewTextBoxColumn();
             ColumnCantidad2 = new DataGridViewTextBoxColumn();
             lblVentas = new Label();
             lblStock = new Label();
-            BTNdelete = new Krypton.Toolkit.KryptonButton();
             kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             chkHabilitado = new ReaLTaiizor.Controls.CrownCheckBox();
-            kryptonCustomPaletteBase1 = new Krypton.Toolkit.KryptonCustomPaletteBase(components);
-            ColumnFecha = new Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            ColumnCantidad = new Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             kryptonBorderEdge1 = new Krypton.Toolkit.KryptonBorderEdge();
+            kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            lblNombre = new Label();
             ((System.ComponentModel.ISupportInitialize)datagridCompras).BeginInit();
             ((System.ComponentModel.ISupportInitialize)datagridVentas).BeginInit();
             SuspendLayout();
-            // 
-            // controlBox1
-            // 
-            controlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            controlBox1.BackColor = Color.FromArgb(30, 30, 30);
-            controlBox1.CloseHoverColor = Color.FromArgb(230, 17, 35);
-            controlBox1.DefaultLocation = false;
-            controlBox1.EnableHoverHighlight = true;
-            controlBox1.EnableMaximizeButton = false;
-            controlBox1.EnableMinimizeButton = true;
-            controlBox1.ForeColor = Color.FromArgb(155, 155, 155);
-            controlBox1.Location = new Point(291, 3);
-            controlBox1.MaximizeHoverColor = Color.FromArgb(30, 30, 30);
-            controlBox1.MinimizeHoverColor = Color.FromArgb(30, 30, 30);
-            controlBox1.Name = "controlBox1";
-            controlBox1.RightToLeft = RightToLeft.No;
-            controlBox1.Size = new Size(90, 25);
-            controlBox1.TabIndex = 1;
-            controlBox1.TabStop = false;
-            controlBox1.Text = "controlBox1";
-            // 
-            // klblNombre
-            // 
-            klblNombre.Location = new Point(102, 105);
-            klblNombre.Name = "klblNombre";
-            klblNombre.Size = new Size(217, 31);
-            klblNombre.StateCommon.ShortText.Color1 = SystemColors.ButtonFace;
-            klblNombre.StateCommon.ShortText.Font = new Font("Montserrat", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            klblNombre.TabIndex = 2;
-            klblNombre.Values.Text = "Nombre Producto";
             // 
             // crownDockPanel1
             // 
@@ -122,12 +91,12 @@
             // 
             // datagridCompras
             // 
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle5.Font = new Font("Wingdings", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(35, 45, 150);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ButtonFace;
-            datagridCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle1.Font = new Font("Wingdings", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ButtonFace;
+            datagridCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             datagridCompras.BorderStyle = BorderStyle.None;
             datagridCompras.ColumnHeadersHeight = 20;
             datagridCompras.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha, ColumnCantidad });
@@ -144,180 +113,40 @@
             datagridCompras.Size = new Size(192, 147);
             datagridCompras.TabIndex = 7;
             // 
-            // datagridVentas
+            // ColumnFecha
             // 
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle1.Font = new Font("Wingdings", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(35, 45, 150);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ButtonFace;
-            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            datagridVentas.BorderStyle = BorderStyle.None;
-            datagridVentas.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha2, ColumnCantidad2 });
-            datagridVentas.GridStyles.Style = Krypton.Toolkit.DataGridViewStyle.Custom1;
-            datagridVentas.GridStyles.StyleBackground = Krypton.Toolkit.PaletteBackStyle.GridBackgroundCustom1;
-            datagridVentas.GridStyles.StyleColumn = Krypton.Toolkit.GridStyle.Custom1;
-            datagridVentas.GridStyles.StyleDataCells = Krypton.Toolkit.GridStyle.Custom1;
-            datagridVentas.GridStyles.StyleRow = Krypton.Toolkit.GridStyle.Custom1;
-            datagridVentas.Location = new Point(189, 322);
-            datagridVentas.Name = "datagridVentas";
-            datagridVentas.Palette = kryptonCustomPaletteBase1;
-            datagridVentas.PaletteMode = Krypton.Toolkit.PaletteMode.Custom;
-            datagridVentas.RowHeadersVisible = false;
-            datagridVentas.Size = new Size(192, 147);
-            datagridVentas.TabIndex = 8;
-            datagridVentas.CellContentClick += kryptonDataGridView2_CellContentClick;
+            ColumnFecha.DataPropertyName = "Fecha";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle2.Font = new Font("Poppins SemiBold", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ButtonFace;
+            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle2;
+            ColumnFecha.HeaderText = "Fecha";
+            iconSpec1.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
+            ColumnFecha.IconSpecs.Add(iconSpec1);
+            ColumnFecha.Name = "ColumnFecha";
+            ColumnFecha.Resizable = DataGridViewTriState.True;
+            ColumnFecha.Width = 110;
             // 
-            // ColumnFecha2
+            // ColumnCantidad
             // 
-            ColumnFecha2.DataPropertyName = "Fecha";
-            ColumnFecha2.HeaderText = "Fecha";
-            ColumnFecha2.Name = "ColumnFecha2";
-            ColumnFecha2.Width = 77;
-            // 
-            // ColumnCantidad2
-            // 
-            ColumnCantidad2.DataPropertyName = "Cantidad";
-            ColumnCantidad2.HeaderText = "Cantidad";
-            ColumnCantidad2.Name = "ColumnCantidad2";
-            ColumnCantidad2.Width = 74;
-            // 
-            // lblVentas
-            // 
-            lblVentas.AutoSize = true;
-            lblVentas.BackColor = Color.FromArgb(60, 63, 65);
-            lblVentas.Font = new Font("Poppins SemiBold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblVentas.ForeColor = SystemColors.ButtonFace;
-            lblVentas.Location = new Point(253, 290);
-            lblVentas.Name = "lblVentas";
-            lblVentas.Size = new Size(66, 26);
-            lblVentas.TabIndex = 9;
-            lblVentas.Text = "Ventas";
-            // 
-            // lblStock
-            // 
-            lblStock.AutoSize = true;
-            lblStock.BackColor = Color.FromArgb(60, 63, 65);
-            lblStock.Font = new Font("Poppins SemiBold", 12F, FontStyle.Bold);
-            lblStock.ForeColor = SystemColors.ButtonFace;
-            lblStock.Location = new Point(10, 250);
-            lblStock.Name = "lblStock";
-            lblStock.Size = new Size(61, 28);
-            lblStock.TabIndex = 10;
-            lblStock.Text = "Stock:";
-            // 
-            // BTNdelete
-            // 
-            BTNdelete.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            BTNdelete.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNdelete.Location = new Point(276, 45);
-            BTNdelete.MaximumSize = new Size(95, 35);
-            BTNdelete.MinimumSize = new Size(95, 35);
-            BTNdelete.Name = "BTNdelete";
-            BTNdelete.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
-            BTNdelete.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
-            BTNdelete.OverrideDefault.Back.ColorAngle = 45F;
-            BTNdelete.OverrideDefault.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
-            BTNdelete.OverrideDefault.Border.Color1 = Color.FromArgb(60, 65, 190);
-            BTNdelete.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
-            BTNdelete.OverrideDefault.Border.ColorAngle = 45F;
-            BTNdelete.OverrideDefault.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            BTNdelete.OverrideDefault.Border.Rounding = 8F;
-            BTNdelete.OverrideDefault.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
-            BTNdelete.Size = new Size(95, 35);
-            BTNdelete.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
-            BTNdelete.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
-            BTNdelete.StateCommon.Back.ColorAngle = 45F;
-            BTNdelete.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
-            BTNdelete.StateCommon.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
-            BTNdelete.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
-            BTNdelete.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
-            BTNdelete.StateCommon.Border.Color2 = Color.FromArgb(60, 60, 175);
-            BTNdelete.StateCommon.Border.ColorAngle = 45F;
-            BTNdelete.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            BTNdelete.StateCommon.Border.Rounding = 8F;
-            BTNdelete.StateCommon.Content.AdjacentGap = 1;
-            BTNdelete.StateCommon.Content.Image.ImageColorTo = Color.White;
-            BTNdelete.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
-            BTNdelete.StateCommon.Content.ShortText.Color1 = Color.LightGray;
-            BTNdelete.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
-            BTNdelete.StateCommon.Content.ShortText.ColorAngle = 45F;
-            BTNdelete.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            BTNdelete.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BTNdelete.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
-            BTNdelete.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
-            BTNdelete.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
-            BTNdelete.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
-            BTNdelete.StateTracking.Back.ColorAngle = 135F;
-            BTNdelete.StateTracking.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            BTNdelete.StateTracking.Border.Rounding = 8F;
-            BTNdelete.StateTracking.Content.ShortText.Color1 = Color.White;
-            BTNdelete.StateTracking.Content.ShortText.Color2 = Color.White;
-            BTNdelete.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
-            BTNdelete.TabIndex = 11;
-            BTNdelete.Values.Text = "siguiente";
-            // 
-            // kryptonButton1
-            // 
-            kryptonButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            kryptonButton1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.Location = new Point(13, 45);
-            kryptonButton1.MaximumSize = new Size(95, 35);
-            kryptonButton1.MinimumSize = new Size(95, 35);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
-            kryptonButton1.OverrideDefault.Back.ColorAngle = 45F;
-            kryptonButton1.OverrideDefault.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
-            kryptonButton1.OverrideDefault.Border.Color1 = Color.FromArgb(60, 65, 190);
-            kryptonButton1.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
-            kryptonButton1.OverrideDefault.Border.ColorAngle = 45F;
-            kryptonButton1.OverrideDefault.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            kryptonButton1.OverrideDefault.Border.Rounding = 8F;
-            kryptonButton1.OverrideDefault.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
-            kryptonButton1.Size = new Size(95, 35);
-            kryptonButton1.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
-            kryptonButton1.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
-            kryptonButton1.StateCommon.Back.ColorAngle = 45F;
-            kryptonButton1.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
-            kryptonButton1.StateCommon.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
-            kryptonButton1.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
-            kryptonButton1.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
-            kryptonButton1.StateCommon.Border.Color2 = Color.FromArgb(60, 60, 175);
-            kryptonButton1.StateCommon.Border.ColorAngle = 45F;
-            kryptonButton1.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            kryptonButton1.StateCommon.Border.Rounding = 8F;
-            kryptonButton1.StateCommon.Content.AdjacentGap = 1;
-            kryptonButton1.StateCommon.Content.Image.ImageColorTo = Color.White;
-            kryptonButton1.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.LightGray;
-            kryptonButton1.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
-            kryptonButton1.StateCommon.Content.ShortText.ColorAngle = 45F;
-            kryptonButton1.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton1.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
-            kryptonButton1.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
-            kryptonButton1.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
-            kryptonButton1.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
-            kryptonButton1.StateTracking.Back.ColorAngle = 135F;
-            kryptonButton1.StateTracking.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            kryptonButton1.StateTracking.Border.Rounding = 8F;
-            kryptonButton1.StateTracking.Content.ShortText.Color1 = Color.White;
-            kryptonButton1.StateTracking.Content.ShortText.Color2 = Color.White;
-            kryptonButton1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
-            kryptonButton1.TabIndex = 12;
-            kryptonButton1.Values.Text = "anterior";
-            // 
-            // chkHabilitado
-            // 
-            chkHabilitado.AutoSize = true;
-            chkHabilitado.CheckAlign = ContentAlignment.MiddleRight;
-            chkHabilitado.Font = new Font("Poppins SemiBold", 12F, FontStyle.Bold);
-            chkHabilitado.Location = new Point(10, 215);
-            chkHabilitado.Name = "chkHabilitado";
-            chkHabilitado.Size = new Size(114, 32);
-            chkHabilitado.TabIndex = 13;
-            chkHabilitado.Text = "Habilitado";
+            ColumnCantidad.DataPropertyName = "Cantidad";
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle3.Font = new Font("Wingdings", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ButtonFace;
+            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            ColumnCantidad.HeaderText = "Cantidad";
+            iconSpec2.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
+            ColumnCantidad.IconSpecs.Add(iconSpec2);
+            ColumnCantidad.Name = "ColumnCantidad";
+            ColumnCantidad.Resizable = DataGridViewTriState.True;
+            ColumnCantidad.Width = 80;
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -405,18 +234,20 @@
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.Color2 = Color.FromArgb(64, 64, 64);
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.ColorAngle = 45F;
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 32);
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 32);
+            kryptonCustomPaletteBase1.CueHintText.Color1 = Color.White;
+            kryptonCustomPaletteBase1.CueHintText.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 30);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Draw = Krypton.Toolkit.InheritBool.True;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color1 = Color.Gray;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color2 = Color.Gray;
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color2 = Color.DimGray;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.ColorAngle = 45F;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Sigma;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Draw = Krypton.Toolkit.InheritBool.True;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.GraphicsHint = Krypton.Toolkit.PaletteGraphicsHint.HighQuality;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Rounding = 25F;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Width = 0;
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Width = 1;
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.Color1 = Color.FromArgb(48, 48, 56);
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.Color2 = Color.FromArgb(51, 51, 60);
             kryptonCustomPaletteBase1.GridStyles.GridCustom1.StateCommon.Background.ColorAngle = 135F;
@@ -473,9 +304,12 @@
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Border.Rounding = 0F;
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Border.Width = 0;
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 0;
-            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.Padding = new Padding(10, -1, -1, -1);
-            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Color1 = Color.LightGray;
-            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.Padding = new Padding(14, 10, -1, -1);
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Color1 = Color.FromArgb(180, 190, 200);
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Color2 = Color.FromArgb(210, 220, 255);
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.ColorAngle = 160F;
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Poppins", 22F, FontStyle.Bold, GraphicsUnit.Point, 0);
             kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Back.Color2 = Color.FromArgb(36, 36, 36);
             kryptonCustomPaletteBase1.InputControlStyles.InputControlCommon.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 66);
@@ -507,44 +341,152 @@
             kryptonCustomPaletteBase1.ThemeName = "";
             kryptonCustomPaletteBase1.UseKryptonFileDialogs = true;
             // 
-            // ColumnFecha
+            // datagridVentas
             // 
-            ColumnFecha.DataPropertyName = "Fecha";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle6.Font = new Font("Poppins SemiBold", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(35, 45, 150);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ButtonFace;
-            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle6;
-            ColumnFecha.HeaderText = "Fecha";
-            iconSpec3.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
-            ColumnFecha.IconSpecs.Add(iconSpec3);
-            ColumnFecha.Name = "ColumnFecha";
-            ColumnFecha.Resizable = DataGridViewTriState.True;
-            ColumnFecha.Width = 110;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle4.Font = new Font("Wingdings", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 2);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ButtonFace;
+            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            datagridVentas.BorderStyle = BorderStyle.None;
+            datagridVentas.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha2, ColumnCantidad2 });
+            datagridVentas.GridStyles.Style = Krypton.Toolkit.DataGridViewStyle.Custom1;
+            datagridVentas.GridStyles.StyleBackground = Krypton.Toolkit.PaletteBackStyle.GridBackgroundCustom1;
+            datagridVentas.GridStyles.StyleColumn = Krypton.Toolkit.GridStyle.Custom1;
+            datagridVentas.GridStyles.StyleDataCells = Krypton.Toolkit.GridStyle.Custom1;
+            datagridVentas.GridStyles.StyleRow = Krypton.Toolkit.GridStyle.Custom1;
+            datagridVentas.Location = new Point(188, 322);
+            datagridVentas.Name = "datagridVentas";
+            datagridVentas.Palette = kryptonCustomPaletteBase1;
+            datagridVentas.PaletteMode = Krypton.Toolkit.PaletteMode.Custom;
+            datagridVentas.RowHeadersVisible = false;
+            datagridVentas.Size = new Size(192, 147);
+            datagridVentas.TabIndex = 8;
+            datagridVentas.CellContentClick += kryptonDataGridView2_CellContentClick;
             // 
-            // ColumnCantidad
+            // ColumnFecha2
             // 
-            ColumnCantidad.DataPropertyName = "Cantidad";
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle7.Font = new Font("Wingdings", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            dataGridViewCellStyle7.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(35, 45, 150);
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.ButtonFace;
-            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle7;
-            ColumnCantidad.HeaderText = "Cantidad";
-            iconSpec4.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
-            ColumnCantidad.IconSpecs.Add(iconSpec4);
-            ColumnCantidad.Name = "ColumnCantidad";
-            ColumnCantidad.Resizable = DataGridViewTriState.True;
-            ColumnCantidad.Width = 80;
+            ColumnFecha2.DataPropertyName = "Fecha";
+            ColumnFecha2.HeaderText = "Fecha";
+            ColumnFecha2.Name = "ColumnFecha2";
+            ColumnFecha2.Width = 77;
+            // 
+            // ColumnCantidad2
+            // 
+            ColumnCantidad2.DataPropertyName = "Cantidad";
+            ColumnCantidad2.HeaderText = "Cantidad";
+            ColumnCantidad2.Name = "ColumnCantidad2";
+            ColumnCantidad2.Width = 74;
+            // 
+            // lblVentas
+            // 
+            lblVentas.AutoSize = true;
+            lblVentas.BackColor = Color.FromArgb(60, 63, 65);
+            lblVentas.Font = new Font("Poppins SemiBold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblVentas.ForeColor = SystemColors.ButtonFace;
+            lblVentas.Location = new Point(253, 290);
+            lblVentas.Name = "lblVentas";
+            lblVentas.Size = new Size(66, 26);
+            lblVentas.TabIndex = 9;
+            lblVentas.Text = "Ventas";
+            // 
+            // lblStock
+            // 
+            lblStock.AutoSize = true;
+            lblStock.BackColor = Color.FromArgb(60, 63, 65);
+            lblStock.Font = new Font("Poppins SemiBold", 12F, FontStyle.Bold);
+            lblStock.ForeColor = SystemColors.ButtonFace;
+            lblStock.Location = new Point(10, 250);
+            lblStock.Name = "lblStock";
+            lblStock.Size = new Size(61, 28);
+            lblStock.TabIndex = 10;
+            lblStock.Text = "Stock:";
+            // 
+            // kryptonButton1
+            // 
+            kryptonButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            kryptonButton1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton1.Location = new Point(11, 44);
+            kryptonButton1.Name = "kryptonButton1";
+            kryptonButton1.OverrideDefault.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.OverrideDefault.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.OverrideDefault.Back.ColorAngle = 45F;
+            kryptonButton1.OverrideDefault.Back.Image = Properties.Resources.Arrow_back;
+            kryptonButton1.OverrideDefault.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.OverrideDefault.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.OverrideDefault.Border.ColorAngle = 45F;
+            kryptonButton1.OverrideDefault.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton1.OverrideDefault.Border.Rounding = 8F;
+            kryptonButton1.OverrideDefault.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
+            kryptonButton1.OverrideDefault.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.OverrideDefault.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.Size = new Size(58, 108);
+            kryptonButton1.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateCommon.Back.ColorAngle = 45F;
+            kryptonButton1.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
+            kryptonButton1.StateCommon.Back.Image = Properties.Resources.Arrow_back;
+            kryptonButton1.StateCommon.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
+            kryptonButton1.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
+            kryptonButton1.StateCommon.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateCommon.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateCommon.Border.ColorAngle = 45F;
+            kryptonButton1.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton1.StateCommon.Border.Rounding = 8F;
+            kryptonButton1.StateCommon.Content.AdjacentGap = 1;
+            kryptonButton1.StateCommon.Content.Image.ImageColorTo = Color.White;
+            kryptonButton1.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
+            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateCommon.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateCommon.Content.ShortText.ColorAngle = 45F;
+            kryptonButton1.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton1.StateCommon.Content.ShortText.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
+            kryptonButton1.StateCommon.Content.ShortText.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            kryptonButton1.StatePressed.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StatePressed.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StatePressed.Back.Image = Properties.Resources.Arrow_backP;
+            kryptonButton1.StatePressed.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
+            kryptonButton1.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
+            kryptonButton1.StatePressed.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StatePressed.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StatePressed.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton1.StatePressed.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
+            kryptonButton1.StatePressed.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StatePressed.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateTracking.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateTracking.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateTracking.Back.ColorAngle = 135F;
+            kryptonButton1.StateTracking.Back.Image = Properties.Resources.Arrow_backS;
+            kryptonButton1.StateTracking.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
+            kryptonButton1.StateTracking.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateTracking.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateTracking.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton1.StateTracking.Border.Rounding = 8F;
+            kryptonButton1.StateTracking.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateTracking.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
+            kryptonButton1.TabIndex = 12;
+            kryptonButton1.ToolTipValues.Description = "";
+            kryptonButton1.ToolTipValues.EnableToolTips = true;
+            kryptonButton1.ToolTipValues.Heading = "Anterior";
+            kryptonButton1.Values.Text = "anterior";
+            // 
+            // chkHabilitado
+            // 
+            chkHabilitado.AutoSize = true;
+            chkHabilitado.CheckAlign = ContentAlignment.MiddleRight;
+            chkHabilitado.Font = new Font("Poppins SemiBold", 12F, FontStyle.Bold);
+            chkHabilitado.Location = new Point(10, 215);
+            chkHabilitado.Name = "chkHabilitado";
+            chkHabilitado.Size = new Size(114, 32);
+            chkHabilitado.TabIndex = 13;
+            chkHabilitado.Text = "Habilitado";
             // 
             // kryptonBorderEdge1
             // 
-            kryptonBorderEdge1.Location = new Point(187, 322);
+            kryptonBorderEdge1.Location = new Point(186, 322);
             kryptonBorderEdge1.Margin = new Padding(0);
             kryptonBorderEdge1.Name = "kryptonBorderEdge1";
             kryptonBorderEdge1.Orientation = Orientation.Vertical;
@@ -553,29 +495,116 @@
             kryptonBorderEdge1.StateCommon.Color2 = Color.FromArgb(60, 65, 190);
             kryptonBorderEdge1.Text = "kryptonBorderEdge1";
             // 
+            // kryptonButton2
+            // 
+            kryptonButton2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            kryptonButton2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonButton2.Location = new Point(317, 44);
+            kryptonButton2.Name = "kryptonButton2";
+            kryptonButton2.OverrideDefault.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.OverrideDefault.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.OverrideDefault.Back.ColorAngle = 45F;
+            kryptonButton2.OverrideDefault.Back.Image = Properties.Resources.arrow_forward;
+            kryptonButton2.OverrideDefault.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.OverrideDefault.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.OverrideDefault.Border.ColorAngle = 45F;
+            kryptonButton2.OverrideDefault.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton2.OverrideDefault.Border.Rounding = 8F;
+            kryptonButton2.OverrideDefault.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
+            kryptonButton2.OverrideDefault.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.OverrideDefault.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.Size = new Size(58, 108);
+            kryptonButton2.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateCommon.Back.ColorAngle = 45F;
+            kryptonButton2.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
+            kryptonButton2.StateCommon.Back.Image = Properties.Resources.arrow_forward1;
+            kryptonButton2.StateCommon.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
+            kryptonButton2.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
+            kryptonButton2.StateCommon.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateCommon.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateCommon.Border.ColorAngle = 45F;
+            kryptonButton2.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton2.StateCommon.Border.Rounding = 8F;
+            kryptonButton2.StateCommon.Content.AdjacentGap = 1;
+            kryptonButton2.StateCommon.Content.Image.ImageColorTo = Color.White;
+            kryptonButton2.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
+            kryptonButton2.StateCommon.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateCommon.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateCommon.Content.ShortText.ColorAngle = 45F;
+            kryptonButton2.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            kryptonButton2.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            kryptonButton2.StateCommon.Content.ShortText.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
+            kryptonButton2.StateCommon.Content.ShortText.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            kryptonButton2.StatePressed.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StatePressed.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StatePressed.Back.Image = Properties.Resources.arrow_forwardP;
+            kryptonButton2.StatePressed.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
+            kryptonButton2.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.BottomLeft;
+            kryptonButton2.StatePressed.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StatePressed.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StatePressed.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton2.StatePressed.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
+            kryptonButton2.StatePressed.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StatePressed.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateTracking.Back.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateTracking.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateTracking.Back.ColorAngle = 135F;
+            kryptonButton2.StateTracking.Back.Image = Properties.Resources.arrow_forwardS;
+            kryptonButton2.StateTracking.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
+            kryptonButton2.StateTracking.Border.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateTracking.Border.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateTracking.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
+            kryptonButton2.StateTracking.Border.Rounding = 8F;
+            kryptonButton2.StateTracking.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateTracking.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonButton2.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
+            kryptonButton2.TabIndex = 14;
+            kryptonButton2.ToolTipValues.Description = "";
+            kryptonButton2.ToolTipValues.EnableToolTips = true;
+            kryptonButton2.ToolTipValues.Heading = "Siguiente";
+            kryptonButton2.ToolTipValues.ToolTipStyle = Krypton.Toolkit.LabelStyle.ToolTip;
+            kryptonButton2.Values.Text = "anterior";
+            // 
+            // lblNombre
+            // 
+            lblNombre.AutoEllipsis = true;
+            lblNombre.Font = new Font("Montserrat SemiBold", 22F, FontStyle.Bold, GraphicsUnit.World, 0);
+            lblNombre.ForeColor = SystemColors.ButtonFace;
+            lblNombre.Location = new Point(54, 44);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(269, 108);
+            lblNombre.TabIndex = 16;
+            lblNombre.Text = " ";
+            lblNombre.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // FormDetailsProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(383, 466);
+            Controls.Add(lblNombre);
+            Controls.Add(kryptonButton2);
             Controls.Add(kryptonBorderEdge1);
             Controls.Add(chkHabilitado);
             Controls.Add(kryptonButton1);
-            Controls.Add(BTNdelete);
             Controls.Add(lblStock);
             Controls.Add(lblVentas);
             Controls.Add(datagridVentas);
             Controls.Add(datagridCompras);
             Controls.Add(lblCompra);
             Controls.Add(lblCategoria);
-            Controls.Add(klblNombre);
-            Controls.Add(controlBox1);
             Controls.Add(crownDockPanel1);
-            FormBorderStyle = FormBorderStyle.None;
+            ForeColor = SystemColors.ButtonFace;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            FormTitleAlign = Krypton.Toolkit.PaletteRelativeAlign.Center;
             Name = "FormDetailsProducto";
-            Text = "FormDetailsProducto";
-            TransparencyKey = Color.Fuchsia;
+            Palette = kryptonCustomPaletteBase1;
+            PaletteMode = Krypton.Toolkit.PaletteMode.Custom;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Detalles del producto";
+            TitleStyle = Krypton.Toolkit.KryptonFormTitleStyle.Modern;
             Activated += FormDetailsProducto_Activated;
             ((System.ComponentModel.ISupportInitialize)datagridCompras).EndInit();
             ((System.ComponentModel.ISupportInitialize)datagridVentas).EndInit();
@@ -584,9 +613,6 @@
         }
 
         #endregion
-
-        private ReaLTaiizor.Controls.ControlBox controlBox1;
-        private Krypton.Toolkit.KryptonLabel klblNombre;
         private ReaLTaiizor.Docking.Crown.CrownDockPanel crownDockPanel1;
         private Label lblCategoria;
         private Label lblCompra;
@@ -594,7 +620,6 @@
         private Krypton.Toolkit.KryptonDataGridView datagridVentas;
         private Label lblVentas;
         private Label lblStock;
-        private Krypton.Toolkit.KryptonButton BTNdelete;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private ReaLTaiizor.Controls.CrownCheckBox chkHabilitado;
         private DataGridViewTextBoxColumn ColumnFecha2;
@@ -603,5 +628,7 @@
         private Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ColumnFecha;
         private Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ColumnCantidad;
         private Krypton.Toolkit.KryptonBorderEdge kryptonBorderEdge1;
+        private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private Label lblNombre;
     }
 }

@@ -54,9 +54,12 @@ namespace WinForm
             // 
             // txtContraseña
             // 
+            txtContraseña.CueHint.Color1 = SystemColors.ControlDark;
+            txtContraseña.CueHint.CueHintText = "Ingrese una contraseña";
+            txtContraseña.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic);
             txtContraseña.Location = new Point(74, 291);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(249, 32);
+            txtContraseña.Size = new Size(249, 31);
             txtContraseña.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             txtContraseña.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             txtContraseña.StateCommon.Border.Color2 = Color.Gray;
@@ -69,15 +72,17 @@ namespace WinForm
             txtContraseña.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtContraseña.TabIndex = 1;
             txtContraseña.TabStop = false;
-            txtContraseña.Text = "Ingrese una contraseña";
             txtContraseña.Click += textBox2_Click;
             txtContraseña.KeyPress += txtContraseña_KeyPress;
             // 
             // txtNombreUsuario
             // 
+            txtNombreUsuario.CueHint.Color1 = SystemColors.ControlDark;
+            txtNombreUsuario.CueHint.CueHintText = "Ingrese un nombre de usuario";
+            txtNombreUsuario.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic);
             txtNombreUsuario.Location = new Point(74, 207);
             txtNombreUsuario.Name = "txtNombreUsuario";
-            txtNombreUsuario.Size = new Size(249, 32);
+            txtNombreUsuario.Size = new Size(249, 31);
             txtNombreUsuario.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             txtNombreUsuario.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             txtNombreUsuario.StateCommon.Border.Color2 = Color.Gray;
@@ -88,7 +93,6 @@ namespace WinForm
             txtNombreUsuario.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombreUsuario.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtNombreUsuario.TabIndex = 1;
-            txtNombreUsuario.Text = "Ingrese un nombre";
             txtNombreUsuario.Click += textBox1_Click;
             // 
             // label2
@@ -226,6 +230,7 @@ namespace WinForm
             Palette = kryptonCustomPaletteBase1;
             PaletteMode = PaletteMode.Custom;
             ShowIcon = false;
+            SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Registrarse";
             TitleStyle = KryptonFormTitleStyle.Classic;

@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 
 namespace WinForm
 {
-    public partial class FormDetailsProducto : Form
+    public partial class FormDetailsProducto : KryptonForm
     {
         private readonly Producto _producto;
         private readonly IProductoBusiness _productoBusiness;
@@ -27,7 +28,7 @@ namespace WinForm
 
         private void FormDetailsProducto_Activated(object sender, EventArgs e)
         {
-            klblNombre.Text = _producto.Nombre;
+            lblNombre.Text = _producto.Nombre;
             lblCategoria.Text = $"Categoria: {_producto.Categoria}";
             chkHabilitado.Checked = _producto.Habilitado;
             datagridCompras.DataSource = _producto.Compras.ToList();
