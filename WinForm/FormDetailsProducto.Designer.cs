@@ -407,7 +407,7 @@
             // 
             kryptonButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             kryptonButton1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton1.Location = new Point(11, 44);
+            kryptonButton1.Location = new Point(11, 34);
             kryptonButton1.Name = "kryptonButton1";
             kryptonButton1.OverrideDefault.Back.Color1 = Color.FromArgb(30, 30, 30);
             kryptonButton1.OverrideDefault.Back.Color2 = Color.FromArgb(30, 30, 30);
@@ -448,7 +448,7 @@
             kryptonButton1.StatePressed.Back.Color2 = Color.FromArgb(30, 30, 30);
             kryptonButton1.StatePressed.Back.Image = Properties.Resources.Arrow_backP;
             kryptonButton1.StatePressed.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
-            kryptonButton1.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
+            kryptonButton1.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
             kryptonButton1.StatePressed.Border.Color1 = Color.FromArgb(30, 30, 30);
             kryptonButton1.StatePressed.Border.Color2 = Color.FromArgb(30, 30, 30);
             kryptonButton1.StatePressed.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
@@ -471,7 +471,7 @@
             kryptonButton1.ToolTipValues.Description = "";
             kryptonButton1.ToolTipValues.EnableToolTips = true;
             kryptonButton1.ToolTipValues.Heading = "Anterior";
-            kryptonButton1.Values.Text = "anterior";
+            kryptonButton1.Values.Text = "";
             // 
             // chkHabilitado
             // 
@@ -499,7 +499,7 @@
             // 
             kryptonButton2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             kryptonButton2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            kryptonButton2.Location = new Point(317, 44);
+            kryptonButton2.Location = new Point(317, 34);
             kryptonButton2.Name = "kryptonButton2";
             kryptonButton2.OverrideDefault.Back.Color1 = Color.FromArgb(30, 30, 30);
             kryptonButton2.OverrideDefault.Back.Color2 = Color.FromArgb(30, 30, 30);
@@ -540,7 +540,7 @@
             kryptonButton2.StatePressed.Back.Color2 = Color.FromArgb(30, 30, 30);
             kryptonButton2.StatePressed.Back.Image = Properties.Resources.arrow_forwardP;
             kryptonButton2.StatePressed.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
-            kryptonButton2.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.BottomLeft;
+            kryptonButton2.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
             kryptonButton2.StatePressed.Border.Color1 = Color.FromArgb(30, 30, 30);
             kryptonButton2.StatePressed.Border.Color2 = Color.FromArgb(30, 30, 30);
             kryptonButton2.StatePressed.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
@@ -564,14 +564,14 @@
             kryptonButton2.ToolTipValues.EnableToolTips = true;
             kryptonButton2.ToolTipValues.Heading = "Siguiente";
             kryptonButton2.ToolTipValues.ToolTipStyle = Krypton.Toolkit.LabelStyle.ToolTip;
-            kryptonButton2.Values.Text = "anterior";
+            kryptonButton2.Values.Text = "";
             // 
             // lblNombre
             // 
             lblNombre.AutoEllipsis = true;
             lblNombre.Font = new Font("Montserrat SemiBold", 22F, FontStyle.Bold, GraphicsUnit.World, 0);
             lblNombre.ForeColor = SystemColors.ButtonFace;
-            lblNombre.Location = new Point(54, 44);
+            lblNombre.Location = new Point(54, 34);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(269, 108);
             lblNombre.TabIndex = 16;
