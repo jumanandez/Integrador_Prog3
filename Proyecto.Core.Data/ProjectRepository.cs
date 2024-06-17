@@ -141,11 +141,22 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
+
                 dbcontext.Add(compra);
 
                 dbcontext.SaveChanges();
             }
 
+        }
+
+        public void UpdateCompra(Compra compra)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Update(compra);
+                dbcontext.SaveChanges();
+
+            }
         }
 
         public void DeleteCompra(int id)
@@ -158,6 +169,17 @@ namespace Proyecto.Core.Data
                 dbcontext.Remove(compra);
                 dbcontext.SaveChanges();
             }
+        }
+
+        public Compra GetCompraById(int id)
+        {
+            var compra = new Compra();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                compra = dbcontext.Compras.Find(id);
+            }
+
+            return compra;
         }
 
        

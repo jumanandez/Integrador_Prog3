@@ -9,7 +9,7 @@ namespace WebApp.Models.ViewModels
 
         public Paginado<Compra>? Paginado { get; set; }
 
-
+        public int? CompraId { get; set; }
         public int? ProductoId { get; set; }
 
         

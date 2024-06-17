@@ -11,6 +11,8 @@ namespace Proyecto.Core.Business.Interfaces
     {
         public void AddCompra(Compra compra);
 
+        public Compra GetCompraById(int id);
+
         public void DeleteCompra(int id);
 
         public List<Compra> GetCompras(int usuarioId);
@@ -18,6 +20,8 @@ namespace Proyecto.Core.Business.Interfaces
         public bool VerificarFecha(DateTime fecha);
 
         public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId);
+
+        public void UpdateCompra(Compra compra);
 
 
     }
