@@ -5,6 +5,7 @@ using Proyecto.Core.Entities;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
 using Krypton.Toolkit;
+using System.Drawing;
 
 namespace WinForm
 {
@@ -16,25 +17,25 @@ namespace WinForm
         public Usuario _loggedUser;
         public FormLogin(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuarioBusiness)
         {
-
             _usuarioBusiness = usuarioBusiness;
             _categoriaBusiness = catbusi;
             _productoBusiness = produbusi;
             InitializeComponent();
-            button1.Enabled= false;
+            button1.Enabled = false;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             bool pass;
-            if (_usuarioBusiness.CompareUserToDB(textBox1.Text))//obtener salt ya
+            var user = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+            if (user != null)
             {
-                var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
+                var hashnew = CryptoHelper.HashPassword(textBox2.Text, user.Salt);
 
-                pass = hashnew.SequenceEqual(_usuarioBusiness.GetUsuarioHash(textBox1.Text));
+                pass = hashnew.SequenceEqual(user.HashPassword);
 
                 if (pass)
                 {
+                    _loggedUser = user;
                     IngresarAlaAplicacion();
                 }
                 else
@@ -63,7 +64,6 @@ namespace WinForm
 
             if (formCambioContraseña.ShowDialog() == DialogResult.OK)
             {
-                _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
                 MessageBox.Show("Contraseña Cambiada Con Exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Show();
             }
@@ -117,12 +117,13 @@ namespace WinForm
         }
         private void IngresarAlaAplicacion()
         {
-            _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
             Hide();
             FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
             if (productosesion.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Rompiste todo!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Show();
+                textBox1.Focus();
+                textBox2.Clear();
             }
             else
             {
@@ -133,6 +134,7 @@ namespace WinForm
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
+                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
@@ -140,7 +142,6 @@ namespace WinForm
                     }
                 }
             }
-            DialogResult = DialogResult.OK;
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -187,12 +188,42 @@ namespace WinForm
             }
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)//Ignora  espacios en textbox
         {
+            if (e.KeyChar == (char)Keys.Enter && (textBox2.Text != "Ingrese una contraseña" || textBox2.Text == "".Trim()))
+            {
+                this.AcceptButton = button1;//aceptar enter como click
+                Point screenCoordinates = button1.PointToScreen(Point.Empty);//manda al puntero al centro del boton
+
+                Cursor.Position = new Point(screenCoordinates.X + button1.Width / 2, screenCoordinates.Y + button1.Height / 2);
+            }
             if (e.KeyChar == (char)Keys.Space)
             {
                 e.Handled = true;
             }
+        }
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)//implementado a medias, codigo para presionar enter y logear
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+                if (textBox2.Text == "Ingrese una contraseña" || textBox2.Text == "".Trim())
+                {
+                    textBox2.UseSystemPasswordChar = true;
+                    textBox2.StateCommon.Content.Color1 = Color.White;
+                    textBox2.Focus();
+                    textBox2.Clear();
+                }
+                else
+                {
+                    button1_Click(this, new EventArgs());
+                }
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
         }
     }
 }

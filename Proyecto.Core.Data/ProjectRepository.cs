@@ -49,8 +49,8 @@ namespace Proyecto.Core.Data
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
                 productos = dbcontext.Productos.Include(p => p.Categoria)
-                                               .Include(p => p.Compras)
-                                               .Include(p => p.Venta).ToList();
+                                               .Include(p => p.Compras).ThenInclude(c => c.Usuario)
+                                               .Include(p => p.Venta).ThenInclude(v => v.Usuario).ToList();
             }
             return productos;
         }
@@ -281,7 +281,14 @@ namespace Proyecto.Core.Data
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                var User = dbcontext.Usuarios.Include(v => v.Venta).Include(v => v.Compras).Where(b => b.Nombre == Username).FirstOrDefault();
+            //var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                var User = dbcontext.Usuarios
+                    .Where(b => b.Nombre == Username)
+                    .Include(c => c.Compras)
+                        .ThenInclude(compra => compra.Producto)
+                    .Include(c => c.Venta)
+                    .ThenInclude(venta => venta.Producto)
+                    .FirstOrDefault();
                 return User;
             }
         }

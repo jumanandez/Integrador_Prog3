@@ -2,6 +2,7 @@
 using Proyecto.Core.Entities;
 using System.Data;
 using Krypton.Toolkit;
+using System.Runtime.InteropServices;
 
 namespace WinForm
 {
@@ -15,15 +16,16 @@ namespace WinForm
         public Usuario _loggedUser;
         private string _orderType = " ";
         bool sidebaropen;
-        bool filteropen;
+        bool filteropen = false;
+        bool userbarcollapsed = false;
 
-        public FormProducto(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuariobusi, Usuario usalog)
+        public FormProducto(ICategoriaBusiness categoriaBusiness, IProductoBusiness productoBusiness, IUsuarioBusiness usuarioBusiness, Usuario userLogged)
         {
-            _categoriaBusiness = catbusi;
-            _productoBusiness = produbusi;
-            _usuarioBusiness = usuariobusi;
+            _categoriaBusiness = categoriaBusiness;
+            _productoBusiness = productoBusiness;
+            _usuarioBusiness = usuarioBusiness;
             _productoACargar = new Producto();
-            _loggedUser = usalog;
+            _loggedUser = userLogged;
             //         button1.Font = new Font("Wingdings 3", 16, FontStyle.Bold);
             //button1.Text = Char.ConvertFromUtf32(81);
             InitializeComponent();
@@ -49,8 +51,7 @@ namespace WinForm
                     var i = dataGridViewProducto.CurrentRow.Index;
                     var prod = dataGridViewProducto.SelectedRows[0];
                     _productoSeleccionado = (Producto)prod.DataBoundItem;
-                    Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
-                    AddAPart.ShowDialog();
+                    ModificarUnProducto(_productoSeleccionado);
                 }
                 else
                 {
@@ -62,20 +63,19 @@ namespace WinForm
                 MessageBox.Show("No se ha seleccionado ningun producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+       
         private void BTNdelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewProducto.SelectedRows.Count < 2)
             {
                 if (dataGridViewProducto.CurrentRow != null)
                 {
-                    var i = dataGridViewProducto.CurrentRow.Index;
+                    //var i = dataGridViewProducto.CurrentRow.Index;
+
                     var prod = dataGridViewProducto.SelectedRows[0];
                     _productoSeleccionado = (Producto)prod.DataBoundItem;
-                    DialogResult dialogResult = MessageBox.Show("Eliminar este elemento?", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        _productoBusiness.DeleteProducto(_productoSeleccionado);
-                    }
+                    EliminarUnProducto(_productoSeleccionado);
                 }
                 else
                 {
@@ -108,15 +108,33 @@ namespace WinForm
             }
             RefreshGrid(null);
         }
+        
+
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
             Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
             AddAPart.ShowDialog();
         }
+        //Metodos que tuvimos que extraer y se utilizaron mas abajo
+        private void ModificarUnProducto(Producto producto)
+        {
+            Form2 AddAPart = new Form2(producto, _categoriaBusiness, _productoBusiness);
+            AddAPart.ShowDialog();
+        }
+        private void EliminarUnProducto(Producto producto)
+        {
+            DialogResult dialogResult = MessageBox.Show($"Eliminar este elemento? \n\n{_productoSeleccionado.Nombre}" +
+                                                            $"\n{_productoSeleccionado.Categoria} \nStock:{_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Compras.Select(c => c.Cantidad).Sum()}", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _productoBusiness.DeleteProducto(producto);
+            }
+            RefreshGrid(null);
+        }
         #endregion
 
 
-        //REFACTORIZACION DE METODO REFRESHGRID
+        //Refrescar el DatagridView segun una lista especifica o como viene desde la base
         public void RefreshGrid(List<Producto>? source)
         {
             dataGridViewProducto.AutoGenerateColumns = false;
@@ -566,19 +584,17 @@ namespace WinForm
         private void numericUpDown1_Click(object sender, EventArgs e)
         {
             BtnCompra.Enabled = true;
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
             RefreshGrid(null);
         }
-        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void sortingResult(string order)
         {
-            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
             List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
-            switch (columnName)
+            switch (order)
             {
-                case "ColumnNombreProducto":
+                case "Nombre":
                     if (_orderType == "n")
                     {
                         RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
@@ -591,7 +607,7 @@ namespace WinForm
                         _orderType = "n";
                         break;
                     }
-                case "ColumnCategoria":
+                case "Categoria":
                     if (_orderType != "c")
                     {
                         RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
@@ -604,7 +620,7 @@ namespace WinForm
                         _orderType = "x";
                         break;
                     }
-                case "ColumnStock":
+                case "Stock":
                     if (_orderType != "s")
                     {
                         RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
@@ -617,7 +633,7 @@ namespace WinForm
                         _orderType = "x";
                         break;
                     }
-                case "ColumnHabilitado":
+                case "Habilitado":
                     if (_orderType != "h")
                     {
                         RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
@@ -630,7 +646,7 @@ namespace WinForm
                         _orderType = "x";
                         break;
                     }
-                case "ColumnCompras":
+                case "Compras":
                     if (_orderType != "cp")
                     {
                         RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
@@ -643,7 +659,7 @@ namespace WinForm
                         _orderType = "x";
                         break;
                     }
-                case "ColumnVentas":
+                case "Ventas":
                     if (_orderType != "v")
                     {
                         RefreshGrid(on.OrderByDescending(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
@@ -658,6 +674,50 @@ namespace WinForm
                     }
             }
         }
+        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip2.Show(Cursor.Position);
+            }
+            else
+            {
+                switch (columnName)
+                {
+                    case "ColumnNombreProducto":
+                        {
+                            sortingResult("Nombre");
+                            break;
+                        }
+                    case "ColumnCategoria":
+                        {
+                            sortingResult("Categoria");
+                            break;
+                        }
+                    case "ColumnStock":
+                        {
+                            sortingResult("Stock");
+                            break;
+                        }
+                    case "ColumnHabilitado":
+                        {
+                            sortingResult("Habilitado");
+                            break;
+                        }
+                    case "ColumnCompras":
+                        {
+                            sortingResult("Compras");
+                            break;
+                        }
+                    case "ColumnVentas":
+                        {
+                            sortingResult("Ventas");
+                            break;
+                        }
+                }
+            }
+        }
 
 
         #region FUNCIONES DE FILTRADO PARA NO REPETIR CODE
@@ -669,21 +729,17 @@ namespace WinForm
         }
         public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
         {
-            var doublefilt = from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
-                             where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
-                             select p;
-
-            return doublefilt.ToList();
+            return (from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
+                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
+                    select p).ToList();
         }
         public List<Producto> FilterByCategoria(List<Producto> productos)
         {
-            var filtradosCategoria = from p in productos
-                                     where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
-                                     select p;
-
-            return filtradosCategoria.ToList();
+            return (from p in productos
+                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
+                    select p).ToList();
         }
-        private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool valor)
+        private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool? valor)
         {
             return (from p in FilterByCategoria(productos)
                     where p.Habilitado == valor
@@ -691,11 +747,9 @@ namespace WinForm
         }
         public List<Producto> FilterByText(List<Producto> productos, string searchText)
         {
-            var filteredProductos = from prod in productos
-                                    where prod.Nombre.ToLower().Contains(searchText)
-                                    select prod;
-
-            return filteredProductos.ToList();
+            return (from prod in productos
+                    where prod.Nombre.ToLower().Contains(searchText)
+                    select prod).ToList();
         }
         public List<Producto> FilterByTextHabilitado(List<Producto> productos, bool valor)
         {
@@ -711,71 +765,254 @@ namespace WinForm
         }
         #endregion
 
-        private void sidebartimer_Tick(object sender, EventArgs e)
+        #region Codigo UI/UEX
+        private void sidebartimer_Tick(object sender, EventArgs e)//Timer de animacion de menu
         {
             if (sidebaropen)
             {
-                sidebarpanel.Width -= 10;
-                if (sidebarpanel.Width == sidebarpanel.MinimumSize.Width)
+                menupanel.Width -= 12;
+                if (menupanel.Width == menupanel.MinimumSize.Width)
                 {
                     sidebaropen = false;
+                    if (filteropen) filteropen = false;
+                    if (userbarcollapsed) userbarcollapsed = false;
                     sidebartimer.Stop();
-                    kryptonButton1.Enabled = false;
                 }
             }
             else
             {
-                sidebarpanel.Width += 10;
-                if (sidebarpanel.Width == sidebarpanel.MaximumSize.Width)
+                menupanel.Width += 12;
+                if (menupanel.Width == menupanel.MaximumSize.Width)
                 {
                     sidebaropen = true;
                     sidebartimer.Stop();
-                    kryptonButton1.Enabled = true;
                 }
             }
 
         }
 
-        private void menubutton_Click(object sender, EventArgs e)
-        {
-            if (!filteropen)
-            {
-                filtercontainer.Height = filtercontainer.MinimumSize.Height;
-            }
-            sidebartimer.Start();
-        }
-
-        private void filtertimer_Tick(object sender, EventArgs e)
+        private void menubutton_Click(object sender, EventArgs e)//Inicio de timer de boton menu
         {
             if (filteropen)
             {
-                filtercontainer.Height += 10;
-                if (filtercontainer.Height == filtercontainer.MaximumSize.Height)
+                filtertimer.Start();
+            }
+            if (userbarcollapsed)
+            {
+                Usertimer.Start();
+            }
+
+            sidebartimer.Start();
+        }
+        private void filtertimer_Tick(object sender, EventArgs e)//Timer de animacion de filtros
+        {
+            if (filteropen)
+            {
+                panelfilter.Height -= 12;
+                if (panelfilter.Height <= 63)
                 {
                     filteropen = false;
                     filtertimer.Stop();
                 }
             }
-            else if (!filteropen)
+            else
             {
-                filtercontainer.Height -= 10;
-                if (filtercontainer.Height == filtercontainer.MinimumSize.Height)
+                panelfilter.Height += 12;
+                if (panelfilter.Height >= 216)
                 {
                     filteropen = true;
                     filtertimer.Stop();
                 }
             }
-
         }
-
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private void kryptonButton1_Click(object sender, EventArgs e)//Inicio de timer de filtros
         {
+            if (!sidebaropen)
+            {
+                sidebartimer.Start();
+            }
             filtertimer.Start();
         }
-
-        private void sidebarpanel_Paint(object sender, PaintEventArgs e)
+        private void Usertimer_Tick(object sender, EventArgs e)//timer de animacion de usuario
         {
 
+            if (userbarcollapsed)
+            {
+                panelUsuario1.Height -= 12;
+                if (panelUsuario1.Height <= 63)
+                {
+                    userbarcollapsed = false;
+                    Usertimer.Stop();
+                }
+            }
+            else
+            {
+                panelUsuario1.Height += 12;
+                if (panelUsuario1.Height >= 196)
+                {
+                    userbarcollapsed = true;
+                    Usertimer.Stop();
+                }
+            }
+        }
+        private void button1_Click_1(object sender, EventArgs e)//boton de usuario
+        {
+            if (!sidebaropen)
+            {
+                sidebartimer.Start();
+            }
+            Usertimer.Start();
+        }
+        #region Codigo para mover la forma presionando donde sea
+        private void FormProducto_MouseDown(object sender, MouseEventArgs e)// al presionar en la forma
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        private void kryptonLabel2_MouseDown(object sender, MouseEventArgs e)//al presionar el text label
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+        #endregion
+        private void dataGridViewProducto_MouseDown(object sender, MouseEventArgs e)//Seleccionar un objeto al abrir el menu contextual
+        {
+            //if (dataGridViewProducto.SelectedColumns == null)
+            //{
+            if (e.Button == MouseButtons.Right)
+            {
+                var hti = dataGridViewProducto.HitTest(e.X, e.Y);
+                dataGridViewProducto.ClearSelection();
+                if (hti.RowIndex != -1)
+                {
+                    dataGridViewProducto.Rows[hti.RowIndex].Selected = true;
+                }
+            }
+            //}
+        }
+        private void nuevoProductoToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de agregar nuevo del menu contextual
+        {
+            btnNuevoProducto_Click(sender, e);
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de eliminar del menu contextual
+        {
+            BTNdelete_Click(sender, e);
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de modificar del menu contextual
+        {
+            btnModificar_Click(sender, e);
+        }
+
+        private void detallesToolStripMenuItem_Click(object sender, EventArgs e)//No implementado, codigo para mostrar mas detalles de un elemento seleccionado
+        {
+            var row = dataGridViewProducto.SelectedRows[0];
+
+            _productoSeleccionado = (Producto)row.DataBoundItem;
+
+            FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
+            
+            if(form.ShowDialog() == DialogResult.Yes)
+            {
+                form.Close();
+                ModificarUnProducto(_productoSeleccionado);
+
+            }
+            else if(form.ShowDialog() == DialogResult.No)
+            {
+                form.Close();
+                EliminarUnProducto(_productoSeleccionado);
+            }
+        }
+
+        private void refrescarToolStripMenuItem_Click(object sender, EventArgs e)//refrescar datagrid menu contexto
+        {
+            RefreshGrid(null);
+        }
+
+        private void ordenarToolStripMenuItem1_Click(object sender, EventArgs e)//No implementado codigo para combo box de seleccionar orden
+        {
+            //Este si podes hacer re bien juan
+        }
+        #endregion
+
+        private void btnlogout_Click(object sender, EventArgs e)//boton de cerrar sesion
+        {
+            DialogResult operao = MessageBox.Show("Seguro que quiere cerrar sesión?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (operao == DialogResult.Yes)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                Show();
+            }
+        }
+
+        private void btninformacion_Click(object sender, EventArgs e)
+        {
+            var UserDetails = new FormUserDetails(_loggedUser);
+            UserDetails.ShowDialog();
+        }
+
+        private void FormProducto_MouseHover(object sender, EventArgs e)
+        {
+            menubutton.Image = Properties.Resources.Medium_meno_tracked;
+        }
+
+        private void menubutton_MouseLeave(object sender, EventArgs e)
+        {
+            menubutton.Image = Properties.Resources.Medium_meno;
+        }
+
+        private void btnchangepass_Click(object sender, EventArgs e)
+        {
+            FormCambioContrasena LoggedChange = new FormCambioContrasena(_usuarioBusiness, _loggedUser);
+            LoggedChange.ShowDialog();
+        }
+        private void ordenarStripMenuItem3_Click(object sender, EventArgs e)//boton ordenar por nombre
+        {
+            sortingResult("Nombre");
+        }
+
+        private void categoriaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Categoria");
+        }
+
+        private void stockToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Stock");
+        }
+
+        private void comprasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Compras");
+        }
+
+        private void ventasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Ventas");
+        }
+
+        private void ordenarSubContex_Click(object sender, EventArgs e)
+        {
+            sortingResult("Habilitado");
         }
     }
 }

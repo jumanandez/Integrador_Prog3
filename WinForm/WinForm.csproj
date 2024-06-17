@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="ReaLTaiizor" Version="3.8.0.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Form1.resx</DependentUpon>
     </Compile>
+    <Compile Update="FormUserDetails.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
