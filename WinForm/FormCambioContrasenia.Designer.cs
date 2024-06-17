@@ -34,13 +34,13 @@ namespace WinForm
             txtContrasenaActual = new KryptonTextBox();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             txtNombreUsuario = new KryptonTextBox();
-            label2 = new Label();
-            label1 = new Label();
+            lblcontraseniaA = new Label();
+            lblnombreusuario = new Label();
             txtNuevaContrasena = new KryptonTextBox();
             lblnvcontr = new Label();
             txtConfirmarContrasena = new KryptonTextBox();
             lblconfrcontr = new Label();
-            button1 = new KryptonButton();
+            btnconfirmar = new KryptonButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -68,7 +68,7 @@ namespace WinForm
             txtContrasenaActual.PaletteMode = PaletteMode.Custom;
             txtContrasenaActual.PasswordChar = '●';
             txtContrasenaActual.Size = new Size(249, 36);
-            txtContrasenaActual.TabIndex = 33;
+            txtContrasenaActual.TabIndex = 2;
             txtContrasenaActual.UseSystemPasswordChar = true;
             txtContrasenaActual.KeyPress += txtContrasenaActual_KeyPress;
             // 
@@ -141,30 +141,30 @@ namespace WinForm
             txtNombreUsuario.Palette = kryptonCustomPaletteBase1;
             txtNombreUsuario.PaletteMode = PaletteMode.Custom;
             txtNombreUsuario.Size = new Size(249, 36);
-            txtNombreUsuario.TabIndex = 32;
+            txtNombreUsuario.TabIndex = 1;
             txtNombreUsuario.KeyPress += txtContraseñaActual_KeyPress;
             // 
-            // label2
+            // lblcontraseniaA
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 12F);
-            label2.ForeColor = Color.LightGray;
-            label2.Location = new Point(62, 261);
-            label2.Name = "label2";
-            label2.Size = new Size(139, 20);
-            label2.TabIndex = 31;
-            label2.Text = "Contraseña actual";
+            lblcontraseniaA.AutoSize = true;
+            lblcontraseniaA.Font = new Font("Microsoft Sans Serif", 12F);
+            lblcontraseniaA.ForeColor = Color.LightGray;
+            lblcontraseniaA.Location = new Point(62, 261);
+            lblcontraseniaA.Name = "lblcontraseniaA";
+            lblcontraseniaA.Size = new Size(139, 20);
+            lblcontraseniaA.TabIndex = 7;
+            lblcontraseniaA.Text = "Contraseña actual";
             // 
-            // label1
+            // lblnombreusuario
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.LightGray;
-            label1.Location = new Point(62, 195);
-            label1.Name = "label1";
-            label1.Size = new Size(143, 20);
-            label1.TabIndex = 30;
-            label1.Text = "Nombre de usuario";
+            lblnombreusuario.AutoSize = true;
+            lblnombreusuario.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblnombreusuario.ForeColor = Color.LightGray;
+            lblnombreusuario.Location = new Point(62, 195);
+            lblnombreusuario.Name = "lblnombreusuario";
+            lblnombreusuario.Size = new Size(143, 20);
+            lblnombreusuario.TabIndex = 6;
+            lblnombreusuario.Text = "Nombre de usuario";
             // 
             // txtNuevaContrasena
             // 
@@ -180,7 +180,7 @@ namespace WinForm
             txtNuevaContrasena.PaletteMode = PaletteMode.Custom;
             txtNuevaContrasena.PasswordChar = '●';
             txtNuevaContrasena.Size = new Size(249, 36);
-            txtNuevaContrasena.TabIndex = 37;
+            txtNuevaContrasena.TabIndex = 3;
             txtNuevaContrasena.UseSystemPasswordChar = true;
             txtNuevaContrasena.KeyPress += txtContraseñaActual_KeyPress2;
             // 
@@ -192,7 +192,7 @@ namespace WinForm
             lblnvcontr.Location = new Point(62, 328);
             lblnvcontr.Name = "lblnvcontr";
             lblnvcontr.Size = new Size(139, 20);
-            lblnvcontr.TabIndex = 36;
+            lblnvcontr.TabIndex = 8;
             lblnvcontr.Text = "Contraseña nueva";
             // 
             // txtConfirmarContrasena
@@ -209,7 +209,7 @@ namespace WinForm
             txtConfirmarContrasena.PaletteMode = PaletteMode.Custom;
             txtConfirmarContrasena.PasswordChar = '●';
             txtConfirmarContrasena.Size = new Size(249, 36);
-            txtConfirmarContrasena.TabIndex = 39;
+            txtConfirmarContrasena.TabIndex = 4;
             txtConfirmarContrasena.UseSystemPasswordChar = true;
             txtConfirmarContrasena.KeyPress += txtContraseñaActual_KeyPress3;
             // 
@@ -221,63 +221,63 @@ namespace WinForm
             lblconfrcontr.Location = new Point(62, 400);
             lblconfrcontr.Name = "lblconfrcontr";
             lblconfrcontr.Size = new Size(225, 20);
-            lblconfrcontr.TabIndex = 38;
+            lblconfrcontr.TabIndex = 9;
             lblconfrcontr.Text = "Confirmar la nueva contraseña";
             // 
-            // button1
+            // btnconfirmar
             // 
-            button1.Location = new Point(127, 475);
-            button1.Name = "button1";
-            button1.OverrideDefault.Back.Color1 = Color.FromArgb(0, 0, 192);
-            button1.OverrideDefault.Back.Color2 = Color.Navy;
-            button1.OverrideDefault.Back.ColorAngle = 45F;
-            button1.OverrideDefault.Border.Color1 = Color.Navy;
-            button1.OverrideDefault.Border.Color2 = Color.Gray;
-            button1.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.OverrideDefault.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            button1.OverrideDefault.Border.ImageAlign = PaletteRectangleAlign.Local;
-            button1.OverrideDefault.Border.Rounding = 18F;
-            button1.Size = new Size(120, 42);
-            button1.StateCommon.Back.Color1 = Color.FromArgb(0, 0, 192);
-            button1.StateCommon.Back.Color2 = Color.Navy;
-            button1.StateCommon.Back.ColorAngle = 45F;
-            button1.StateCommon.Border.Color1 = Color.Navy;
-            button1.StateCommon.Border.Color2 = Color.Gray;
-            button1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            button1.StateCommon.Border.ImageAlign = PaletteRectangleAlign.Local;
-            button1.StateCommon.Border.Rounding = 18F;
-            button1.StateCommon.Content.ShortText.Color1 = Color.White;
-            button1.StateCommon.Content.ShortText.Color2 = Color.White;
-            button1.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
-            button1.StateDisabled.Back.Color1 = Color.FromArgb(64, 64, 64);
-            button1.StateDisabled.Back.Color2 = Color.FromArgb(64, 64, 64);
-            button1.StateDisabled.Border.Color1 = Color.FromArgb(64, 64, 64);
-            button1.StateDisabled.Border.Color2 = Color.Gray;
-            button1.StateDisabled.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateDisabled.Content.ShortText.Color1 = Color.Silver;
-            button1.StateDisabled.Content.ShortText.Color2 = Color.Silver;
-            button1.StatePressed.Back.Color1 = Color.FromArgb(0, 0, 64);
-            button1.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 92);
-            button1.StatePressed.Back.ColorAngle = 45F;
-            button1.StatePressed.Border.Color1 = Color.FromArgb(224, 224, 224);
-            button1.StatePressed.Border.Color2 = Color.Gray;
-            button1.StatePressed.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateTracking.Back.Color1 = Color.FromArgb(0, 0, 192);
-            button1.StateTracking.Back.Color2 = Color.Navy;
-            button1.StateTracking.Back.ColorAngle = 135F;
-            button1.StateTracking.Border.Color1 = Color.White;
-            button1.StateTracking.Border.Color2 = Color.FromArgb(224, 224, 224);
-            button1.StateTracking.Border.ColorAngle = 45F;
-            button1.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateTracking.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            button1.StateTracking.Border.Rounding = 18F;
-            button1.StateTracking.Content.ShortText.Color1 = Color.Gainsboro;
-            button1.StateTracking.Content.ShortText.Color2 = Color.Gainsboro;
-            button1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.TabIndex = 40;
-            button1.Values.Text = "Cambiar";
-            button1.Click += btnCambiarContraseña_Click;
+            btnconfirmar.Location = new Point(127, 475);
+            btnconfirmar.Name = "btnconfirmar";
+            btnconfirmar.OverrideDefault.Back.Color1 = Color.FromArgb(0, 0, 192);
+            btnconfirmar.OverrideDefault.Back.Color2 = Color.Navy;
+            btnconfirmar.OverrideDefault.Back.ColorAngle = 45F;
+            btnconfirmar.OverrideDefault.Border.Color1 = Color.Navy;
+            btnconfirmar.OverrideDefault.Border.Color2 = Color.Gray;
+            btnconfirmar.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnconfirmar.OverrideDefault.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnconfirmar.OverrideDefault.Border.ImageAlign = PaletteRectangleAlign.Local;
+            btnconfirmar.OverrideDefault.Border.Rounding = 18F;
+            btnconfirmar.Size = new Size(120, 42);
+            btnconfirmar.StateCommon.Back.Color1 = Color.FromArgb(0, 0, 192);
+            btnconfirmar.StateCommon.Back.Color2 = Color.Navy;
+            btnconfirmar.StateCommon.Back.ColorAngle = 45F;
+            btnconfirmar.StateCommon.Border.Color1 = Color.Navy;
+            btnconfirmar.StateCommon.Border.Color2 = Color.Gray;
+            btnconfirmar.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnconfirmar.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnconfirmar.StateCommon.Border.ImageAlign = PaletteRectangleAlign.Local;
+            btnconfirmar.StateCommon.Border.Rounding = 18F;
+            btnconfirmar.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnconfirmar.StateCommon.Content.ShortText.Color2 = Color.White;
+            btnconfirmar.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
+            btnconfirmar.StateDisabled.Back.Color1 = Color.FromArgb(64, 64, 64);
+            btnconfirmar.StateDisabled.Back.Color2 = Color.FromArgb(64, 64, 64);
+            btnconfirmar.StateDisabled.Border.Color1 = Color.FromArgb(64, 64, 64);
+            btnconfirmar.StateDisabled.Border.Color2 = Color.Gray;
+            btnconfirmar.StateDisabled.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnconfirmar.StateDisabled.Content.ShortText.Color1 = Color.Silver;
+            btnconfirmar.StateDisabled.Content.ShortText.Color2 = Color.Silver;
+            btnconfirmar.StatePressed.Back.Color1 = Color.FromArgb(0, 0, 64);
+            btnconfirmar.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 92);
+            btnconfirmar.StatePressed.Back.ColorAngle = 45F;
+            btnconfirmar.StatePressed.Border.Color1 = Color.FromArgb(224, 224, 224);
+            btnconfirmar.StatePressed.Border.Color2 = Color.Gray;
+            btnconfirmar.StatePressed.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnconfirmar.StateTracking.Back.Color1 = Color.FromArgb(0, 0, 192);
+            btnconfirmar.StateTracking.Back.Color2 = Color.Navy;
+            btnconfirmar.StateTracking.Back.ColorAngle = 135F;
+            btnconfirmar.StateTracking.Border.Color1 = Color.White;
+            btnconfirmar.StateTracking.Border.Color2 = Color.FromArgb(224, 224, 224);
+            btnconfirmar.StateTracking.Border.ColorAngle = 45F;
+            btnconfirmar.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnconfirmar.StateTracking.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnconfirmar.StateTracking.Border.Rounding = 18F;
+            btnconfirmar.StateTracking.Content.ShortText.Color1 = Color.Gainsboro;
+            btnconfirmar.StateTracking.Content.ShortText.Color2 = Color.Gainsboro;
+            btnconfirmar.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnconfirmar.TabIndex = 5;
+            btnconfirmar.Values.Text = "Cambiar";
+            btnconfirmar.Click += btnCambiarContraseña_Click;
             // 
             // FormCambioContrasena
             // 
@@ -285,7 +285,7 @@ namespace WinForm
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(383, 529);
-            Controls.Add(button1);
+            Controls.Add(btnconfirmar);
             Controls.Add(txtConfirmarContrasena);
             Controls.Add(lblconfrcontr);
             Controls.Add(txtNuevaContrasena);
@@ -293,8 +293,8 @@ namespace WinForm
             Controls.Add(pictureBox1);
             Controls.Add(txtContrasenaActual);
             Controls.Add(txtNombreUsuario);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lblcontraseniaA);
+            Controls.Add(lblnombreusuario);
             FormTitleAlign = PaletteRelativeAlign.Inherit;
             Name = "FormCambioContrasena";
             Palette = kryptonCustomPaletteBase1;
@@ -321,13 +321,13 @@ namespace WinForm
         private PictureBox pictureBox1;
 		private KryptonTextBox txtContrasenaActual;
 		private KryptonTextBox txtNombreUsuario;
-		private Label label2;
-		private Label label1;
+		private Label lblcontraseniaA;
+		private Label lblnombreusuario;
 		private KryptonTextBox txtNuevaContrasena;
 		private Label lblnvcontr;
         private KryptonTextBox txtConfirmarContrasena;
         private Label lblconfrcontr;
         private KryptonCustomPaletteBase kryptonCustomPaletteBase1;
-        private KryptonButton button1;
+        private KryptonButton btnconfirmar;
     }
 }

@@ -32,25 +32,25 @@ namespace WinForm
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegister));
-            pictureBox1 = new KryptonPictureBox();
+            logopictureBox = new KryptonPictureBox();
             txtContraseña = new KryptonTextBox();
             txtNombreUsuario = new KryptonTextBox();
-            label2 = new KryptonLabel();
+            lblcontrasenia = new KryptonLabel();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             label1 = new KryptonLabel();
             btnRegistrarse = new KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logopictureBox).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // logopictureBox
             // 
-            pictureBox1.Image = Properties.Resources.logo;
-            pictureBox1.Location = new Point(107, 50);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(173, 110);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 23;
-            pictureBox1.TabStop = false;
+            logopictureBox.Image = Properties.Resources.logo;
+            logopictureBox.Location = new Point(107, 50);
+            logopictureBox.Name = "logopictureBox";
+            logopictureBox.Size = new Size(173, 110);
+            logopictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            logopictureBox.TabIndex = 23;
+            logopictureBox.TabStop = false;
             // 
             // txtContraseña
             // 
@@ -71,7 +71,6 @@ namespace WinForm
             txtContraseña.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContraseña.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtContraseña.TabIndex = 1;
-            txtContraseña.TabStop = false;
             txtContraseña.Click += textBox2_Click;
             txtContraseña.KeyPress += txtContraseña_KeyPress;
             // 
@@ -92,20 +91,20 @@ namespace WinForm
             txtNombreUsuario.StateCommon.Content.Color1 = Color.Gray;
             txtNombreUsuario.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombreUsuario.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            txtNombreUsuario.TabIndex = 1;
+            txtNombreUsuario.TabIndex = 0;
             txtNombreUsuario.Click += textBox1_Click;
             // 
-            // label2
+            // lblcontrasenia
             // 
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.LabelStyle = LabelStyle.Custom1;
-            label2.Location = new Point(82, 263);
-            label2.Name = "label2";
-            label2.Palette = kryptonCustomPaletteBase1;
-            label2.PaletteMode = PaletteMode.Custom;
-            label2.Size = new Size(80, 19);
-            label2.TabIndex = 1;
-            label2.Values.Text = "Contraseña";
+            lblcontrasenia.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblcontrasenia.LabelStyle = LabelStyle.Custom1;
+            lblcontrasenia.Location = new Point(82, 263);
+            lblcontrasenia.Name = "lblcontrasenia";
+            lblcontrasenia.Palette = kryptonCustomPaletteBase1;
+            lblcontrasenia.PaletteMode = PaletteMode.Custom;
+            lblcontrasenia.Size = new Size(80, 19);
+            lblcontrasenia.TabIndex = 4;
+            lblcontrasenia.Values.Text = "Contraseña";
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -152,7 +151,7 @@ namespace WinForm
             label1.Palette = kryptonCustomPaletteBase1;
             label1.PaletteMode = PaletteMode.Custom;
             label1.Size = new Size(124, 19);
-            label1.TabIndex = 0;
+            label1.TabIndex = 3;
             label1.Values.Text = "Nombre de usuario";
             // 
             // btnRegistrarse
@@ -207,7 +206,7 @@ namespace WinForm
             btnRegistrarse.StateTracking.Content.ShortText.Color1 = Color.Gainsboro;
             btnRegistrarse.StateTracking.Content.ShortText.Color2 = Color.Gainsboro;
             btnRegistrarse.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRegistrarse.TabIndex = 29;
+            btnRegistrarse.TabIndex = 2;
             btnRegistrarse.Values.Text = "Registrarse";
             btnRegistrarse.Click += btnRegistrarse_Click;
             // 
@@ -218,10 +217,10 @@ namespace WinForm
             BackColor = Color.FromArgb(32, 32, 32);
             ClientSize = new Size(384, 431);
             Controls.Add(btnRegistrarse);
-            Controls.Add(pictureBox1);
+            Controls.Add(logopictureBox);
             Controls.Add(txtContraseña);
             Controls.Add(txtNombreUsuario);
-            Controls.Add(label2);
+            Controls.Add(lblcontrasenia);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(400, 500);
@@ -234,17 +233,17 @@ namespace WinForm
             StartPosition = FormStartPosition.CenterParent;
             Text = "Registrarse";
             TitleStyle = KryptonFormTitleStyle.Classic;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logopictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private KryptonPictureBox pictureBox1;
+        private KryptonPictureBox logopictureBox;
 		private KryptonTextBox txtContraseña;
 		private KryptonTextBox txtNombreUsuario;
-		private KryptonLabel label2;
+		private KryptonLabel lblcontrasenia;
 		private KryptonLabel label1;
 		private KryptonButton btnRegistrarse;
         private Krypton.Toolkit.KryptonCustomPaletteBase kryptonCustomPaletteBase1;

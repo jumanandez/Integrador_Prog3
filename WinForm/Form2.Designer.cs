@@ -89,7 +89,7 @@ namespace WinForm
             btnCargarProducto.StateTracking.Content.ShortText.Color1 = Color.White;
             btnCargarProducto.StateTracking.Content.ShortText.Color2 = Color.White;
             btnCargarProducto.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
-            btnCargarProducto.TabIndex = 12;
+            btnCargarProducto.TabIndex = 4;
             btnCargarProducto.Values.Text = "Guardar";
             btnCargarProducto.Click += btnCargarProducto_Click;
             // 
@@ -101,7 +101,7 @@ namespace WinForm
             lblCategoria.Location = new Point(15, 54);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(74, 20);
-            lblCategoria.TabIndex = 11;
+            lblCategoria.TabIndex = 6;
             lblCategoria.Text = "Categoria";
             // 
             // lblNombreProducto
@@ -112,7 +112,7 @@ namespace WinForm
             lblNombreProducto.Location = new Point(15, 132);
             lblNombreProducto.Name = "lblNombreProducto";
             lblNombreProducto.Size = new Size(64, 20);
-            lblNombreProducto.TabIndex = 10;
+            lblNombreProducto.TabIndex = 7;
             lblNombreProducto.Text = "Nombre";
             // 
             // txtNombreProducto
@@ -130,7 +130,7 @@ namespace WinForm
             txtNombreProducto.StateCommon.Content.Color1 = Color.Silver;
             txtNombreProducto.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombreProducto.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            txtNombreProducto.TabIndex = 9;
+            txtNombreProducto.TabIndex = 2;
             // 
             // cmbBoxCategorias
             // 
@@ -152,7 +152,7 @@ namespace WinForm
             cmbBoxCategorias.StateCommon.Item.Border.ColorStyle = PaletteColorStyle.LinearShadow;
             cmbBoxCategorias.StateCommon.Item.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             cmbBoxCategorias.StateCommon.Item.Content.DrawFocus = InheritBool.False;
-            cmbBoxCategorias.TabIndex = 8;
+            cmbBoxCategorias.TabIndex = 1;
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -356,7 +356,7 @@ namespace WinForm
             BTNCancelar.StateTracking.Content.ShortText.Color1 = Color.White;
             BTNCancelar.StateTracking.Content.ShortText.Color2 = Color.White;
             BTNCancelar.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
-            BTNCancelar.TabIndex = 13;
+            BTNCancelar.TabIndex = 5;
             BTNCancelar.Values.Text = "Cancelar";
             BTNCancelar.Click += BTNCancelar_Click;
             // 
@@ -386,7 +386,7 @@ namespace WinForm
             checkHabilitado.StateCommon.ShortText.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             checkHabilitado.StateDisabled.ShortText.Color1 = Color.Gray;
             checkHabilitado.StateDisabled.ShortText.Color2 = Color.Gray;
-            checkHabilitado.TabIndex = 14;
+            checkHabilitado.TabIndex = 3;
             checkHabilitado.Values.Text = "Habilitado";
             // 
             // Form2

@@ -21,15 +21,15 @@ namespace WinForm
             _categoriaBusiness = catbusi;
             _productoBusiness = produbusi;
             InitializeComponent();
-            button1.Enabled = false;
+            btnlogin.Enabled = false;
         }
         private void button1_Click(object sender, EventArgs e)
         {
             bool pass;
-            var user = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+            var user = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
             if (user != null)
             {
-                var hashnew = CryptoHelper.HashPassword(textBox2.Text, user.Salt);
+                var hashnew = CryptoHelper.HashPassword(txtboxpassw.Text, user.Salt);
 
                 pass = hashnew.SequenceEqual(user.HashPassword);
 
@@ -43,11 +43,11 @@ namespace WinForm
                     MessageBox.Show("Contraseña Incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (textBox1.Text.Trim() == "")
+            else if (txtboxuser.Text.Trim() == "")
             {
                 MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (textBox2.Text.Trim() == "" || textBox1.Text == "Ingrese una contraseña")
+            else if (txtboxpassw.Text.Trim() == "" || txtboxuser.Text == "Ingrese una contraseña")
             {
                 MessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -93,7 +93,7 @@ namespace WinForm
 
             if (registrarse.ShowDialog() == DialogResult.OK)
             {
-                _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+                _loggedUser = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
                 MessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Show();
             }
@@ -122,8 +122,8 @@ namespace WinForm
             if (productosesion.ShowDialog() == DialogResult.OK)
             {
                 Show();
-                textBox1.Focus();
-                textBox2.Clear();
+                txtboxuser.Focus();
+                txtboxpassw.Clear();
             }
             else
             {
@@ -146,16 +146,16 @@ namespace WinForm
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
-            textBox1.StateCommon.Content.Color1 = Color.White;
-            button1.Enabled = true;
+            txtboxuser.Clear();
+            txtboxuser.StateCommon.Content.Color1 = Color.White;
+            btnlogin.Enabled = true;
         }
 
         private void textBox2_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
-            textBox2.UseSystemPasswordChar = true;
-            textBox2.StateCommon.Content.Color1 = Color.White;
+            txtboxpassw.Clear();
+            txtboxpassw.UseSystemPasswordChar = true;
+            txtboxpassw.StateCommon.Content.Color1 = Color.White;
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -165,7 +165,7 @@ namespace WinForm
 
             if (registrarse.ShowDialog() == DialogResult.OK)
             {
-                _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
+                _loggedUser = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
                 MessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Show();
             }
@@ -190,12 +190,12 @@ namespace WinForm
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)//Ignora  espacios en textbox
         {
-            if (e.KeyChar == (char)Keys.Enter && (textBox2.Text != "Ingrese una contraseña" || textBox2.Text == "".Trim()))
+            if (e.KeyChar == (char)Keys.Enter && (txtboxpassw.Text != "Ingrese una contraseña" || txtboxpassw.Text == "".Trim()))
             {
-                this.AcceptButton = button1;//aceptar enter como click
-                Point screenCoordinates = button1.PointToScreen(Point.Empty);//manda al puntero al centro del boton
+                this.AcceptButton = btnlogin;//aceptar enter como click
+                Point screenCoordinates = btnlogin.PointToScreen(Point.Empty);//manda al puntero al centro del boton
 
-                Cursor.Position = new Point(screenCoordinates.X + button1.Width / 2, screenCoordinates.Y + button1.Height / 2);
+                Cursor.Position = new Point(screenCoordinates.X + btnlogin.Width / 2, screenCoordinates.Y + btnlogin.Height / 2);
             }
             if (e.KeyChar == (char)Keys.Space)
             {
@@ -207,12 +207,12 @@ namespace WinForm
             if (e.KeyChar == (char)Keys.Enter)
             {
 
-                if (textBox2.Text == "Ingrese una contraseña" || textBox2.Text == "".Trim())
+                if (txtboxpassw.Text == "Ingrese una contraseña" || txtboxpassw.Text == "".Trim())
                 {
-                    textBox2.UseSystemPasswordChar = true;
-                    textBox2.StateCommon.Content.Color1 = Color.White;
-                    textBox2.Focus();
-                    textBox2.Clear();
+                    txtboxpassw.UseSystemPasswordChar = true;
+                    txtboxpassw.StateCommon.Content.Color1 = Color.White;
+                    txtboxpassw.Focus();
+                    txtboxpassw.Clear();
                 }
                 else
                 {
@@ -223,7 +223,7 @@ namespace WinForm
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            button1.Enabled = true;
+            btnlogin.Enabled = true;
         }
     }
 }

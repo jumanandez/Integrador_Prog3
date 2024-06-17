@@ -32,29 +32,30 @@ namespace WinForm
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
-            label1 = new KryptonLabel();
+            lblusername = new KryptonLabel();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
-            label2 = new KryptonLabel();
-            textBox1 = new KryptonTextBox();
-            textBox2 = new KryptonTextBox();
-            button1 = new KryptonButton();
-            pictureBox1 = new PictureBox();
+            lblpassword = new KryptonLabel();
+            txtboxuser = new KryptonTextBox();
+            txtboxpassw = new KryptonTextBox();
+            btnlogin = new KryptonButton();
+            logopictureBox = new PictureBox();
             linkRegistrarse = new LinkLabel();
-            kryptonButton1 = new KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btnregister = new KryptonButton();
+            ((System.ComponentModel.ISupportInitialize)logopictureBox).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lblusername
             // 
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.LabelStyle = LabelStyle.Custom1;
-            label1.Location = new Point(82, 177);
-            label1.Name = "label1";
-            label1.Palette = kryptonCustomPaletteBase1;
-            label1.PaletteMode = PaletteMode.Custom;
-            label1.Size = new Size(69, 23);
-            label1.TabIndex = 0;
-            label1.Values.Text = "Usuario";
+            lblusername.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblusername.LabelStyle = LabelStyle.Custom1;
+            lblusername.Location = new Point(82, 177);
+            lblusername.Name = "lblusername";
+            lblusername.Palette = kryptonCustomPaletteBase1;
+            lblusername.PaletteMode = PaletteMode.Custom;
+            lblusername.Size = new Size(69, 23);
+            lblusername.TabIndex = 6;
+            lblusername.TabStop = false;
+            lblusername.Values.Text = "Usuario";
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -92,128 +93,128 @@ namespace WinForm
             kryptonCustomPaletteBase1.ThemeName = "";
             kryptonCustomPaletteBase1.UseKryptonFileDialogs = true;
             // 
-            // label2
+            // lblpassword
             // 
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.LabelStyle = LabelStyle.Custom1;
-            label2.Location = new Point(82, 261);
-            label2.Name = "label2";
-            label2.Palette = kryptonCustomPaletteBase1;
-            label2.PaletteMode = PaletteMode.Custom;
-            label2.Size = new Size(97, 23);
-            label2.TabIndex = 1;
-            label2.Values.Text = "Contraseña";
+            lblpassword.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblpassword.LabelStyle = LabelStyle.Custom1;
+            lblpassword.Location = new Point(82, 261);
+            lblpassword.Name = "lblpassword";
+            lblpassword.Palette = kryptonCustomPaletteBase1;
+            lblpassword.PaletteMode = PaletteMode.Custom;
+            lblpassword.Size = new Size(97, 23);
+            lblpassword.TabIndex = 7;
+            lblpassword.TabStop = false;
+            lblpassword.Values.Text = "Contraseña";
             // 
-            // textBox1
+            // txtboxuser
             // 
-            textBox1.AlwaysActive = false;
-            textBox1.CueHint.Color1 = Color.Gray;
-            textBox1.CueHint.CueHintText = "Ingrese su usuario";
-            textBox1.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(74, 207);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(249, 31);
-            textBox1.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
-            textBox1.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
-            textBox1.StateCommon.Border.Color2 = Color.Gray;
-            textBox1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            textBox1.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            textBox1.StateCommon.Border.Rounding = 18F;
-            textBox1.StateCommon.Content.Color1 = Color.Gainsboro;
-            textBox1.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
-            textBox1.Click += textBox1_Click;
-            textBox1.KeyPress += textBox1_KeyPress;
+            txtboxuser.AlwaysActive = false;
+            txtboxuser.CueHint.Color1 = Color.Gray;
+            txtboxuser.CueHint.CueHintText = "Ingrese su usuario";
+            txtboxuser.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtboxuser.Location = new Point(74, 207);
+            txtboxuser.Name = "txtboxuser";
+            txtboxuser.Size = new Size(249, 31);
+            txtboxuser.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
+            txtboxuser.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
+            txtboxuser.StateCommon.Border.Color2 = Color.Gray;
+            txtboxuser.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            txtboxuser.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            txtboxuser.StateCommon.Border.Rounding = 18F;
+            txtboxuser.StateCommon.Content.Color1 = Color.Gainsboro;
+            txtboxuser.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtboxuser.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
+            txtboxuser.TabIndex = 0;
+            txtboxuser.TextChanged += textBox1_TextChanged;
+            txtboxuser.Click += textBox1_Click;
+            txtboxuser.KeyPress += textBox1_KeyPress;
             // 
-            // textBox2
+            // txtboxpassw
             // 
-            textBox2.CueHint.Color1 = Color.Gray;
-            textBox2.CueHint.CueHintText = "Ingrese una contraseña";
-            textBox2.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(74, 291);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(249, 31);
-            textBox2.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
-            textBox2.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
-            textBox2.StateCommon.Border.Color2 = Color.Gray;
-            textBox2.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            textBox2.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            textBox2.StateCommon.Border.Rounding = 16F;
-            textBox2.StateCommon.Border.Width = 2;
-            textBox2.StateCommon.Content.Color1 = Color.Gainsboro;
-            textBox2.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
-            textBox2.TabIndex = 2;
-            textBox2.TabStop = false;
-            textBox2.Click += textBox2_Click;
-            textBox2.KeyPress += textBox2_KeyPress;
+            txtboxpassw.CueHint.Color1 = Color.Gray;
+            txtboxpassw.CueHint.CueHintText = "Ingrese una contraseña";
+            txtboxpassw.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtboxpassw.Location = new Point(74, 291);
+            txtboxpassw.Name = "txtboxpassw";
+            txtboxpassw.Size = new Size(249, 31);
+            txtboxpassw.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
+            txtboxpassw.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
+            txtboxpassw.StateCommon.Border.Color2 = Color.Gray;
+            txtboxpassw.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            txtboxpassw.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            txtboxpassw.StateCommon.Border.Rounding = 16F;
+            txtboxpassw.StateCommon.Border.Width = 2;
+            txtboxpassw.StateCommon.Content.Color1 = Color.Gainsboro;
+            txtboxpassw.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtboxpassw.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
+            txtboxpassw.TabIndex = 1;
+            txtboxpassw.Click += textBox2_Click;
+            txtboxpassw.KeyPress += textBox2_KeyPress;
             // 
-            // button1
+            // btnlogin
             // 
-            button1.Location = new Point(77, 350);
-            button1.Name = "button1";
-            button1.OverrideDefault.Back.Color1 = Color.FromArgb(0, 0, 192);
-            button1.OverrideDefault.Back.Color2 = Color.Navy;
-            button1.OverrideDefault.Back.ColorAngle = 45F;
-            button1.OverrideDefault.Border.Color1 = Color.Navy;
-            button1.OverrideDefault.Border.Color2 = Color.Gray;
-            button1.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.OverrideDefault.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            button1.OverrideDefault.Border.ImageAlign = PaletteRectangleAlign.Local;
-            button1.OverrideDefault.Border.Rounding = 18F;
-            button1.Size = new Size(120, 42);
-            button1.StateCommon.Back.Color1 = Color.FromArgb(0, 0, 192);
-            button1.StateCommon.Back.Color2 = Color.Navy;
-            button1.StateCommon.Back.ColorAngle = 45F;
-            button1.StateCommon.Border.Color1 = Color.Navy;
-            button1.StateCommon.Border.Color2 = Color.Gray;
-            button1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            button1.StateCommon.Border.ImageAlign = PaletteRectangleAlign.Local;
-            button1.StateCommon.Border.Rounding = 18F;
-            button1.StateCommon.Content.ShortText.Color1 = Color.White;
-            button1.StateCommon.Content.ShortText.Color2 = Color.White;
-            button1.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
-            button1.StateDisabled.Back.Color1 = Color.FromArgb(64, 64, 64);
-            button1.StateDisabled.Back.Color2 = Color.FromArgb(64, 64, 64);
-            button1.StateDisabled.Border.Color1 = Color.FromArgb(64, 64, 64);
-            button1.StateDisabled.Border.Color2 = Color.Gray;
-            button1.StateDisabled.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateDisabled.Content.ShortText.Color1 = Color.Silver;
-            button1.StateDisabled.Content.ShortText.Color2 = Color.Silver;
-            button1.StatePressed.Back.Color1 = Color.FromArgb(0, 0, 64);
-            button1.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 92);
-            button1.StatePressed.Back.ColorAngle = 45F;
-            button1.StatePressed.Border.Color1 = Color.FromArgb(224, 224, 224);
-            button1.StatePressed.Border.Color2 = Color.Gray;
-            button1.StatePressed.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateTracking.Back.Color1 = Color.FromArgb(0, 0, 192);
-            button1.StateTracking.Back.Color2 = Color.Navy;
-            button1.StateTracking.Back.ColorAngle = 135F;
-            button1.StateTracking.Border.Color1 = Color.White;
-            button1.StateTracking.Border.Color2 = Color.FromArgb(224, 224, 224);
-            button1.StateTracking.Border.ColorAngle = 45F;
-            button1.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            button1.StateTracking.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            button1.StateTracking.Border.Rounding = 18F;
-            button1.StateTracking.Content.ShortText.Color1 = Color.Gainsboro;
-            button1.StateTracking.Content.ShortText.Color2 = Color.Gainsboro;
-            button1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.TabIndex = 3;
-            button1.Values.Text = "Iniciar Sesion";
-            button1.Click += button1_Click;
+            btnlogin.Location = new Point(77, 350);
+            btnlogin.Name = "btnlogin";
+            btnlogin.OverrideDefault.Back.Color1 = Color.FromArgb(0, 0, 192);
+            btnlogin.OverrideDefault.Back.Color2 = Color.Navy;
+            btnlogin.OverrideDefault.Back.ColorAngle = 45F;
+            btnlogin.OverrideDefault.Border.Color1 = Color.Navy;
+            btnlogin.OverrideDefault.Border.Color2 = Color.Gray;
+            btnlogin.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnlogin.OverrideDefault.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnlogin.OverrideDefault.Border.ImageAlign = PaletteRectangleAlign.Local;
+            btnlogin.OverrideDefault.Border.Rounding = 18F;
+            btnlogin.Size = new Size(120, 42);
+            btnlogin.StateCommon.Back.Color1 = Color.FromArgb(0, 0, 192);
+            btnlogin.StateCommon.Back.Color2 = Color.Navy;
+            btnlogin.StateCommon.Back.ColorAngle = 45F;
+            btnlogin.StateCommon.Border.Color1 = Color.Navy;
+            btnlogin.StateCommon.Border.Color2 = Color.Gray;
+            btnlogin.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnlogin.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnlogin.StateCommon.Border.ImageAlign = PaletteRectangleAlign.Local;
+            btnlogin.StateCommon.Border.Rounding = 18F;
+            btnlogin.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnlogin.StateCommon.Content.ShortText.Color2 = Color.White;
+            btnlogin.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
+            btnlogin.StateDisabled.Back.Color1 = Color.FromArgb(64, 64, 64);
+            btnlogin.StateDisabled.Back.Color2 = Color.FromArgb(64, 64, 64);
+            btnlogin.StateDisabled.Border.Color1 = Color.FromArgb(64, 64, 64);
+            btnlogin.StateDisabled.Border.Color2 = Color.Gray;
+            btnlogin.StateDisabled.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnlogin.StateDisabled.Content.ShortText.Color1 = Color.Silver;
+            btnlogin.StateDisabled.Content.ShortText.Color2 = Color.Silver;
+            btnlogin.StatePressed.Back.Color1 = Color.FromArgb(0, 0, 64);
+            btnlogin.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 92);
+            btnlogin.StatePressed.Back.ColorAngle = 45F;
+            btnlogin.StatePressed.Border.Color1 = Color.FromArgb(224, 224, 224);
+            btnlogin.StatePressed.Border.Color2 = Color.Gray;
+            btnlogin.StatePressed.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnlogin.StateTracking.Back.Color1 = Color.FromArgb(0, 0, 192);
+            btnlogin.StateTracking.Back.Color2 = Color.Navy;
+            btnlogin.StateTracking.Back.ColorAngle = 135F;
+            btnlogin.StateTracking.Border.Color1 = Color.White;
+            btnlogin.StateTracking.Border.Color2 = Color.FromArgb(224, 224, 224);
+            btnlogin.StateTracking.Border.ColorAngle = 45F;
+            btnlogin.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnlogin.StateTracking.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnlogin.StateTracking.Border.Rounding = 18F;
+            btnlogin.StateTracking.Content.ShortText.Color1 = Color.Gainsboro;
+            btnlogin.StateTracking.Content.ShortText.Color2 = Color.Gainsboro;
+            btnlogin.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnlogin.TabIndex = 3;
+            btnlogin.Values.Text = "Iniciar Sesion";
+            btnlogin.Click += button1_Click;
             // 
-            // pictureBox1
+            // logopictureBox
             // 
-            pictureBox1.Image = Properties.Resources.logo;
-            pictureBox1.Location = new Point(107, 50);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(173, 110);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 23;
-            pictureBox1.TabStop = false;
+            logopictureBox.Image = Properties.Resources.logo;
+            logopictureBox.Location = new Point(107, 50);
+            logopictureBox.Name = "logopictureBox";
+            logopictureBox.Size = new Size(173, 110);
+            logopictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            logopictureBox.TabIndex = 23;
+            logopictureBox.TabStop = false;
             // 
             // linkRegistrarse
             // 
@@ -227,56 +228,56 @@ namespace WinForm
             linkRegistrarse.Text = "Cambiar contraseña";
             linkRegistrarse.LinkClicked += linkCambioContraseña_LinkClicked;
             // 
-            // kryptonButton1
+            // btnregister
             // 
-            kryptonButton1.Location = new Point(203, 350);
-            kryptonButton1.Name = "kryptonButton1";
-            kryptonButton1.OverrideDefault.Back.Color1 = Color.FromArgb(32, 32, 32);
-            kryptonButton1.OverrideDefault.Back.Color2 = Color.FromArgb(32, 32, 32);
-            kryptonButton1.OverrideDefault.Back.ColorAngle = 45F;
-            kryptonButton1.OverrideDefault.Border.Color1 = Color.RoyalBlue;
-            kryptonButton1.OverrideDefault.Border.Color2 = Color.CornflowerBlue;
-            kryptonButton1.OverrideDefault.Border.ColorAngle = 45F;
-            kryptonButton1.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            kryptonButton1.OverrideDefault.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            kryptonButton1.OverrideDefault.Border.Rounding = 18F;
-            kryptonButton1.OverrideDefault.Border.Width = 1;
-            kryptonButton1.OverrideDefault.Content.ShortText.Color1 = Color.Gainsboro;
-            kryptonButton1.OverrideDefault.Content.ShortText.Color2 = Color.Gainsboro;
-            kryptonButton1.OverrideDefault.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton1.PaletteMode = PaletteMode.ProfessionalSystem;
-            kryptonButton1.Size = new Size(120, 42);
-            kryptonButton1.StateCommon.Back.Color1 = Color.FromArgb(32, 32, 32);
-            kryptonButton1.StateCommon.Back.Color2 = Color.FromArgb(32, 32, 32);
-            kryptonButton1.StateCommon.Back.ColorAngle = 45F;
-            kryptonButton1.StateCommon.Border.Color1 = Color.RoyalBlue;
-            kryptonButton1.StateCommon.Border.Color2 = Color.CornflowerBlue;
-            kryptonButton1.StateCommon.Border.ColorAngle = 45F;
-            kryptonButton1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            kryptonButton1.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
-            kryptonButton1.StateCommon.Border.Rounding = 18F;
-            kryptonButton1.StateCommon.Border.Width = 1;
-            kryptonButton1.StateCommon.Content.ShortText.Color1 = Color.Gainsboro;
-            kryptonButton1.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
-            kryptonButton1.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            kryptonButton1.StatePressed.Back.Color1 = Color.FromArgb(24, 24, 24);
-            kryptonButton1.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 24);
-            kryptonButton1.StatePressed.Back.ColorAngle = 130F;
-            kryptonButton1.StatePressed.Border.Color1 = Color.SteelBlue;
-            kryptonButton1.StatePressed.Border.Color2 = Color.LightSkyBlue;
-            kryptonButton1.StatePressed.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            kryptonButton1.StateTracking.Back.Color1 = Color.FromArgb(0, 0, 192);
-            kryptonButton1.StateTracking.Back.Color2 = Color.Navy;
-            kryptonButton1.StateTracking.Back.ColorAngle = 45F;
-            kryptonButton1.StateTracking.Border.Color1 = Color.FromArgb(224, 224, 224);
-            kryptonButton1.StateTracking.Border.Color2 = Color.Silver;
-            kryptonButton1.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            kryptonButton1.StateTracking.Content.ShortText.Color1 = Color.White;
-            kryptonButton1.StateTracking.Content.ShortText.Color2 = Color.White;
-            kryptonButton1.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
-            kryptonButton1.TabIndex = 4;
-            kryptonButton1.Values.Text = "Registrarse";
-            kryptonButton1.Click += btnRegistrarse_Click;
+            btnregister.Location = new Point(203, 350);
+            btnregister.Name = "btnregister";
+            btnregister.OverrideDefault.Back.Color1 = Color.FromArgb(32, 32, 32);
+            btnregister.OverrideDefault.Back.Color2 = Color.FromArgb(32, 32, 32);
+            btnregister.OverrideDefault.Back.ColorAngle = 45F;
+            btnregister.OverrideDefault.Border.Color1 = Color.RoyalBlue;
+            btnregister.OverrideDefault.Border.Color2 = Color.CornflowerBlue;
+            btnregister.OverrideDefault.Border.ColorAngle = 45F;
+            btnregister.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnregister.OverrideDefault.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnregister.OverrideDefault.Border.Rounding = 18F;
+            btnregister.OverrideDefault.Border.Width = 1;
+            btnregister.OverrideDefault.Content.ShortText.Color1 = Color.Gainsboro;
+            btnregister.OverrideDefault.Content.ShortText.Color2 = Color.Gainsboro;
+            btnregister.OverrideDefault.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnregister.PaletteMode = PaletteMode.ProfessionalSystem;
+            btnregister.Size = new Size(120, 42);
+            btnregister.StateCommon.Back.Color1 = Color.FromArgb(32, 32, 32);
+            btnregister.StateCommon.Back.Color2 = Color.FromArgb(32, 32, 32);
+            btnregister.StateCommon.Back.ColorAngle = 45F;
+            btnregister.StateCommon.Border.Color1 = Color.RoyalBlue;
+            btnregister.StateCommon.Border.Color2 = Color.CornflowerBlue;
+            btnregister.StateCommon.Border.ColorAngle = 45F;
+            btnregister.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnregister.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
+            btnregister.StateCommon.Border.Rounding = 18F;
+            btnregister.StateCommon.Border.Width = 1;
+            btnregister.StateCommon.Content.ShortText.Color1 = Color.Gainsboro;
+            btnregister.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
+            btnregister.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnregister.StatePressed.Back.Color1 = Color.FromArgb(24, 24, 24);
+            btnregister.StatePressed.Back.Color2 = Color.FromArgb(24, 24, 24);
+            btnregister.StatePressed.Back.ColorAngle = 130F;
+            btnregister.StatePressed.Border.Color1 = Color.SteelBlue;
+            btnregister.StatePressed.Border.Color2 = Color.LightSkyBlue;
+            btnregister.StatePressed.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnregister.StateTracking.Back.Color1 = Color.FromArgb(0, 0, 192);
+            btnregister.StateTracking.Back.Color2 = Color.Navy;
+            btnregister.StateTracking.Back.ColorAngle = 45F;
+            btnregister.StateTracking.Border.Color1 = Color.FromArgb(224, 224, 224);
+            btnregister.StateTracking.Border.Color2 = Color.Silver;
+            btnregister.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            btnregister.StateTracking.Content.ShortText.Color1 = Color.White;
+            btnregister.StateTracking.Content.ShortText.Color2 = Color.White;
+            btnregister.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
+            btnregister.TabIndex = 4;
+            btnregister.Values.Text = "Registrarse";
+            btnregister.Click += btnRegistrarse_Click;
             // 
             // FormLogin
             // 
@@ -284,14 +285,14 @@ namespace WinForm
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(384, 461);
-            Controls.Add(kryptonButton1);
+            Controls.Add(btnregister);
             Controls.Add(linkRegistrarse);
-            Controls.Add(pictureBox1);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(logopictureBox);
+            Controls.Add(btnlogin);
+            Controls.Add(txtboxpassw);
+            Controls.Add(txtboxuser);
+            Controls.Add(lblpassword);
+            Controls.Add(lblusername);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(400, 500);
             MinimumSize = new Size(400, 500);
@@ -303,21 +304,21 @@ namespace WinForm
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar Sesion";
             TitleStyle = KryptonFormTitleStyle.Classic;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logopictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private KryptonLabel label1;
-        private KryptonLabel label2;
-        private KryptonTextBox textBox1;
-        private KryptonTextBox textBox2;
-        private KryptonButton button1;
-		    private PictureBox pictureBox1;
+        private KryptonLabel lblusername;
+        private KryptonLabel lblpassword;
+        private KryptonTextBox txtboxuser;
+        private KryptonTextBox txtboxpassw;
+        private KryptonButton btnlogin;
+		    private PictureBox logopictureBox;
 		    private LinkLabel linkRegistrarse;
         private Krypton.Toolkit.KryptonCustomPaletteBase kryptonCustomPaletteBase1;
-        private KryptonButton kryptonButton1;
+        private KryptonButton btnregister;
     }
 }

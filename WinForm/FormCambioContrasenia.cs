@@ -103,10 +103,10 @@ namespace WinForm
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                this.AcceptButton = button1;//aceptar enter como click
-                Point screenCoordinates = button1.PointToScreen(Point.Empty);//manda al puntero al centro del boton
+                this.AcceptButton = btnconfirmar;//aceptar enter como click
+                Point screenCoordinates = btnconfirmar.PointToScreen(Point.Empty);//manda al puntero al centro del boton
 
-                Cursor.Position = new Point(screenCoordinates.X + button1.Width / 2, screenCoordinates.Y + button1.Height / 2);
+                Cursor.Position = new Point(screenCoordinates.X + btnconfirmar.Width / 2, screenCoordinates.Y + btnconfirmar.Height / 2);
                 btnCambiarContraseña_Click(this, new EventArgs());
             }
             if (e.KeyChar == (char)Keys.Space)

@@ -15,23 +15,11 @@ namespace WinForm
             _loggedUser = loggerUser;
             lblNombreProducto.Text = _loggedUser.Nombre;
 
-            //listView1.Columns.Add("Producto", 200, HorizontalAlignment.Left);
-            //listView1.Columns.Add("Cantidad", 100, HorizontalAlignment.Left);
-            //listView1.Columns.Add("Fecha", 150, HorizontalAlignment.Left);
-
-            //var comprasGroup = new ListViewGroup("Compras", HorizontalAlignment.Left);
-            //var ventasGroup = new ListViewGroup("Ventas", HorizontalAlignment.Left);
-
-            //listView1.Groups.Add(comprasGroup);
-            //listView1.Groups.Add(ventasGroup);
-
             var compralist = from compra in _loggedUser.Compras
                              select compra;
 
             var ventalist = from venta in _loggedUser.Venta
                             select venta;
-
-            //dataGridViewCompras.DataSource = compralist.ToList();
 
 
             foreach (var user in compralist)
@@ -44,17 +32,12 @@ namespace WinForm
             }
         }
 
-        private void BTNCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void comprastimer_Tick(object sender, EventArgs e)
         {
             if (comprascollapsed)
             {
-                panelfilter.Height += 15;
-                if (panelfilter.Height == panelfilter.MaximumSize.Height)
+                panelCompras.Height += 15;
+                if (panelCompras.Height == panelCompras.MaximumSize.Height)
                 {
                     comprascollapsed = false;
                     comprastimer.Stop();
@@ -62,8 +45,8 @@ namespace WinForm
             }
             else if (!comprascollapsed)
             {
-                panelfilter.Height -= 15;
-                if (panelfilter.Height == panelfilter.MinimumSize.Height)
+                panelCompras.Height -= 15;
+                if (panelCompras.Height == panelCompras.MinimumSize.Height)
                 {
                     comprascollapsed = true;
                     comprastimer.Stop();

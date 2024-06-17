@@ -147,7 +147,7 @@ namespace WinForm
             else//RefreshGrid(null) debe ser la llamada para que funcione
             {
                 dataGridViewProducto.DataSource = _productoBusiness.GetAll();
-                textBox1.Clear();
+                txtboxbuscar.Clear();
                 cmbBoxCategorias.SelectedIndex = 0;
             }
 
@@ -388,7 +388,7 @@ namespace WinForm
         #region FILTRADO DE DATAGRID
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string searchText = textBox1.Text.ToLower().Trim();
+            string searchText = txtboxbuscar.Text.ToLower().Trim();
             var productos = _productoBusiness.GetAll();
 
             if (cmbBoxCategorias.SelectedIndex == 0)
@@ -432,15 +432,15 @@ namespace WinForm
             {//SELECIONADO 'Todos' EN COMBOBOX
 
                 //NO HAY TEXTO EN EL TEXTBOX
-                if (textBox1.Text.Trim() == "" && rdiobtnTodos.Checked) //condicion para checkear que textbox este vacia
+                if (txtboxbuscar.Text.Trim() == "" && rdiobtnTodos.Checked) //condicion para checkear que textbox este vacia
                 {
                     RefreshGrid(null);
                 }
-                else if (textBox1.Text.Trim() == "" && rdiobtnHabilitado.Checked)
+                else if (txtboxbuscar.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
                     RefreshGrid(FilterHabilitados(productos, true));//Habilitados 
                 }
-                else if (textBox1.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
+                else if (txtboxbuscar.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
                 {
                     RefreshGrid(FilterHabilitados(productos, false));//Deshabilitados
                 }
@@ -448,7 +448,7 @@ namespace WinForm
                 //HAY TEXTO EN EL TEXTBOX
                 else if (rdiobtnTodos.Checked) //en caso de tener algo escrito
                 {
-                    RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
+                    RefreshGrid(FilterByText(productos, txtboxbuscar.Text.ToLower().Trim()));
                 }
                 else if (rdiobtnHabilitado.Checked)
                 {
@@ -463,15 +463,15 @@ namespace WinForm
             {//SELECION DISTINTA DE 'Todos' EN COMBOBOX
 
                 //NO HAY TEXTO EN EL TEXTBOX
-                if (textBox1.Text.Trim() == "" && rdiobtnTodos.Checked)
+                if (txtboxbuscar.Text.Trim() == "" && rdiobtnTodos.Checked)
                 {
                     RefreshGrid(FilterByCategoria(productos));
                 }
-                else if (textBox1.Text.Trim() == "" && rdiobtnHabilitado.Checked)
+                else if (txtboxbuscar.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
                     RefreshGrid(FilterByCategoriaHabilitado(productos, true));
                 }
-                else if (textBox1.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
+                else if (txtboxbuscar.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
                 {
                     RefreshGrid(FilterByCategoriaHabilitado(productos, false));
                 }
@@ -494,7 +494,7 @@ namespace WinForm
         private void rdiobtnHabilitado_CheckedChanged(object sender, EventArgs e)
         {
             var productos = _productoBusiness.GetAll();
-            if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+            if (rdiobtnHabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && txtboxbuscar.Text.Trim() == "")
             {
                 RefreshGrid(FilterHabilitados(productos, true));
             }
@@ -502,7 +502,7 @@ namespace WinForm
             {
                 RefreshGrid(FilterByTextHabilitado(productos, true));//Filtra Texto y Habilitados
             }
-            else if (rdiobtnHabilitado.Checked && textBox1.Text.Trim() == "")
+            else if (rdiobtnHabilitado.Checked && txtboxbuscar.Text.Trim() == "")
             {
                 RefreshGrid(FilterByCategoriaHabilitado(productos, true));//Filtra Combo y Habilitados
             }
@@ -514,7 +514,7 @@ namespace WinForm
         private void rdiobtnDeshabilitado_CheckedChanged(object sender, EventArgs e)
         {
             var productos = _productoBusiness.GetAll();
-            if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+            if (rdiobtnDeshabilitado.Checked && cmbBoxCategorias.SelectedIndex == 0 && txtboxbuscar.Text.Trim() == "")
             {
                 RefreshGrid(FilterHabilitados(productos, false));//false busca Deshabilitados
             }
@@ -522,7 +522,7 @@ namespace WinForm
             {
                 RefreshGrid(FilterByTextHabilitado(productos, false));//Filtra Texto y Deshabilitados
             }
-            else if (rdiobtnDeshabilitado.Checked && textBox1.Text.Trim() == "")
+            else if (rdiobtnDeshabilitado.Checked && txtboxbuscar.Text.Trim() == "")
             {
                 RefreshGrid(FilterByCategoriaHabilitado(productos, false));//Filtra Combo y Deshabilitado
             }
@@ -536,15 +536,15 @@ namespace WinForm
             var idSeleccionado = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
 
             var productos = _productoBusiness.GetAll();
-            if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0 && textBox1.Text.Trim() == "")
+            if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0 && txtboxbuscar.Text.Trim() == "")
             {
                 RefreshGrid(null);
             }
             else if (rdiobtnTodos.Checked && cmbBoxCategorias.SelectedIndex == 0)
             {
-                RefreshGrid(FilterByText(productos, textBox1.Text.ToLower().Trim()));
+                RefreshGrid(FilterByText(productos, txtboxbuscar.Text.ToLower().Trim()));
             }
-            else if (rdiobtnTodos.Checked && textBox1.Text.Trim() == "")
+            else if (rdiobtnTodos.Checked && txtboxbuscar.Text.Trim() == "")
             {
                 RefreshGrid(FilterByCategoria(productos));
             }
@@ -565,8 +565,8 @@ namespace WinForm
             {
                 if (((int)numericUpDown1.Value) >= 1)
                 {
-                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
-                    //producomp.Venta.Add(new Venta { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId }); //testear ventas
+                    //producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
+                    producomp.Venta.Add(new Venta { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId }); //testear ventas
                     _productoBusiness.ModifyProduct(producomp);
                     MessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
                 }
@@ -679,7 +679,7 @@ namespace WinForm
             string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
             if (e.Button == MouseButtons.Right)
             {
-                contextMenuStrip2.Show(Cursor.Position);
+                columnMenuStrip.Show(Cursor.Position);
             }
             else
             {
@@ -729,7 +729,7 @@ namespace WinForm
         }
         public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
         {
-            return (from p in FilterByText(productos, textBox1.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
+            return (from p in FilterByText(productos, txtboxbuscar.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
                     where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
                     select p).ToList();
         }
@@ -753,7 +753,7 @@ namespace WinForm
         }
         public List<Producto> FilterByTextHabilitado(List<Producto> productos, bool valor)
         {
-            return (from p in FilterByText(productos, textBox1.Text.ToLower().Trim())
+            return (from p in FilterByText(productos, txtboxbuscar.Text.ToLower().Trim())
                     where p.Habilitado == valor
                     select p).ToList();
         }

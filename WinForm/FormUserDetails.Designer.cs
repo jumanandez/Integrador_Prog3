@@ -31,62 +31,62 @@ namespace WinForm
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            IconSpec iconSpec1 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            IconSpec iconSpec7 = new IconSpec();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserDetails));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            IconSpec iconSpec2 = new IconSpec();
-            IconSpec iconSpec3 = new IconSpec();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            IconSpec iconSpec4 = new IconSpec();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            IconSpec iconSpec5 = new IconSpec();
-            IconSpec iconSpec6 = new IconSpec();
-            lblCategoria = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            IconSpec iconSpec8 = new IconSpec();
+            IconSpec iconSpec9 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            IconSpec iconSpec12 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            IconSpec iconSpec11 = new IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            IconSpec iconSpec10 = new IconSpec();
+            lblNombre = new Label();
             lblNombreProducto = new Label();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
-            pictureBox1 = new PictureBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            panelfilter = new FlowLayoutPanel();
+            pictureBoxUserico = new PictureBox();
+            mainpanel = new FlowLayoutPanel();
+            panelCompras = new FlowLayoutPanel();
             BtnCompras = new Button();
-            panelcategoria = new Panel();
+            panelcdtgrdCompras = new Panel();
             dataGridViewCompras = new KryptonDataGridView();
             ColumnProducto = new KryptonDataGridViewTextBoxColumn();
             ColumnCantidad = new KryptonDataGridViewTextBoxColumn();
             ColumnFecha = new KryptonDataGridViewDateTimePickerColumn();
             panelventas = new FlowLayoutPanel();
             Btnventas = new Button();
-            panel1 = new Panel();
-            VentasDataGridView = new KryptonDataGridView();
-            ColumnVProducto = new KryptonDataGridViewTextBoxColumn();
-            ColumnVCantidad = new KryptonDataGridViewTextBoxColumn();
-            ColumnVFecha = new KryptonDataGridViewDateTimePickerColumn();
             comprastimer = new System.Windows.Forms.Timer(components);
             ventastimer = new System.Windows.Forms.Timer(components);
             btnlogout = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
-            panelfilter.SuspendLayout();
-            panelcategoria.SuspendLayout();
+            VentasDataGridView = new KryptonDataGridView();
+            ColumnVFecha = new KryptonDataGridViewDateTimePickerColumn();
+            ColumnVCantidad = new KryptonDataGridViewTextBoxColumn();
+            ColumnVProducto = new KryptonDataGridViewTextBoxColumn();
+            panelcdtgrdVentas = new Panel();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUserico).BeginInit();
+            mainpanel.SuspendLayout();
+            panelCompras.SuspendLayout();
+            panelcdtgrdCompras.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCompras).BeginInit();
             panelventas.SuspendLayout();
-            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)VentasDataGridView).BeginInit();
+            panelcdtgrdVentas.SuspendLayout();
             SuspendLayout();
             // 
-            // lblCategoria
+            // lblNombre
             // 
-            lblCategoria.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            lblCategoria.AutoSize = true;
-            lblCategoria.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCategoria.ForeColor = Color.FromArgb(128, 159, 234);
-            lblCategoria.Location = new Point(2, 125);
-            lblCategoria.Name = "lblCategoria";
-            lblCategoria.Size = new Size(220, 37);
-            lblCategoria.TabIndex = 11;
-            lblCategoria.Text = "Nombre de usuario:";
+            lblNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNombre.ForeColor = Color.FromArgb(128, 159, 234);
+            lblNombre.Location = new Point(2, 125);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(220, 37);
+            lblNombre.TabIndex = 11;
+            lblNombre.Text = "Nombre de usuario:";
             // 
             // lblNombreProducto
             // 
@@ -311,38 +311,38 @@ namespace WinForm
             kryptonCustomPaletteBase1.ThemeName = "";
             kryptonCustomPaletteBase1.UseKryptonFileDialogs = true;
             // 
-            // pictureBox1
+            // pictureBoxUserico
             // 
-            pictureBox1.Image = Properties.Resources.account_box_24dp_FILL0_wght400_GRAD0_opsz24;
-            pictureBox1.Location = new Point(59, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(96, 96);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 16;
-            pictureBox1.TabStop = false;
+            pictureBoxUserico.Image = Properties.Resources.account_box_24dp_FILL0_wght400_GRAD0_opsz24;
+            pictureBoxUserico.Location = new Point(59, 12);
+            pictureBoxUserico.Name = "pictureBoxUserico";
+            pictureBoxUserico.Size = new Size(96, 96);
+            pictureBoxUserico.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBoxUserico.TabIndex = 16;
+            pictureBoxUserico.TabStop = false;
             // 
-            // flowLayoutPanel1
+            // mainpanel
             // 
-            flowLayoutPanel1.Controls.Add(panelfilter);
-            flowLayoutPanel1.Controls.Add(panelventas);
-            flowLayoutPanel1.Location = new Point(230, 12);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(430, 500);
-            flowLayoutPanel1.TabIndex = 17;
+            mainpanel.Controls.Add(panelCompras);
+            mainpanel.Controls.Add(panelventas);
+            mainpanel.Location = new Point(230, 12);
+            mainpanel.Margin = new Padding(0);
+            mainpanel.Name = "mainpanel";
+            mainpanel.Size = new Size(430, 500);
+            mainpanel.TabIndex = 17;
             // 
-            // panelfilter
+            // panelCompras
             // 
-            panelfilter.BackColor = Color.FromArgb(70, 70, 80);
-            panelfilter.Controls.Add(BtnCompras);
-            panelfilter.Controls.Add(panelcategoria);
-            panelfilter.Location = new Point(0, 0);
-            panelfilter.Margin = new Padding(0);
-            panelfilter.MaximumSize = new Size(425, 250);
-            panelfilter.MinimumSize = new Size(425, 65);
-            panelfilter.Name = "panelfilter";
-            panelfilter.Size = new Size(425, 65);
-            panelfilter.TabIndex = 1;
+            panelCompras.BackColor = Color.FromArgb(70, 70, 80);
+            panelCompras.Controls.Add(BtnCompras);
+            panelCompras.Controls.Add(panelcdtgrdCompras);
+            panelCompras.Location = new Point(0, 0);
+            panelCompras.Margin = new Padding(0);
+            panelCompras.MaximumSize = new Size(425, 250);
+            panelCompras.MinimumSize = new Size(425, 65);
+            panelCompras.Name = "panelCompras";
+            panelCompras.Size = new Size(425, 65);
+            panelCompras.TabIndex = 1;
             // 
             // BtnCompras
             // 
@@ -360,31 +360,31 @@ namespace WinForm
             BtnCompras.Margin = new Padding(0);
             BtnCompras.Name = "BtnCompras";
             BtnCompras.Size = new Size(430, 68);
-            BtnCompras.TabIndex = 5;
+            BtnCompras.TabIndex = 1;
             BtnCompras.Text = "Compras";
             BtnCompras.UseVisualStyleBackColor = false;
             BtnCompras.Click += panelfilter_Click;
             // 
-            // panelcategoria
+            // panelcdtgrdCompras
             // 
-            panelcategoria.BackColor = Color.FromArgb(50, 50, 56);
-            panelcategoria.Controls.Add(dataGridViewCompras);
-            panelcategoria.Location = new Point(0, 68);
-            panelcategoria.Margin = new Padding(0);
-            panelcategoria.Name = "panelcategoria";
-            panelcategoria.Size = new Size(430, 182);
-            panelcategoria.TabIndex = 0;
+            panelcdtgrdCompras.BackColor = Color.FromArgb(50, 50, 56);
+            panelcdtgrdCompras.Controls.Add(dataGridViewCompras);
+            panelcdtgrdCompras.Location = new Point(0, 68);
+            panelcdtgrdCompras.Margin = new Padding(0);
+            panelcdtgrdCompras.Name = "panelcdtgrdCompras";
+            panelcdtgrdCompras.Size = new Size(430, 182);
+            panelcdtgrdCompras.TabIndex = 0;
             // 
             // dataGridViewCompras
             // 
             dataGridViewCompras.AllowUserToAddRows = false;
             dataGridViewCompras.AllowUserToDeleteRows = false;
             dataGridViewCompras.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 60, 70);
-            dataGridViewCellStyle1.ForeColor = Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(60, 60, 70);
+            dataGridViewCellStyle7.ForeColor = Color.Gainsboro;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(24, 24, 32);
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewCompras.BorderStyle = BorderStyle.None;
             dataGridViewCompras.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -416,11 +416,11 @@ namespace WinForm
             // ColumnProducto
             // 
             ColumnProducto.DataPropertyName = "ProductoId";
-            ColumnProducto.DefaultCellStyle = dataGridViewCellStyle2;
+            ColumnProducto.DefaultCellStyle = dataGridViewCellStyle8;
             ColumnProducto.HeaderText = "Producto";
-            iconSpec1.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
-            ColumnProducto.IconSpecs.Add(iconSpec1);
+            iconSpec7.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec7.Icon = (Image)resources.GetObject("iconSpec7.Icon");
+            ColumnProducto.IconSpecs.Add(iconSpec7);
             ColumnProducto.Name = "ColumnProducto";
             ColumnProducto.ReadOnly = true;
             ColumnProducto.Width = 165;
@@ -428,11 +428,11 @@ namespace WinForm
             // ColumnCantidad
             // 
             ColumnCantidad.DataPropertyName = "Cantidad";
-            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle9;
             ColumnCantidad.HeaderText = "Cantidad";
-            iconSpec2.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
-            ColumnCantidad.IconSpecs.Add(iconSpec2);
+            iconSpec8.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec8.Icon = (Image)resources.GetObject("iconSpec8.Icon");
+            ColumnCantidad.IconSpecs.Add(iconSpec8);
             ColumnCantidad.Name = "ColumnCantidad";
             ColumnCantidad.ReadOnly = true;
             ColumnCantidad.Width = 130;
@@ -445,9 +445,9 @@ namespace WinForm
             ColumnFecha.DataPropertyName = "Fecha";
             ColumnFecha.Format = DateTimePickerFormat.Custom;
             ColumnFecha.HeaderText = "Fecha";
-            iconSpec3.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
-            ColumnFecha.IconSpecs.Add(iconSpec3);
+            iconSpec9.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec9.Icon = (Image)resources.GetObject("iconSpec9.Icon");
+            ColumnFecha.IconSpecs.Add(iconSpec9);
             ColumnFecha.Name = "ColumnFecha";
             ColumnFecha.ReadOnly = true;
             ColumnFecha.SortMode = DataGridViewColumnSortMode.Automatic;
@@ -457,7 +457,7 @@ namespace WinForm
             // 
             panelventas.BackColor = Color.FromArgb(70, 70, 80);
             panelventas.Controls.Add(Btnventas);
-            panelventas.Controls.Add(panel1);
+            panelventas.Controls.Add(panelcdtgrdVentas);
             panelventas.Location = new Point(0, 65);
             panelventas.Margin = new Padding(0);
             panelventas.MaximumSize = new Size(425, 250);
@@ -483,97 +483,10 @@ namespace WinForm
             Btnventas.Margin = new Padding(0);
             Btnventas.Name = "Btnventas";
             Btnventas.Size = new Size(430, 68);
-            Btnventas.TabIndex = 5;
+            Btnventas.TabIndex = 2;
             Btnventas.Text = "Ventas";
             Btnventas.UseVisualStyleBackColor = false;
             Btnventas.Click += Btnventas_Click;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(50, 50, 56);
-            panel1.Controls.Add(VentasDataGridView);
-            panel1.Location = new Point(0, 68);
-            panel1.Margin = new Padding(0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(430, 182);
-            panel1.TabIndex = 0;
-            // 
-            // VentasDataGridView
-            // 
-            VentasDataGridView.AllowUserToAddRows = false;
-            VentasDataGridView.AllowUserToDeleteRows = false;
-            VentasDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(60, 60, 70);
-            dataGridViewCellStyle4.ForeColor = Color.Gainsboro;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(24, 24, 32);
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(224, 224, 224);
-            VentasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            VentasDataGridView.BorderStyle = BorderStyle.None;
-            VentasDataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            VentasDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            VentasDataGridView.Columns.AddRange(new DataGridViewColumn[] { ColumnVProducto, ColumnVCantidad, ColumnVFecha });
-            VentasDataGridView.GridStyles.Style = DataGridViewStyle.Custom1;
-            VentasDataGridView.GridStyles.StyleBackground = PaletteBackStyle.GridBackgroundCustom1;
-            VentasDataGridView.GridStyles.StyleColumn = GridStyle.Custom1;
-            VentasDataGridView.GridStyles.StyleDataCells = GridStyle.Custom1;
-            VentasDataGridView.GridStyles.StyleRow = GridStyle.Custom1;
-            VentasDataGridView.Location = new Point(-1, 0);
-            VentasDataGridView.MaximumSize = new Size(430, 180);
-            VentasDataGridView.MinimumSize = new Size(430, 180);
-            VentasDataGridView.Name = "VentasDataGridView";
-            VentasDataGridView.Palette = kryptonCustomPaletteBase1;
-            VentasDataGridView.PaletteMode = PaletteMode.Custom;
-            VentasDataGridView.ReadOnly = true;
-            VentasDataGridView.RowHeadersVisible = false;
-            VentasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            VentasDataGridView.Size = new Size(430, 180);
-            VentasDataGridView.StandardTab = true;
-            VentasDataGridView.StateCommon.BackStyle = PaletteBackStyle.GridBackgroundCustom1;
-            VentasDataGridView.StateCommon.HeaderColumn.Back.Color1 = Color.FromArgb(60, 65, 190);
-            VentasDataGridView.StateCommon.HeaderColumn.Back.Color2 = Color.FromArgb(60, 65, 195);
-            VentasDataGridView.StateTracking.HeaderColumn.Back.Color1 = Color.FromArgb(50, 55, 150);
-            VentasDataGridView.StateTracking.HeaderColumn.Back.Color2 = Color.FromArgb(45, 50, 140);
-            VentasDataGridView.TabIndex = 1;
-            VentasDataGridView.TabStop = false;
-            // 
-            // ColumnVProducto
-            // 
-            ColumnVProducto.DataPropertyName = "Nombre";
-            ColumnVProducto.DefaultCellStyle = dataGridViewCellStyle5;
-            ColumnVProducto.HeaderText = "Producto";
-            iconSpec4.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
-            ColumnVProducto.IconSpecs.Add(iconSpec4);
-            ColumnVProducto.Name = "ColumnVProducto";
-            ColumnVProducto.ReadOnly = true;
-            ColumnVProducto.Width = 165;
-            // 
-            // ColumnVCantidad
-            // 
-            ColumnVCantidad.DataPropertyName = "Cantidad";
-            ColumnVCantidad.DefaultCellStyle = dataGridViewCellStyle6;
-            ColumnVCantidad.HeaderText = "Cantidad";
-            iconSpec5.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
-            ColumnVCantidad.IconSpecs.Add(iconSpec5);
-            ColumnVCantidad.Name = "ColumnVCantidad";
-            ColumnVCantidad.ReadOnly = true;
-            ColumnVCantidad.Width = 130;
-            // 
-            // ColumnVFecha
-            // 
-            ColumnVFecha.Checked = false;
-            ColumnVFecha.CustomFormat = "dd/MM/yyyy, HH:mm";
-            ColumnVFecha.DataPropertyName = "Fecha";
-            ColumnVFecha.Format = DateTimePickerFormat.Custom;
-            ColumnVFecha.HeaderText = "Fecha";
-            iconSpec6.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
-            ColumnVFecha.IconSpecs.Add(iconSpec6);
-            ColumnVFecha.Name = "ColumnVFecha";
-            ColumnVFecha.ReadOnly = true;
-            ColumnVFecha.SortMode = DataGridViewColumnSortMode.Automatic;
-            ColumnVFecha.Width = 130;
             // 
             // comprastimer
             // 
@@ -602,10 +515,97 @@ namespace WinForm
             btnlogout.Margin = new Padding(0);
             btnlogout.Name = "btnlogout";
             btnlogout.Size = new Size(233, 68);
-            btnlogout.TabIndex = 18;
+            btnlogout.TabIndex = 3;
             btnlogout.Text = "Volver";
             btnlogout.UseVisualStyleBackColor = false;
             btnlogout.Click += btnlogout_Click;
+            // 
+            // VentasDataGridView
+            // 
+            VentasDataGridView.AllowUserToAddRows = false;
+            VentasDataGridView.AllowUserToDeleteRows = false;
+            VentasDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 60, 70);
+            dataGridViewCellStyle1.ForeColor = Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
+            VentasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            VentasDataGridView.BorderStyle = BorderStyle.None;
+            VentasDataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            VentasDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            VentasDataGridView.Columns.AddRange(new DataGridViewColumn[] { ColumnVProducto, ColumnVCantidad, ColumnVFecha });
+            VentasDataGridView.GridStyles.Style = DataGridViewStyle.Custom1;
+            VentasDataGridView.GridStyles.StyleBackground = PaletteBackStyle.GridBackgroundCustom1;
+            VentasDataGridView.GridStyles.StyleColumn = GridStyle.Custom1;
+            VentasDataGridView.GridStyles.StyleDataCells = GridStyle.Custom1;
+            VentasDataGridView.GridStyles.StyleRow = GridStyle.Custom1;
+            VentasDataGridView.Location = new Point(-1, 0);
+            VentasDataGridView.MaximumSize = new Size(430, 180);
+            VentasDataGridView.MinimumSize = new Size(430, 180);
+            VentasDataGridView.Name = "VentasDataGridView";
+            VentasDataGridView.Palette = kryptonCustomPaletteBase1;
+            VentasDataGridView.PaletteMode = PaletteMode.Custom;
+            VentasDataGridView.ReadOnly = true;
+            VentasDataGridView.RowHeadersVisible = false;
+            VentasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            VentasDataGridView.Size = new Size(430, 180);
+            VentasDataGridView.StandardTab = true;
+            VentasDataGridView.StateCommon.BackStyle = PaletteBackStyle.GridBackgroundCustom1;
+            VentasDataGridView.StateCommon.HeaderColumn.Back.Color1 = Color.FromArgb(60, 65, 190);
+            VentasDataGridView.StateCommon.HeaderColumn.Back.Color2 = Color.FromArgb(60, 65, 195);
+            VentasDataGridView.StateTracking.HeaderColumn.Back.Color1 = Color.FromArgb(50, 55, 150);
+            VentasDataGridView.StateTracking.HeaderColumn.Back.Color2 = Color.FromArgb(45, 50, 140);
+            VentasDataGridView.TabIndex = 1;
+            VentasDataGridView.TabStop = false;
+            // 
+            // ColumnVFecha
+            // 
+            ColumnVFecha.Checked = false;
+            ColumnVFecha.CustomFormat = "dd/MM/yyyy, HH:mm";
+            ColumnVFecha.DataPropertyName = "Fecha";
+            ColumnVFecha.Format = DateTimePickerFormat.Custom;
+            ColumnVFecha.HeaderText = "Fecha";
+            iconSpec12.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec12.Icon = (Image)resources.GetObject("iconSpec12.Icon");
+            ColumnVFecha.IconSpecs.Add(iconSpec12);
+            ColumnVFecha.Name = "ColumnVFecha";
+            ColumnVFecha.ReadOnly = true;
+            ColumnVFecha.SortMode = DataGridViewColumnSortMode.Automatic;
+            ColumnVFecha.Width = 130;
+            // 
+            // ColumnVCantidad
+            // 
+            ColumnVCantidad.DataPropertyName = "Cantidad";
+            ColumnVCantidad.DefaultCellStyle = dataGridViewCellStyle11;
+            ColumnVCantidad.HeaderText = "Cantidad";
+            iconSpec11.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec11.Icon = (Image)resources.GetObject("iconSpec11.Icon");
+            ColumnVCantidad.IconSpecs.Add(iconSpec11);
+            ColumnVCantidad.Name = "ColumnVCantidad";
+            ColumnVCantidad.ReadOnly = true;
+            ColumnVCantidad.Width = 130;
+            // 
+            // ColumnVProducto
+            // 
+            ColumnVProducto.DataPropertyName = "Nombre";
+            ColumnVProducto.DefaultCellStyle = dataGridViewCellStyle10;
+            ColumnVProducto.HeaderText = "Producto";
+            iconSpec10.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec10.Icon = (Image)resources.GetObject("iconSpec10.Icon");
+            ColumnVProducto.IconSpecs.Add(iconSpec10);
+            ColumnVProducto.Name = "ColumnVProducto";
+            ColumnVProducto.ReadOnly = true;
+            ColumnVProducto.Width = 165;
+            // 
+            // panelcdtgrdVentas
+            // 
+            panelcdtgrdVentas.BackColor = Color.FromArgb(50, 50, 56);
+            panelcdtgrdVentas.Controls.Add(VentasDataGridView);
+            panelcdtgrdVentas.Location = new Point(0, 68);
+            panelcdtgrdVentas.Margin = new Padding(0);
+            panelcdtgrdVentas.Name = "panelcdtgrdVentas";
+            panelcdtgrdVentas.Size = new Size(430, 182);
+            panelcdtgrdVentas.TabIndex = 0;
             // 
             // FormUserDetails
             // 
@@ -614,9 +614,9 @@ namespace WinForm
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(670, 515);
             Controls.Add(btnlogout);
-            Controls.Add(flowLayoutPanel1);
-            Controls.Add(pictureBox1);
-            Controls.Add(lblCategoria);
+            Controls.Add(mainpanel);
+            Controls.Add(pictureBoxUserico);
+            Controls.Add(lblNombre);
             Controls.Add(lblNombreProducto);
             ForeColor = Color.WhiteSmoke;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -629,27 +629,27 @@ namespace WinForm
             StartPosition = FormStartPosition.CenterParent;
             Text = "Informacion de usuario";
             TitleStyle = KryptonFormTitleStyle.Modern;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
-            panelfilter.ResumeLayout(false);
-            panelcategoria.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUserico).EndInit();
+            mainpanel.ResumeLayout(false);
+            panelCompras.ResumeLayout(false);
+            panelcdtgrdCompras.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewCompras).EndInit();
             panelventas.ResumeLayout(false);
-            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)VentasDataGridView).EndInit();
+            panelcdtgrdVentas.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label lblCategoria;
+        private Label lblNombre;
         private Label lblNombreProducto;
         private KryptonCustomPaletteBase kryptonCustomPaletteBase1;
-        private PictureBox pictureBox1;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private FlowLayoutPanel panelfilter;
+        private PictureBox pictureBoxUserico;
+        private FlowLayoutPanel mainpanel;
+        private FlowLayoutPanel panelCompras;
         private Button BtnCompras;
-        private Panel panelcategoria;
+        private Panel panelcdtgrdCompras;
         private KryptonDataGridView dataGridViewCompras;
         private KryptonDataGridViewTextBoxColumn ColumnProducto;
         private KryptonDataGridViewTextBoxColumn ColumnCantidad;
@@ -657,12 +657,12 @@ namespace WinForm
         private System.Windows.Forms.Timer comprastimer;
         private FlowLayoutPanel panelventas;
         private Button Btnventas;
-        private Panel panel1;
+        private System.Windows.Forms.Timer ventastimer;
+        private Button btnlogout;
+        private Panel panelcdtgrdVentas;
         private KryptonDataGridView VentasDataGridView;
         private KryptonDataGridViewTextBoxColumn ColumnVProducto;
         private KryptonDataGridViewTextBoxColumn ColumnVCantidad;
         private KryptonDataGridViewDateTimePickerColumn ColumnVFecha;
-        private System.Windows.Forms.Timer ventastimer;
-        private Button btnlogout;
     }
 }
