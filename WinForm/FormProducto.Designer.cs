@@ -31,10 +31,12 @@ namespace WinForm
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            IconSpec iconSpec7 = new IconSpec();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProducto));
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             IconSpec iconSpec1 = new IconSpec();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProducto));
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             IconSpec iconSpec2 = new IconSpec();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
@@ -43,14 +45,18 @@ namespace WinForm
             IconSpec iconSpec4 = new IconSpec();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             IconSpec iconSpec5 = new IconSpec();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            IconSpec iconSpec6 = new IconSpec();
             dataGridViewProducto = new KryptonDataGridView();
             ColumnNombreProducto = new KryptonDataGridViewTextBoxColumn();
             contextMenuRow = new ContextMenuStrip(components);
             nuevoToolStrip = new ToolStripMenuItem();
             ordenarToolStripMenuItem1 = new ToolStripMenuItem();
-            toolStripComboBox1 = new ToolStripComboBox();
+            sortcontext = new ContextMenuStrip(components);
+            nombreToolStripMenuItem = new ToolStripMenuItem();
+            categoriaToolStripMenuItem1 = new ToolStripMenuItem();
+            stockToolStripMenuItem1 = new ToolStripMenuItem();
+            comprasToolStripMenuItem1 = new ToolStripMenuItem();
+            ventasToolStripMenuItem1 = new ToolStripMenuItem();
+            habilitadoToolStripMenuItem1 = new ToolStripMenuItem();
             modificarToolStripMenuItem = new ToolStripMenuItem();
             eliminarToolStripMenuItem = new ToolStripMenuItem();
             detallesToolStripMenuItem = new ToolStripMenuItem();
@@ -64,7 +70,6 @@ namespace WinForm
             nuevoToolStripMenuItem1 = new ToolStripMenuItem();
             refrescarToolStripMenuItem2 = new ToolStripMenuItem();
             ordenarStripMenuItem3 = new ToolStripMenuItem();
-            Nombre = new ToolStripMenuItem();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             nuevoToolStripMenuItem = new ToolStripMenuItem();
             ordenarToolStripMenuItem = new ToolStripMenuItem();
@@ -107,6 +112,7 @@ namespace WinForm
             datagridroudergropu = new ReaLTaiizor.Controls.CyberGroupBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
             contextMenuRow.SuspendLayout();
+            sortcontext.SuspendLayout();
             contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)kryptonPictureBox1).BeginInit();
@@ -128,11 +134,11 @@ namespace WinForm
             dataGridViewProducto.AllowUserToAddRows = false;
             dataGridViewProducto.AllowUserToDeleteRows = false;
             dataGridViewProducto.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 60, 70);
-            dataGridViewCellStyle1.ForeColor = Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
-            dataGridViewProducto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(60, 60, 70);
+            dataGridViewCellStyle8.ForeColor = Color.Gainsboro;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(24, 24, 32);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(224, 224, 224);
+            dataGridViewProducto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewProducto.BorderStyle = BorderStyle.None;
             dataGridViewProducto.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -161,11 +167,11 @@ namespace WinForm
             // 
             ColumnNombreProducto.ContextMenuStrip = contextMenuRow;
             ColumnNombreProducto.DataPropertyName = "Nombre";
-            ColumnNombreProducto.DefaultCellStyle = dataGridViewCellStyle2;
+            ColumnNombreProducto.DefaultCellStyle = dataGridViewCellStyle9;
             ColumnNombreProducto.HeaderText = "Nombre";
-            iconSpec1.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
-            ColumnNombreProducto.IconSpecs.Add(iconSpec1);
+            iconSpec7.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec7.Icon = (Image)resources.GetObject("iconSpec7.Icon");
+            ColumnNombreProducto.IconSpecs.Add(iconSpec7);
             ColumnNombreProducto.Name = "ColumnNombreProducto";
             ColumnNombreProducto.ReadOnly = true;
             ColumnNombreProducto.Resizable = DataGridViewTriState.True;
@@ -192,7 +198,7 @@ namespace WinForm
             // 
             // ordenarToolStripMenuItem1
             // 
-            ordenarToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { toolStripComboBox1 });
+            ordenarToolStripMenuItem1.DropDown = sortcontext;
             ordenarToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
             ordenarToolStripMenuItem1.Image = Properties.Resources.sort_mini;
             ordenarToolStripMenuItem1.Name = "ordenarToolStripMenuItem1";
@@ -200,14 +206,78 @@ namespace WinForm
             ordenarToolStripMenuItem1.Text = "Ordenar";
             ordenarToolStripMenuItem1.Click += ordenarToolStripMenuItem1_Click;
             // 
-            // toolStripComboBox1
+            // sortcontext
             // 
-            toolStripComboBox1.BackColor = Color.FromArgb(30, 30, 32);
-            toolStripComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            toolStripComboBox1.FlatStyle = FlatStyle.Flat;
-            toolStripComboBox1.ForeColor = SystemColors.ButtonFace;
-            toolStripComboBox1.Name = "toolStripComboBox1";
-            toolStripComboBox1.Size = new Size(121, 23);
+            sortcontext.BackColor = Color.FromArgb(30, 30, 32);
+            sortcontext.Font = new Font("Segoe UI", 9F);
+            sortcontext.Items.AddRange(new ToolStripItem[] { nombreToolStripMenuItem, categoriaToolStripMenuItem1, stockToolStripMenuItem1, comprasToolStripMenuItem1, ventasToolStripMenuItem1, habilitadoToolStripMenuItem1 });
+            sortcontext.Name = "sortcontext";
+            sortcontext.RenderMode = ToolStripRenderMode.System;
+            sortcontext.Size = new Size(130, 136);
+            // 
+            // nombreToolStripMenuItem
+            // 
+            nombreToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
+            nombreToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
+            nombreToolStripMenuItem.Image = Properties.Resources.Mini_refresh;
+            nombreToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft;
+            nombreToolStripMenuItem.Name = "nombreToolStripMenuItem";
+            nombreToolStripMenuItem.Size = new Size(180, 22);
+            nombreToolStripMenuItem.Text = "Nombre";
+            nombreToolStripMenuItem.Click += ordenarStripMenuItem3_Click;
+            // 
+            // categoriaToolStripMenuItem1
+            // 
+            categoriaToolStripMenuItem1.BackColor = Color.FromArgb(30, 30, 2);
+            categoriaToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            categoriaToolStripMenuItem1.Image = Properties.Resources.micro_cate1;
+            categoriaToolStripMenuItem1.ImageAlign = ContentAlignment.MiddleLeft;
+            categoriaToolStripMenuItem1.Name = "categoriaToolStripMenuItem1";
+            categoriaToolStripMenuItem1.Size = new Size(180, 22);
+            categoriaToolStripMenuItem1.Text = "Categoria";
+            categoriaToolStripMenuItem1.Click += categoriaToolStripMenuItem1_Click;
+            // 
+            // stockToolStripMenuItem1
+            // 
+            stockToolStripMenuItem1.BackColor = Color.FromArgb(30, 30, 2);
+            stockToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            stockToolStripMenuItem1.Image = Properties.Resources.mini_stock;
+            stockToolStripMenuItem1.ImageAlign = ContentAlignment.MiddleLeft;
+            stockToolStripMenuItem1.Name = "stockToolStripMenuItem1";
+            stockToolStripMenuItem1.Size = new Size(180, 22);
+            stockToolStripMenuItem1.Text = "Stock";
+            stockToolStripMenuItem1.Click += stockToolStripMenuItem1_Click;
+            // 
+            // comprasToolStripMenuItem1
+            // 
+            comprasToolStripMenuItem1.BackColor = Color.FromArgb(30, 30, 2);
+            comprasToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            comprasToolStripMenuItem1.Image = Properties.Resources.micro_compras;
+            comprasToolStripMenuItem1.ImageAlign = ContentAlignment.MiddleLeft;
+            comprasToolStripMenuItem1.Name = "comprasToolStripMenuItem1";
+            comprasToolStripMenuItem1.Size = new Size(180, 22);
+            comprasToolStripMenuItem1.Text = "Compras";
+            comprasToolStripMenuItem1.Click += comprasToolStripMenuItem1_Click;
+            // 
+            // ventasToolStripMenuItem1
+            // 
+            ventasToolStripMenuItem1.BackColor = Color.FromArgb(30, 30, 2);
+            ventasToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            ventasToolStripMenuItem1.Image = Properties.Resources.ventas1;
+            ventasToolStripMenuItem1.Name = "ventasToolStripMenuItem1";
+            ventasToolStripMenuItem1.Size = new Size(180, 22);
+            ventasToolStripMenuItem1.Text = "Ventas";
+            ventasToolStripMenuItem1.Click += ventasToolStripMenuItem1_Click;
+            // 
+            // habilitadoToolStripMenuItem1
+            // 
+            habilitadoToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            habilitadoToolStripMenuItem1.Image = Properties.Resources.mini_habi;
+            habilitadoToolStripMenuItem1.ImageAlign = ContentAlignment.MiddleLeft;
+            habilitadoToolStripMenuItem1.Name = "habilitadoToolStripMenuItem1";
+            habilitadoToolStripMenuItem1.Size = new Size(180, 22);
+            habilitadoToolStripMenuItem1.Text = "Habilitado";
+            habilitadoToolStripMenuItem1.Click += ordenarSubContex_Click;
             // 
             // modificarToolStripMenuItem
             // 
@@ -249,11 +319,11 @@ namespace WinForm
             // 
             ColumnCategoria.ContextMenuStrip = contextMenuRow;
             ColumnCategoria.DataPropertyName = "Categoria";
-            ColumnCategoria.DefaultCellStyle = dataGridViewCellStyle3;
+            ColumnCategoria.DefaultCellStyle = dataGridViewCellStyle2;
             ColumnCategoria.HeaderText = "Categoria";
-            iconSpec2.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
-            ColumnCategoria.IconSpecs.Add(iconSpec2);
+            iconSpec1.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
+            ColumnCategoria.IconSpecs.Add(iconSpec1);
             ColumnCategoria.Name = "ColumnCategoria";
             ColumnCategoria.ReadOnly = true;
             ColumnCategoria.Resizable = DataGridViewTriState.True;
@@ -262,11 +332,11 @@ namespace WinForm
             // ColumnStock
             // 
             ColumnStock.ContextMenuStrip = contextMenuRow;
-            ColumnStock.DefaultCellStyle = dataGridViewCellStyle4;
+            ColumnStock.DefaultCellStyle = dataGridViewCellStyle3;
             ColumnStock.HeaderText = "Stock";
-            iconSpec3.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
-            ColumnStock.IconSpecs.Add(iconSpec3);
+            iconSpec2.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
+            ColumnStock.IconSpecs.Add(iconSpec2);
             ColumnStock.Name = "ColumnStock";
             ColumnStock.ReadOnly = true;
             ColumnStock.Resizable = DataGridViewTriState.True;
@@ -275,11 +345,11 @@ namespace WinForm
             // ColumnCompras
             // 
             ColumnCompras.ContextMenuStrip = contextMenuRow;
-            ColumnCompras.DefaultCellStyle = dataGridViewCellStyle5;
+            ColumnCompras.DefaultCellStyle = dataGridViewCellStyle4;
             ColumnCompras.HeaderText = "Compras";
-            iconSpec4.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
-            ColumnCompras.IconSpecs.Add(iconSpec4);
+            iconSpec3.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
+            ColumnCompras.IconSpecs.Add(iconSpec3);
             ColumnCompras.Name = "ColumnCompras";
             ColumnCompras.ReadOnly = true;
             ColumnCompras.Resizable = DataGridViewTriState.True;
@@ -288,11 +358,11 @@ namespace WinForm
             // ColumnVentas
             // 
             ColumnVentas.ContextMenuStrip = contextMenuRow;
-            ColumnVentas.DefaultCellStyle = dataGridViewCellStyle6;
+            ColumnVentas.DefaultCellStyle = dataGridViewCellStyle5;
             ColumnVentas.HeaderText = "Ventas";
-            iconSpec5.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
-            ColumnVentas.IconSpecs.Add(iconSpec5);
+            iconSpec4.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
+            ColumnVentas.IconSpecs.Add(iconSpec4);
             ColumnVentas.Name = "ColumnVentas";
             ColumnVentas.ReadOnly = true;
             ColumnVentas.Resizable = DataGridViewTriState.True;
@@ -302,14 +372,14 @@ namespace WinForm
             // 
             ColumnHabilitado.ContextMenuStrip = contextMenuRow;
             ColumnHabilitado.DataPropertyName = "Habilitado";
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.NullValue = false;
-            ColumnHabilitado.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.NullValue = false;
+            ColumnHabilitado.DefaultCellStyle = dataGridViewCellStyle6;
             ColumnHabilitado.FalseValue = null;
             ColumnHabilitado.HeaderText = "Habilitado";
-            iconSpec6.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
-            ColumnHabilitado.IconSpecs.Add(iconSpec6);
+            iconSpec5.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
+            ColumnHabilitado.IconSpecs.Add(iconSpec5);
             ColumnHabilitado.IndeterminateValue = null;
             ColumnHabilitado.Name = "ColumnHabilitado";
             ColumnHabilitado.ReadOnly = true;
@@ -320,11 +390,14 @@ namespace WinForm
             // 
             // contextMenuStrip2
             // 
+            contextMenuStrip2.AllowMerge = false;
             contextMenuStrip2.BackColor = Color.FromArgb(64, 64, 64);
+            contextMenuStrip2.DropShadowEnabled = false;
             contextMenuStrip2.Font = new Font("Segoe UI", 9F);
             contextMenuStrip2.Items.AddRange(new ToolStripItem[] { nuevoToolStripMenuItem1, refrescarToolStripMenuItem2, ordenarStripMenuItem3 });
+            contextMenuStrip2.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             contextMenuStrip2.Name = "contextMenuStrip2";
-            contextMenuStrip2.RenderMode = ToolStripRenderMode.System;
+            contextMenuStrip2.RenderMode = ToolStripRenderMode.Professional;
             contextMenuStrip2.Size = new Size(123, 70);
             // 
             // nuevoToolStripMenuItem1
@@ -348,19 +421,12 @@ namespace WinForm
             // 
             // ordenarStripMenuItem3
             // 
-            ordenarStripMenuItem3.DropDownItems.AddRange(new ToolStripItem[] { Nombre });
+            ordenarStripMenuItem3.DropDown = sortcontext;
             ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
             ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
             ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
             ordenarStripMenuItem3.Size = new Size(122, 22);
             ordenarStripMenuItem3.Text = "Ordenar";
-            // 
-            // Nombre
-            // 
-            Nombre.Name = "Nombre";
-            Nombre.Size = new Size(118, 22);
-            Nombre.Text = "Nombre";
-            Nombre.Click += ordenarStripMenuItem3_Click;
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -1320,6 +1386,7 @@ namespace WinForm
             MouseDown += FormProducto_MouseDown;
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).EndInit();
             contextMenuRow.ResumeLayout(false);
+            sortcontext.ResumeLayout(false);
             contextMenuStrip2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).EndInit();
             ((System.ComponentModel.ISupportInitialize)kryptonPictureBox1).EndInit();
@@ -1384,7 +1451,6 @@ namespace WinForm
         private ToolStripMenuItem ordenarToolStripMenuItem1;
         private ToolStripMenuItem nuevoToolStrip;
         private ToolStripMenuItem refrescarToolStripMenuItem1;
-        private ToolStripComboBox toolStripComboBox1;
         private Label label2;
         private Button btnchangepass;
         private Button btninformacion;
@@ -1403,6 +1469,12 @@ namespace WinForm
         private KryptonDataGridViewTextBoxColumn ColumnVentas;
         private KryptonDataGridViewCheckBoxColumn ColumnHabilitado;
         private ToolStripMenuItem ordenarStripMenuItem3;
-        private ToolStripMenuItem Nombre;
+        private ToolStripMenuItem categoriaToolStripMenuItem1;
+        private ToolStripMenuItem stockToolStripMenuItem1;
+        private ToolStripMenuItem comprasToolStripMenuItem1;
+        private ToolStripMenuItem ventasToolStripMenuItem1;
+        private ToolStripMenuItem nombreToolStripMenuItem;
+        private ContextMenuStrip sortcontext;
+        private ToolStripMenuItem habilitadoToolStripMenuItem1;
     }
 }

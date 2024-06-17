@@ -589,10 +589,94 @@ namespace WinForm
         {
             RefreshGrid(null);
         }
+        private void sortingResult(string order)
+        {
+            List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
+            switch (order)
+            {
+                case "Nombre":
+                    if (_orderType == "n")
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
+                        _orderType = "n";
+                        break;
+                    }
+                case "Categoria":
+                    if (_orderType != "c")
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
+                        _orderType = "c";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+                case "Stock":
+                    if (_orderType != "s")
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                        _orderType = "s";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+                case "Habilitado":
+                    if (_orderType != "h")
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
+                        _orderType = "h";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+                case "Compras":
+                    if (_orderType != "cp")
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
+                        _orderType = "cp";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+                case "Ventas":
+                    if (_orderType != "v")
+                    {
+                        RefreshGrid(on.OrderByDescending(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
+                        _orderType = "v";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(on.OrderBy(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+            }
+        }
         private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
-            List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStrip2.Show(Cursor.Position);
@@ -602,81 +686,33 @@ namespace WinForm
                 switch (columnName)
                 {
                     case "ColumnNombreProducto":
-                        if (_orderType == "n")
                         {
-                            RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
-                            _orderType = "x";
-                            break;
-                        }
-                        else
-                        {
-                            RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
-                            _orderType = "n";
+                            sortingResult("Nombre");
                             break;
                         }
                     case "ColumnCategoria":
-                        if (_orderType != "c")
                         {
-                            RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
-                            _orderType = "c";
-                            break;
-                        }
-                        else
-                        {
-                            RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
-                            _orderType = "x";
+                            sortingResult("Categoria");
                             break;
                         }
                     case "ColumnStock":
-                        if (_orderType != "s")
                         {
-                            RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
-                            _orderType = "s";
-                            break;
-                        }
-                        else
-                        {
-                            RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
-                            _orderType = "x";
+                            sortingResult("Stock");
                             break;
                         }
                     case "ColumnHabilitado":
-                        if (_orderType != "h")
                         {
-                            RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
-                            _orderType = "h";
-                            break;
-                        }
-                        else
-                        {
-                            RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
-                            _orderType = "x";
+                            sortingResult("Habilitado");
                             break;
                         }
                     case "ColumnCompras":
-                        if (_orderType != "cp")
                         {
-                            RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
-                            _orderType = "cp";
-                            break;
-                        }
-                        else
-                        {
-                            RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
-                            _orderType = "x";
+                            sortingResult("Compras");
                             break;
                         }
                     case "ColumnVentas":
-                        if (_orderType != "v")
                         {
-                            RefreshGrid(on.OrderByDescending(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
-                            _orderType = "v";
-                            break;
-                        }
-                        else
-                        {
-                            RefreshGrid(on.OrderBy(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
-                            _orderType = "x";
+                            sortingResult("Ventas");
                             break;
                         }
                 }
@@ -951,17 +987,32 @@ namespace WinForm
         }
         private void ordenarStripMenuItem3_Click(object sender, EventArgs e)//boton ordenar por nombre
         {
-            List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;//codigo repetido, se podria hacer una funcion para utilizar en las dos formas de ordenar(menu de contexto y clickeando columnas)
-            if (_orderType == "n")
-            {
-                RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
-                _orderType = "x";
-            }
-            else
-            {
-                RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
-                _orderType = "n";
-            }
+            sortingResult("Nombre");
+        }
+
+        private void categoriaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Categoria");
+        }
+
+        private void stockToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Stock");
+        }
+
+        private void comprasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Compras");
+        }
+
+        private void ventasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sortingResult("Ventas");
+        }
+
+        private void ordenarSubContex_Click(object sender, EventArgs e)
+        {
+            sortingResult("Habilitado");
         }
     }
 }
