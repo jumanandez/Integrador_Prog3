@@ -151,7 +151,6 @@ namespace WinForm
         private void textBox2_Click(object sender, EventArgs e)
         {
             txtboxpassw.Clear();
-            txtboxpassw.UseSystemPasswordChar = true;
             txtboxpassw.StateCommon.Content.Color1 = Color.White;
         }
 

@@ -904,17 +904,17 @@ namespace WinForm
 
             FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
             form.ShowDialog();
-
+            
             if (form.DialogResult == DialogResult.Yes)
             {
                 form.Close();
-                ModificarUnProducto(_productoSeleccionado);
+                ModificarUnProducto(form._producto);
 
             }
             else if (form.DialogResult == DialogResult.No)
             {
                 form.Close();
-                EliminarUnProducto(_productoSeleccionado);
+                EliminarUnProducto(form._producto);
             }
         }
 

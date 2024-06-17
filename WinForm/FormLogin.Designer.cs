@@ -86,7 +86,7 @@ namespace WinForm
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 12;
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.Padding = new Padding(10, -1, -1, -1);
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Color1 = Color.LightGray;
-            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Poppins", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.DrawFocus = InheritBool.False;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Color1 = Color.LightGray;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -136,6 +136,7 @@ namespace WinForm
             txtboxpassw.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic, GraphicsUnit.Point, 0);
             txtboxpassw.Location = new Point(74, 291);
             txtboxpassw.Name = "txtboxpassw";
+            txtboxpassw.PasswordChar = '●';
             txtboxpassw.Size = new Size(249, 31);
             txtboxpassw.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             txtboxpassw.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
@@ -148,6 +149,7 @@ namespace WinForm
             txtboxpassw.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtboxpassw.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtboxpassw.TabIndex = 1;
+            txtboxpassw.UseSystemPasswordChar = true;
             txtboxpassw.Click += textBox2_Click;
             txtboxpassw.KeyPress += textBox2_KeyPress;
             // 

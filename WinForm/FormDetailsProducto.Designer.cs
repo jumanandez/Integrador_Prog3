@@ -629,6 +629,7 @@
             switchHabilitado.SwitchStyle = ReaLTaiizor.Controls.ParrotSwitch.Style.Dark;
             switchHabilitado.TabIndex = 3;
             switchHabilitado.Text = "parrotSwitch1";
+            switchHabilitado.MouseDown += switchHabilitado_MouseDown;
             // 
             // BTNmodif
             // 

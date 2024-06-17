@@ -7,7 +7,7 @@ namespace WinForm
 {
     public partial class FormDetailsProducto : KryptonForm
     {
-        private readonly Producto _producto;
+        public Producto _producto;
         private readonly IProductoBusiness _productoBusiness;
         public List<Producto> listaProductos;
         public FormDetailsProducto(Producto producto, IProductoBusiness productoBusiness)
@@ -57,14 +57,35 @@ namespace WinForm
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
+            var anteriorProducto = Paginado(-2);
 
+            if (anteriorProducto != null)
+            {
+                _producto = anteriorProducto;
+
+                FormDetailsProducto_Activated(sender, e);
+            }
         }
-
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
+            var siguienteProducto = Paginado(0);
+
+            if (siguienteProducto != null)
+            {
+                _producto = siguienteProducto;
+
+                FormDetailsProducto_Activated(sender, e);
+            }
 
         }
+        private Producto? Paginado(int valor)
+        {
+            int pagina = _producto.ProductoId + valor;
 
+            var anteriorProducto = _productoBusiness.GetProductosPaginados(pagina, 1).
+                            Items.FirstOrDefault();
+            return anteriorProducto;
+        }
         private void datagridCompra_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)//ignora los headers
@@ -84,6 +105,20 @@ namespace WinForm
         private void btnlogout_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void switchHabilitado_MouseDown(object sender, MouseEventArgs e)
+        {
+            var tooltip = new ToolTip();
+
+            if(switchHabilitado.SwitchState == ReaLTaiizor.Controls.ParrotSwitch.State.On)
+            {
+                tooltip.SetToolTip(switchHabilitado, "Habilitado");
+            }
+            else if(switchHabilitado.SwitchState == ReaLTaiizor.Controls.ParrotSwitch.State.Off)
+            {
+                tooltip.SetToolTip(switchHabilitado, "Dehabilitado");
+            }
         }
     }
 }
