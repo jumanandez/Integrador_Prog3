@@ -51,8 +51,7 @@ namespace WinForm
                     var i = dataGridViewProducto.CurrentRow.Index;
                     var prod = dataGridViewProducto.SelectedRows[0];
                     _productoSeleccionado = (Producto)prod.DataBoundItem;
-                    Form2 AddAPart = new Form2(_productoSeleccionado, _categoriaBusiness, _productoBusiness);
-                    AddAPart.ShowDialog();
+                    ModificarUnProducto(_productoSeleccionado);
                 }
                 else
                 {
@@ -64,21 +63,19 @@ namespace WinForm
                 MessageBox.Show("No se ha seleccionado ningun producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+       
         private void BTNdelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewProducto.SelectedRows.Count < 2)
             {
                 if (dataGridViewProducto.CurrentRow != null)
                 {
-                    var i = dataGridViewProducto.CurrentRow.Index;
+                    //var i = dataGridViewProducto.CurrentRow.Index;
+
                     var prod = dataGridViewProducto.SelectedRows[0];
                     _productoSeleccionado = (Producto)prod.DataBoundItem;
-                    DialogResult dialogResult = MessageBox.Show($"Eliminar este elemento? \n\n{_productoSeleccionado.Nombre}"+
-                                                                    $"\n{_productoSeleccionado.Categoria} \nStock:{_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Compras.Select(c => c.Cantidad).Sum()}", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        _productoBusiness.DeleteProducto(_productoSeleccionado);
-                    }
+                    EliminarUnProducto(_productoSeleccionado);
                 }
                 else
                 {
@@ -111,10 +108,28 @@ namespace WinForm
             }
             RefreshGrid(null);
         }
+        
+
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
             Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
             AddAPart.ShowDialog();
+        }
+        //Metodos que tuvimos que extraer y se utilizaron mas abajo
+        private void ModificarUnProducto(Producto producto)
+        {
+            Form2 AddAPart = new Form2(producto, _categoriaBusiness, _productoBusiness);
+            AddAPart.ShowDialog();
+        }
+        private void EliminarUnProducto(Producto producto)
+        {
+            DialogResult dialogResult = MessageBox.Show($"Eliminar este elemento? \n\n{_productoSeleccionado.Nombre}" +
+                                                            $"\n{_productoSeleccionado.Categoria} \nStock:{_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Compras.Select(c => c.Cantidad).Sum()}", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _productoBusiness.DeleteProducto(producto);
+            }
+            RefreshGrid(null);
         }
         #endregion
 
@@ -874,7 +889,18 @@ namespace WinForm
             _productoSeleccionado = (Producto)row.DataBoundItem;
 
             FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
-            form.ShowDialog();
+            
+            if(form.ShowDialog() == DialogResult.Yes)
+            {
+                form.Close();
+                ModificarUnProducto(_productoSeleccionado);
+
+            }
+            else if(form.ShowDialog() == DialogResult.No)
+            {
+                form.Close();
+                EliminarUnProducto(_productoSeleccionado);
+            }
         }
 
         private void refrescarToolStripMenuItem_Click(object sender, EventArgs e)//refrescar datagrid menu contexto
