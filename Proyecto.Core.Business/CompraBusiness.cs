@@ -1,4 +1,5 @@
-﻿using Proyecto.Core.Business.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
@@ -24,15 +25,58 @@ namespace Proyecto.Core.Business
             _projectRepository.AddCompra(compra);
         }
 
-        public List<Compra> GetCompras()
+        public List<Compra> GetCompras(int usuarioId)
         {
-            return _projectRepository.GetCompras();
+            return _projectRepository.GetCompras(usuarioId);
         }
 
         public void DeleteCompra(int id)
         {
             _projectRepository.DeleteCompra(id);
         }
+
+        public bool VerificarFecha(DateTime fecha)
+        {
+            var fechaActual = DateTime.Now;
+            var fechaLimitePasada = fechaActual.AddDays(-7);
+            var fechaLimiteFutura = fechaActual;
+
+            if (fecha < fechaLimitePasada || fecha > fechaLimiteFutura)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId)
+        {
+            var compras = _projectRepository.GetCompras(usuarioId)
+                .Skip((pagina - 1) * itemsPorPagina)
+                .Take(itemsPorPagina)
+                .ToList();
+
+            var totalCompras = _projectRepository.GetCompras(usuarioId).Count();
+
+            return new Paginado<Compra>
+            {
+                Items = compras,
+                PaginaActual = pagina,
+                ItemsPorPagina = itemsPorPagina,
+                TotalPaginas = (int)Math.Ceiling(totalCompras / (double)itemsPorPagina)
+            };
+        }
+
+        public Compra GetCompraById(int id)
+        {
+            return _projectRepository.GetCompraById(id);
+        }
+
+        public void UpdateCompra(Compra compra)
+        {
+            _projectRepository.UpdateCompra(compra);
+        }
+
 
     }
 }

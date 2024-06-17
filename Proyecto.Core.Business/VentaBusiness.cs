@@ -25,9 +25,9 @@ namespace Proyecto.Core.Business
             _projectRepository.AddVenta(venta);
         }
 
-        public List<Venta> GetVentas()
+        public List<Venta> GetVentas(int userId)
         {
-            return _projectRepository.GetVentas();
+            return _projectRepository.GetVentas(userId);
         }
 
         public void DeleteVenta(int id)

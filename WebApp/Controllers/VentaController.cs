@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Proyecto.Core.Business;
@@ -6,97 +7,144 @@ using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
+using System.Security.Claims;
 using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class VentaController : Controller
     {
-        private readonly ILogger<VentaController> _logger;        
+        private readonly ILogger<VentaController> _logger;
 
         //Se inyecta las dependencias para usar el business de ejemplo
         private readonly IVentaBusiness _ventaBusiness;
         private readonly IProductoBusiness _productoBusiness;
+        private readonly ICategoriaBusiness _categoriaBusiness;
+        private readonly IUsuarioBusiness _usuarioBusiness;
 
-        public VentaController(IVentaBusiness ventaBusiness, IProductoBusiness productoBusiness,
-                                    ILogger<VentaController> logger)
+
+        public VentaController(IVentaBusiness ventaBusiness,
+                               IProductoBusiness productoBusiness,
+                               ICategoriaBusiness categoriaBusiness,
+                               IUsuarioBusiness usuarioBusiness,
+                               ILogger<VentaController> logger)
         {
             _logger = logger;
             _ventaBusiness = ventaBusiness;
             _productoBusiness = productoBusiness;
+            _categoriaBusiness = categoriaBusiness;
+            _usuarioBusiness = usuarioBusiness;
+
         }
 
 
         // GET: VentaController
-        public ActionResult Index(int? CategoriaID, string NombreProducto)
+        public ActionResult Index()
         {
 
-            var ventas = _ventaBusiness.GetVentas();
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            
-            ventas = (from v in ventas
-                      where v.Producto.CategoriaId == CategoriaID.Value
-                      where v.Producto.Nombre.ToLower().StartsWith(NombreProducto.ToLower())               
-                      select v).ToList();                           
-            
+            var ventas = _ventaBusiness.GetVentas(userId);
 
-            var ViewModel = new VentaVM()
-            {
-                VentaLista = ventas,
-                //CategoriaLista = _categoriaBusiness.GetAll()
+           var ViewModel = new VentaVM()
+            {           
+                VentaLista = ventas
             };
 
             return View(ViewModel);
         }
 
         // GET: VentaController/Details/5
-        public ActionResult Details(int? CategoriaID, int id)
+        public ActionResult Details(int id, int userId)
         {
 
-            var ventas = _ventaBusiness.GetVentas();
-
+            var ventas = _ventaBusiness.GetVentas(userId);
 
             ventas = (from v in ventas
-                      where v.Producto.CategoriaId == CategoriaID.Value
-                      where v.ProductoId == id
+                      where v.VentaId == id
+                      
                       select v).ToList();
 
 
             var ViewModel = new VentaVM()
             {
                 VentaLista = ventas
-
             };
 
             return View(ViewModel);
         }
 
-        // GET: VentaController/Create
-        public ActionResult Create()
+
+        // GET: VentaController/CategoriaSelect
+        public ActionResult CategoriaSelect()
         {
-            var usuariosID = 1;
+            
+            var CategoriaObj = new Models.ViewModels.VentaVM()
+            {
+
+                CategoriaLista = _categoriaBusiness.GetAll(),  
+                
+            };
+
+            return View(CategoriaObj);
+        }
+
+        // POST: VentaController/CategoriaSelect
+        [HttpPost]
+        public ActionResult CategoriaSelect(VentaVM model)
+        {
+            try
+            {
+                var categoriaSeleccionada = model._Producto.CategoriaId;
+                return RedirectToAction(nameof(Create), new { categoriaSeleccionada });
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
 
+        // GET: VentaController/Create
+        public ActionResult Create(int categoriaSeleccionada)
+        {
+
+            var productoCategoria = (from p in _productoBusiness.GetAll()
+                                    where p.CategoriaId == categoriaSeleccionada
+                                     select p).ToList();
 
             var VentaObj = new Models.ViewModels.VentaVM()
             {
-                ProductoLista = _productoBusiness.GetAll(),
-                VentaLista = _ventaBusiness.GetVentas()
+
+                ProductoLista = productoCategoria,                
+                CategoriaLista = _categoriaBusiness.GetAll(),
 
             };
 
-            return View();
+            return View(VentaObj);
         }
 
         // POST: VentaController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(Venta venta)
+        public ActionResult Create(VentaVM model, int usuarioId)
         {
             try
             {
+                var usuario = _usuarioBusiness.ObtainUsuario("Administrador");
 
+                var nuevaVenta = new Venta
+                {
+                    Fecha = DateTime.Now,
+                    ProductoId = model._Producto.ProductoId,
+                    Cantidad = model.Cantidad,
+                    UsuarioId = 4
+                };
+
+                _ventaBusiness.AddVenta(nuevaVenta);
                 return RedirectToAction(nameof(Index));
+
             }
             catch
             {
@@ -124,5 +172,7 @@ namespace WebApp.Controllers
                 return View();
             }
         }
+
+
     }
 }
