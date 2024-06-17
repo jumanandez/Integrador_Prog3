@@ -7,27 +7,36 @@
 
 <h1>Compras</h1>
 
-
 <hr>
 <a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
 
 <hr>
 
- <table class="table table-hover">
-     <thead>
-         <tr>
-             <th>Producto</th>
-             <th>Fecha</th>
-             <th>Cantidad</th>
-         </tr>
-     </thead>
-     <tbody>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
         {
             <tr>
                 <td>@c.Producto?.Nombre</td>
                 <td>@c.Fecha.ToShortDateString()</td>
                 <td>@c.Cantidad</td>
+                <td>
+                    <div class="d-flex">
+                         <a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Compra" asp-route-compraId="@c.CompraId">Editar</a>
+                         <form asp-action="Delete" asp-controller="Compra" method="post" onsubmit="return confirmDelete()">
+                             <input type="hidden" name="compraId" value="@c.CompraId" />
+                             <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+                         </form>
+                    </div>
+                </td>
             </tr>
         }
     </tbody>
@@ -46,3 +55,11 @@
         <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
     }
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm('¿Está seguro de que desea eliminar este producto?');
+        }
+    </script>
+}

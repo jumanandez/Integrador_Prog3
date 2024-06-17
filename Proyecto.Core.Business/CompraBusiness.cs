@@ -67,5 +67,16 @@ namespace Proyecto.Core.Business
             };
         }
 
+        public Compra GetCompraById(int id)
+        {
+            return _projectRepository.GetCompraById(id);
+        }
+
+        public void UpdateCompra(Compra compra)
+        {
+            _projectRepository.UpdateCompra(compra);
+        }
+
+
     }
 }

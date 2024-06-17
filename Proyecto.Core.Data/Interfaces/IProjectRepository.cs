@@ -9,7 +9,8 @@ namespace Proyecto.Core.Data.Interfaces
 {
     public interface IProjectRepository
     {
-        public void AddProducto(Producto product);
+        public void AddProducto(Producto product); 
+        public void UpdateCompra(Compra compra);
         public void DeleteProducto(Producto product);
         public List<Producto> GetProductos();
         public List<string> GetAllNames();
@@ -32,6 +33,7 @@ namespace Proyecto.Core.Data.Interfaces
         public bool ChangePass(Usuario usuario);
         public Usuario ObtainUsuario(string Username);
         public bool CreateUser(string Username, byte[] hashPassword, byte[] salt);
+        public Compra GetCompraById(int id);
 
 	}
 }
