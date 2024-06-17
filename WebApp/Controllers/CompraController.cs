@@ -53,6 +53,7 @@ namespace WebApp.Controllers
             };
 
             return View(oCompraVM);
+        }
 
 
 
@@ -69,7 +70,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 if (_compraBusiness.VerificarFecha((DateTime)compraModel.FechaCompra))
                 {
                     ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
@@ -86,10 +87,14 @@ namespace WebApp.Controllers
                         UsuarioId = userId
                     };
 
-            _compraBusiness.AddCompra(compra);
+                    _compraBusiness.AddCompra(compra);
 
-            return RedirectToAction("Create", "Compra");
+                    return RedirectToAction("Create", "Compra");
+                }
+
+            }
+            return View(compraModel);
         }
-
     }
 }
+
