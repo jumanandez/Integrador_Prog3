@@ -1,6 +1,7 @@
 ﻿using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Entities;
 using Krypton.Toolkit;
+using WinForm.CustomMessageBox;
 
 namespace WinForm
 {
@@ -29,22 +30,21 @@ namespace WinForm
             string passActual = txtContrasenaActual.Text.Trim();
             string passNueva = txtNuevaContrasena.Text.Trim();
 
-            bool coincideContraActual;
             if (txtNuevaContrasena.Text != txtConfirmarContrasena.Text)
             {
-                MessageBox.Show("La nueva contraseña y la confirmacion no coinciden!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("La nueva contraseña y la confirmacion no coinciden!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (txtNombreUsuario.Text.Trim() == "")
             {
-                MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (txtContrasenaActual.Text.Trim() == "")
             {
-                MessageBox.Show("Contraseña Actual Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Contraseña Actual Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (txtNuevaContrasena.Text.Trim() == "")
             {
-                MessageBox.Show("Contraseña Nueva Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Contraseña Nueva Vacia!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (txtContrasenaActual.Text != txtNuevaContrasena.Text)
             {
@@ -57,16 +57,16 @@ namespace WinForm
                 }
                 else if (result == false)
                 {
-                    MessageBox.Show("La Contraseña Actual NO coincide!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    RJMessageBox.Show("La Contraseña Actual NO coincide!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else if (result == null)
                 {
-                    MessageBox.Show("Usuario No Encontrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    RJMessageBox.Show("Usuario No Encontrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("La Contraseña Nueva NO puede coincidir con la Actual!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("La Contraseña Nueva NO puede coincidir con la Actual!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

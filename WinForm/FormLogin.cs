@@ -1,11 +1,8 @@
 ﻿using Proyecto.Core.Business.Interfaces;
-using System.Text;
-using System.Security.Cryptography;
 using Proyecto.Core.Entities;
-using Proyecto.Core.Data;
 using Proyecto.Core.Business;
 using Krypton.Toolkit;
-using System.Drawing;
+using WinForm.CustomMessageBox;
 
 namespace WinForm
 {
@@ -14,7 +11,7 @@ namespace WinForm
         private readonly IUsuarioBusiness _usuarioBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
         private readonly IProductoBusiness _productoBusiness;
-        public Usuario _loggedUser;
+        public Usuario _loggedUser = null!;
         public FormLogin(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuarioBusiness)
         {
             _usuarioBusiness = usuarioBusiness;
@@ -40,20 +37,20 @@ namespace WinForm
                 }
                 else
                 {
-                    MessageBox.Show("Contraseña Incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RJMessageBox.Show("Contraseña Incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else if (txtboxuser.Text.Trim() == "")
             {
-                MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (txtboxpassw.Text.Trim() == "" || txtboxuser.Text == "Ingrese una contraseña")
             {
-                MessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                MessageBox.Show("Usuario y/o Contraseña Incorrecto!",
+                RJMessageBox.Show("Usuario y/o Contraseña Incorrecto!",
                                 "Pruebe otro Usuario y/o Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -64,7 +61,7 @@ namespace WinForm
 
             if (formCambioContraseña.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Contraseña Cambiada Con Exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Contraseña Cambiada Con Exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Show();
             }
             else
@@ -72,7 +69,7 @@ namespace WinForm
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult operao = RJMessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
@@ -94,7 +91,7 @@ namespace WinForm
             if (registrarse.ShowDialog() == DialogResult.OK)
             {
                 _loggedUser = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
-                MessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RJMessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Show();
             }
             else
@@ -102,7 +99,7 @@ namespace WinForm
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult operao = RJMessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
@@ -130,7 +127,7 @@ namespace WinForm
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Salir?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult operao = RJMessageBox.Show("Salir?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
@@ -166,7 +163,7 @@ namespace WinForm
             if (registrarse.ShowDialog() == DialogResult.OK)
             {
                 _loggedUser = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
-                MessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RJMessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Show();
             }
             else
@@ -174,7 +171,7 @@ namespace WinForm
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult operao = RJMessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;

@@ -3,6 +3,7 @@ using Proyecto.Core.Entities;
 using System.Data;
 using Krypton.Toolkit;
 using System.Runtime.InteropServices;
+using WinForm.CustomMessageBox;
 
 namespace WinForm
 {
@@ -11,9 +12,9 @@ namespace WinForm
         private readonly ICategoriaBusiness _categoriaBusiness;
         private readonly IProductoBusiness _productoBusiness;
         private readonly IUsuarioBusiness _usuarioBusiness;
-        private Producto _productoACargar;
-        private Producto _productoSeleccionado;
-        public Usuario _loggedUser;
+        private Producto _productoACargar = null!;
+        private Producto _productoSeleccionado = null!;
+        public Usuario _loggedUser = null!;
         private string _orderType = " ";
         bool sidebaropen;
         bool filteropen = false;
@@ -26,8 +27,6 @@ namespace WinForm
             _usuarioBusiness = usuarioBusiness;
             _productoACargar = new Producto();
             _loggedUser = userLogged;
-            //         button1.Font = new Font("Wingdings 3", 16, FontStyle.Bold);
-            //button1.Text = Char.ConvertFromUtf32(81);
             InitializeComponent();
             LblBienvenido.Text = ($"Bienvenenido \n{_loggedUser.Nombre}");
             numericUpDown1.Value = 1;
@@ -39,101 +38,6 @@ namespace WinForm
             cmbBoxCategorias.DisplayMember = "Nombre";
             RefreshGrid(null);
         }
-
-        #region ABM DE PRODUCTOS
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewProducto.CurrentRow != null)
-            {
-                if (dataGridViewProducto.SelectedRows.Count == 1)
-                {
-
-                    var i = dataGridViewProducto.CurrentRow.Index;
-                    var prod = dataGridViewProducto.SelectedRows[0];
-                    _productoSeleccionado = (Producto)prod.DataBoundItem;
-                    ModificarUnProducto(_productoSeleccionado);
-                }
-                else
-                {
-                    MessageBox.Show("Solo se puede modificar un elemento a la vez", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado ningun producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-       
-        private void BTNdelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewProducto.SelectedRows.Count < 2)
-            {
-                if (dataGridViewProducto.CurrentRow != null)
-                {
-                    //var i = dataGridViewProducto.CurrentRow.Index;
-
-                    var prod = dataGridViewProducto.SelectedRows[0];
-                    _productoSeleccionado = (Producto)prod.DataBoundItem;
-                    EliminarUnProducto(_productoSeleccionado);
-                }
-                else
-                {
-                    MessageBox.Show("No se ha seleccionado ningun producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                List<int> selectedRowIndices = new List<int>();
-                foreach (DataGridViewRow row in dataGridViewProducto.SelectedRows)
-                {
-                    selectedRowIndices.Add(row.Index);
-                }
-
-                DialogResult dialogResult = MessageBox.Show($"Eliminar {selectedRowIndices.Count} elementos?", "Confirmar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.OK)
-                {
-                    foreach (int index in selectedRowIndices)
-                    {
-                        if (index >= 0 && index < dataGridViewProducto.Rows.Count)
-                        {
-                            dataGridViewProducto.Rows[index].Selected = true;
-                        }
-                    }
-                    foreach (DataGridViewRow prod in dataGridViewProducto.SelectedRows)
-                    {
-                        _productoBusiness.DeleteProducto((Producto)prod.DataBoundItem);
-                    }
-                }
-            }
-            RefreshGrid(null);
-        }
-        
-
-        private void btnNuevoProducto_Click(object sender, EventArgs e)
-        {
-            Form2 AddAPart = new Form2(_categoriaBusiness, _productoBusiness);
-            AddAPart.ShowDialog();
-        }
-        //Metodos que tuvimos que extraer y se utilizaron mas abajo
-        private void ModificarUnProducto(Producto producto)
-        {
-            Form2 AddAPart = new Form2(producto, _categoriaBusiness, _productoBusiness);
-            AddAPart.ShowDialog();
-        }
-        private void EliminarUnProducto(Producto producto)
-        {
-            DialogResult dialogResult = MessageBox.Show($"Eliminar este elemento? \n\n{_productoSeleccionado.Nombre}" +
-                                                            $"\n{_productoSeleccionado.Categoria} \nStock:{_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Compras.Select(c => c.Cantidad).Sum()}", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                _productoBusiness.DeleteProducto(producto);
-            }
-            RefreshGrid(null);
-        }
-        #endregion
-
-
         //Refrescar el DatagridView segun una lista especifica o como viene desde la base
         public void RefreshGrid(List<Producto>? source)
         {
@@ -188,6 +92,97 @@ namespace WinForm
                 }
             }
         }
+        #region ABM DE PRODUCTOS
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProducto.CurrentRow != null)
+            {
+                if (dataGridViewProducto.SelectedRows.Count == 1)
+                {
+
+                    var i = dataGridViewProducto.CurrentRow.Index;
+                    var prod = dataGridViewProducto.SelectedRows[0];
+                    _productoSeleccionado = (Producto)prod.DataBoundItem;
+                    ModificarUnProducto(_productoSeleccionado);
+                }
+                else
+                {
+                    RJMessageBox.Show("Solo se puede modificar un elemento a la vez", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                RJMessageBox.Show("No se ha seleccionado ningun producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void BTNdelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProducto.SelectedRows.Count < 2)
+            {
+                if (dataGridViewProducto.CurrentRow != null)
+                {
+
+                    var prod = dataGridViewProducto.SelectedRows[0];
+                    _productoSeleccionado = (Producto)prod.DataBoundItem;
+                    EliminarUnProducto(_productoSeleccionado);
+                }
+                else
+                {
+                    RJMessageBox.Show("No se ha seleccionado ningun producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                List<int> selectedRowIndices = new List<int>();
+                foreach (DataGridViewRow row in dataGridViewProducto.SelectedRows)
+                {
+                    selectedRowIndices.Add(row.Index);
+                }
+
+                DialogResult dialogResult = RJMessageBox.Show($"Eliminar {selectedRowIndices.Count} elementos?", "Confirmar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.OK)
+                {
+                    foreach (int index in selectedRowIndices)
+                    {
+                        if (index >= 0 && index < dataGridViewProducto.Rows.Count)
+                        {
+                            dataGridViewProducto.Rows[index].Selected = true;
+                        }
+                    }
+                    foreach (DataGridViewRow prod in dataGridViewProducto.SelectedRows)
+                    {
+                        _productoBusiness.DeleteProducto((Producto)prod.DataBoundItem);
+                    }
+                }
+            }
+            RefreshGrid(null);
+        }
+
+
+        private void btnNuevoProducto_Click(object sender, EventArgs e)
+        {
+            FormAddModif AddAPart = new FormAddModif(_categoriaBusiness, _productoBusiness);
+            AddAPart.ShowDialog();
+        }
+        //Metodos que tuvimos que extraer y se utilizaron mas abajo
+        private void ModificarUnProducto(Producto producto)
+        {
+            FormAddModif AddAPart = new FormAddModif(producto, _categoriaBusiness, _productoBusiness);
+            AddAPart.ShowDialog();
+        }
+        private void EliminarUnProducto(Producto producto)
+        {
+            DialogResult dialogResult = RJMessageBox.Show($"Eliminar este elemento? \n{_productoSeleccionado.Nombre}" +
+                                                            $"\n{_productoSeleccionado.Categoria} \nStock:{_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Compras.Select(c => c.Cantidad).Sum()} \n ", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _productoBusiness.DeleteProducto(producto);
+            }
+            RefreshGrid(null);
+        }
+        #endregion
         //UTILIZAR LA PRIMERA VEZ Y NUNCA MAS, PARA CARGAR SU BASE DE DATOS CON LOS PRODUCTOS
         #region BOTON DE PRIMERA CARGA
         private void btnPrimerCarga_Click(object sender, EventArgs e)
@@ -385,7 +380,7 @@ namespace WinForm
         #endregion NO TOCAR
         //COMENTAR Y NO VOLVER A TOCAR SI QUIEREN SER FELICES
 
-        #region FILTRADO DE DATAGRID
+        #region FILTRADO Y ORDENAMIENTO DE DATAGRID
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             string searchText = txtboxbuscar.Text.ToLower().Trim();
@@ -568,26 +563,65 @@ namespace WinForm
                     //producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
                     producomp.Venta.Add(new Venta { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId }); //testear ventas
                     _productoBusiness.ModifyProduct(producomp);
-                    MessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
+                    RJMessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
                 }
                 else
                 {
-                    MessageBox.Show("Ingrese una cantidad valida!.", "Error");
+                    RJMessageBox.Show("Ingrese una cantidad valida!.", "Error");
                     numericUpDown1.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("No se ha seleccionado ningun producto.", "Error");
+                RJMessageBox.Show("No se ha seleccionado ningun producto.", "Error");
             }
         }
         private void numericUpDown1_Click(object sender, EventArgs e)
         {
             BtnCompra.Enabled = true;
         }
-        private void button1_Click(object sender, EventArgs e)
+        #region FUNCIONES DE FILTRADO PARA NO REPETIR CODE
+        private List<Producto> TripleFilter(List<Producto> productos, bool valor)
         {
-            RefreshGrid(null);
+            return (from p in FilterCategoriaYTexto(productos)
+                    where p.Habilitado == valor
+                    select p).ToList();
+        }
+        public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
+        {
+            return (from p in FilterByText(productos, txtboxbuscar.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
+                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
+                    select p).ToList();
+        }
+        public List<Producto> FilterByCategoria(List<Producto> productos)
+        {
+            return (from p in productos
+                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
+                    select p).ToList();
+        }
+        private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool? valor)
+        {
+            return (from p in FilterByCategoria(productos)
+                    where p.Habilitado == valor
+                    select p).ToList();
+        }
+        public List<Producto> FilterByText(List<Producto> productos, string searchText)
+        {
+            return (from prod in productos
+                    where prod.Nombre.ToLower().Contains(searchText)
+                    select prod).ToList();
+        }
+        public List<Producto> FilterByTextHabilitado(List<Producto> productos, bool valor)
+        {
+            return (from p in FilterByText(productos, txtboxbuscar.Text.ToLower().Trim())
+                    where p.Habilitado == valor
+                    select p).ToList();
+        }
+        public static List<Producto> FilterHabilitados(List<Producto> productos, bool valor)
+        {
+            return (from prod in productos
+                    where prod.Habilitado == valor
+                    select prod).ToList();
         }
         private void sortingResult(string order)
         {
@@ -674,97 +708,7 @@ namespace WinForm
                     }
             }
         }
-        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
-            if (e.Button == MouseButtons.Right)
-            {
-                columnMenuStrip.Show(Cursor.Position);
-            }
-            else
-            {
-                switch (columnName)
-                {
-                    case "ColumnNombreProducto":
-                        {
-                            sortingResult("Nombre");
-                            break;
-                        }
-                    case "ColumnCategoria":
-                        {
-                            sortingResult("Categoria");
-                            break;
-                        }
-                    case "ColumnStock":
-                        {
-                            sortingResult("Stock");
-                            break;
-                        }
-                    case "ColumnHabilitado":
-                        {
-                            sortingResult("Habilitado");
-                            break;
-                        }
-                    case "ColumnCompras":
-                        {
-                            sortingResult("Compras");
-                            break;
-                        }
-                    case "ColumnVentas":
-                        {
-                            sortingResult("Ventas");
-                            break;
-                        }
-                }
-            }
-        }
-
-
-        #region FUNCIONES DE FILTRADO PARA NO REPETIR CODE
-        private List<Producto> TripleFilter(List<Producto> productos, bool valor)
-        {
-            return (from p in FilterCategoriaYTexto(productos)
-                    where p.Habilitado == valor
-                    select p).ToList();
-        }
-        public List<Producto> FilterCategoriaYTexto(List<Producto> productos)
-        {
-            return (from p in FilterByText(productos, txtboxbuscar.Text.ToLower().Trim())//Llama a medtodo de filtrado y pide lista filtrada con el texto del textbox
-                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
-                    select p).ToList();
-        }
-        public List<Producto> FilterByCategoria(List<Producto> productos)
-        {
-            return (from p in productos
-                    where p.CategoriaId == ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId
-                    select p).ToList();
-        }
-        private List<Producto> FilterByCategoriaHabilitado(List<Producto> productos, bool? valor)
-        {
-            return (from p in FilterByCategoria(productos)
-                    where p.Habilitado == valor
-                    select p).ToList();
-        }
-        public List<Producto> FilterByText(List<Producto> productos, string searchText)
-        {
-            return (from prod in productos
-                    where prod.Nombre.ToLower().Contains(searchText)
-                    select prod).ToList();
-        }
-        public List<Producto> FilterByTextHabilitado(List<Producto> productos, bool valor)
-        {
-            return (from p in FilterByText(productos, txtboxbuscar.Text.ToLower().Trim())
-                    where p.Habilitado == valor
-                    select p).ToList();
-        }
-        public static List<Producto> FilterHabilitados(List<Producto> productos, bool valor)
-        {
-            return (from prod in productos
-                    where prod.Habilitado == valor
-                    select prod).ToList();
-        }
         #endregion
-
         #region Codigo UI/UEX
         private void sidebartimer_Tick(object sender, EventArgs e)//Timer de animacion de menu
         {
@@ -863,94 +807,6 @@ namespace WinForm
             }
             Usertimer.Start();
         }
-        #region Codigo para mover la forma presionando donde sea
-        private void FormProducto_MouseDown(object sender, MouseEventArgs e)// al presionar en la forma
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
-        private void kryptonLabel2_MouseDown(object sender, MouseEventArgs e)//al presionar el text label
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-        #endregion
-        private void dataGridViewProducto_MouseDown(object sender, MouseEventArgs e)//Seleccionar un objeto al abrir el menu contextual
-        {
-            //if (dataGridViewProducto.SelectedColumns == null)
-            //{
-            if (e.Button == MouseButtons.Right)
-            {
-                var hti = dataGridViewProducto.HitTest(e.X, e.Y);
-                dataGridViewProducto.ClearSelection();
-                if (hti.RowIndex != -1)
-                {
-                    dataGridViewProducto.Rows[hti.RowIndex].Selected = true;
-                }
-            }
-            //}
-        }
-        private void nuevoProductoToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de agregar nuevo del menu contextual
-        {
-            btnNuevoProducto_Click(sender, e);
-        }
-
-        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de eliminar del menu contextual
-        {
-            BTNdelete_Click(sender, e);
-        }
-
-        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de modificar del menu contextual
-        {
-            btnModificar_Click(sender, e);
-        }
-
-        private void detallesToolStripMenuItem_Click(object sender, EventArgs e)//No implementado, codigo para mostrar mas detalles de un elemento seleccionado
-        {
-            var row = dataGridViewProducto.SelectedRows[0];
-
-            _productoSeleccionado = (Producto)row.DataBoundItem;
-
-            FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
-            form.ShowDialog();
-            
-            if(form.DialogResult == DialogResult.Yes)
-            {
-                form.Close();
-                ModificarUnProducto(_productoSeleccionado);
-
-            }
-            else if(form.DialogResult == DialogResult.No)
-            {
-                form.Close();
-                EliminarUnProducto(_productoSeleccionado);
-            }
-        }
-
-        private void refrescarToolStripMenuItem_Click(object sender, EventArgs e)//refrescar datagrid menu contexto
-        {
-            RefreshGrid(null);
-        }
-
-        private void ordenarToolStripMenuItem1_Click(object sender, EventArgs e)//No implementado codigo para combo box de seleccionar orden
-        {
-            //Este si podes hacer re bien juan
-        }
-        #endregion
-
         private void btnlogout_Click(object sender, EventArgs e)//boton de cerrar sesion
         {
             DialogResult operao = MessageBox.Show("Seguro que quiere cerrar sesión?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -986,6 +842,91 @@ namespace WinForm
             FormCambioContrasena LoggedChange = new FormCambioContrasena(_usuarioBusiness, _loggedUser);
             LoggedChange.ShowDialog();
         }
+        #endregion
+        #region Codigo para mover la forma presionando donde sea
+        private void FormProducto_MouseDown(object sender, MouseEventArgs e)// al presionar en la forma
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        private void kryptonLabel2_MouseDown(object sender, MouseEventArgs e)//al presionar el text label
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+        #endregion
+        #region Menu contextual
+        private void dataGridViewProducto_MouseDown(object sender, MouseEventArgs e)//Seleccionar un objeto al abrir el menu contextual
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hti = dataGridViewProducto.HitTest(e.X, e.Y);
+                dataGridViewProducto.ClearSelection();
+                if (hti.RowIndex != -1)
+                {
+                    dataGridViewProducto.Rows[hti.RowIndex].Selected = true;
+                }
+            }
+        }
+        private void nuevoProductoToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de agregar nuevo del menu contextual
+        {
+            btnNuevoProducto_Click(sender, e);
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de eliminar del menu contextual
+        {
+            BTNdelete_Click(sender, e);
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)//Opcion de modificar del menu contextual
+        {
+            btnModificar_Click(sender, e);
+        }
+
+        private void detallesToolStripMenuItem_Click(object sender, EventArgs e)//No implementado, codigo para mostrar mas detalles de un elemento seleccionado
+        {
+            var row = dataGridViewProducto.SelectedRows[0];
+
+            _productoSeleccionado = (Producto)row.DataBoundItem;
+
+            FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
+            form.ShowDialog();
+
+            if (form.DialogResult == DialogResult.Yes)
+            {
+                form.Close();
+                ModificarUnProducto(_productoSeleccionado);
+
+            }
+            else if (form.DialogResult == DialogResult.No)
+            {
+                form.Close();
+                EliminarUnProducto(_productoSeleccionado);
+            }
+        }
+
+        private void refrescarToolStripMenuItem_Click(object sender, EventArgs e)//refrescar datagrid menu contexto
+        {
+            RefreshGrid(null);
+        }
+
+        private void ordenarToolStripMenuItem1_Click(object sender, EventArgs e)//No implementado codigo para combo box de seleccionar orden
+        {
+            //Este si podes hacer re bien juan
+        }
         private void ordenarStripMenuItem3_Click(object sender, EventArgs e)//boton ordenar por nombre
         {
             sortingResult("Nombre");
@@ -1015,7 +956,50 @@ namespace WinForm
         {
             sortingResult("Habilitado");
         }
+        private void dataGridViewProducto_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = dataGridViewProducto.Columns[e.ColumnIndex].Name;
+            if (e.Button == MouseButtons.Right)
+            {
+                columnMenuStrip.Show(Cursor.Position);
+            }
+            else
+            {
+                switch (columnName)
+                {
+                    case "ColumnNombreProducto":
+                        {
+                            sortingResult("Nombre");
+                            break;
+                        }
+                    case "ColumnCategoria":
+                        {
+                            sortingResult("Categoria");
+                            break;
+                        }
+                    case "ColumnStock":
+                        {
+                            sortingResult("Stock");
+                            break;
+                        }
+                    case "ColumnHabilitado":
+                        {
+                            sortingResult("Habilitado");
+                            break;
+                        }
+                    case "ColumnCompras":
+                        {
+                            sortingResult("Compras");
+                            break;
+                        }
+                    case "ColumnVentas":
+                        {
+                            sortingResult("Ventas");
+                            break;
+                        }
+                }
+            }
+        }
+        #endregion
     }
 }
-
-

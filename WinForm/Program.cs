@@ -5,8 +5,8 @@ using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Data;
 using Proyecto.Core.Configurations;
-using System;
 using Krypton.Toolkit;
+using WinForm.CustomMessageBox;
 
 namespace WinForm
 {
@@ -28,7 +28,7 @@ namespace WinForm
                     bool exit = false;
                     while (!exit)
                     {
-                        DialogResult dialogResult = KryptonMessageBox.Show("Salir del programa?", "Confirmar", KryptonMessageBoxButtons.OKCancel, KryptonMessageBoxIcon.Question);
+                        DialogResult dialogResult = RJMessageBox.Show("Salir del programa?", "Confirmar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.OK)
                         {
                             Application.Exit();
@@ -52,9 +52,6 @@ namespace WinForm
                 ConnectionString = connectionString
             };
 
-
-
-
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             services.AddLogging(configure => configure.AddConsole())
                     .AddScoped<Config>(p =>
@@ -66,7 +63,7 @@ namespace WinForm
                     .AddScoped<IProductoBusiness, ProductoBusiness>()
                     .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
                     .AddTransient<FormProducto>()
-                    .AddTransient<Form2>()
+                    .AddTransient<FormAddModif>()
                     .AddTransient<FormLogin>();
 
         }

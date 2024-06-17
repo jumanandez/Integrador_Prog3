@@ -67,11 +67,10 @@ namespace WinForm
             txtContraseña.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
             txtContraseña.StateCommon.Border.Rounding = 16F;
             txtContraseña.StateCommon.Border.Width = 2;
-            txtContraseña.StateCommon.Content.Color1 = Color.Gray;
+            txtContraseña.StateCommon.Content.Color1 = Color.LightGray;
             txtContraseña.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContraseña.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtContraseña.TabIndex = 1;
-            txtContraseña.Click += textBox2_Click;
             txtContraseña.KeyPress += txtContraseña_KeyPress;
             // 
             // txtNombreUsuario
@@ -88,11 +87,10 @@ namespace WinForm
             txtNombreUsuario.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             txtNombreUsuario.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
             txtNombreUsuario.StateCommon.Border.Rounding = 18F;
-            txtNombreUsuario.StateCommon.Content.Color1 = Color.Gray;
+            txtNombreUsuario.StateCommon.Content.Color1 = Color.LightGray;
             txtNombreUsuario.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombreUsuario.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtNombreUsuario.TabIndex = 0;
-            txtNombreUsuario.Click += textBox1_Click;
             // 
             // lblcontrasenia
             // 
@@ -156,7 +154,6 @@ namespace WinForm
             // 
             // btnRegistrarse
             // 
-            btnRegistrarse.Enabled = false;
             btnRegistrarse.Location = new Point(116, 355);
             btnRegistrarse.Name = "btnRegistrarse";
             btnRegistrarse.OverrideDefault.Back.Color1 = Color.FromArgb(0, 0, 192);

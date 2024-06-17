@@ -2,7 +2,7 @@
 
 namespace WinForm
 {
-    partial class Form2
+    partial class FormAddModif
     {
         /// <summary>
         /// Required designer variable.
