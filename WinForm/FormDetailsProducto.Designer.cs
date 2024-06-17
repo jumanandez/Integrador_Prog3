@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec5 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec1 = new Krypton.Toolkit.IconSpec();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetailsProducto));
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec6 = new Krypton.Toolkit.IconSpec();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec2 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             crownDockPanel1 = new ReaLTaiizor.Docking.Crown.CrownDockPanel();
             lblCategoria = new Label();
             lblCompra = new Label();
@@ -95,12 +95,12 @@
             // 
             // datagridCompra
             // 
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Poppins SemiBold", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ButtonFace;
-            datagridCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle1.Font = new Font("Poppins SemiBold", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ButtonFace;
+            datagridCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             datagridCompra.BorderStyle = BorderStyle.None;
             datagridCompra.ColumnHeadersHeight = 20;
             datagridCompra.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha, ColumnCantidad });
@@ -117,6 +117,8 @@
             datagridCompra.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             datagridCompra.ShowCellToolTips = false;
             datagridCompra.Size = new Size(226, 147);
+            datagridCompra.StateCommon.Background.Color1 = Color.FromArgb(30, 30, 32);
+            datagridCompra.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundCustom1;
             datagridCompra.TabIndex = 7;
             datagridCompra.ToolTipShadow = false;
             datagridCompra.CellMouseEnter += datagridCompras_CellMouseEnter;
@@ -124,17 +126,17 @@
             // ColumnFecha
             // 
             ColumnFecha.DataPropertyName = "Fecha";
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle10.Font = new Font("Poppins SemiBold", 9F, FontStyle.Bold);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(35, 45, 150);
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.ButtonFace;
-            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle2.Font = new Font("Poppins SemiBold", 9F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ButtonFace;
+            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle2;
             ColumnFecha.HeaderText = "Fecha";
-            iconSpec5.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
-            ColumnFecha.IconSpecs.Add(iconSpec5);
+            iconSpec1.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
+            ColumnFecha.IconSpecs.Add(iconSpec1);
             ColumnFecha.Name = "ColumnFecha";
             ColumnFecha.ReadOnly = true;
             ColumnFecha.Resizable = DataGridViewTriState.True;
@@ -143,16 +145,16 @@
             // ColumnCantidad
             // 
             ColumnCantidad.DataPropertyName = "Cantidad";
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle11.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold, GraphicsUnit.World);
-            dataGridViewCellStyle11.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(35, 45, 150);
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.ButtonFace;
-            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle3.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold, GraphicsUnit.World);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ButtonFace;
+            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle3;
             ColumnCantidad.HeaderText = "Cantidad";
-            iconSpec6.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
-            ColumnCantidad.IconSpecs.Add(iconSpec6);
+            iconSpec2.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
+            ColumnCantidad.IconSpecs.Add(iconSpec2);
             ColumnCantidad.Name = "ColumnCantidad";
             ColumnCantidad.ReadOnly = true;
             ColumnCantidad.Width = 100;
@@ -352,12 +354,12 @@
             // 
             // datagridVentas
             // 
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle6.Font = new Font("Wingdings", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 2);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(35, 45, 150);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ButtonFace;
-            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle4.Font = new Font("Poppins SemiBold", 8.25F, FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(35, 45, 150);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ButtonFace;
+            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             datagridVentas.BorderStyle = BorderStyle.None;
             datagridVentas.ColumnHeadersHeight = 20;
             datagridVentas.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha2, ColumnCantidad2 });
@@ -374,6 +376,8 @@
             datagridVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             datagridVentas.ShowCellToolTips = false;
             datagridVentas.Size = new Size(226, 147);
+            datagridVentas.StateCommon.Background.Color1 = Color.FromArgb(30, 30, 32);
+            datagridVentas.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundCustom1;
             datagridVentas.TabIndex = 8;
             datagridVentas.ToolTipShadow = false;
             datagridVentas.CellContentClick += kryptonDataGridView2_CellContentClick;
@@ -382,9 +386,9 @@
             // ColumnFecha2
             // 
             ColumnFecha2.DataPropertyName = "Fecha";
-            dataGridViewCellStyle12.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold, GraphicsUnit.World, 0);
-            dataGridViewCellStyle12.ForeColor = SystemColors.ButtonFace;
-            ColumnFecha2.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold, GraphicsUnit.World, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ButtonFace;
+            ColumnFecha2.DefaultCellStyle = dataGridViewCellStyle5;
             ColumnFecha2.HeaderText = "Fecha";
             ColumnFecha2.Name = "ColumnFecha2";
             ColumnFecha2.ReadOnly = true;
@@ -608,7 +612,7 @@
             switchHabilitado.Location = new Point(103, 214);
             switchHabilitado.Name = "switchHabilitado";
             switchHabilitado.OffColor = Color.FromArgb(75, 75, 75);
-            switchHabilitado.OnColor = Color.FromArgb(70, 75, 195);
+            switchHabilitado.OnColor = Color.FromArgb(40, 40, 40);
             switchHabilitado.Size = new Size(61, 30);
             switchHabilitado.SwitchState = ReaLTaiizor.Controls.ParrotSwitch.State.On;
             switchHabilitado.SwitchStyle = ReaLTaiizor.Controls.ParrotSwitch.Style.Dark;

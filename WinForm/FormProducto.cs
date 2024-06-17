@@ -925,14 +925,15 @@ namespace WinForm
             _productoSeleccionado = (Producto)row.DataBoundItem;
 
             FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
+            form.ShowDialog();
             
-            if(form.ShowDialog() == DialogResult.Yes)
+            if(form.DialogResult == DialogResult.Yes)
             {
                 form.Close();
                 ModificarUnProducto(_productoSeleccionado);
 
             }
-            else if(form.ShowDialog() == DialogResult.No)
+            else if(form.DialogResult == DialogResult.No)
             {
                 form.Close();
                 EliminarUnProducto(_productoSeleccionado);
