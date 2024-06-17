@@ -5,15 +5,8 @@
 }
 
 <h1>Bienvenido a la sección de Ventas</h1>
-<hr>
-<h3>
-    @foreach (var v in Model.VentaLista)
-    {
-       @v.Usuario.Nombre
-    }
-</h3>
-<hr>
-<a class="btn btn-primary" asp-controller="Venta" asp-action="CategoriaSelect">Nueva Venta</a>
+
+<a class="btn btn-primary" asp-controller="Venta" asp-action="Create">Nueva Venta</a>
 
 
 <hr>

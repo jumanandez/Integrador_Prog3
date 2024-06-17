@@ -9,16 +9,36 @@
 <div class="row" style="margin-top:30px">
     <div class="col-sm-12">
 
-        <form asp-action="Create" asp-controller="Venta" method="post">      
-            
+        <form asp-action="Create" method="post">
+            <div>
+                <label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
+                <select asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
+                    <option value="">Seleccione una categoría</option>
+                    @foreach (var categoria in Model.CategoriaLista)
+                    {
+                        <option value="@categoria.CategoriaId">@categoria.Nombre</option>
+                    }
+                </select>
+            </div>
+
+            @if (Model.ProductoLista != null && Model.ProductoLista.Any())
+            {
+                <div>
+                    <label for="_Producto.ProductoId">Seleccione un Producto:</label>
+                    <select asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
+                        <option value="">Seleccione un producto</option>
+                        @foreach (var producto in Model.ProductoLista)
+                        {
+                            <option value="@producto.ProductoId">@producto.Nombre</option>
+                        }
+                    </select>
+                </div>
+            }
+
             <div class="mb-2">
-                <label class="form-label" asp-for="@Model.VentaLista.">Producto</label>
-                @Html.DropDownListFor(model => model._Producto.ProductoId, new SelectList(Model.ProductoLista, "ProductoId", "Nombre"), "Seleccione un producto", new { @class = "form-control form-control-sm" })
-            </div>           
-            
-           <div class="mb-2">
                 <label class="form-label" asp-for="@Model.VentaLista.">Cantidad</label>
-                <input class="form-control form-control-sm" asp-for="Cantidad" type="number" min="0" max="50000" />
+                <input class="form-control form-control-sm" asp-for="Cantidad" type="number" min="1" max="1000000" />
+                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
            </div>
 
             <button type="submit" class="btn btn-primary">Registrar Venta</button>            
