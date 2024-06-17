@@ -1,0 +1,34 @@
+﻿@model WebApp.Models.ViewModels.VentaVM
+@{
+    ViewData["Title"] = "Registrar Venta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Seleccione la Categoria</h1>
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+
+        <form asp-action="CategoriaSelect" asp-controller="Venta" method="post">
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="@Model.ProductoLista.">Producto</label>
+                @Html.DropDownListFor(model => model._Producto.CategoriaId, new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"), "Seleccione una categoria", new { @class = "form-control form-control-sm", id = "categoriaDropdown" })
+            </div>
+
+            <input type="hidden" id="categoriaSeleccionada" name="categoriaSeleccionada" />
+
+            <button type="submit" class="btn btn-primary">Continuar</button>
+
+
+        </form>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById('categoriaDropdown').addEventListener('change', function () {
+        var categoriaSeleccionada = this.value;
+        document.getElementById('categoriaSeleccionada').value = categoriaSeleccionada;
+    });
+</script>

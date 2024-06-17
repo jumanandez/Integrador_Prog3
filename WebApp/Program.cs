@@ -2,22 +2,26 @@ using Proyecto.Core.Entities;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Business;
+using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region INYECCION DE DEPENDENCIAS
 //Pueden usar el codigo a partir de aca en la WEB APP
-// utilizando "connection" como el nomnbre de la string de conexiÛn
-// sino le cambian, lo mismo nomas, mientras coincida con el que est· en su JSON
+// utilizando "connection" como el nomnbre de la string de conexi√≥n
+// sino le cambian, lo mismo nomas, mientras coincida con el que est√° en su JSON
 var connectionString = builder.Configuration.GetConnectionString("connection");
 
 //Se setea la connectionstring en nuestra clase de configuracion
-var config = new Proyecto.Core.Configurations.Config()
+var config = new Config()
 {
     ConnectionString = connectionString
 };
+
 
 
 
@@ -29,23 +33,28 @@ builder.Services.AddScoped<Config>(p =>
 });
 
 
-// COLOQUE ESTE BUSINESS DE EJEMPLO PARA PROBAR LA CONEXI”N, 
-// DESCONOZCO SI HABR¡ UNO POR CADA ENTIDAD, SUPONGO QUE SI
+// COLOQUE ESTE BUSINESS DE EJEMPLO PARA PROBAR LA CONEXI√ìN, 
+// DESCONOZCO SI HABR√Å UNO POR CADA ENTIDAD, SUPONGO QUE SI
 
-
-//se inyecta el Business que utiliza ProductController 
-builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
-//se inyecta el repository que utiliza el ProductoBusiness class
-builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<ICompraBusiness, CompraBusiness>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();	
+builder.Services.AddScoped<ICategoriaBusiness, CategoriaBusiness>();
 builder.Services.AddScoped<IVentaBusiness, VentaBusiness>();
-//Ademas el Repository necesita el Context el cual necesita una 
-//connectionString, que la tiene la Config class
+builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
+builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
+builder.Services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
+builder.Services.AddScoped<IntegradorProg3Context>();
 
 #endregion
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	.AddCookie(options =>
+	{
+		options.LoginPath = "/Account/Login";
+		options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+	});
 
 var app = builder.Build();
 
@@ -62,10 +71,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+	pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

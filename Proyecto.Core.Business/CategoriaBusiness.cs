@@ -13,21 +13,20 @@ namespace Proyecto.Core.Business
 {
 	public class CategoriaBusiness : ICategoriaBusiness
 	{
-		private readonly IProjectRepository _projetRepository;
-		public Config config = new();
-		public CategoriaBusiness()
-		{
-			config.ConnectionString = "Persist Security Info=True;Initial Catalog=IntegradorProg3;Data Source=.; Application Name=DemoApp; Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";
-			_projetRepository = new ProjectRepository(config);
-		}
-		public List<Categoria> GetAll()
-		{
-			return _projetRepository.GetCategorias();
-		}
+        private readonly IProjectRepository _projectRepository;
 
-		public bool Add(Categoria categoriaNueva)
-		{
-			return _projetRepository.AddCategoria(categoriaNueva);
-		}
+        public CategoriaBusiness(IProjectRepository projectRepository)
+        {
+            _projectRepository = projectRepository;
+        }
+        public List<Categoria> GetAll()
+        {
+          return _projectRepository.GetCategorias();
+        }
+
+        public bool Add(Categoria categoriaNueva)
+        {
+			    return _projectRepository.AddCategoria(categoriaNueva);
+        }
 	}
 }

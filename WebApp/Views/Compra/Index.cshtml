@@ -1,20 +1,48 @@
-﻿@model WebApp.Models.ViewModels.CompraVM
+﻿@using System.Security.Claims
+@model WebApp.Models.ViewModels.CompraVM
 @{
-    ViewData["Title"] = "Compra";
+    ViewData["Title"] = "Registrar Compra";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ESTA ES LA SECCION DE COMPRAS DE LA WEB</h1>
+<h1>Compras</h1>
 
-<ul>
 
-    @foreach (var v in Model.CompraLista)
+<hr>
+<a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
+
+<hr>
+
+ <table class="table table-hover">
+     <thead>
+         <tr>
+             <th>Producto</th>
+             <th>Fecha</th>
+             <th>Cantidad</th>
+         </tr>
+     </thead>
+     <tbody>
+        @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+        {
+            <tr>
+                <td>@c.Producto?.Nombre</td>
+                <td>@c.Fecha.ToShortDateString()</td>
+                <td>@c.Cantidad</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @if (Model.Paginado.PaginaActual > 1)
     {
-        <li>Usuario: @v.Usuario.Nombre</li>
-
-        <li>Item: @v.CompraId (@v.Producto.Nombre)</li>
-        <li>Fecha: @v.Fecha</li>
-        <li>Cantidad: @v.Cantidad</li>
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
     }
 
-</ul>
+    Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+
+    @if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
+    {
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
+    }
+</div>

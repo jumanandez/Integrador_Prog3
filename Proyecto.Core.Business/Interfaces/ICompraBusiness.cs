@@ -13,7 +13,12 @@ namespace Proyecto.Core.Business.Interfaces
 
         public void DeleteCompra(int id);
 
-        public List<Compra> GetCompras();
+        public List<Compra> GetCompras(int usuarioId);
+
+        public bool VerificarFecha(DateTime fecha);
+
+        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId);
+
 
     }
 }
