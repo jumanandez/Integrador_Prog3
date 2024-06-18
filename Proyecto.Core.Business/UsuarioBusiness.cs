@@ -42,7 +42,7 @@ namespace Proyecto.Core.Business
 
                 if (coincideConDB)
                 {
-                    usuarioAux.HashPassword = CryptoHelper.HashPassword(passwordNueva, usuarioAux.Salt);
+                    usuarioAux.HashPassword = CryptoHelper.HashPassword(passwordNueva, CryptoHelper.GenerateSalt());
 
                     return _projectRepository.ChangePass(usuarioAux);
                 }
