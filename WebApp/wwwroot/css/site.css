@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+body {
+    background-image: url('https://img.freepik.com/foto-gratis/trabajador-servicio-coche-musculoso-reparando-vehiculo_146671-19605.jpg');
+    background-color: #cccccc;
+}
