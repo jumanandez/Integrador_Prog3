@@ -79,7 +79,7 @@ namespace WinForm
 
         private void FormUserDetails_Activated(object sender, EventArgs e)
         {
-            cmbUsuarios.DataSource = _usuarioBusiness.GetAllUsuarios();
+            cmbUsuarios.DataSource = _usuarioBusiness.GetAllUsuarios().OrderByDescending(u => u.Venta).Count();
             cmbUsuarios.DisplayMember = "Nombre";
             VentasDataGridView.AutoGenerateColumns = false;
             dataGridViewCompras.AutoGenerateColumns = false;
