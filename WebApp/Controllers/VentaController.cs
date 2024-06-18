@@ -74,82 +74,60 @@ namespace WebApp.Controllers
 
             return View(ViewModel);
         }
+               
 
-
-        // GET: VentaController/CategoriaSelect
-        public ActionResult CategoriaSelect()
+        // GET: VentaController/CreateVenta
+        public ActionResult Create()
         {
-            
-            var CategoriaObj = new Models.ViewModels.VentaVM()
+            var ventaModel = new VentaVM
             {
-
-                CategoriaLista = _categoriaBusiness.GetAll(),  
-                
-            };
-
-            return View(CategoriaObj);
-        }
-
-        // POST: VentaController/CategoriaSelect
-        [HttpPost]
-        public ActionResult CategoriaSelect(VentaVM model)
-        {
-            try
-            {
-                var categoriaSeleccionada = model._Producto.CategoriaId;
-                return RedirectToAction(nameof(Create), new { categoriaSeleccionada });
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-        // GET: VentaController/Create
-        public ActionResult Create(int categoriaSeleccionada)
-        {
-
-            var productoCategoria = (from p in _productoBusiness.GetAll()
-                                    where p.CategoriaId == categoriaSeleccionada
-                                     select p).ToList();
-
-            var VentaObj = new Models.ViewModels.VentaVM()
-            {
-
-                ProductoLista = productoCategoria,                
                 CategoriaLista = _categoriaBusiness.GetAll(),
-
+                ProductoLista = new List<Producto>()
             };
 
-            return View(VentaObj);
+            return View(ventaModel);
         }
 
         // POST: VentaController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(VentaVM model, int usuarioId)
+        public ActionResult Create(VentaVM ventaModel)
         {
-            try
-            {
-                var usuario = _usuarioBusiness.ObtainUsuario("Administrador");
+            var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-                var nuevaVenta = new Venta
+            if (ventaModel.CategoriaSeleccionada != 0)
+            {
+                ventaModel.ProductoLista = _productoBusiness.GetAll()
+                    .Where(p => p.CategoriaId == ventaModel.CategoriaSeleccionada)
+                    .ToList();
+            }
+
+            if (ventaModel._Producto != null && ventaModel._Producto.ProductoId != 0 && ModelState.IsValid)
+            {
+
+                if (_productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId) < ventaModel.Cantidad)
                 {
-                    Fecha = DateTime.Now,
-                    ProductoId = model._Producto.ProductoId,
-                    Cantidad = model.Cantidad,
-                    UsuarioId = 4
-                };
+                    ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
+                }
 
-                _ventaBusiness.AddVenta(nuevaVenta);
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    var nuevaVenta = new Venta
+                    {
+                        Fecha = DateTime.Now,
+                        ProductoId = ventaModel._Producto.ProductoId,
+                        Cantidad = ventaModel.Cantidad,
+                        UsuarioId = userID
+                    };
 
+                    _ventaBusiness.AddVenta(nuevaVenta);
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            ventaModel.CategoriaLista = _categoriaBusiness.GetAll();
+            return View(ventaModel);
+
         }
 
         // GET: VentaController/Delete/5
