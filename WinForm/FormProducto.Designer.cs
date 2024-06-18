@@ -32,9 +32,9 @@ namespace WinForm
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             IconSpec iconSpec1 = new IconSpec();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProducto));
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             IconSpec iconSpec2 = new IconSpec();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProducto));
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             IconSpec iconSpec3 = new IconSpec();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
@@ -94,8 +94,9 @@ namespace WinForm
             sidebartimer = new System.Windows.Forms.Timer(components);
             logopictureBox = new PictureBox();
             superiorpanel = new Panel();
-            lblsysstock = new Label();
             controlBox1 = new ReaLTaiizor.Controls.ControlBox();
+            userHeader1 = new KryptonHeader();
+            lblsysstock = new Label();
             menupanel = new FlowLayoutPanel();
             panelfilter = new FlowLayoutPanel();
             btnfilters = new Button();
@@ -137,6 +138,7 @@ namespace WinForm
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
             dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
             dataGridViewProducto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewProducto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewProducto.BorderStyle = BorderStyle.None;
             dataGridViewProducto.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -148,6 +150,7 @@ namespace WinForm
             dataGridViewProducto.GridStyles.StyleDataCells = GridStyle.Custom1;
             dataGridViewProducto.GridStyles.StyleRow = GridStyle.Custom1;
             dataGridViewProducto.Location = new Point(3, 0);
+            dataGridViewProducto.MinimumSize = new Size(703, 356);
             dataGridViewProducto.Name = "dataGridViewProducto";
             dataGridViewProducto.Palette = kryptonCustomPaletteBase1;
             dataGridViewProducto.PaletteMode = PaletteMode.Custom;
@@ -168,7 +171,7 @@ namespace WinForm
             ColumnNombreProducto.DefaultCellStyle = dataGridViewCellStyle2;
             ColumnNombreProducto.HeaderText = "Nombre";
             iconSpec1.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec1.Icon = null;
+            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
             ColumnNombreProducto.IconSpecs.Add(iconSpec1);
             ColumnNombreProducto.Name = "ColumnNombreProducto";
             ColumnNombreProducto.ReadOnly = true;
@@ -648,9 +651,9 @@ namespace WinForm
             // 
             // BTNdelete
             // 
-            BTNdelete.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            BTNdelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             BTNdelete.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNdelete.Location = new Point(777, 581);
+            BTNdelete.Location = new Point(784, 581);
             BTNdelete.MaximumSize = new Size(95, 35);
             BTNdelete.MinimumSize = new Size(95, 35);
             BTNdelete.Name = "BTNdelete";
@@ -701,9 +704,9 @@ namespace WinForm
             // 
             // BTNmodif
             // 
-            BTNmodif.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            BTNmodif.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             BTNmodif.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNmodif.Location = new Point(670, 581);
+            BTNmodif.Location = new Point(677, 581);
             BTNmodif.MaximumSize = new Size(95, 35);
             BTNmodif.MinimumSize = new Size(95, 35);
             BTNmodif.Name = "BTNmodif";
@@ -754,9 +757,9 @@ namespace WinForm
             // 
             // btnNuevoProducto
             // 
-            btnNuevoProducto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnNuevoProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnNuevoProducto.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnNuevoProducto.Location = new Point(562, 581);
+            btnNuevoProducto.Location = new Point(569, 581);
             btnNuevoProducto.MaximumSize = new Size(95, 35);
             btnNuevoProducto.MinimumSize = new Size(95, 35);
             btnNuevoProducto.Name = "btnNuevoProducto";
@@ -808,15 +811,16 @@ namespace WinForm
             // 
             // txtboxbuscar
             // 
-            txtboxbuscar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtboxbuscar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtboxbuscar.CueHint.Color1 = Color.DarkGray;
             txtboxbuscar.CueHint.CueHintText = "Buscar";
             txtboxbuscar.CueHint.Hint = PaletteTextHint.ClearTypeGridFit;
             txtboxbuscar.CueHint.TextH = PaletteRelativeAlign.Near;
-            txtboxbuscar.Location = new Point(569, 171);
-            txtboxbuscar.MinimumSize = new Size(171, 23);
+            txtboxbuscar.Location = new Point(576, 171);
+            txtboxbuscar.MaximumSize = new Size(262, 33);
+            txtboxbuscar.MinimumSize = new Size(262, 33);
             txtboxbuscar.Name = "txtboxbuscar";
-            txtboxbuscar.Size = new Size(262, 31);
+            txtboxbuscar.Size = new Size(262, 33);
             txtboxbuscar.StateCommon.Back.Color1 = Color.FromArgb(48, 48, 56);
             txtboxbuscar.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             txtboxbuscar.StateCommon.Border.Color2 = Color.Gray;
@@ -824,7 +828,7 @@ namespace WinForm
             txtboxbuscar.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
             txtboxbuscar.StateCommon.Border.Rounding = 18F;
             txtboxbuscar.StateCommon.Content.Color1 = Color.Gray;
-            txtboxbuscar.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtboxbuscar.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 12.25F);
             txtboxbuscar.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtboxbuscar.TabIndex = 1;
             txtboxbuscar.TextChanged += textBox1_TextChanged;
@@ -909,9 +913,9 @@ namespace WinForm
             // 
             LblBienvenido.AutoSize = false;
             LblBienvenido.Font = new Font("Segoe UI", 20F);
-            LblBienvenido.Location = new Point(273, 63);
+            LblBienvenido.Location = new Point(139, 66);
             LblBienvenido.Name = "LblBienvenido";
-            LblBienvenido.Size = new Size(218, 88);
+            LblBienvenido.Size = new Size(253, 88);
             LblBienvenido.StateCommon.Draw = InheritBool.True;
             LblBienvenido.StateCommon.DrawFocus = InheritBool.False;
             LblBienvenido.StateCommon.LongText.Color1 = Color.FromArgb(0, 0, 64);
@@ -928,6 +932,7 @@ namespace WinForm
             LblBienvenido.TabIndex = 8;
             LblBienvenido.TabStop = false;
             LblBienvenido.Values.Text = "Bienvenido \r\n              Thomas";
+            LblBienvenido.Visible = false;
             // 
             // rdiobtnHabilitado
             // 
@@ -1016,8 +1021,11 @@ namespace WinForm
             // 
             // buscarPictureBox
             // 
+            buscarPictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buscarPictureBox.Image = Properties.Resources.mini_search;
-            buscarPictureBox.Location = new Point(837, 171);
+            buscarPictureBox.Location = new Point(844, 171);
+            buscarPictureBox.MaximumSize = new Size(30, 30);
+            buscarPictureBox.MinimumSize = new Size(30, 30);
             buscarPictureBox.Name = "buscarPictureBox";
             buscarPictureBox.Size = new Size(30, 30);
             buscarPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -1097,26 +1105,74 @@ namespace WinForm
             // logopictureBox
             // 
             logopictureBox.Image = Properties.Resources.logo;
-            logopictureBox.Location = new Point(627, 59);
+            logopictureBox.Location = new Point(646, 57);
             logopictureBox.Name = "logopictureBox";
             logopictureBox.Size = new Size(173, 110);
             logopictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
             logopictureBox.TabIndex = 31;
             logopictureBox.TabStop = false;
+            logopictureBox.Visible = false;
             // 
             // superiorpanel
             // 
             superiorpanel.BackColor = Color.FromArgb(56, 56, 68);
-            superiorpanel.Controls.Add(lblsysstock);
             superiorpanel.Controls.Add(controlBox1);
+            superiorpanel.Controls.Add(userHeader1);
+            superiorpanel.Controls.Add(lblsysstock);
             superiorpanel.Controls.Add(menubutton);
             superiorpanel.Dock = DockStyle.Top;
             superiorpanel.Location = new Point(0, 0);
             superiorpanel.Margin = new Padding(0);
             superiorpanel.Name = "superiorpanel";
-            superiorpanel.Size = new Size(917, 54);
+            superiorpanel.Size = new Size(924, 54);
             superiorpanel.TabIndex = 10;
             superiorpanel.MouseDown += FormProducto_MouseDown;
+            // 
+            // controlBox1
+            // 
+            controlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            controlBox1.BackColor = Color.FromArgb(56, 56, 64);
+            controlBox1.CloseHoverColor = Color.FromArgb(230, 17, 35);
+            controlBox1.DefaultLocation = false;
+            controlBox1.EnableHoverHighlight = true;
+            controlBox1.EnableMaximizeButton = false;
+            controlBox1.EnableMinimizeButton = true;
+            controlBox1.ForeColor = Color.FromArgb(155, 155, 155);
+            controlBox1.Location = new Point(822, 15);
+            controlBox1.MaximizeHoverColor = Color.FromArgb(74, 74, 74);
+            controlBox1.MinimizeHoverColor = Color.FromArgb(63, 63, 65);
+            controlBox1.Name = "controlBox1";
+            controlBox1.RightToLeft = RightToLeft.No;
+            controlBox1.Size = new Size(90, 25);
+            controlBox1.TabIndex = 13;
+            controlBox1.TabStop = false;
+            controlBox1.Text = "controlBox1";
+            // 
+            // userHeader1
+            // 
+            userHeader1.Dock = DockStyle.Right;
+            userHeader1.HeaderStyle = HeaderStyle.Secondary;
+            userHeader1.Location = new Point(675, 0);
+            userHeader1.Name = "userHeader1";
+            userHeader1.Size = new Size(249, 54);
+            userHeader1.StateCommon.Back.Color1 = Color.FromArgb(56, 56, 68);
+            userHeader1.StateCommon.Back.Color2 = Color.FromArgb(56, 56, 68);
+            userHeader1.StateCommon.Border.Color1 = Color.FromArgb(56, 56, 68);
+            userHeader1.StateCommon.Border.Color2 = Color.FromArgb(56, 56, 68);
+            userHeader1.StateCommon.Border.Draw = InheritBool.False;
+            userHeader1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
+            userHeader1.StateCommon.ButtonEdgeInset = 5;
+            userHeader1.StateCommon.Content.Padding = new Padding(-1, -1, 140, -1);
+            userHeader1.StateCommon.Content.ShortText.Color1 = Color.Silver;
+            userHeader1.StateCommon.Content.ShortText.Color2 = Color.Gainsboro;
+            userHeader1.StateCommon.Content.ShortText.ColorAngle = 75F;
+            userHeader1.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Rounded;
+            userHeader1.StateCommon.Content.ShortText.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            userHeader1.TabIndex = 1;
+            userHeader1.ToolTipValues.Description = "";
+            userHeader1.Values.Description = "";
+            userHeader1.Values.Heading = "placeholder";
+            userHeader1.Values.Image = Properties.Resources.account1;
             // 
             // lblsysstock
             // 
@@ -1130,33 +1186,14 @@ namespace WinForm
             lblsysstock.Text = "Sistema de Control de Stock";
             lblsysstock.MouseDown += FormProducto_MouseDown;
             // 
-            // controlBox1
-            // 
-            controlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            controlBox1.BackColor = Color.FromArgb(56, 56, 64);
-            controlBox1.CloseHoverColor = Color.FromArgb(230, 17, 35);
-            controlBox1.DefaultLocation = false;
-            controlBox1.EnableHoverHighlight = true;
-            controlBox1.EnableMaximizeButton = false;
-            controlBox1.EnableMinimizeButton = true;
-            controlBox1.ForeColor = Color.FromArgb(155, 155, 155);
-            controlBox1.Location = new Point(815, 15);
-            controlBox1.MaximizeHoverColor = Color.FromArgb(74, 74, 74);
-            controlBox1.MinimizeHoverColor = Color.FromArgb(63, 63, 65);
-            controlBox1.Name = "controlBox1";
-            controlBox1.RightToLeft = RightToLeft.No;
-            controlBox1.Size = new Size(90, 25);
-            controlBox1.TabIndex = 13;
-            controlBox1.TabStop = false;
-            controlBox1.Text = "controlBox1";
-            // 
             // menupanel
             // 
+            menupanel.Anchor = AnchorStyles.Top;
+            menupanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             menupanel.BackColor = Color.FromArgb(56, 56, 68);
             menupanel.Controls.Add(panelfilter);
             menupanel.Controls.Add(panelUsuario1);
             menupanel.Controls.Add(panellogout);
-            menupanel.Dock = DockStyle.Left;
             menupanel.Location = new Point(0, 54);
             menupanel.Margin = new Padding(0);
             menupanel.MaximumSize = new Size(221, 581);
@@ -1328,6 +1365,8 @@ namespace WinForm
             // datagridroudergropu
             // 
             datagridroudergropu.Alpha = 20;
+            datagridroudergropu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            datagridroudergropu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             datagridroudergropu.BackColor = Color.Transparent;
             datagridroudergropu.Background = true;
             datagridroudergropu.Background_WidthPen = 3F;
@@ -1345,7 +1384,7 @@ namespace WinForm
             datagridroudergropu.Lighting = false;
             datagridroudergropu.LinearGradient_Background = false;
             datagridroudergropu.LinearGradientPen = false;
-            datagridroudergropu.Location = new Point(160, 211);
+            datagridroudergropu.Location = new Point(167, 211);
             datagridroudergropu.Name = "datagridroudergropu";
             datagridroudergropu.PenWidth = 15;
             datagridroudergropu.RGB = false;
@@ -1364,7 +1403,7 @@ namespace WinForm
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(30, 30, 32);
-            ClientSize = new Size(917, 635);
+            ClientSize = new Size(924, 635);
             ControlBox = false;
             Controls.Add(menupanel);
             Controls.Add(btnPrimerCarga);
@@ -1467,12 +1506,6 @@ namespace WinForm
         private Panel panellogout;
         private ReaLTaiizor.Controls.CyberGroupBox datagridroudergropu;
         private ToolStripMenuItem refrescarToolStripMenuItem2;
-        private KryptonDataGridViewTextBoxColumn ColumnNombreProducto;
-        private KryptonDataGridViewTextBoxColumn ColumnCategoria;
-        private KryptonDataGridViewTextBoxColumn ColumnStock;
-        private KryptonDataGridViewTextBoxColumn ColumnCompras;
-        private KryptonDataGridViewTextBoxColumn ColumnVentas;
-        private KryptonDataGridViewCheckBoxColumn ColumnHabilitado;
         private ToolStripMenuItem ordenarStripMenuItem3;
         private ToolStripMenuItem categoriaToolStripMenuItem1;
         private ToolStripMenuItem stockToolStripMenuItem1;
@@ -1481,5 +1514,12 @@ namespace WinForm
         private ToolStripMenuItem nombreToolStripMenuItem;
         private ContextMenuStrip sortcontext;
         private ToolStripMenuItem habilitadoToolStripMenuItem1;
+        private KryptonDataGridViewTextBoxColumn ColumnNombreProducto;
+        private KryptonDataGridViewTextBoxColumn ColumnCategoria;
+        private KryptonDataGridViewTextBoxColumn ColumnStock;
+        private KryptonDataGridViewTextBoxColumn ColumnCompras;
+        private KryptonDataGridViewTextBoxColumn ColumnVentas;
+        private KryptonDataGridViewCheckBoxColumn ColumnHabilitado;
+        private KryptonHeader userHeader1;
     }
 }

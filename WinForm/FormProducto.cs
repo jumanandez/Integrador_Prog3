@@ -29,6 +29,7 @@ namespace WinForm
             _loggedUser = userLogged;
             InitializeComponent();
             LblBienvenido.Text = ($"Bienvenenido \n{_loggedUser.Nombre}");
+            userHeader1.Values.Heading = $"{_loggedUser.Nombre}";
             numericUpDown1.Value = 1;
         }
         //AL REACTIVARSE (CERRAR UNA SEGUNDA FORMS) SE ACTUALIZA SIN NECESIDAD DE REFRESH)
