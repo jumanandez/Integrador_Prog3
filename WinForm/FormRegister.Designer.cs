@@ -59,6 +59,7 @@ namespace WinForm
             txtContraseña.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic);
             txtContraseña.Location = new Point(74, 291);
             txtContraseña.Name = "txtContraseña";
+            txtContraseña.PasswordChar = 'ඞ';
             txtContraseña.Size = new Size(249, 31);
             txtContraseña.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             txtContraseña.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
@@ -91,6 +92,7 @@ namespace WinForm
             txtNombreUsuario.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombreUsuario.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtNombreUsuario.TabIndex = 0;
+            txtNombreUsuario.KeyPress += txtNombreUsuario_KeyPress;
             // 
             // lblcontrasenia
             // 
@@ -133,7 +135,7 @@ namespace WinForm
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 12;
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.Padding = new Padding(10, -1, -1, -1);
             kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Color1 = Color.LightGray;
-            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            kryptonCustomPaletteBase1.HeaderStyles.HeaderForm.StateCommon.Content.ShortText.Font = new Font("Poppins", 11.25F);
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.DrawFocus = InheritBool.False;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Color1 = Color.LightGray;
             kryptonCustomPaletteBase1.LabelStyles.LabelCustom1.StateCommon.ShortText.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);

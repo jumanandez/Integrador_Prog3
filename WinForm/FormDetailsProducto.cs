@@ -9,12 +9,14 @@ namespace WinForm
     {
         public Producto _producto;
         private readonly IProductoBusiness _productoBusiness;
-        public List<Producto> listaProductos;
+        public List<Producto> _listaProductos;
+        public int _currentPage = 1;
         public FormDetailsProducto(Producto producto, IProductoBusiness productoBusiness)
         {
             _productoBusiness = productoBusiness;
             _producto = producto;
-            listaProductos = _productoBusiness.GetAll();
+            _listaProductos = _productoBusiness.GetAll();
+            _currentPage = _listaProductos.FindIndex(p=> p.ProductoId == _producto.ProductoId) + 1;
             InitializeComponent();
             lblcustomcategoria.Text = _producto.Categoria.Nombre;
             datagridVentas.AutoGenerateColumns = false;
@@ -57,7 +59,7 @@ namespace WinForm
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            var anteriorProducto = Paginado(-2);
+            var anteriorProducto = Paginado(_currentPage - 1);
 
             if (anteriorProducto != null)
             {
@@ -68,7 +70,7 @@ namespace WinForm
         }
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            var siguienteProducto = Paginado(0);
+            var siguienteProducto = Paginado(_currentPage + 1);
 
             if (siguienteProducto != null)
             {
@@ -78,12 +80,16 @@ namespace WinForm
             }
 
         }
-        private Producto? Paginado(int valor)
+        private Producto? Paginado(int pagina)
         {
-            int pagina = _producto.ProductoId + valor;
+            if (pagina < 1) return null;
 
             var anteriorProducto = _productoBusiness.GetProductosPaginados(pagina, 1).
                             Items.FirstOrDefault();
+            if (anteriorProducto != null)
+            {
+                _currentPage = pagina; // Update the current page only if a product is found
+            }
             return anteriorProducto;
         }
         private void datagridCompra_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)

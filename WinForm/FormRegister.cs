@@ -40,9 +40,33 @@ namespace WinForm
         }
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Space)
+            if (e.KeyChar == (char)Keys.Enter && txtContraseña.Text != "".Trim())
             {
-                e.Handled = true;
+                this.AcceptButton = btnRegistrarse;
+                Point screenCoordinates = btnRegistrarse.PointToScreen(Point.Empty);
+
+                Cursor.Position = new Point(screenCoordinates.X + btnRegistrarse.Width / 2, screenCoordinates.Y + btnRegistrarse.Height / 2);
+                if (e.KeyChar == (char)Keys.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtNombreUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+                if (txtContraseña.Text == "".Trim())
+                {
+                    txtContraseña.Focus();
+                    txtContraseña.Clear();
+                }
+                else
+                {
+                    btnRegistrarse_Click(this, new EventArgs());
+                }
             }
         }
     }

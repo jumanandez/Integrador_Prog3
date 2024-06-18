@@ -131,13 +131,13 @@ namespace WinForm
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
-                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
                         productosesion.ShowDialog();
                     }
                 }
+                DialogResult = DialogResult.OK;
             }
         }
 

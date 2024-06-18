@@ -809,7 +809,7 @@ namespace WinForm
         }
         private void btnlogout_Click(object sender, EventArgs e)//boton de cerrar sesion
         {
-            DialogResult operao = MessageBox.Show("Seguro que quiere cerrar sesión?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult operao = RJMessageBox.Show("Seguro que quiere cerrar sesión?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (operao == DialogResult.Yes)
             {
                 DialogResult = DialogResult.OK;
