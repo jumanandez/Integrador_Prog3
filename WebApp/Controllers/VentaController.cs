@@ -148,9 +148,9 @@ namespace WebApp.Controllers
 
             var cantidadAnterior = venta.Cantidad;
 
-            var stockActual = _productoBusiness.GetStock(userID, productoId);
-
             var diferenciaCantidad = (int)ventaModel.Cantidad - cantidadAnterior;
+
+            var stockActual = _productoBusiness.GetStock(userID, productoId);
 
             if (diferenciaCantidad <= 0 || stockActual >= diferenciaCantidad)
             {
