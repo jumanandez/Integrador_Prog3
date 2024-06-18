@@ -115,6 +115,18 @@ namespace Proyecto.Core.Data
             }
         }
 
+        public List<string> GetAllNames()
+        {
+            var productos = new List<Producto>();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                List<string> names = dbcontext.Productos
+                                                        .Select(p => p.Nombre)
+                                                        .ToList();
+                return names;
+            }
+        }
+
         #endregion
 
         #region Region Compras
@@ -237,11 +249,11 @@ namespace Proyecto.Core.Data
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
 
-                ventas = (from v in dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario)
-                          where v.UsuarioId == userId
-                          select v).ToList();
-
-                //ventas = dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario).ToList();
+                ventas = dbcontext.Ventas.Where(v => v.UsuarioId == userId)
+                                           .Include(v => v.Producto)
+                                           .Include(v => v.Usuario)
+                                           .Where(v => v.Producto.Habilitado == true)
+                                           .OrderByDescending(v => v.Fecha).ToList();
             }
             return ventas;
         }
@@ -266,17 +278,26 @@ namespace Proyecto.Core.Data
             }
         }
 
-        public List<string> GetAllNames()
+        public Venta GetVentaById(int id)
         {
-            var productos = new List<Producto>();
+            var venta = new Venta();
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                List<string> names = dbcontext.Productos
-                                                        .Select(p => p.Nombre)
-                                                        .ToList();
-                return names;
+                venta = dbcontext.Ventas.Find(id);
+            }
+
+            return venta;
+        }
+        public void UpdateVenta(Venta venta)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Update(venta);
+                dbcontext.SaveChanges();
+
             }
         }
+
         #endregion
 
         #region Region Categoria

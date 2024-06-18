@@ -9,32 +9,40 @@
 <div class="row" style="margin-top:30px">
     <div class="col-sm-12">
 
-        <form asp-action="Create" method="post">
-            <div>
-                <label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
-                <select asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
-                    <option value="">Seleccione una categoría</option>
-                    @foreach (var categoria in Model.CategoriaLista)
-                    {
-                        <option value="@categoria.CategoriaId">@categoria.Nombre</option>
-                    }
-                </select>
-            </div>
-
-            @if (Model.ProductoLista != null && Model.ProductoLista.Any())
+        <form asp-action="@(Model.VentaId == 0 ? "Create" : "Edit")" asp-controller="Venta" method="post">
+            <input type="hidden" asp-for="VentaId" />
+            <input type="hidden" asp-for="ProductoId" />
+            
+            @if (Model.VentaId == 0)
             {
                 <div>
-                    <label for="_Producto.ProductoId">Seleccione un Producto:</label>
-                    <select asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
-                        <option value="">Seleccione un producto</option>
-                        @foreach (var producto in Model.ProductoLista)
+                    <label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
+                    <select asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
+                        <option value="">Seleccione una categoría</option>
+                        @foreach (var categoria in Model.CategoriaLista)
                         {
-                            <option value="@producto.ProductoId">@producto.Nombre</option>
+                            <option value="@categoria.CategoriaId">@categoria.Nombre</option>
                         }
                     </select>
                 </div>
-            }
 
+                @if (Model.ProductoLista != null && Model.ProductoLista.Any())
+                {
+                    <div>
+                        <label for="_Producto.ProductoId">Seleccione un Producto:</label>
+                        <select asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
+                            <option value="">Seleccione un producto</option>
+                            @foreach (var producto in Model.ProductoLista)
+                            {
+                                <option value="@producto.ProductoId">@producto.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                }
+
+            }
+                       
+            
             <div class="mb-2">
                 <label class="form-label" asp-for="@Model.VentaLista.">Cantidad</label>
                 <input class="form-control form-control-sm" asp-for="Cantidad" type="number" min="1" max="1000000" />
