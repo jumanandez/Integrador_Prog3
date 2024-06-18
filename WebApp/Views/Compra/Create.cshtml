@@ -10,6 +10,9 @@
 <div class="row" style="margin-top:30px">
     <div class="col-sm-12">
 
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-controller="Compra">Volver</a>
+        <hr />
+
         <form asp-action="@(Model.CompraId == 0 ? "Create" : "Edit")" asp-controller="Compra" method="post">
             <input type="hidden" asp-for="CompraId" />
 

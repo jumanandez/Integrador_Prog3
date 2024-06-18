@@ -182,7 +182,51 @@ namespace Proyecto.Core.Data
             return compra;
         }
 
-       
+        public List<Compra> FiltrarCompraFecha(string search)
+        {
+            var compras = new List<Compra>();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                compras = (from c in dbcontext.Compras
+                          where c.Fecha == DateTime.Parse(search)
+                          select c)
+                          .Include(c => c.Producto).ToList();
+            }
+            return compras;
+        }
+
+        public List<Compra> FiltrarCompraNombre(string search)
+        {
+            var compras = new List<Compra>();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                compras = (from c in dbcontext.Compras
+                           where c.Producto.Nombre.Equals(search)
+                           select c)
+                           .Include(c => c.Producto).ToList();
+            }
+            return compras;
+        }
+
+        public List<Compra> FiltrarCompraMasComprado()
+        {
+            var compras = new List<Compra>();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                compras = dbcontext.Compras
+                           .Include(c => c.Producto)
+                           .ToList()  // Ejecuta la consulta y trae los datos en memoria
+                           .GroupBy(c => c.ProductoId)
+                           .OrderByDescending(g => g.Sum(c => c.Cantidad))
+                           .SelectMany(g => g)
+                           .ToList();
+            }
+            return compras;
+        }
+
+
+
+
         #endregion
 
         #region Region Ventas

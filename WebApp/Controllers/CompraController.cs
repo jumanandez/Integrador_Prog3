@@ -36,7 +36,7 @@ namespace WebApp.Controllers
 
             var viewModel = new CompraVM
             {
-                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId)
+                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, null)
             };
 
             return View(viewModel);
@@ -65,30 +65,38 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CompraVM compraModel)
         {
-            if (ModelState.IsValid)
+            
+            if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
             {
-                if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
-                {
-                    ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
-                }
-
-                if (ModelState.IsValid)
-                {
-                    var compra = new Compra
-                    {
-                        ProductoId = (int)compraModel.ProductoId,
-                        Fecha = compraModel.FechaCompra.GetValueOrDefault(),
-                        Cantidad = (int)compraModel.ProductoCantidad,
-                        UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
-
-                    };
-
-                    _compraBusiness.AddCompra(compra);
-
-                    return RedirectToAction("Index");
-                }
+                ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
             }
 
+            if(compraModel.ProductoCantidad == null)
+            {
+                ModelState.AddModelError("ProductoCantidad", "Debe comprar al menos 1 item.");
+            }
+
+            if (compraModel.ProductoId == null)
+            {
+                ModelState.AddModelError("ProductoId", "Debe seleccionar un producto para realizar la compra.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var compra = new Compra
+                {
+                    ProductoId = (int)compraModel.ProductoId,
+                    Fecha = compraModel.FechaCompra.GetValueOrDefault(),
+                    Cantidad = (int)compraModel.ProductoCantidad,
+                    UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)      
+                };
+
+                _compraBusiness.AddCompra(compra);
+
+                return RedirectToAction("Index");
+
+            }
+            
             compraModel.CategoriaLista = _categoriaBusiness.GetAll();
             compraModel.CompraLista = _compraBusiness.GetCompras(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
             return View(compraModel);
@@ -154,6 +162,21 @@ namespace WebApp.Controllers
         {
             _compraBusiness.DeleteCompra(compraId);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Filter(int selectOption, string search, int pagina = 1, int itemsPorPagina = 8)
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption);
+
+            var oCompraVM = new CompraVM()
+            {
+                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, comprasFiltradas)
+            };
+
+            return View("Index", oCompraVM);
         }
     }
 }

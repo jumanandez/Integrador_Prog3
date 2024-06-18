@@ -49,18 +49,20 @@ namespace Proyecto.Core.Business
             return false;
         }
 
-        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId)
+        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId, List<Compra>? compras)
         {
-            var compras = _projectRepository.GetCompras(usuarioId)
+            List<Compra> comprasSelect = compras == null ? _projectRepository.GetCompras(usuarioId) : compras;
+
+            var comprasPaginada = comprasSelect
                 .Skip((pagina - 1) * itemsPorPagina)
                 .Take(itemsPorPagina)
                 .ToList();
 
-            var totalCompras = _projectRepository.GetCompras(usuarioId).Count();
+            var totalCompras = comprasSelect.Count();
 
             return new Paginado<Compra>
             {
-                Items = compras,
+                Items = comprasPaginada,
                 PaginaActual = pagina,
                 ItemsPorPagina = itemsPorPagina,
                 TotalPaginas = (int)Math.Ceiling(totalCompras / (double)itemsPorPagina)
@@ -77,6 +79,25 @@ namespace Proyecto.Core.Business
             _projectRepository.UpdateCompra(compra);
         }
 
+        public List<Compra> OptionSelectFilter(string search, int selectOption)
+        {
+            var comprasFiltradas = new List<Compra>();
+
+            if (selectOption == 1)
+            {
+                comprasFiltradas = _projectRepository.FiltrarCompraFecha(search);
+            }
+            else if (selectOption == 2)
+            {
+                comprasFiltradas = _projectRepository.FiltrarCompraNombre(search);
+            }
+            else
+            {
+                comprasFiltradas = _projectRepository.FiltrarCompraMasComprado();
+            }
+
+            return comprasFiltradas;
+        }
 
     }
 }

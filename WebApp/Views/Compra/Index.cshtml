@@ -9,8 +9,22 @@
 
 <hr>
 <a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
-
 <hr>
+
+<form class="d-flex" asp-action="Filter" asp-controller="Compra" method="get">
+
+    <select class="form-select-sm m-1" name="selectOption" id="filterOption" onchange="updateInputType()">
+        <option value="1">Fecha</option>
+        <option value="2">Nombre</option>
+        <option value="3">Mas comprados</option>
+    </select>
+
+    <div style="weight:300px" class="m-1">
+        <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
+    </div>
+       <button class="btn btn-outline-primary m-1" type="submit">Buscar</button>
+   
+</form>
 
 <table class="table table-hover">
     <thead>
@@ -61,5 +75,28 @@
         function confirmDelete() {
             return confirm('¿Está seguro de que desea eliminar este producto?');
         }
+        
+        function updateInputType() {
+            var filterOption = document.getElementById('filterOption').value;
+            var searchInput = document.getElementById('searchInput');
+
+            switch (filterOption) {
+                case '1':
+                    searchInput.type = 'date';
+                    break;
+                case '2':
+                    searchInput.type = 'text';
+                    break;
+                case '3':
+                    searchInput.type = 'hidden';
+                    break;
+                default:
+                    searchInput.type = 'text';
+            }
+        }
+
+        // Initial call to set the input type based on the default selected option
+        updateInputType();
+   
     </script>
 }
