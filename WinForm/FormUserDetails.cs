@@ -1,35 +1,19 @@
 ﻿using Proyecto.Core.Entities;
 using System.Data;
 using Krypton.Toolkit;
+using Proyecto.Core.Business.Interfaces;
 
 namespace WinForm
 {
     public partial class FormUserDetails : KryptonForm
     {
-        private readonly Usuario _loggedUser;
+        private readonly IUsuarioBusiness _usuarioBusiness;
         bool comprascollapsed = true;
         bool ventascollapsed = true;
-        public FormUserDetails(Usuario loggerUser)
+        public FormUserDetails(IUsuarioBusiness usuarioBusiness)
         {
+            _usuarioBusiness = usuarioBusiness;
             InitializeComponent();
-            _loggedUser = loggerUser;
-            lblNombreProducto.Text = _loggedUser.Nombre;
-
-            var compralist = from compra in _loggedUser.Compras
-                             select compra;
-
-            var ventalist = from venta in _loggedUser.Venta
-                            select venta;
-
-
-            foreach (var user in compralist)
-            {
-                dataGridViewCompras.Rows.Add(user.Producto.Nombre, user.Cantidad, user.Fecha);
-            }
-            foreach (var user in ventalist)
-            {
-                VentasDataGridView.Rows.Add(user.Producto.Nombre, user.Cantidad, user.Fecha);
-            }
         }
 
         private void comprastimer_Tick(object sender, EventArgs e)
@@ -91,6 +75,40 @@ namespace WinForm
         private void btnlogout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormUserDetails_Activated(object sender, EventArgs e)
+        {
+            cmbUsuarios.DataSource = _usuarioBusiness.GetAllUsuarios();
+            cmbUsuarios.DisplayMember = "Nombre";
+            VentasDataGridView.AutoGenerateColumns = false;
+            dataGridViewCompras.AutoGenerateColumns = false;
+        }
+
+        private void cmbUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var UserDetails = (Usuario)cmbUsuarios.SelectedItem;
+
+            lblNombreProducto.Text = UserDetails.Nombre;
+
+            var compralist = from compra in UserDetails.Compras
+                             select compra;
+
+            var ventalist = from venta in UserDetails.Venta
+                            select venta;
+
+            dataGridViewCompras.Rows.Clear();
+            VentasDataGridView.Rows.Clear();
+
+            foreach (var compra in compralist)
+            {
+                dataGridViewCompras.Rows.Add(compra.Producto.Nombre, compra.Cantidad, compra.Fecha);
+            }
+            
+            foreach (var venta in ventalist)
+            {
+                VentasDataGridView.Rows.Add(venta.Producto.Nombre, venta.Cantidad, venta.Fecha);
+            }
         }
     }
 }

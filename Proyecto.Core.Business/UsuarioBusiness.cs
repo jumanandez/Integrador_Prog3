@@ -77,5 +77,10 @@ namespace Proyecto.Core.Business
             }
 		}
 
-	}
+        public List<Usuario> GetAllUsuarios()
+        {
+            return _projectRepository.GetAllUsuarios();
+        }
+
+    }
 }

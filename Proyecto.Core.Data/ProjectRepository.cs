@@ -330,6 +330,24 @@ namespace Proyecto.Core.Data
             }
             return true;
         }
-		#endregion
-	}
+        public List<Usuario> GetAllUsuarios()
+        {
+            try
+            {
+                using (var _dbContext = new IntegradorProg3Context(_config))
+                {
+                    return _dbContext.Usuarios.Include(u => u.Compras).
+                                               ThenInclude(c => c.Producto).
+                                               Include(u => u.Venta).
+                                               ThenInclude(v => v.Producto).ToList();
+                }
+            }
+            catch 
+            {
+                return new List<Usuario>();//esto na que ve pero le dejo el cuerpo de try catch ya
+            }
+           
+        }
+        #endregion
+    }
 }
