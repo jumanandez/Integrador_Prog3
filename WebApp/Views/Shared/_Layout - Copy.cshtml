@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@* ESTE ES EL LAYOUT DE HOME *@
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WeEEEB MERSHCCC</title>
+    <title>@ViewData["Title"] - Sistema de control de stock</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
@@ -28,8 +29,8 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Acerca de<span style="padding-left: 10px;"><i class="fa-solid fa-globe"></i></span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="margin-left 6%" asp-area="" asp-controller="Home" asp-action="SignOut">Cerrar Sesión<span style="padding-left: 10px;"><i class="fa-solid fa-arrow-right-from-bracket"></i></span></a>
+                        <li  class="nav-item">
+                            <a class="nav-link nav-link-cerrar" style="margin-left 6%" asp-area="" asp-controller="Home" asp-action="SignOut">Cerrar Sesión<span style="padding-left: 10px;"><i class="fa-solid fa-arrow-right-from-bracket"></i></span></a>
                         </li>
                     </ul>
                 </div>
