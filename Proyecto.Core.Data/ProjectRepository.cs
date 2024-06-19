@@ -72,6 +72,24 @@ namespace Proyecto.Core.Data
             return stock;
         }
 
+        public int GetStock(int productoId)
+        {
+            int stock = 0;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var compras = (from c in dbcontext.Compras
+                               where c.ProductoId == productoId
+                               select c.Cantidad).Sum();
+
+                int ventas = (from v in dbcontext.Ventas
+                              where v.ProductoId == productoId
+                              select v.Cantidad).Sum();
+
+                stock = compras - ventas;
+            }
+            return stock;
+        }
+
         public List<Producto> GetProductosByCategoria(int categoriaId)
         {
             var productos = new List<Producto>();
@@ -388,6 +406,8 @@ namespace Proyecto.Core.Data
             }
             return true;
         }
-		#endregion
-	}
+
+      
+        #endregion
+    }
 }

@@ -57,6 +57,11 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetStock(usuarioId, productoId);
 		}
 
+		public int GetStock(int productoId)
+		{
+			return _projectRepository.GetStock(productoId);
+		}
+
 		public List<Producto> GetProductosByCategoria(int categoriaId)
 		{
 			return _projectRepository.GetProductosByCategoria(categoriaId);

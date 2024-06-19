@@ -102,6 +102,7 @@ namespace WebApp.Controllers
             return View(compraModel);
         }
 
+
         public IActionResult Edit(int compraId)
         {
             var compra = _compraBusiness.GetCompraById(compraId);
@@ -116,8 +117,8 @@ namespace WebApp.Controllers
                 ProductoId = compra.ProductoId,
                 ProductoCantidad = compra.Cantidad,
                 FechaCompra = compra.Fecha,
-                CategoriaId = compra.Producto?.CategoriaId, 
-                                                                 
+                CategoriaId = compra.Producto?.CategoriaId,
+
             };
 
             return View("Create", viewModel);
