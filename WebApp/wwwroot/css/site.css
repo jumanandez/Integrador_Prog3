@@ -21,8 +21,8 @@ body {
 }
 
 .bg-image {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     position:absolute;
     top: 0;
@@ -103,15 +103,33 @@ body {
 }
 
 .btn {
-    border-radius: var(--bs-btn-border-radius);
-  
+    border-radius: 100px;
+}
+
+/*Color cambiado*/
+.btn-secondary{
+    --bs-btn-color: #eeeeee;
+    --bs-btn-bg: #464362;
+    --bs-btn-border-color: #323A9E;
+    --bs-btn-hover-color: #FFFFFF;
+    --bs-btn-hover-bg: #555ADC;
+    --bs-btn-hover-border-color: #4B5FE1;
+    --bs-btn-focus-shadow-rgb: 6, 2, 112;
+    --bs-btn-active-color: #FFFFFF;
+    --bs-btn-active-bg: #2341B9;
+    --bs-btn-active-border-color: #0F37A5;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #2341B9;
+    --bs-btn-disabled-border-color: #2341B9;
+}
+
+.px-4.py-3.my-1.text-center {
+    cursor: default; /* Cambia el cursor a una mano */
 }
 
 .nav-link {
     position: relative;
-}
-
-.nav-link:hover{
 }
 
 
@@ -126,9 +144,13 @@ body {
     bottom: 0;
     left: 0;
 }
+
+
 .nav-link:hover::after {
     opacity: 1;
 }
+
+
 .form-control {
     display: block;
     width: 100%;
