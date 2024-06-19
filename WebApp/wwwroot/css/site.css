@@ -61,9 +61,11 @@ body {
     --bs-btn-disabled-border-color: #000040;
 }
 
-[data-bs-theme=dark] .btn-primary {
-    background-color: #3C41BE;
-    --bs-btn-hover-bg: #3C41BE
+[data-bs-theme=dark]{
+    --bs-link-color: #000275;
+    --bs-link-hover-color: #141677;
+    --bs-link-color-rgb: 30, 45, 175;
+    --bs-link-hover-color-rgb: 40, 60, 225;
 }
 
 .btn-outline-primary {
