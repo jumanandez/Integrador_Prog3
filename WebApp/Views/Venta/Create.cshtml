@@ -3,7 +3,7 @@
     ViewData["Title"] = "Registrar Venta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="row" style="margin-top:30px">
 <h1>Registrar Venta</h1>
 
 <div class="row" style="margin-top:30px">
@@ -41,10 +41,11 @@
                 @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
            </div>
 
-            <button type="submit" class="btn btn-primary">Registrar Venta</button>            
+                <button type="submit" class="btn btn-principe">Registrar Venta</button>
 
 
-        </form>
+            </form>
 
     </div>
+</div>
 </div>
