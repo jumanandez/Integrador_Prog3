@@ -10,7 +10,12 @@
 <hr>
 <a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
 <hr>
-
+@if (ViewBag.SearchNotFound != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.SearchNotFound
+    </div>
+}
 <form class="d-flex" asp-action="Filter" asp-controller="Compra" method="get">
 
     <select class="form-select-sm m-1" name="selectOption" id="filterOption" onchange="updateInputType()">
@@ -22,7 +27,8 @@
     <div style="weight:300px" class="m-1">
         <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
     </div>
-       <button class="btn btn-outline-primary m-1" type="submit">Buscar</button>
+    
+    <button class="btn btn-outline-primary m-1" type="submit">Buscar</button>
    
 </form>
 
