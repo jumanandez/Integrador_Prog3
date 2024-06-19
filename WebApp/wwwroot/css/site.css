@@ -21,14 +21,23 @@ body {
 }
 
 .bg-image {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     position:absolute;
     top: 0;
     left: 0;
     z-index: -1;
     filter : brightness(0.4);
+}
+.bg-image1 {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 .logo-image {
     height: 180px;
@@ -103,7 +112,7 @@ body {
 }
 
 .btn {
-    border-radius: var(--bs-btn-border-radius);
+    border-radius: 25px;
   
 }
 
