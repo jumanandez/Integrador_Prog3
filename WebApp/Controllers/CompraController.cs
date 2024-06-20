@@ -170,14 +170,12 @@ namespace WebApp.Controllers
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption);
-
-            var oCompraVM = new CompraVM()
-            {
-                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, comprasFiltradas)
-            };
-
-            return View("Index", oCompraVM);
+                var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId);
+                var oCompraVM = new CompraVM()
+                {
+                    Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, comprasFiltradas)
+                };
+                return View("Index", oCompraVM);
         }
     }
 }

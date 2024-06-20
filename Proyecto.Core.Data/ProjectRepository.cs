@@ -5,6 +5,7 @@ using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -238,18 +239,29 @@ namespace Proyecto.Core.Data
             return compras;
         }
 
-        public List<Compra> FiltrarCompraMasComprado()
+        public List<Compra> FiltrarCompraMasComprado(int usuarioId)
         {
             var compras = new List<Compra>();
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                compras = dbcontext.Compras
-                           .Include(c => c.Producto)
-                           .ToList()  // Ejecuta la consulta y trae los datos en memoria
-                           .GroupBy(c => c.ProductoId)
-                           .OrderByDescending(g => g.Sum(c => c.Cantidad))
-                           .SelectMany(g => g)
-                           .ToList();
+                //compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
+                //                           .Include(c => c.Producto)
+                //                           .Where(c => c.Producto.Habilitado == true).ToList();
+                compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
+                                           .Include(c => c.Producto)
+                                           .Where(c => c.Producto.Habilitado == true)
+                                           .ToList()
+                                           .GroupBy(c => c.ProductoId)
+                                           .Select(g => new Compra
+                                           {
+                                               ProductoId = g.Key,
+                                               Producto = g.First().Producto, // Assuming all products in the group are the same
+                                               UsuarioId = g.First().UsuarioId, // Assuming all UsuarioId in the group are the same
+                                               Cantidad = g.Sum(c => c.Cantidad),
+                                           })
+                                           .OrderByDescending(c => c.Cantidad)
+                                           .ToList();
+
             }
             return compras;
         }
