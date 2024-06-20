@@ -109,6 +109,8 @@ namespace WinForm
             Usertimer = new System.Windows.Forms.Timer(components);
             filtertimer = new System.Windows.Forms.Timer(components);
             datagridroudergropu = new ReaLTaiizor.Controls.CyberGroupBox();
+            pictureBox1 = new PictureBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
             contextMenuRow.SuspendLayout();
             sortcontext.SuspendLayout();
@@ -126,6 +128,7 @@ namespace WinForm
             panelUsuario1.SuspendLayout();
             panellogout.SuspendLayout();
             datagridroudergropu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewProducto
@@ -913,7 +916,7 @@ namespace WinForm
             // 
             LblBienvenido.AutoSize = false;
             LblBienvenido.Font = new Font("Segoe UI", 20F);
-            LblBienvenido.Location = new Point(139, 66);
+            LblBienvenido.Location = new Point(249, 70);
             LblBienvenido.Name = "LblBienvenido";
             LblBienvenido.Size = new Size(253, 88);
             LblBienvenido.StateCommon.Draw = InheritBool.True;
@@ -1105,10 +1108,10 @@ namespace WinForm
             // logopictureBox
             // 
             logopictureBox.Image = Properties.Resources.logo;
-            logopictureBox.Location = new Point(646, 57);
+            logopictureBox.Location = new Point(59, 60);
             logopictureBox.Name = "logopictureBox";
-            logopictureBox.Size = new Size(173, 110);
-            logopictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            logopictureBox.Size = new Size(184, 120);
+            logopictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             logopictureBox.TabIndex = 31;
             logopictureBox.TabStop = false;
             logopictureBox.Visible = false;
@@ -1397,6 +1400,27 @@ namespace WinForm
             datagridroudergropu.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             datagridroudergropu.Timer_RGB = 300;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(823, 70);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(82, 68);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 33;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Poppins SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlDarkDark;
+            label1.Location = new Point(880, 54);
+            label1.Name = "label1";
+            label1.Size = new Size(25, 22);
+            label1.TabIndex = 34;
+            label1.Text = "by";
+            // 
             // FormProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1405,9 +1429,11 @@ namespace WinForm
             BackColor = Color.FromArgb(30, 30, 32);
             ClientSize = new Size(924, 635);
             ControlBox = false;
+            Controls.Add(label1);
             Controls.Add(menupanel);
             Controls.Add(btnPrimerCarga);
             Controls.Add(logopictureBox);
+            Controls.Add(pictureBox1);
             Controls.Add(lblproductos);
             Controls.Add(buscarPictureBox);
             Controls.Add(LblBienvenido);
@@ -1448,6 +1474,7 @@ namespace WinForm
             panelUsuario1.ResumeLayout(false);
             panellogout.ResumeLayout(false);
             datagridroudergropu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1514,6 +1541,8 @@ namespace WinForm
         private ToolStripMenuItem nombreToolStripMenuItem;
         private ContextMenuStrip sortcontext;
         private ToolStripMenuItem habilitadoToolStripMenuItem1;
+        private PictureBox pictureBox1;
+        private Label label1;
         private KryptonDataGridViewTextBoxColumn ColumnNombreProducto;
         private KryptonDataGridViewTextBoxColumn ColumnCategoria;
         private KryptonDataGridViewTextBoxColumn ColumnStock;

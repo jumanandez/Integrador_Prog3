@@ -543,6 +543,16 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap LOgo_TUP_png {
+            get {
+                object obj = ResourceManager.GetObject("LOgo_TUP_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap LogoFashero {
             get {
                 object obj = ResourceManager.GetObject("LogoFashero", resourceCulture);
