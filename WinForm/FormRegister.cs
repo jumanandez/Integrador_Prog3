@@ -20,10 +20,9 @@ namespace WinForm
             string username = txtNombreUsuario.Text;
             string pass = txtContraseña.Text;
 
-            if (txtNombreUsuario.Text.Trim() != "" && txtContraseña.Text != "Ingrese una contraseña" && txtContraseña.Text.Trim() != "" && _usuarioBusiness.CreateUsuario(username, pass))
+            if (txtContraseña.Text != txtConfirm.Text)
             {
-                DialogResult = DialogResult.OK;
-                Close();
+                RJMessageBox.Show("La nueva contraseña y la confirmacion no coinciden!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (txtNombreUsuario.Text.Trim() == "")
             {
@@ -32,6 +31,11 @@ namespace WinForm
             else if (txtContraseña.Text.Trim() == "" || txtContraseña.Text == "Ingrese una contraseña")
             {
                 RJMessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtNombreUsuario.Text.Trim() != "" && txtContraseña.Text != "Ingrese una contraseña" && txtContraseña.Text.Trim() != "" && txtContraseña.Text == txtConfirm.Text && _usuarioBusiness.CreateUsuario(username, pass))
+            {
+                DialogResult = DialogResult.OK;
+                Close();
             }
             else
             {

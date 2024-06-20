@@ -55,6 +55,7 @@ namespace WinForm
             comprasToolStripMenuItem1 = new ToolStripMenuItem();
             ventasToolStripMenuItem1 = new ToolStripMenuItem();
             habilitadoToolStripMenuItem1 = new ToolStripMenuItem();
+            ordenarStripMenuItem3 = new ToolStripMenuItem();
             modificarToolStripMenuItem = new ToolStripMenuItem();
             eliminarToolStripMenuItem = new ToolStripMenuItem();
             detallesToolStripMenuItem = new ToolStripMenuItem();
@@ -67,7 +68,6 @@ namespace WinForm
             columnMenuStrip = new ContextMenuStrip(components);
             nuevoToolStripMenuItem1 = new ToolStripMenuItem();
             refrescarToolStripMenuItem2 = new ToolStripMenuItem();
-            ordenarStripMenuItem3 = new ToolStripMenuItem();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             nuevoToolStripMenuItem = new ToolStripMenuItem();
             ordenarToolStripMenuItem = new ToolStripMenuItem();
@@ -213,7 +213,7 @@ namespace WinForm
             sortcontext.Font = new Font("Segoe UI", 9F);
             sortcontext.Items.AddRange(new ToolStripItem[] { nombreToolStripMenuItem, categoriaToolStripMenuItem1, stockToolStripMenuItem1, comprasToolStripMenuItem1, ventasToolStripMenuItem1, habilitadoToolStripMenuItem1 });
             sortcontext.Name = "sortcontext";
-            sortcontext.OwnerItem = ordenarStripMenuItem3;
+            sortcontext.OwnerItem = ordenarToolStripMenuItem1;
             sortcontext.RenderMode = ToolStripRenderMode.System;
             sortcontext.Size = new Size(130, 136);
             // 
@@ -280,6 +280,15 @@ namespace WinForm
             habilitadoToolStripMenuItem1.Size = new Size(129, 22);
             habilitadoToolStripMenuItem1.Text = "Habilitado";
             habilitadoToolStripMenuItem1.Click += ordenarSubContex_Click;
+            // 
+            // ordenarStripMenuItem3
+            // 
+            ordenarStripMenuItem3.DropDown = sortcontext;
+            ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
+            ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
+            ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
+            ordenarStripMenuItem3.Size = new Size(122, 22);
+            ordenarStripMenuItem3.Text = "Ordenar";
             // 
             // modificarToolStripMenuItem
             // 
@@ -420,15 +429,6 @@ namespace WinForm
             refrescarToolStripMenuItem2.Size = new Size(122, 22);
             refrescarToolStripMenuItem2.Text = "Refrescar";
             refrescarToolStripMenuItem2.Click += refrescarToolStripMenuItem_Click;
-            // 
-            // ordenarStripMenuItem3
-            // 
-            ordenarStripMenuItem3.DropDown = sortcontext;
-            ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
-            ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
-            ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
-            ordenarStripMenuItem3.Size = new Size(122, 22);
-            ordenarStripMenuItem3.Text = "Ordenar";
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -912,7 +912,7 @@ namespace WinForm
             // 
             LblBienvenido.AutoSize = false;
             LblBienvenido.Font = new Font("Segoe UI", 20F);
-            LblBienvenido.Location = new Point(232, 89);
+            LblBienvenido.Location = new Point(249, 70);
             LblBienvenido.Name = "LblBienvenido";
             LblBienvenido.Size = new Size(218, 88);
             LblBienvenido.StateCommon.Draw = InheritBool.True;
@@ -1100,10 +1100,10 @@ namespace WinForm
             // logopictureBox
             // 
             logopictureBox.Image = Properties.Resources.logo;
-            logopictureBox.Location = new Point(627, 59);
+            logopictureBox.Location = new Point(59, 60);
             logopictureBox.Name = "logopictureBox";
-            logopictureBox.Size = new Size(173, 110);
-            logopictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            logopictureBox.Size = new Size(184, 120);
+            logopictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             logopictureBox.TabIndex = 31;
             logopictureBox.TabStop = false;
             // 
@@ -1364,9 +1364,9 @@ namespace WinForm
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(97, 69);
+            pictureBox1.Location = new Point(823, 70);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(127, 100);
+            pictureBox1.Size = new Size(82, 68);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 33;
             pictureBox1.TabStop = false;
@@ -1376,7 +1376,7 @@ namespace WinForm
             label1.AutoSize = true;
             label1.Font = new Font("Poppins SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(76, 54);
+            label1.Location = new Point(880, 54);
             label1.Name = "label1";
             label1.Size = new Size(25, 22);
             label1.TabIndex = 34;
