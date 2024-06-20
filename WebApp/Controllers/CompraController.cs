@@ -102,6 +102,7 @@ namespace WebApp.Controllers
             return View(compraModel);
         }
 
+
         public IActionResult Edit(int compraId)
         {
             var compra = _compraBusiness.GetCompraById(compraId);
