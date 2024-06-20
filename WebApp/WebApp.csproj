@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Compra\NewFolder\**" />
+    <Content Remove="Views\Compra\NewFolder\**" />
+    <EmbeddedResource Remove="Views\Compra\NewFolder\**" />
+    <None Remove="Views\Compra\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.5.24306.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0-preview.5.24306.3">
@@ -24,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="NewFolder\" />
-    <Folder Include="Views\Compra\NewFolder\" />
   </ItemGroup>
 
 </Project>
