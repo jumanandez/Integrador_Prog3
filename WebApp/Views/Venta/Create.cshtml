@@ -23,7 +23,7 @@
 
             @if (Model.ProductoLista != null && Model.ProductoLista.Any())
             {
-                <div class="container-fluid my-3 ">
+                <div class="container-fluid ">
                     <label for="_Producto.ProductoId">Seleccione un Producto:</label>
                     <select asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
                         <option value="">Seleccione un producto</option>
@@ -42,8 +42,6 @@
            </div>
 
                 <button type="submit" class="btn btn-principe">Registrar Venta</button>
-
-
             </form>
 
     </div>
