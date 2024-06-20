@@ -150,6 +150,14 @@ body {
     opacity: 1;
 }
 
+#CERRAR .nav-link::after {
+    background-color: red; 
+}
+
+#CERRAR .nav-link:hover::after {
+    opacity: 1; 
+}
+
 
 .form-control {
     display: block;
