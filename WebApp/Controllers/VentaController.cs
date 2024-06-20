@@ -40,47 +40,25 @@ namespace WebApp.Controllers
 
 
         // GET: VentaController
-        public ActionResult Index()
+        public IActionResult Index(int pagina = 1, int itemsPorPagina = 5)
         {
 
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            var ventas = _ventaBusiness.GetVentas(userId);
-
            var ViewModel = new VentaVM()
             {           
-                VentaLista = ventas
+                Paginado = _ventaBusiness.GetVentasPaginadas(pagina, itemsPorPagina, userId, null)
             };
 
             return View(ViewModel);
-        }
-
-        // GET: VentaController/Details/5
-        public ActionResult Details(int id, int userId)
-        {
-
-            var ventas = _ventaBusiness.GetVentas(userId);
-
-            ventas = (from v in ventas
-                      where v.VentaId == id
-                      
-                      select v).ToList();
-
-
-            var ViewModel = new VentaVM()
-            {
-                VentaLista = ventas
-            };
-
-            return View(ViewModel);
-        }
-               
+        }               
 
         // GET: VentaController/CreateVenta
-        public ActionResult Create()
+        public IActionResult Create()
         {
             var ventaModel = new VentaVM
             {
+                VentaId = 0,
                 CategoriaLista = _categoriaBusiness.GetAll(),
                 ProductoLista = new List<Producto>()
             };
@@ -89,9 +67,8 @@ namespace WebApp.Controllers
         }
 
         // POST: VentaController/Create
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Create(VentaVM ventaModel)
+        [HttpPost]        
+        public IActionResult Create(VentaVM ventaModel)
         {
             var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
@@ -116,7 +93,7 @@ namespace WebApp.Controllers
                     {
                         Fecha = DateTime.Now,
                         ProductoId = ventaModel._Producto.ProductoId,
-                        Cantidad = ventaModel.Cantidad,
+                        Cantidad = (int)ventaModel.Cantidad,
                         UsuarioId = userID
                     };
 
@@ -130,27 +107,83 @@ namespace WebApp.Controllers
 
         }
 
-        // GET: VentaController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: VentaController/Edit/5
+        public IActionResult Edit(int ventaId)
         {
-            return View();
+            var venta = _ventaBusiness.GetVentaById(ventaId);
+            if (venta == null)
+            {
+                return NotFound();
+            }
+
+            var ventaModel = new VentaVM
+            {
+                VentaId = venta.VentaId,
+                ProductoId = venta.ProductoId,
+                Cantidad = venta.Cantidad,
+                CategoriaId = venta.Producto?.CategoriaId,
+
+            };
+
+            return View("Create", ventaModel);
+        }
+
+        // POST: VentaController/Edit/5
+
+        [HttpPost]
+        public IActionResult Edit(VentaVM ventaModel)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                // Si el modelo no es válido, devolvemos la vista con los errores
+                return View("Create", ventaModel);
+            }
+
+            var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            var venta = _ventaBusiness.GetVentaById((int)ventaModel.VentaId);
+
+            var productoId = ventaModel.ProductoId ?? venta.ProductoId;
+
+            var cantidadAnterior = venta.Cantidad;
+
+            var diferenciaCantidad = (int)ventaModel.Cantidad - cantidadAnterior;
+
+            var stockActual = _productoBusiness.GetStock(userID, productoId);
+
+            if (diferenciaCantidad <= 0 || stockActual >= diferenciaCantidad)
+            {
+                // Obtener la compra original desde la capa de negocios
+                //var venta = _ventaBusiness.GetVentaById((int)ventaModel.VentaId);
+                if (venta == null)
+                {
+                    return NotFound();
+                }
+
+                venta.ProductoId = ventaModel.ProductoId ?? venta.ProductoId;  // Manejar el caso de ProductoId nullable
+                venta.Cantidad = (int)ventaModel.Cantidad; // Manejar el caso de ProductoCantidad nullable
+
+                _ventaBusiness.UpdateVenta(venta);
+
+                return RedirectToAction("Index", "Venta");
+            }
+            else
+            {
+                ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
+                return View("Create", ventaModel);
+            }      
+            
         }
 
         // POST: VentaController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int ventaId)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _ventaBusiness.DeleteVenta(ventaId);
+            return RedirectToAction("Index");
         }
 
-
+        
     }
 }

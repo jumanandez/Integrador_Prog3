@@ -16,9 +16,17 @@ namespace WebApp.Models.ViewModels
 
         public Categoria? _Categoria { get; set; }
 
-        public int Cantidad { get; set; }
+        public int? Cantidad { get; set; }
 
         public int CategoriaSeleccionada { get; set; }
+
+        public Paginado<Venta>? Paginado { get; set; }
+
+        public int? VentaId { get; set; }
+
+        public int? CategoriaId { get; set; }
+        public int? ProductoId { get; set; }
+
 
     }
 }

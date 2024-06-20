@@ -13,7 +13,12 @@ namespace Proyecto.Core.Business.Interfaces
 
         public void DeleteVenta(int id);
 
+        public Paginado<Venta> GetVentasPaginadas(int pagina, int itemsPorPagina, int usuarioId, List<Venta>? ventas);
+
         public List<Venta> GetVentas(int userId);
   
+        public Venta GetVentaById(int id);
+
+        public void UpdateVenta(Venta venta);
     }
 }

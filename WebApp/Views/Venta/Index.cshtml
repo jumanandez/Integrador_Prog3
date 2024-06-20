@@ -1,4 +1,5 @@
-﻿@model WebApp.Models.ViewModels.VentaVM
+﻿@using System.Security.Claims
+@model WebApp.Models.ViewModels.VentaVM
 @{
     ViewData["Title"] = "Registrar Venta";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,30 +10,55 @@
     <a class="btn btn-principe" asp-controller="Venta" asp-action="Create">Nueva Venta</a>
 
 
-<hr>
-<ul>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">VentaID</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Cantidad</th>             
-            </tr>
-        </thead>
-        @foreach (var v in Model.VentaLista)
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model.Paginado.Items.Where(v => v.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
         {
-            <tbody>
-                <tr>       
-                    <td>@v.VentaId</td>
-                    <td>@v.Fecha</td>
-                    <td>@v.Producto.Nombre</td>
-                    <td>@v.Cantidad</td>                
-            </tbody>
+            <tr>
+                <td>@v.Producto?.Nombre</td>
+                <td>@v.Fecha.ToShortDateString()</td>
+                <td>@v.Cantidad</td>
+                <td>
+                    <div class="d-flex">
+                        <a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Venta" asp-route-ventaId="@v.VentaId">Editar</a>
+                        <form asp-action="Delete" asp-controller="Venta" method="post" onsubmit="return confirmDelete()">
+                            <input type="hidden" name="ventaId" value="@v.VentaId" />
+                            <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
         }
-    </table>
+    </tbody>
+</table>
 
+<div>
+    @if (Model.Paginado.PaginaActual > 1)
+    {
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
+    }
 
-</ul>
+    Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+
+    @if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
+    {
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
+    }
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm('¿Está seguro de que desea eliminar este producto?');
+        }      
+    </script>
+}

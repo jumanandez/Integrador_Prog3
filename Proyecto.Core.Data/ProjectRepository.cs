@@ -5,6 +5,7 @@ using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -72,6 +73,24 @@ namespace Proyecto.Core.Data
             return stock;
         }
 
+        public int GetStock(int productoId)
+        {
+            int stock = 0;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var compras = (from c in dbcontext.Compras
+                               where c.ProductoId == productoId
+                               select c.Cantidad).Sum();
+
+                int ventas = (from v in dbcontext.Ventas
+                              where v.ProductoId == productoId
+                              select v.Cantidad).Sum();
+
+                stock = compras - ventas;
+            }
+            return stock;
+        }
+
         public List<Producto> GetProductosByCategoria(int categoriaId)
         {
             var productos = new List<Producto>();
@@ -112,6 +131,18 @@ namespace Proyecto.Core.Data
             {
                 dbcontext.Update(product);
                 dbcontext.SaveChanges();
+            }
+        }
+
+        public List<string> GetAllNames()
+        {
+            var productos = new List<Producto>();
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                List<string> names = dbcontext.Productos
+                                                        .Select(p => p.Nombre)
+                                                        .ToList();
+                return names;
             }
         }
 
@@ -208,18 +239,29 @@ namespace Proyecto.Core.Data
             return compras;
         }
 
-        public List<Compra> FiltrarCompraMasComprado()
+        public List<Compra> FiltrarCompraMasComprado(int usuarioId)
         {
             var compras = new List<Compra>();
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                compras = dbcontext.Compras
-                           .Include(c => c.Producto)
-                           .ToList()  // Ejecuta la consulta y trae los datos en memoria
-                           .GroupBy(c => c.ProductoId)
-                           .OrderByDescending(g => g.Sum(c => c.Cantidad))
-                           .SelectMany(g => g)
-                           .ToList();
+                //compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
+                //                           .Include(c => c.Producto)
+                //                           .Where(c => c.Producto.Habilitado == true).ToList();
+                compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
+                                           .Include(c => c.Producto)
+                                           .Where(c => c.Producto.Habilitado == true)
+                                           .ToList()
+                                           .GroupBy(c => c.ProductoId)
+                                           .Select(g => new Compra
+                                           {
+                                               ProductoId = g.Key,
+                                               Producto = g.First().Producto, // Assuming all products in the group are the same
+                                               UsuarioId = g.First().UsuarioId, // Assuming all UsuarioId in the group are the same
+                                               Cantidad = g.Sum(c => c.Cantidad),
+                                           })
+                                           .OrderByDescending(c => c.Cantidad)
+                                           .ToList();
+
             }
             return compras;
         }
@@ -237,11 +279,11 @@ namespace Proyecto.Core.Data
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
 
-                ventas = (from v in dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario)
-                          where v.UsuarioId == userId
-                          select v).ToList();
-
-                //ventas = dbcontext.Ventas.Include(v => v.Producto).Include(v => v.Usuario).ToList();
+                ventas = dbcontext.Ventas.Where(v => v.UsuarioId == userId)
+                                           .Include(v => v.Producto)
+                                           .Include(v => v.Usuario)
+                                           .Where(v => v.Producto.Habilitado == true)
+                                           .OrderByDescending(v => v.Fecha).ToList();
             }
             return ventas;
         }
@@ -266,17 +308,26 @@ namespace Proyecto.Core.Data
             }
         }
 
-        public List<string> GetAllNames()
+        public Venta GetVentaById(int id)
         {
-            var productos = new List<Producto>();
+            var venta = new Venta();
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                List<string> names = dbcontext.Productos
-                                                        .Select(p => p.Nombre)
-                                                        .ToList();
-                return names;
+                venta = dbcontext.Ventas.Find(id);
+            }
+
+            return venta;
+        }
+        public void UpdateVenta(Venta venta)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                dbcontext.Update(venta);
+                dbcontext.SaveChanges();
+
             }
         }
+
         #endregion
 
         #region Region Categoria
@@ -367,6 +418,8 @@ namespace Proyecto.Core.Data
             }
             return true;
         }
-		#endregion
-	}
+
+      
+        #endregion
+    }
 }

@@ -11,6 +11,7 @@ namespace Proyecto.Core.Data.Interfaces
     {
         public void AddProducto(Producto product); 
         public void UpdateCompra(Compra compra);
+        public void UpdateVenta(Venta venta);
         public void DeleteProducto(Producto product);
         public List<Producto> GetProductos();
         public List<string> GetAllNames();
@@ -20,11 +21,12 @@ namespace Proyecto.Core.Data.Interfaces
         public List<Compra> GetCompras(int usuarioId);
         public List<Compra> FiltrarCompraFecha(string search);
         public List<Compra> FiltrarCompraNombre(string search);
-        public List<Compra> FiltrarCompraMasComprado();
+        public List<Compra> FiltrarCompraMasComprado(int userId);
         public List<Venta> GetVentas(int userId);
         public Producto GetProducto(int id);
         public void DeleteProducto(int id);
         public int GetStock(int usuarioId, int productoId);
+        public int GetStock(int productoId);
         public void AddCompra(Compra compra);
         public void DeleteCompra(int id);
         public void AddVenta(Venta venta);
@@ -37,6 +39,8 @@ namespace Proyecto.Core.Data.Interfaces
         public Usuario ObtainUsuario(string Username);
         public bool CreateUser(string Username, byte[] hashPassword, byte[] salt);
         public Compra GetCompraById(int id);
+        public Venta GetVentaById(int id);
 
-	}
+
+    }
 }

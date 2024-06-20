@@ -3,6 +3,15 @@
 @{
     ViewData["Title"] = "Registrar Compra";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool shouldShowFecha = true;
+    foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+    {
+        if (c.Fecha == DateTime.MinValue) // Check if Fecha is the default value
+        {
+            shouldShowFecha = false;
+            break; // Exit the loop if condition is met
+        }
+    }
 }
 <body>
     <div class="container-fluid "style="margin-top : 3%">
@@ -18,9 +27,10 @@
         <option value="1">Fecha</option>
         <option value="2">Nombre</option>
         <option value="3">Mas comprados</option>
+        <option value="4">Todos</option>
     </select>
 
-    <div style="weight:300px" class="m-1">
+    <div style="weight : 300px" class="m-1">
         <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
     </div>
        <button class="btn btn-secondary m-1" type="submit">Buscar</button>
@@ -31,7 +41,10 @@
     <thead>
         <tr>
             <th>Producto</th>
-            <th>Fecha</th>
+            @if (shouldShowFecha)
+            {
+                <th>Fecha</th>
+            }
             <th>Cantidad</th>
             <th></th>
         </tr>
@@ -41,7 +54,10 @@
         {
             <tr>
                 <td>@c.Producto?.Nombre</td>
+                @if (shouldShowFecha)
+                {
                 <td>@c.Fecha.ToShortDateString()</td>
+                }
                 <td>@c.Cantidad</td>
                 <td>
                     <div class="d-flex">
@@ -75,6 +91,7 @@
 
 @section Scripts {
     <script type="text/javascript">
+
         function confirmDelete() {
             return confirm('¿Está seguro de que desea eliminar este producto?');
         }
@@ -86,15 +103,22 @@
             switch (filterOption) {
                 case '1':
                     searchInput.type = 'date';
+                    var now = new Date();//crea un nuevo objeto tipo datetime now
+                    var formattedDate = now.toISOString().split('T')[0];//formatea la fecha para ignorar segundos blla bla
+                    searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
                     break;
                 case '2':
                     searchInput.type = 'text';
+                    searchInput.value = '';//limpiado texto para que no quede con fecha
                     break;
                 case '3':
                     searchInput.type = 'hidden';
+                    shouldShowFechaField.value = 'true';
                     break;
-                default:
-                    searchInput.type = 'text';
+                case '4':
+                    searchInput.type = 'hidden';
+                    shouldShowFechaField.value = 'true';
+                    break;
             }
         }
 
