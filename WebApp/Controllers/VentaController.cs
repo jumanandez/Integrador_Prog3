@@ -62,7 +62,7 @@ namespace WebApp.Controllers
                 CategoriaLista = _categoriaBusiness.GetAll(),
                 ProductoLista = new List<Producto>()
             };
-
+            ModelState.AddModelError("CategoriaId", "(*)Campo obligatorio.");
             return View(ventaModel);
         }
 
@@ -99,9 +99,10 @@ namespace WebApp.Controllers
 
                     _ventaBusiness.AddVenta(nuevaVenta);
                     return RedirectToAction("Index");
-                }
-            }
+                }                
 
+            }        
+            
             ventaModel.CategoriaLista = _categoriaBusiness.GetAll();
             return View(ventaModel);
 
