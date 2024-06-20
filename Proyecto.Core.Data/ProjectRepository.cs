@@ -48,9 +48,11 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                productos = dbcontext.Productos.Include(p => p.Categoria)
+                productos = dbcontext.Productos.Where(c => c.Habilitado == true)
+                                               .Include(p => p.Categoria)
                                                .Include(p => p.Compras).ThenInclude(c => c.Usuario)
-                                               .Include(p => p.Venta).ThenInclude(v => v.Usuario).ToList();
+                                               .Include(p => p.Venta).ThenInclude(v => v.Usuario)
+                                               .ToList();
             }
             return productos;
         }
@@ -72,6 +74,24 @@ namespace Proyecto.Core.Data
             return stock;
         }
 
+        public int GetStock(int productoId)
+        {
+            int stock = 0;
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                var compras = (from c in dbcontext.Compras
+                               where c.ProductoId == productoId
+                               select c.Cantidad).Sum();
+
+                int ventas = (from v in dbcontext.Ventas
+                              where v.ProductoId == productoId
+                              select v.Cantidad).Sum();
+
+                stock = compras - ventas;
+            }
+            return stock;
+        }
+
         public List<Producto> GetProductosByCategoria(int categoriaId)
         {
             var productos = new List<Producto>();
@@ -80,6 +100,7 @@ namespace Proyecto.Core.Data
             {
                 productos = (from p in dbcontext.Productos
                             where p.CategoriaId == categoriaId
+                            where p.Habilitado == true
                             select p).ToList();
             }
             return productos;
@@ -121,8 +142,8 @@ namespace Proyecto.Core.Data
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
                 List<string> names = dbcontext.Productos
-                                                        .Select(p => p.Nombre)
-                                                        .ToList();
+                                     .Select(p => p.Nombre)
+                                     .ToList();
                 return names;
             }
         }
@@ -139,7 +160,6 @@ namespace Proyecto.Core.Data
                 compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
                                            .Include(c => c.Producto)
                                            .Include(c => c.Usuario)
-                                           .Where(c => c.Producto.Habilitado == true)
                                            .OrderByDescending(c => c.Fecha).ToList();
 
                 //Paginado 
@@ -388,6 +408,8 @@ namespace Proyecto.Core.Data
             }
             return true;
         }
-		#endregion
-	}
+
+      
+        #endregion
+    }
 }

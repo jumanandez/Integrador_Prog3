@@ -83,19 +83,19 @@ namespace Proyecto.Core.Business
         {
             var comprasFiltradas = new List<Compra>();
 
-            if (selectOption == 1)
+            switch (selectOption)
             {
-                comprasFiltradas = _projectRepository.FiltrarCompraFecha(search);
+                case 1:
+                    comprasFiltradas = _projectRepository.FiltrarCompraFecha(search);
+                    break;
+                case 2:
+                    comprasFiltradas = _projectRepository.FiltrarCompraNombre(search);
+                    break;
+                case 3:
+                    comprasFiltradas = _projectRepository.FiltrarCompraMasComprado();
+                    break;      
             }
-            else if (selectOption == 2)
-            {
-                comprasFiltradas = _projectRepository.FiltrarCompraNombre(search);
-            }
-            else
-            {
-                comprasFiltradas = _projectRepository.FiltrarCompraMasComprado();
-            }
-
+           
             return comprasFiltradas;
         }
 

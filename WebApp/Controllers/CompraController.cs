@@ -32,7 +32,7 @@ namespace WebApp.Controllers
 
         public IActionResult Index(int pagina = 1, int itemsPorPagina = 8)
         {
-            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
             var viewModel = new CompraVM
             {
@@ -65,7 +65,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CompraVM compraModel)
         {
-            
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
             if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
             {
                 ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
@@ -88,7 +89,7 @@ namespace WebApp.Controllers
                     ProductoId = (int)compraModel.ProductoId,
                     Fecha = compraModel.FechaCompra.GetValueOrDefault(),
                     Cantidad = (int)compraModel.ProductoCantidad,
-                    UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)      
+                    UsuarioId = userId
                 };
 
                 _compraBusiness.AddCompra(compra);
@@ -98,7 +99,7 @@ namespace WebApp.Controllers
             }
             
             compraModel.CategoriaLista = _categoriaBusiness.GetAll();
-            compraModel.CompraLista = _compraBusiness.GetCompras(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+            compraModel.CompraLista = _compraBusiness.GetCompras(userId);
             return View(compraModel);
         }
 
@@ -117,8 +118,8 @@ namespace WebApp.Controllers
                 ProductoId = compra.ProductoId,
                 ProductoCantidad = compra.Cantidad,
                 FechaCompra = compra.Fecha,
-                CategoriaId = compra.Producto?.CategoriaId, 
-                                                                 
+                CategoriaId = compra.Producto?.CategoriaId,
+
             };
 
             return View("Create", viewModel);
@@ -130,18 +131,15 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Si el modelo no es válido, devolvemos la vista con los errores
                 return View("Create",compraModel);
             }
 
-            // Verificar si la fecha de compra está dentro del rango permitido
             if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
             {
                 ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
                 return View("Create", compraModel);
             }
 
-            // Obtener la compra original desde la capa de negocios
             var compra = _compraBusiness.GetCompraById((int)compraModel.CompraId);
             if (compra == null)
             {
@@ -170,14 +168,23 @@ namespace WebApp.Controllers
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption);
-
-            var oCompraVM = new CompraVM()
+            var viewModel = new CompraVM
             {
-                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, comprasFiltradas)
+                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, null)
             };
 
-            return View("Index", oCompraVM);
+            if (search == null && selectOption != 3)
+            {
+                return View("Index", viewModel);
+            }
+
+            var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption);
+
+
+            viewModel.Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, comprasFiltradas);
+                
+
+            return View("Index", viewModel);
         }
     }
 }

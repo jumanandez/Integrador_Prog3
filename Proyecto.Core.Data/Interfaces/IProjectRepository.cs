@@ -12,7 +12,6 @@ namespace Proyecto.Core.Data.Interfaces
         public void AddProducto(Producto product); 
         public void UpdateCompra(Compra compra);
         public void UpdateVenta(Venta venta);
-
         public void DeleteProducto(Producto product);
         public List<Producto> GetProductos();
         public List<string> GetAllNames();
@@ -27,6 +26,7 @@ namespace Proyecto.Core.Data.Interfaces
         public Producto GetProducto(int id);
         public void DeleteProducto(int id);
         public int GetStock(int usuarioId, int productoId);
+        public int GetStock(int productoId);
         public void AddCompra(Compra compra);
         public void DeleteCompra(int id);
         public void AddVenta(Venta venta);
