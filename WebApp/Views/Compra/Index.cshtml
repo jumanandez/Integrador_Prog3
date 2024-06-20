@@ -13,11 +13,12 @@
         }
     }
 }
-
+<body>
+    <div class="container-fluid "style="margin-top : 3%">
 <h1>Compras</h1>
 
 <hr>
-<a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
+        <a class="btn btn-principe" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
 <hr>
 
 <form class="d-flex" asp-action="Filter" asp-controller="Compra" method="get">
@@ -32,7 +33,7 @@
     <div style="weight : 300px" class="m-1">
         <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
     </div>
-       <button class="btn btn-outline-primary m-1" type="submit">Buscar</button>
+       <button class="btn btn-secondary m-1" type="submit">Buscar</button>
    
 </form>
 
@@ -85,6 +86,8 @@
         <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
     }
 </div>
+    </div>
+</body>
 
 @section Scripts {
     <script type="text/javascript">
