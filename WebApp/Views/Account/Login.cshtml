@@ -11,41 +11,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/loginStyle.css"/>
+    <script src="https://kit.fontawesome.com/b4396ba374.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="d-flex justify-content-center align-items-center" style=" height:100vh">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-header">
-                    <h2>Iniciar Sesión</h2>
-                </div>
-                <div class="card-body">
+    <section >      
+            <div class="contendor">              
+                <div class="formulario">
                     <form asp-action="Login" method="post">
+                        <h2>Iniciar Sesión</h2>
                         <div class="form-group">
+                        <i class="fa-solid fa-envelope"></i>
+                            <input asp-for="Username" required />
                             <label asp-for="Username">Usuario</label>
-                            <input asp-for="Username" class="form-control" />
                             <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
-                        <div class="form-group mb-2">
+                        <div class="form-group">
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input asp-for="Password" type="password" required />
                             <label asp-for="Password">Contraseña</label>
-                            <input asp-for="Password" type="password" class="form-control" />
                             <span asp-validation-for="Password" class="text-danger"></span>
+                       
                         </div>
-                        <div class="d-grid gap-2 mb-3">
-                            <button type="submit" class="btn btn-primary">Ingresar</button>
-                        </div>
+                        <div>
+                         <button type="submit" class="inciciar">Ingresar</button>
+                        
                         @if (ViewData["LoginError"] != null)
                         {
                             <div class="alert alert-danger mt-2" role="alert">
                                 @ViewData["LoginError"]
                             </div>
                         }
-                        ¿No tiene un usuario? <a asp-controller="Account" asp-action="Register">Crear Usuario</a>
+                            <div class="registrar">
+                                <p>¿No tiene un usuario? <a asp-controller="Account" asp-action="Register">Crear Usuario</a></p>
+                            </div>
+                        </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
+            </div>       
+    </section>
 
     @section Scripts {
         @{
@@ -54,4 +59,5 @@
     }
 
 </body>
+
 </html>
