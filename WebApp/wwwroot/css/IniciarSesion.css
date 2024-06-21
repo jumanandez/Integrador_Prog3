@@ -1,0 +1,46 @@
+﻿body {
+    background-image: linear-gradient(to right top, #000000, #2e001c, #4a0041, #530078, #0000c0);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:auto;
+    margin-bottom:0;
+    padding:0;
+}
+
+.Imagen-arriba {
+    margin-bottom:0;
+    padding-bottom:0;
+    height:40%;
+    width:40%;
+}
+
+#CAJAINICIAR {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.Imagen-footer{
+    width:20%;
+    height:20%;
+    align-self:center;
+}
+footer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.Mecanica-merch {
+    text-align:center;
+}
+
