@@ -6,86 +6,109 @@
     bool shouldShowFecha = true;
     foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
     {
-        if (c.Fecha == DateTime.MinValue) // Check if Fecha is the default value
+        if (c.Fecha == DateTime.MinValue)
         {
             shouldShowFecha = false;
-            break; // Exit the loop if condition is met
+            break;
         }
     }
 }
 <body>
-    <div class="container-fluid "style="margin-top : 3%">
-<h1>Compras</h1>
-
-<hr>
+    <div class="container-fluid " style="margin-top : 3%">
+        <h1>Compras</h1>
+        <hr>
         <a class="btn btn-principe" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
-<hr>
-
-<form class="d-flex" asp-action="Filter" asp-controller="Compra" method="get">
-
-    <select class="form-select-sm m-1" name="selectOption" id="filterOption" onchange="updateInputType()">
+        <hr>
+        <form class="d-flex" asp-action="Index" method="get">
+            <div style="weight : 300px" class="m-1">
+                <input class="form-control me-2" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Buscar..." />
+            </div>
+            <button class="btn btn-secondary m-1" value="Search" type="submit">Buscar</button>
+            <a class="btn btn-secondary m-1" asp-action="Index" asp-route-refresh="true">Refrescar Lista</a>
+        </form>
+        <form class="d-flex" asp-action="Filter" asp-controller="Compra" method="get">
+        <select class="form-select-sm m-1" name="selectOption" id="filterOption" onchange="updateInputType()">
         <option value="1">Fecha</option>
-        <option value="2">Nombre</option>
-        <option value="3">Mas comprados</option>
-        <option value="4">Todos</option>
-    </select>
-
-    <div style="weight : 300px" class="m-1">
+        <option value="2">Mas comprados</option>
+        </select>
+        <div style="weight : 300px" class="m-1">
         <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
-    </div>
-       <button class="btn btn-secondary m-1" type="submit">Buscar</button>
-   
-</form>
+        </div>
+        <button class="btn btn-secondary m-1" type="submit">Filtrar</button>
+        </form>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Producto</th>
-            @if (shouldShowFecha)
-            {
-                <th>Fecha</th>
-            }
-            <th>Cantidad</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
-        {
+        <table class="table datatable-table table-striped">
+            <thead class="datatable-header">
+                <tr>
+                    <th scope="col" class="fixed-cell"><a class="btn btn-outline-info" style="width:100%;" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" asp-route-pagina="@(Model.Paginado.PaginaActual)">Producto</a></th>
+                        @if (shouldShowFecha)
+                        {
+                        <th scope="col"><a class="btn btn-outline-info" style="width:100%;" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" asp-route-pagina="@(Model.Paginado.PaginaActual)">Fecha</a></th>
+                        }
+                    <th scope="col"><a class="btn btn-outline-info" style="width:100%;" asp-action="Index" asp-route-sortOrder="@ViewData["AmmountSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" asp-route-pagina="@(Model.Paginado.PaginaActual)">Cantidad</a></th>
+                </tr>
+        </thead>
+            <tbody class="datatable-body">
+                @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+                {
             <tr>
                 <td>@c.Producto?.Nombre</td>
-                @if (shouldShowFecha)
-                {
-                <td>@c.Fecha.ToShortDateString()</td>
-                }
+                        @if (shouldShowFecha)
+                        {
+                    <td>@c.Fecha.ToShortDateString()</td>
+                        }
                 <td>@c.Cantidad</td>
                 <td>
                     <div class="d-flex">
-                         <a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Compra" asp-route-compraId="@c.CompraId">Editar</a>
-                         <form asp-action="Delete" asp-controller="Compra" method="post" onsubmit="return confirmDelete()">
-                             <input type="hidden" name="compraId" value="@c.CompraId" />
-                             <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
-                         </form>
+                        <a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Compra" asp-route-compraId="@c.CompraId">Editar</a>
+                        <form asp-action="Delete" asp-controller="Compra" method="post" onsubmit="return confirmDelete()">
+                            <input type="hidden" name="compraId" value="@c.CompraId" />
+                            <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+                        </form>
                     </div>
                 </td>
             </tr>
-        }
+                }
     </tbody>
-</table>
+    </table>
+        <div class="px-4 py-5 my-5 text-center">
+        @{
+            var prevDisabled = !Model.Paginado.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.Paginado.HasNextPage ? "disabled" : "";
+        }
 
-<div>
-    @if (Model.Paginado.PaginaActual > 1)
-    {
-        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
-    }
+            <a class="btn btn-secondary m-1 @prevDisabled"
+            asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pagina="@(Model.Paginado.PaginaActual - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
 
-    Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+        Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
 
-    @if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
-    {
-        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
-    }
-</div>
+            <a class="btn btn-secondary m-1 @nextDisabled"
+            asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pagina="@(Model.Paginado.PaginaActual + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]">
+            <i class="fa-solid fa-angle-right"></i>
+        </a>
+        </div>
+
+@*     <div>
+            @if (Model.Paginado.PaginaActual > 1)
+            {
+            <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
+            }
+
+        Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+
+            @if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
+            {
+            <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
+            }
+    </div> *@
     </div>
 </body>
 
@@ -95,7 +118,7 @@
         function confirmDelete() {
             return confirm('¿Está seguro de que desea eliminar este producto?');
         }
-        
+
         function updateInputType() {
             var filterOption = document.getElementById('filterOption').value;
             var searchInput = document.getElementById('searchInput');
@@ -108,14 +131,6 @@
                     searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
                     break;
                 case '2':
-                    searchInput.type = 'text';
-                    searchInput.value = '';//limpiado texto para que no quede con fecha
-                    break;
-                case '3':
-                    searchInput.type = 'hidden';
-                    shouldShowFechaField.value = 'true';
-                    break;
-                case '4':
                     searchInput.type = 'hidden';
                     shouldShowFechaField.value = 'true';
                     break;
@@ -124,6 +139,6 @@
 
         // Initial call to set the input type based on the default selected option
         updateInputType();
-   
+
     </script>
 }

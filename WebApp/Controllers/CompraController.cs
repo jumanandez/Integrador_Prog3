@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Microsoft.Extensions.Logging;
 using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Entities;
@@ -17,32 +20,90 @@ namespace WebApp.Controllers
         private readonly ICompraBusiness _compraBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
         private readonly IProductoBusiness _productoBusiness;
+        private readonly CompraService _compraService;
+        private List<Compra> _currentFiltered = null!;
 
         public CompraController(
             ICompraBusiness compraBusiness,
             ICategoriaBusiness categoriaBusiness,
             IProductoBusiness productoBusiness,
-            ILogger<CompraController> logger)
+            ILogger<CompraController> logger,
+            CompraService compraService)
         {
             _logger = logger;
             _compraBusiness = compraBusiness;
             _categoriaBusiness = categoriaBusiness;
             _productoBusiness = productoBusiness;
+            _compraService = compraService;
         }
-
-        public IActionResult Index(int pagina = 1, int itemsPorPagina = 8)
+        public IActionResult Index(bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
             var viewModel = new CompraVM
             {
-                Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, null)
+                Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, SortOrSearch(userId, refresh, sortOrder, searchString, currentFilter, pagina, itemsPorPagina))
             };
 
             return View(viewModel);
         }
+        public List<Compra> SortOrSearch(int userId, bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
+        {
+            if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
+            {
+                _currentFiltered = _compraBusiness.GetCompras(userId);
+                _compraService.CurrentFiltered = _currentFiltered;
+            }
+            else
+            {
+                _currentFiltered = _compraService.CurrentFiltered;
+            }
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["AmmountSortParm"] = sortOrder == "Ammount" ? "ammount_desc" : "Ammount";
 
-        public IActionResult Create()
+            if (searchString != null)
+            {
+                pagina = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    _currentFiltered = _currentFiltered.Where(s => s.Producto.Nombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Producto.Nombre).ToList();
+                        break;
+                    case "Date":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Fecha).ToList();
+                        break;
+                    case "date_desc":
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Fecha).ToList();
+                        break;
+                    case "Ammount":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Cantidad).ToList();
+                        break;
+                    case "ammount_desc":
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Cantidad).ToList();
+                        break;
+                    default:
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Producto.Nombre).ToList();
+                        break;
+                }
+                _compraService.CurrentFiltered = _currentFiltered;
+            return _currentFiltered;
+        }
+
+            public IActionResult Create()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var viewModel = new CompraVM
@@ -166,16 +227,32 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Filter(int selectOption, string search, int pagina = 1, int itemsPorPagina = 8)
+        public IActionResult Filter(int selectOption, string search, int? pagina, int itemsPorPagina = 8)
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
+            {
+                _currentFiltered = _compraBusiness.GetCompras(userId);
+                _compraService.CurrentFiltered = _currentFiltered;
+            }
+            else
+            {
+                _currentFiltered = _compraService.CurrentFiltered;
+            }
 
-                var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId);
-                var oCompraVM = new CompraVM()
+            //var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId, _currentFiltered); ;
+
+            var oCompraVM = new CompraVM()
                 {
-                    Paginado = _compraBusiness.GetComprasPaginadas(pagina, itemsPorPagina, userId, comprasFiltradas)
+                    Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, Filter(userId, selectOption, search, pagina, _currentFiltered, itemsPorPagina))
                 };
                 return View("Index", oCompraVM);
+        }
+        public List<Compra> Filter(int userId, int selectOption, string search, int? pagina, List<Compra> comprasSinfiltro, int itemsPorPagina = 8)
+        {
+            var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId, comprasSinfiltro);
+
+            return comprasFiltradas.ToList();
         }
     }
 }

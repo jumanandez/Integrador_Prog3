@@ -23,7 +23,7 @@ namespace Proyecto.Core.Business.Interfaces
 
         public void UpdateCompra(Compra compra);
 
-        public List<Compra> OptionSelectFilter(string search, int selectOption, int userId);
+        public List<Compra> OptionSelectFilter(string search, int selectOption, int userId, List<Compra>? comprasList);
 
 
     }

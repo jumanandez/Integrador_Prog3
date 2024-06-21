@@ -60,12 +60,14 @@ namespace Proyecto.Core.Business
                 .Take(itemsPorPagina)
                 .ToList();
 
-            return new Paginado<Compra>
+            return new Paginado<Compra>()
             {
                 Items = comprasPaginadas,
                 PaginaActual = pagina,
                 ItemsPorPagina = itemsPorPagina,
-                TotalPaginas = (int)Math.Ceiling(totalCompras / (double)itemsPorPagina)
+                TotalPaginas = (int)Math.Ceiling(totalCompras / (double)itemsPorPagina),
+                HasPreviousPage = pagina > 1,
+                HasNextPage = pagina < (int)Math.Ceiling(totalCompras / (double)itemsPorPagina),
             };
         }
 
@@ -79,35 +81,20 @@ namespace Proyecto.Core.Business
             _projectRepository.UpdateCompra(compra);
         }
 
-        public List<Compra> OptionSelectFilter(string search, int selectOption, int userId)
+        public List<Compra> OptionSelectFilter(string search, int selectOption, int userId, List<Compra>? comprasList)
         {
-            var comprasFiltradas = new List<Compra>();
+            List<Compra> comprasFiltradas = comprasList ?? _projectRepository.GetCompras(userId);
 
             switch (selectOption)
             {
                 case 1:
-                    {
-                        comprasFiltradas = _projectRepository.FiltrarCompraFecha(search);
+                    { 
+                        comprasFiltradas = _projectRepository.FiltrarCompraFecha(search, comprasFiltradas);
                         break;
                     }
                 case 2:
                     {
-                        comprasFiltradas = _projectRepository.FiltrarCompraNombre(search);
-                        break;
-                    }
-                case 3:
-                    {
-                        comprasFiltradas = _projectRepository.FiltrarCompraMasComprado(userId);
-                        break;
-                    }
-                case 4:
-                    {
-                        comprasFiltradas = _projectRepository.GetCompras(userId);
-                        break;
-                    }
-                default:
-                    {
-                        comprasFiltradas = _projectRepository.FiltrarCompraFecha(search);
+                        comprasFiltradas = _projectRepository.FiltrarCompraMasComprado(userId, comprasFiltradas);
                         break;
                     }
             }

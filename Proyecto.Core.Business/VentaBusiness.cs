@@ -41,7 +41,7 @@ namespace Proyecto.Core.Business
 
             var totalVentas = ventaSelect.Count();
 
-            return new Paginado<Venta>
+            return new Paginado<Venta>()
             {
                 Items = ventasPaginada,
                 PaginaActual = pagina,
