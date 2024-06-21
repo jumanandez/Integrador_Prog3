@@ -137,6 +137,11 @@ body {
     cursor: default; /* Cambia el cursor a una mano */
 }
 
+.nocursor {
+    cursor: default; /* Cambia el cursor a una mano */
+    cursor :
+}
+
 .nav-link {
     position: relative;
 }
