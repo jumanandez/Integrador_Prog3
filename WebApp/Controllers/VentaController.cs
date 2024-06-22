@@ -87,7 +87,7 @@ namespace WebApp.Controllers
                     ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
                 }
 
-                if (ModelState.IsValid)
+                if (ModelState.IsValid && ventaModel.Cantidad != null)
                 {
                     var nuevaVenta = new Venta
                     {
