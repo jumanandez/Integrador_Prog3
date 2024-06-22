@@ -1,7 +1,11 @@
 ﻿* {
-    font-family: Calibri;
+    font-family: --bs-body-font-family: var(--bs-font-sans-serif);
     margin:0;
     padding:0;
+}
+
+body {
+    background-image: linear-gradient(to right top, #000000, #2e001c, #4a0041, #530078, #0000c0);
 }
 section {
     display: flex;
@@ -9,7 +13,6 @@ section {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background: url(fondo-negro.png);
     background-position: center;
     background-size: cover;
 }
@@ -42,11 +45,11 @@ section {
         top: 50%;
         left: 5px;
         transform: translateY(-50%);
-        color:#fff;
+        color: #fff;
         font-size: 1rem;
         pointer-events: none;
         transition: .6s;
-        font-family: bold;
+        font-family: --bs-body-font-family: var(--bs-font-sans-serif);
     }
 input:focus ~ label,
 input:valid ~ label {
