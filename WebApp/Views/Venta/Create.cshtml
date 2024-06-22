@@ -22,6 +22,8 @@
                         <select class="form-control" asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
                         <option value="">Seleccione una categoría</option>                       
                     </select>
+                        @Html.ValidationMessageFor(model => model.CategoriaSeleccionada, "", new { @class = "text-danger" })
+
                 </div>
 
                 @if (Model.ProductoLista != null && Model.ProductoLista.Any())
@@ -33,6 +35,8 @@
                         <select class="form-control" asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
                             <option value="">Seleccione un producto</option>                            
                         </select>
+                            @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+
                     </div>
                 }
 

@@ -160,7 +160,7 @@ namespace WebApp.Controllers
                 ventaModel.ProductoLista = _productoBusiness.GetAll()
                     .Where(p => p.CategoriaId == ventaModel.CategoriaSeleccionada)
                     .ToList();
-            }
+            }            
 
             if (ventaModel._Producto != null && ventaModel._Producto.ProductoId != 0 && ModelState.IsValid)
             {
@@ -226,6 +226,12 @@ namespace WebApp.Controllers
             if (!ModelState.IsValid)
             {
                 // Si el modelo no es válido, devolvemos la vista con los errores
+                return View("Create", ventaModel);
+            }
+
+            if (!ventaModel.Cantidad.HasValue)
+            {
+                ModelState.AddModelError("Cantidad", "Debe ingresar la cantidad de productos");
                 return View("Create", ventaModel);
             }
 
