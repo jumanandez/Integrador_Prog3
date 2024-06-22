@@ -151,6 +151,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CompraVM compraModel)
         {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
             if (compraModel.CategoriaId == null)
             {
                 ModelState.AddModelError("CategoriaId", "Debe seleccionar una categoria.");

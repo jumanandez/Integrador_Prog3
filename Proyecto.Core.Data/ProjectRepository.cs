@@ -43,7 +43,7 @@ namespace Proyecto.Core.Data
                 producto = dbcontext.Productos.Find(id);
             }
             return producto;
-        }       
+        }
 
         public List<Producto> GetProductos()
         {
@@ -102,9 +102,9 @@ namespace Proyecto.Core.Data
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
                 productos = (from p in dbcontext.Productos
-                            where p.CategoriaId == categoriaId
-                            where p.Habilitado == true
-                            select p).ToList();
+                             where p.CategoriaId == categoriaId
+                             where p.Habilitado == true
+                             select p).ToList();
             }
             return productos;
         }
@@ -217,12 +217,12 @@ namespace Proyecto.Core.Data
             return compra;
         }
 
-        public List<Compra> FiltrarCompraFecha(string search, List<Compra>unfilteredCompras)
+        public List<Compra> FiltrarCompraFecha(string search, List<Compra> unfilteredCompras)
         {
             var compras = (from c in unfilteredCompras
                            where c.Fecha.Date == DateTime.Parse(search)
                            select c).ToList();
-                          
+
             //var compras = new List<Compra>();
             //using (var dbcontext = new IntegradorProg3Context(_config))
             //{
@@ -240,8 +240,8 @@ namespace Proyecto.Core.Data
                                            .Select(g => new Compra
                                            {
                                                ProductoId = g.Key,
-                                               Producto = g.First().Producto, 
-                                               UsuarioId = g.First().UsuarioId, 
+                                               Producto = g.First().Producto,
+                                               UsuarioId = g.First().UsuarioId,
                                                Cantidad = g.Sum(c => c.Cantidad),
                                            })
                                            .OrderByDescending(c => c.Cantidad)
@@ -338,6 +338,15 @@ namespace Proyecto.Core.Data
             }
         }
 
+        public List<Venta> FiltrarVentaFecha(string search, List<Venta> unfilteredVentas)
+        {
+            var ventas = (from c in unfilteredVentas
+                          where c.Fecha.Date == DateTime.Parse(search)
+                          select c).ToList();
+
+            return ventas;
+        }
+
         #endregion
 
         #region Region Categoria
@@ -395,13 +404,13 @@ namespace Proyecto.Core.Data
             return salt;
         }
 
-        public bool ChangePass(Usuario usuario) 
+        public bool ChangePass(Usuario usuario)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
                 dbcontext.Update(usuario);
                 dbcontext.SaveChanges();
-                 return true;
+                return true;
             }
         }
         public Usuario ObtainUsuario(string Username)
@@ -429,7 +438,7 @@ namespace Proyecto.Core.Data
             return true;
         }
 
-      
+
         #endregion
     }
 }

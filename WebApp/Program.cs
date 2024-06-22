@@ -84,4 +84,8 @@ app.Run();
 public class CompraService
 {
     public List<Compra> CurrentFiltered { get; set; } = new List<Compra>();
+
+    public List<Venta> CurrentVentaFiltered { get; set; } = new List<Venta>();
+
 }
+

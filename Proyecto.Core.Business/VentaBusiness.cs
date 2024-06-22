@@ -37,21 +37,25 @@ namespace Proyecto.Core.Business
 
         public Paginado<Venta> GetVentasPaginadas(int pagina, int itemsPorPagina, int usuarioId, List<Venta>? ventas)
         {
-            List<Venta> ventaSelect = ventas == null ? _projectRepository.GetVentas(usuarioId) : ventas;
+            List<Venta> ventaList = ventas ?? _projectRepository.GetVentas(usuarioId);
 
-            var ventasPaginada = ventaSelect
+            int totalVentas = ventaList.Count;
+
+            List<Venta> ventasPaginadas = ventaList            
                 .Skip((pagina - 1) * itemsPorPagina)
                 .Take(itemsPorPagina)
                 .ToList();
 
-            var totalVentas = ventaSelect.Count();
 
             return new Paginado<Venta>()
             {
-                Items = ventasPaginada,
+                Items = ventasPaginadas,
                 PaginaActual = pagina,
                 ItemsPorPagina = itemsPorPagina,
-                TotalPaginas = (int)Math.Ceiling(totalVentas / (double)itemsPorPagina)
+                TotalPaginas = (int)Math.Ceiling(totalVentas / (double)itemsPorPagina),
+                HasPreviousPage = pagina > 1,
+                HasNextPage = pagina < (int)Math.Ceiling(totalVentas / (double)itemsPorPagina),
+
             };
         }
 
@@ -68,6 +72,15 @@ namespace Proyecto.Core.Business
         public void UpdateVenta(Venta venta)
         {
             _projectRepository.UpdateVenta(venta);
+        }
+
+        public List<Venta> OptionSelectFilter(string search, int userId, List<Venta>? ventasList)
+        {
+            List<Venta> ventasFiltradas = ventasList ?? _projectRepository.GetVentas(userId);
+           
+            ventasFiltradas = _projectRepository.FiltrarVentaFecha(search, ventasFiltradas);
+                       
+            return ventasFiltradas;
         }
     }
 }
