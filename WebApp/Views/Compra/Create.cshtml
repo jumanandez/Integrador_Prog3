@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label asp-for="FechaCompra">Fecha de compra</label>
-                <input asp-for="FechaCompra" class="form-control" type="date" />
+                    <input asp-for="FechaCompra" class="form-control" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ','T')" id="inputDate" />
                 <span asp-validation-for="FechaCompra" class="text-danger"></span>
             </div>
 
@@ -57,7 +57,7 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     var today = new Date().toISOString().split('T')[0];
-                    $('input[name="FechaCompra"]').val(today);
+                    // $('input[name="FechaCompra"]').val(today);
                     $('select[name="CategoriaId"]').change(function () {
                         var categoriaId = $(this).val();
                         var productosSelect = $('select[name="ProductoId"]');
