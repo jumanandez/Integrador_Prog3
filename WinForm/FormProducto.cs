@@ -176,7 +176,7 @@ namespace WinForm
         private void EliminarUnProducto(Producto producto)
         {
             DialogResult dialogResult = RJMessageBox.Show($"Eliminar este elemento? \n{_productoSeleccionado.Nombre}" +
-                                                            $"\n{_productoSeleccionado.Categoria} \nStock:{_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Compras.Select(c => c.Cantidad).Sum()} \n ", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                            $"\n{_productoSeleccionado.Categoria} \nStock: {_productoSeleccionado.Compras.Select(c => c.Cantidad).Sum() - _productoSeleccionado.Venta.Select(c => c.Cantidad).Sum()} \n ", "Confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 _productoBusiness.DeleteProducto(producto);
