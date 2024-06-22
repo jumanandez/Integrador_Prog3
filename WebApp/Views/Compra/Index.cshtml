@@ -26,7 +26,8 @@
             <button class="btn btn-secondary m-1" value="Search" type="submit">Buscar</button>
             <a class="btn btn-secondary m-1" asp-action="Index" asp-route-refresh="true">Refrescar Lista</a>
         </form>
-        <form class="d-flex" asp-action="Filter" asp-controller="Compra" method="get">
+        <form class="d-flex" asp-action="Index"
+              asp-controller="Compra" method="get">
         <select class="form-select-sm m-1" name="selectOption" id="filterOption" onchange="updateInputType()">
         <option value="1">Fecha</option>
         <option value="2">Mas comprados</option>
@@ -35,17 +36,38 @@
         <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
         </div>
         <button class="btn btn-secondary m-1" type="submit">Filtrar</button>
+            <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
+            <input type="hidden" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="hidden" name="pagina" value="@(Model.Paginado.PaginaActual)" />
         </form>
 
         <table class="table datatable-table table-striped">
             <thead class="datatable-header">
                 <tr>
-                    <th scope="col" class="fixed-cell"><a class="btn btn-outline-info" style="width:100%;" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" asp-route-pagina="@(Model.Paginado.PaginaActual)">Producto</a></th>
+                    <th scope="col" class="fixed-cell">
+                        <a class="btn btn-outline-info" style="width:100%;" 
+                        asp-action="Index"
+                        asp-route-sortOrder="@ViewData["NameSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-pagina="@(Model.Paginado.PaginaActual)">Producto</a>
+                    </th>
                         @if (shouldShowFecha)
                         {
-                        <th scope="col"><a class="btn btn-outline-info" style="width:100%;" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" asp-route-pagina="@(Model.Paginado.PaginaActual)">Fecha</a></th>
+                        <th scope="col">
+                            <a class="btn btn-outline-info" style="width:100%;" 
+                            asp-action="Index"
+                            asp-route-sortOrder="@ViewData["DateSortParm"]"
+                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                            asp-route-pagina="@(Model.Paginado.PaginaActual)">Fecha</a>
+                        </th>
                         }
-                    <th scope="col"><a class="btn btn-outline-info" style="width:100%;" asp-action="Index" asp-route-sortOrder="@ViewData["AmmountSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" asp-route-pagina="@(Model.Paginado.PaginaActual)">Cantidad</a></th>
+                    <th scope="col">
+                        <a class="btn btn-outline-info" style="width:100%;" 
+                        asp-action="Index"
+                        asp-route-sortOrder="@ViewData["AmmountSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-pagina="@(Model.Paginado.PaginaActual)">Cantidad</a>
+                    </th>
                 </tr>
         </thead>
             <tbody class="datatable-body">
@@ -81,7 +103,8 @@
             asp-action="Index"
            asp-route-sortOrder="@ViewData["CurrentSort"]"
            asp-route-pagina="@(Model.Paginado.PaginaActual - 1)"
-               asp-route-currentFilter="@ViewData["CurrentFilter"]">
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                asp-route-selectOption="@ViewData["CurrentOption"]">
             <i class="fa-solid fa-angle-left"></i>
         </a>
 
@@ -91,7 +114,8 @@
             asp-action="Index"
            asp-route-sortOrder="@ViewData["CurrentSort"]"
            asp-route-pagina="@(Model.Paginado.PaginaActual + 1)"
-           asp-route-currentFilter="@ViewData["CurrentFilter"]">
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               asp-route-selectOption="@ViewData["CurrentOption"]">
             <i class="fa-solid fa-angle-right"></i>
         </a>
         </div>
@@ -122,16 +146,16 @@
         function updateInputType() {
             var filterOption = document.getElementById('filterOption').value;
             var searchInput = document.getElementById('searchInput');
-
             switch (filterOption) {
                 case '1':
                     searchInput.type = 'date';
-                    var now = new Date();//crea un nuevo objeto tipo datetime now
-                    var formattedDate = now.toISOString().split('T')[0];//formatea la fecha para ignorar segundos blla bla
-                    searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
+                        var now = new Date();//crea un nuevo objeto tipo datetime now
+                        var formattedDate = now.toISOString().split('T')[0];//formatea la fecha para ignorar segundos blla bla
+                        searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
                     break;
                 case '2':
                     searchInput.type = 'hidden';
+                    searchInput.value = null;
                     shouldShowFechaField.value = 'true';
                     break;
             }

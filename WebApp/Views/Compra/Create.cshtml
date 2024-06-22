@@ -10,10 +10,10 @@
 <div class="row" style="margin-top:30px">
     <div class="col-sm-12">
 
-        <a class="btn btn-primary btn-sm" asp-action="Index" asp-controller="Compra">Volver</a>
+        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-refresh ="true" asp-controller="Compra">Volver</a>
         <hr />
 
-        <form asp-action="@(Model.CompraId == 0 ? "Create" : "Edit")" asp-controller="Compra" method="post">
+            <form asp-action="@(Model.CompraId == 0 ? "Create" : "Edit")" asp-controller="Compra" method="post">
             <input type="hidden" asp-for="CompraId" />
 
             @if (Model.CompraId == 0)
@@ -47,7 +47,7 @@
             </div>
 
             <div class="mt-2">
-                <button class="btn btn-principe" type="submit">@ViewData["Title"]</button>
+                <button  class="btn btn-principe"  type="submit">@ViewData["Title"]</button>
             </div>
         </form>
         </div>

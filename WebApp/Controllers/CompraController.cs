@@ -36,71 +36,86 @@ namespace WebApp.Controllers
             _productoBusiness = productoBusiness;
             _compraService = compraService;
         }
-        public IActionResult Index(bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
+        public IActionResult Index(string search, int selectOption, bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
             var viewModel = new CompraVM
             {
-                Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, SortOrSearch(userId, refresh, sortOrder, searchString, currentFilter, pagina, itemsPorPagina))
+                Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, SortOrSearch(search, selectOption, userId, refresh, sortOrder, searchString, currentFilter, pagina, itemsPorPagina))
             };
 
             return View(viewModel);
         }
-        public List<Compra> SortOrSearch(int userId, bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
+        public List<Compra> SortOrSearch(string search, int selectOption, int userId, bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
         {
-            if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
+                if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
+                {
+                    _currentFiltered = _compraBusiness.GetCompras(userId);
+                    _compraService.CurrentFiltered = _currentFiltered;
+                }
+                else
+                {
+                    _currentFiltered = _compraService.CurrentFiltered;
+                }
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+                ViewData["NameSortParm"] = sortOrder == "Name"  ? "name_desc" : "Name";
+                ViewData["AmmountSortParm"] = sortOrder == "Ammount" ? "ammount_desc" : "Ammount";
+
+                if (searchString != null)
+                {
+                    pagina = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                ViewData["CurrentFilter"] = searchString;
+                ViewData["CurrentOption"] = selectOption;
+            if (refresh)
             {
                 _currentFiltered = _compraBusiness.GetCompras(userId);
                 _compraService.CurrentFiltered = _currentFiltered;
+                return _currentFiltered;
             }
             else
             {
-                _currentFiltered = _compraService.CurrentFiltered;
-            }
-            ViewData["CurrentSort"] = sortOrder;
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewData["AmmountSortParm"] = sortOrder == "Ammount" ? "ammount_desc" : "Ammount";
-
-            if (searchString != null)
-            {
-                pagina = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewData["CurrentFilter"] = searchString;
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     _currentFiltered = _currentFiltered.Where(s => s.Producto.Nombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
+                if (selectOption > 0)
+                {
+                    sortOrder = selectOption == 2 ? "date" : "ammount";
+                    _currentFiltered = Filter(userId, selectOption, search, _currentFiltered);
+                }
 
                 switch (sortOrder)
                 {
-                    case "name_desc":
-                        _currentFiltered = _currentFiltered.OrderBy(s => s.Producto.Nombre).ToList();
-                        break;
-                    case "Date":
+                    case "date_desc":
                         _currentFiltered = _currentFiltered.OrderBy(s => s.Fecha).ToList();
                         break;
-                    case "date_desc":
-                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Fecha).ToList();
+                    case "Name":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Producto.Nombre).ToList();
+                        break;
+                    case "name_desc":
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Producto.Nombre).ToList();
                         break;
                     case "Ammount":
-                        _currentFiltered = _currentFiltered.OrderBy(s => s.Cantidad).ToList();
-                        break;
-                    case "ammount_desc":
                         _currentFiltered = _currentFiltered.OrderByDescending(s => s.Cantidad).ToList();
                         break;
+                    case "ammount_desc":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Cantidad).ToList();
+                        break;
                     default:
-                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Producto.Nombre).ToList();
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Fecha).ToList();
                         break;
                 }
                 _compraService.CurrentFiltered = _currentFiltered;
-            return _currentFiltered;
+                return _currentFiltered;
+            }
         }
 
             public IActionResult Create()
@@ -154,7 +169,7 @@ namespace WebApp.Controllers
 
                 _compraBusiness.AddCompra(compra);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { refresh = true });
 
             }
             
@@ -215,7 +230,7 @@ namespace WebApp.Controllers
 
             _compraBusiness.UpdateCompra(compra);
 
-            return RedirectToAction("Index", "Compra");
+            return RedirectToAction("Index", "Compra", new { refresh = true });
         }
 
 
@@ -226,29 +241,29 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public IActionResult Filter(int selectOption, string search, int? pagina, int itemsPorPagina = 8)
-        {
-            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
-            {
-                _currentFiltered = _compraBusiness.GetCompras(userId);
-                _compraService.CurrentFiltered = _currentFiltered;
-            }
-            else
-            {
-                _currentFiltered = _compraService.CurrentFiltered;
-            }
+        //[HttpGet]
+        //public IActionResult Filter(int selectOption, string search, int? pagina, int itemsPorPagina = 8)
+        //{
+        //    int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        //    if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
+        //    {
+        //        _currentFiltered = _compraBusiness.GetCompras(userId);
+        //        _compraService.CurrentFiltered = _currentFiltered;
+        //    }
+        //    else
+        //    {
+        //        _currentFiltered = _compraService.CurrentFiltered;
+        //    }
 
-            //var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId, _currentFiltered); ;
+        //    //var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId, _currentFiltered); ;
 
-            var oCompraVM = new CompraVM()
-                {
-                    Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, Filter(userId, selectOption, search, pagina, _currentFiltered, itemsPorPagina))
-                };
-                return View("Index", oCompraVM);
-        }
-        public List<Compra> Filter(int userId, int selectOption, string search, int? pagina, List<Compra> comprasSinfiltro, int itemsPorPagina = 8)
+        //    var oCompraVM = new CompraVM()
+        //        {
+        //            Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, Filter(userId, selectOption, search, pagina, _currentFiltered, itemsPorPagina))
+        //        };
+        //        return View("Index", oCompraVM);
+        //}
+        public List<Compra> Filter(int userId, int selectOption, string search, List<Compra> comprasSinfiltro)
         {
             var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId, comprasSinfiltro);
 
