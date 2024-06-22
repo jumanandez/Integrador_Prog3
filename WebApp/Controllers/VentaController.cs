@@ -170,7 +170,11 @@ namespace WebApp.Controllers
                     ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
                 }
 
-                if (ModelState.IsValid && ventaModel.Cantidad != null)
+                if (ModelState.IsValid && ventaModel.Cantidad == null)
+                {
+                    ModelState.AddModelError("Cantidad", "Debe ingresar la cantidad de productos");
+                }
+                else if(ModelState.IsValid && ventaModel.Cantidad != null)
                 {
                     var nuevaVenta = new Venta
                     {
@@ -183,6 +187,7 @@ namespace WebApp.Controllers
                     _ventaBusiness.AddVenta(nuevaVenta);
                     return RedirectToAction("Index", new { refresh = true });
                 }
+
 
             }
 
