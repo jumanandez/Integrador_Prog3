@@ -30,6 +30,11 @@ namespace Proyecto.Core.Business
             return _projectRepository.GetVentas(userId);
         }
 
+        public int GetVentaProducto(int userId, int productoId)
+        {
+            return _projectRepository.GetVentaProducto(userId, productoId);
+        }
+
         public Paginado<Venta> GetVentasPaginadas(int pagina, int itemsPorPagina, int usuarioId, List<Venta>? ventas)
         {
             List<Venta> ventaSelect = ventas == null ? _projectRepository.GetVentas(usuarioId) : ventas;

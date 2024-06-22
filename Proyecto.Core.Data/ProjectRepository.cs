@@ -284,6 +284,18 @@ namespace Proyecto.Core.Data
             return ventas;
         }
 
+        public int GetVentaProducto(int userId, int productoId)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+
+                int ventaproducto = (from v in dbcontext.Ventas
+                                     where v.ProductoId == productoId && v.UsuarioId == userId
+                                     select v.Cantidad).Sum();
+                return ventaproducto;
+            }
+        }
+
         public void AddVenta(Venta venta)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))

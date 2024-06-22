@@ -18,6 +18,7 @@ namespace WebApp.Controllers
 	{
 		private readonly ILogger<CompraController> _logger;
 		private readonly ICompraBusiness _compraBusiness;
+        private readonly IVentaBusiness _ventaBusiness;
 		private readonly ICategoriaBusiness _categoriaBusiness;
 		private readonly IProductoBusiness _productoBusiness;
 		private readonly CompraService _compraService;
@@ -27,11 +28,13 @@ namespace WebApp.Controllers
 			ICompraBusiness compraBusiness,
 			ICategoriaBusiness categoriaBusiness,
 			IProductoBusiness productoBusiness,
+            IVentaBusiness ventaBusiness,
 			ILogger<CompraController> logger,
 			CompraService compraService)
 		{
 			_logger = logger;
 			_compraBusiness = compraBusiness;
+            _ventaBusiness = ventaBusiness;
 			_categoriaBusiness = categoriaBusiness;
 			_productoBusiness = productoBusiness;
 			_compraService = compraService;
@@ -148,13 +151,16 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CompraVM compraModel)
         {
-
+            if (compraModel.CategoriaId == null)
+            {
+                ModelState.AddModelError("CategoriaId", "Debe seleccionar una categoria.");
+            }
             if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
             {
                 ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
             }
 
-            if (compraModel.ProductoCantidad == null)
+            if (compraModel.ProductoCantidad == null || compraModel.ProductoCantidad < 1)
             {
                 ModelState.AddModelError("ProductoCantidad", "Debe comprar al menos 1 item.");
             }
@@ -194,13 +200,14 @@ namespace WebApp.Controllers
 				return NotFound();
 			}
 
-			var viewModel = new CompraVM
+            var viewModel = new CompraVM
 			{
 				CompraId = compra.CompraId,
 				ProductoId = compra.ProductoId,
 				ProductoCantidad = compra.Cantidad,
 				FechaCompra = compra.Fecha,
 				CategoriaId = compra.Producto?.CategoriaId,
+                Llamado = 1,
 
 			};
 
@@ -211,25 +218,39 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Edit(CompraVM compraModel)
         {
+            var compra = _compraBusiness.GetCompraById((int)compraModel.CompraId);
+            if (compra == null)
+            {
+                compraModel.Llamado = 1;
+                return NotFound();
+            }
+            var UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            if (compraModel.ProductoCantidad == null || compraModel.ProductoCantidad < 1)
+            {
+                compraModel.Llamado = 1;
+                ModelState.AddModelError("ProductoCantidad", "Debe comprar al menos 1 item.");
+            }
+            if (IsTooLow(UsuarioId, (int)compraModel.ProductoCantidad, compra.ProductoId))
+            {
+                compraModel.Llamado = 1;
+                ModelState.AddModelError("ProductoCantidad", "Las compras no pueden ser menores a las ventas!");
+            }
             if (!ModelState.IsValid)
             {
                 // Si el modelo no es válido, devolvemos la vista con los errores
+                compraModel.Llamado = 1;
                 return View("Create", compraModel);
             }
-
-			// Verificar si la fecha de compra está dentro del rango permitido
-			if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
+            // Verificar si la fecha de compra está dentro del rango permitido
+            if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
 			{
-				ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
+                compraModel.Llamado = 1;
+                ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
 				return View("Create", compraModel);
 			}
 
 			// Obtener la compra original desde la capa de negocios
-			var compra = _compraBusiness.GetCompraById((int)compraModel.CompraId);
-			if (compra == null)
-			{
-				return NotFound();
-			}
 
 			compra.ProductoId = compraModel.ProductoId ?? compra.ProductoId;  // Manejar el caso de ProductoId nullable
 			compra.Cantidad = compraModel.ProductoCantidad ?? compra.Cantidad; // Manejar el caso de ProductoCantidad nullable
@@ -244,7 +265,8 @@ namespace WebApp.Controllers
         {
             var compra = _compraBusiness.GetCompraById(compraId);
 
-            if (compra == null)
+
+			if (compra == null)
             {
                 return NotFound();
             }
@@ -256,6 +278,7 @@ namespace WebApp.Controllers
                 ProductoCantidad = compra.Cantidad,
                 FechaCompra = DateTime.Now,
                 CategoriaId = compra.Producto?.CategoriaId,
+                Llamado = 2
             };
 
             return View("Create", viewModel);
@@ -264,21 +287,28 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult RepetirCompra(CompraVM compraModel)
         {
+            if (compraModel.ProductoCantidad == null || compraModel.ProductoCantidad < 1)
+            {
+                compraModel.Llamado = 2;
+                ModelState.AddModelError("ProductoCantidad", "Debe comprar al menos 1 item.");
+            }
             if (!ModelState.IsValid)
             {
                 // Si el modelo no es válido, devolvemos la vista con los errores
+                compraModel.Llamado = 2;
                 return View("Create", compraModel);
             }
 
             // Verificar si la fecha de compra está dentro del rango permitido
             if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
             {
+                compraModel.Llamado = 2;
                 ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
                 return View("Create", compraModel);
             }
 
-            // Obtener la compra original desde la capa de negocios
-            var compra = _compraBusiness.GetCompraById((int)compraModel.CompraId);
+            //Obtener la compra original desde la capa de negocios
+           var compra = _compraBusiness.GetCompraById((int)compraModel.CompraId);
 
             if (compra == null)
             {
@@ -286,11 +316,19 @@ namespace WebApp.Controllers
             }
 
             compra.ProductoId = compraModel.ProductoId ?? compra.ProductoId;  // Manejar el caso de ProductoId nullable
-            compra.Cantidad = compraModel.ProductoCantidad ?? compra.Cantidad; // Manejar el caso de ProductoCantidad nullable
-            compra.Fecha = DateTime.Now;
 
-            _compraBusiness.AddCompra(compra);
+            if (ModelState.IsValid)
+            {
+                var comprad = new Compra
+                {
+                    ProductoId = compraModel.ProductoId ?? compra.ProductoId,
+                    Fecha = compraModel.FechaCompra.GetValueOrDefault(),
+                    Cantidad = (int)compraModel.ProductoCantidad,
+                    UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)
+                };
 
+                _compraBusiness.AddCompra(comprad);
+            }
             return RedirectToAction("Index", "Compra", new { refresh = true });
         }
 
@@ -298,9 +336,9 @@ namespace WebApp.Controllers
         [HttpPost]
 		public IActionResult Delete(int compraId)
 		{
-			_compraBusiness.DeleteCompra(compraId);
-			return RedirectToAction("Index");
-		}
+            //_compraBusiness.DeleteCompra(compraId);
+            return RedirectToAction("Index");
+        }
 
 		//[HttpGet]
 		//public IActionResult Filter(int selectOption, string search, int? pagina, int itemsPorPagina = 8)
@@ -330,6 +368,10 @@ namespace WebApp.Controllers
 
 			return comprasFiltradas.ToList();
 		}
+        public bool IsTooLow(int UserId, int Cantidad, int productoId)
+        {
+            return ((_productoBusiness.GetStock(UserId, productoId) - Cantidad) - _ventaBusiness.GetVentaProducto(UserId, productoId) < 0);
+        }
 	}
 }
 
