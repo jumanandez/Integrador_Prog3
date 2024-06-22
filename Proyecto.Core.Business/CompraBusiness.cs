@@ -101,5 +101,17 @@ namespace Proyecto.Core.Business
             return comprasFiltradas;
         }
 
+        public void RepetirCompra(Compra compra)
+        {
+
+            var nuevaCompra = new Compra
+            {
+                Fecha = compra.Fecha,
+                Cantidad = compra.Cantidad
+
+            };
+        
+        }
+
     }
 }

@@ -25,6 +25,6 @@ namespace Proyecto.Core.Business.Interfaces
 
         public List<Compra> OptionSelectFilter(string search, int selectOption, int userId, List<Compra>? comprasList);
 
-
+        public void RepetirCompra(Compra compra);
     }
 }

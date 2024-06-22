@@ -1,168 +1,170 @@
 ﻿@using System.Security.Claims
 @model WebApp.Models.ViewModels.CompraVM
 @{
-    ViewData["Title"] = "Registrar Compra";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    bool shouldShowFecha = true;
-    foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
-    {
-        if (c.Fecha == DateTime.MinValue)
-        {
-            shouldShowFecha = false;
-            break;
-        }
-    }
+	ViewData["Title"] = "Registrar Compra";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	bool shouldShowFecha = true;
+	foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+	{
+		if (c.Fecha == DateTime.MinValue)
+		{
+			shouldShowFecha = false;
+			break;
+		}
+	}
 }
 <body>
-    <div class="container-fluid " style="margin-top : 3%">
-        <h1>Compras</h1>
-        <hr>
-        <a class="btn btn-principe" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
-        <hr>
-        <form class="d-flex" asp-action="Index" method="get">
-            <div style="weight : 300px" class="m-1">
-                <input class="form-control me-2" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Buscar..." />
-            </div>
-            <button class="btn btn-secondary m-1" value="Search" type="submit">Buscar</button>
-            <a class="btn btn-secondary m-1" asp-action="Index" asp-route-refresh="true">Refrescar Lista</a>
-        </form>
-        <form class="d-flex" asp-action="Index"
-              asp-controller="Compra" method="get">
-        <select class="form-select-sm m-1" name="selectOption" id="filterOption" onchange="updateInputType()">
-        <option value="1">Fecha</option>
-        <option value="2">Mas comprados</option>
-        </select>
-        <div style="weight : 300px" class="m-1">
-        <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
-        </div>
-        <button class="btn btn-secondary m-1" type="submit">Filtrar</button>
-            <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
-            <input type="hidden" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="hidden" name="pagina" value="@(Model.Paginado.PaginaActual)" />
-        </form>
+	<div class="container-fluid " style="margin-top : 3%">
+		<h1>Compras</h1>
+		<hr>
+		<a class="btn btn-principe" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
+		<hr>
+		<form class="d-flex" asp-action="Index" method="get">
+			<div style="weight : 300px" class="m-1">
+				<input class="form-control me-2" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Buscar..." />
+			</div>
+			<button class="btn btn-secondary m-1" value="Search" type="submit">Buscar</button>
+			<a class="btn btn-secondary m-1" asp-action="Index" asp-route-refresh="true">Refrescar Lista</a>
+		</form>
+		<form class="d-flex" asp-action="Index"
+			  asp-controller="Compra" method="get">
+		<select class="form-select-sm m-1" name="selectOption" id="filterOption" onchange="updateInputType()">
+		<option value="1">Fecha</option>
+		<option value="2">Mas comprados</option>
+		</select>
+		<div style="weight : 300px" class="m-1">
+		<input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
+		</div>
+		<button class="btn btn-secondary m-1" type="submit">Filtrar</button>
+			<input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
+			<input type="hidden" name="SearchString" value="@ViewData["CurrentFilter"]" />
+			<input type="hidden" name="pagina" value="@(Model.Paginado.PaginaActual)" />
+		</form>
 
-        <table class="table datatable-table table-striped">
-            <thead class="datatable-header">
-                <tr>
-                    <th scope="col" class="fixed-cell">
-                        <a class="btn btn-outline-info" style="width:100%;" 
-                        asp-action="Index"
-                        asp-route-sortOrder="@ViewData["NameSortParm"]"
-                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                        asp-route-pagina="@(Model.Paginado.PaginaActual)">Producto</a>
-                    </th>
-                        @if (shouldShowFecha)
-                        {
-                        <th scope="col">
-                            <a class="btn btn-outline-info" style="width:100%;" 
-                            asp-action="Index"
-                            asp-route-sortOrder="@ViewData["DateSortParm"]"
-                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                            asp-route-pagina="@(Model.Paginado.PaginaActual)">Fecha</a>
-                        </th>
-                        }
-                    <th scope="col">
-                        <a class="btn btn-outline-info" style="width:100%;" 
-                        asp-action="Index"
-                        asp-route-sortOrder="@ViewData["AmmountSortParm"]"
-                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                        asp-route-pagina="@(Model.Paginado.PaginaActual)">Cantidad</a>
-                    </th>
-                </tr>
-        </thead>
-            <tbody class="datatable-body">
-                @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
-                {
-            <tr>
-                <td>@c.Producto?.Nombre</td>
-                        @if (shouldShowFecha)
-                        {
-                    <td>@c.Fecha.ToShortDateString()</td>
-                        }
-                <td>@c.Cantidad</td>
-                <td>
-                    <div class="d-flex">
-                        <a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Compra" asp-route-compraId="@c.CompraId">Editar</a>
-                        <form asp-action="Delete" asp-controller="Compra" method="post" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="compraId" value="@c.CompraId" />
-                            <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-                }
-    </tbody>
-    </table>
-        <div class="px-4 py-5 my-5 text-center">
-        @{
-            var prevDisabled = !Model.Paginado.HasPreviousPage ? "disabled" : "";
-            var nextDisabled = !Model.Paginado.HasNextPage ? "disabled" : "";
-        }
+		<table class="table datatable-table table-striped">
+			<thead class="datatable-header">
+				<tr>
+					<th scope="col" class="fixed-cell">
+						<a class="btn btn-outline-info" style="width:100%;" 
+						asp-action="Index"
+						asp-route-sortOrder="@ViewData["NameSortParm"]"
+						asp-route-currentFilter="@ViewData["CurrentFilter"]"
+						asp-route-pagina="@(Model.Paginado.PaginaActual)">Producto</a>
+					</th>
+						@if (shouldShowFecha)
+						{
+						<th scope="col">
+							<a class="btn btn-outline-info" style="width:100%;" 
+							asp-action="Index"
+							asp-route-sortOrder="@ViewData["DateSortParm"]"
+							asp-route-currentFilter="@ViewData["CurrentFilter"]"
+							asp-route-pagina="@(Model.Paginado.PaginaActual)">Fecha</a>
+						</th>
+						}
+					<th scope="col">
+						<a class="btn btn-outline-info" style="width:100%;" 
+						asp-action="Index"
+						asp-route-sortOrder="@ViewData["AmmountSortParm"]"
+						asp-route-currentFilter="@ViewData["CurrentFilter"]"
+						asp-route-pagina="@(Model.Paginado.PaginaActual)">Cantidad</a>
+					</th>
+				</tr>
+		</thead>
+			<tbody class="datatable-body">
+				@foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+				{
+			<tr>
+				<td>@c.Producto?.Nombre</td>
+						@if (shouldShowFecha)
+						{
+					<td>@c.Fecha.ToShortDateString()</td>
+						}
+				<td>@c.Cantidad</td>
+				<td>
+					<div class="d-flex">
+						<a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Compra" asp-route-compraId="@c.CompraId">Editar</a>
+						<a class="btn btn-sm btn-primary mx-2" asp-action="RepetirCompra" asp-controller="Compra" asp-route-id="@c.CompraId">Repetir Compra</a>
 
-            <a class="btn btn-secondary m-1 @prevDisabled"
-            asp-action="Index"
-           asp-route-sortOrder="@ViewData["CurrentSort"]"
-           asp-route-pagina="@(Model.Paginado.PaginaActual - 1)"
-               asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                asp-route-selectOption="@ViewData["CurrentOption"]">
-            <i class="fa-solid fa-angle-left"></i>
-        </a>
+						<form asp-action="Delete" asp-controller="Compra" method="post" onsubmit="return confirmDelete()">
+							<input type="hidden" name="compraId" value="@c.CompraId" />
+							<button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+						</form>
+					</div>
+				</td>
+			</tr>
+				}
+	</tbody>
+	</table>
+		<div class="px-4 py-5 my-5 text-center">
+		@{
+			var prevDisabled = !Model.Paginado.HasPreviousPage ? "disabled" : "";
+			var nextDisabled = !Model.Paginado.HasNextPage ? "disabled" : "";
+		}
 
-        Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+			<a class="btn btn-secondary m-1 @prevDisabled"
+			asp-action="Index"
+		   asp-route-sortOrder="@ViewData["CurrentSort"]"
+		   asp-route-pagina="@(Model.Paginado.PaginaActual - 1)"
+			   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+				asp-route-selectOption="@ViewData["CurrentOption"]">
+			<i class="fa-solid fa-angle-left"></i>
+		</a>
 
-            <a class="btn btn-secondary m-1 @nextDisabled"
-            asp-action="Index"
-           asp-route-sortOrder="@ViewData["CurrentSort"]"
-           asp-route-pagina="@(Model.Paginado.PaginaActual + 1)"
-           asp-route-currentFilter="@ViewData["CurrentFilter"]"
-               asp-route-selectOption="@ViewData["CurrentOption"]">
-            <i class="fa-solid fa-angle-right"></i>
-        </a>
-        </div>
+		Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+
+			<a class="btn btn-secondary m-1 @nextDisabled"
+			asp-action="Index"
+		   asp-route-sortOrder="@ViewData["CurrentSort"]"
+		   asp-route-pagina="@(Model.Paginado.PaginaActual + 1)"
+		   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+			   asp-route-selectOption="@ViewData["CurrentOption"]">
+			<i class="fa-solid fa-angle-right"></i>
+		</a>
+		</div>
 
 @*     <div>
-            @if (Model.Paginado.PaginaActual > 1)
-            {
-            <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
-            }
+			@if (Model.Paginado.PaginaActual > 1)
+			{
+			<a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
+			}
 
-        Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+		Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
 
-            @if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
-            {
-            <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
-            }
-    </div> *@
-    </div>
+			@if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
+			{
+			<a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
+			}
+	</div> *@
+	</div>
 </body>
 
 @section Scripts {
-    <script type="text/javascript">
+	<script type="text/javascript">
 
-        function confirmDelete() {
-            return confirm('¿Está seguro de que desea eliminar este producto?');
-        }
+		function confirmDelete() {
+			return confirm('¿Está seguro de que desea eliminar este producto?');
+		}
 
-        function updateInputType() {
-            var filterOption = document.getElementById('filterOption').value;
-            var searchInput = document.getElementById('searchInput');
-            switch (filterOption) {
-                case '1':
-                    searchInput.type = 'date';
-                        var now = new Date();//crea un nuevo objeto tipo datetime now
-                        var formattedDate = now.toISOString().split('T')[0];//formatea la fecha para ignorar segundos blla bla
-                        searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
-                    break;
-                case '2':
-                    searchInput.type = 'hidden';
-                    searchInput.value = null;
-                    shouldShowFechaField.value = 'true';
-                    break;
-            }
-        }
+		function updateInputType() {
+			var filterOption = document.getElementById('filterOption').value;
+			var searchInput = document.getElementById('searchInput');
+			switch (filterOption) {
+				case '1':
+					searchInput.type = 'date';
+						var now = new Date();//crea un nuevo objeto tipo datetime now
+						var formattedDate = now.toISOString().split('T')[0];//formatea la fecha para ignorar segundos blla bla
+						searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
+					break;
+				case '2':
+					searchInput.type = 'hidden';
+					searchInput.value = null;
+					shouldShowFechaField.value = 'true';
+					break;
+			}
+		}
 
-        // Initial call to set the input type based on the default selected option
-        updateInputType();
+		// Initial call to set the input type based on the default selected option
+		updateInputType();
 
-    </script>
+	</script>
 }

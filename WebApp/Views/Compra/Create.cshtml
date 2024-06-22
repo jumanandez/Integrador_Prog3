@@ -14,7 +14,7 @@
         <hr />
 
             <form asp-action="@(Model.CompraId == 0 ? "Create" : "Edit")" asp-controller="Compra" method="post">
-            <input type="hidden" asp-for="CompraId" />
+            <input type="hidden" asp-for="CompraId"/>
 
             @if (Model.CompraId == 0)
             {
