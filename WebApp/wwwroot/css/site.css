@@ -139,7 +139,7 @@ body {
 
 .nocursor {
     cursor: default; /* Cambia el cursor a una mano */
-    cursor :
+    cursor : none;
 }
 
 .nav-link {
