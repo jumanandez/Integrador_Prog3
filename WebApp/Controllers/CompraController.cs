@@ -45,88 +45,95 @@ namespace WebApp.Controllers
 				Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, SortOrSearch(search, selectOption, userId, refresh, sortOrder, searchString, currentFilter, pagina, itemsPorPagina))
 			};
 
-			return View(viewModel);
-		}
-		public List<Compra> SortOrSearch(string search, int selectOption, int userId, bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
-		{
-				if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
-				{
-					_currentFiltered = _compraBusiness.GetCompras(userId);
-					_compraService.CurrentFiltered = _currentFiltered;
-				}
-				else
-				{
-					_currentFiltered = _compraService.CurrentFiltered;
-				}
-				ViewData["CurrentSort"] = sortOrder;
-				ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
-				ViewData["NameSortParm"] = sortOrder == "Name"  ? "name_desc" : "Name";
-				ViewData["AmmountSortParm"] = sortOrder == "Ammount" ? "ammount_desc" : "Ammount";
+            return View(viewModel);
+        }
+        public List<Compra> SortOrSearch(string search, int selectOption, int userId, bool refresh, string sortOrder, string searchString, string currentFilter, int? pagina, int itemsPorPagina = 8)
+        {
+            if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
+            {
+                _currentFiltered = _compraBusiness.GetCompras(userId);
+                _compraService.CurrentFiltered = _currentFiltered;
+            }
+            else
+            {
+                _currentFiltered = _compraService.CurrentFiltered;
+            }
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewData["AmmountSortParm"] = sortOrder == "Ammount" ? "ammount_desc" : "Ammount";
+            ViewData["StockSortParm"] = sortOrder == "Stock" ? "stock_desc" : "Stock";
 
-				if (searchString != null)
-				{
-					pagina = 1;
-				}
-				else
-				{
-					searchString = currentFilter;
-				}
+            if (searchString != null)
+            {
+                pagina = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-				ViewData["CurrentFilter"] = searchString;
-				ViewData["CurrentOption"] = selectOption;
-			if (refresh)
-			{
-				_currentFiltered = _compraBusiness.GetCompras(userId);
-				_compraService.CurrentFiltered = _currentFiltered;
-				return _currentFiltered;
-			}
-			else
-			{
-				if (!String.IsNullOrEmpty(searchString))
-				{
-					_currentFiltered = _currentFiltered.Where(s => s.Producto.Nombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-				}
-				if (selectOption > 0)
-				{
-					sortOrder = selectOption == 2 ? "date" : "ammount";
-					_currentFiltered = Filter(userId, selectOption, search, _currentFiltered);
-				}
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentOption"] = selectOption;
+            if (refresh)
+            {
+                _currentFiltered = _compraBusiness.GetCompras(userId);
+                _compraService.CurrentFiltered = _currentFiltered;
+                return _currentFiltered;
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    _currentFiltered = _currentFiltered.Where(s => s.Producto.Nombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+                if (selectOption > 0)
+                {
+                    sortOrder = selectOption == 2 ? "date" : "ammount";
+                    _currentFiltered = Filter(userId, selectOption, search, _currentFiltered);
+                }
 
-				switch (sortOrder)
-				{
-					case "date_desc":
-						_currentFiltered = _currentFiltered.OrderBy(s => s.Fecha).ToList();
-						break;
-					case "Name":
-						_currentFiltered = _currentFiltered.OrderBy(s => s.Producto.Nombre).ToList();
-						break;
-					case "name_desc":
-						_currentFiltered = _currentFiltered.OrderByDescending(s => s.Producto.Nombre).ToList();
-						break;
-					case "Ammount":
-						_currentFiltered = _currentFiltered.OrderByDescending(s => s.Cantidad).ToList();
-						break;
-					case "ammount_desc":
-						_currentFiltered = _currentFiltered.OrderBy(s => s.Cantidad).ToList();
-						break;
-					default:
-						_currentFiltered = _currentFiltered.OrderByDescending(s => s.Fecha).ToList();
-						break;
-				}
-				_compraService.CurrentFiltered = _currentFiltered;
-				return _currentFiltered;
-			}
-		}
+                switch (sortOrder)
+                {
+                    case "date_desc":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Fecha).ToList();
+                        break;
+                    case "Name":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Producto.Nombre).ToList();
+                        break;
+                    case "name_desc":
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Producto.Nombre).ToList();
+                        break;
+                    case "Ammount":
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Cantidad).ToList();
+                        break;
+                    case "ammount_desc":
+                        _currentFiltered = _currentFiltered.OrderBy(s => s.Cantidad).ToList();
+                        break;
+                    case "Stock":
+                        _currentFiltered = _currentFiltered.OrderByDescending(p => p.Producto.Compras.Select(c => c.Cantidad).Sum() - p.Producto.Venta.Select(v => v.Cantidad).Sum()).ToList();
+                        break;
+                    case "stock_desc":
+                        _currentFiltered = _currentFiltered.OrderBy(p => p.Producto.Compras.Select(c => c.Cantidad).Sum() - p.Producto.Venta.Select(v => v.Cantidad).Sum()).ToList();
+                        break;
+                    default:
+                        _currentFiltered = _currentFiltered.OrderByDescending(s => s.Fecha).ToList();
+                        break;
+                }
+                _compraService.CurrentFiltered = _currentFiltered;
+                return _currentFiltered;
+            }
+        }
 
-		 public IActionResult Create()
-		{
-			var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-			var viewModel = new CompraVM
-			{
-				CompraId = 0,
-				CategoriaLista = _categoriaBusiness.GetAll(),
-				CompraLista = _compraBusiness.GetCompras(userId)
-			};
+        public IActionResult Create()
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var viewModel = new CompraVM
+            {
+                CompraId = 0,
+                CategoriaLista = _categoriaBusiness.GetAll(),
+                CompraLista = _compraBusiness.GetCompras(userId)
+            };
 
 			return View(viewModel);
 		}
@@ -138,45 +145,45 @@ namespace WebApp.Controllers
 			return Json(productos);
 		}
 
-		[HttpPost]
-		public IActionResult Create(CompraVM compraModel)
-		{
-			
-			if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
-			{
-				ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
-			}
+        [HttpPost]
+        public IActionResult Create(CompraVM compraModel)
+        {
 
-			if(compraModel.ProductoCantidad == null)
-			{
-				ModelState.AddModelError("ProductoCantidad", "Debe comprar al menos 1 item.");
-			}
+            if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
+            {
+                ModelState.AddModelError("FechaCompra", "La fecha de compra debe estar dentro de los últimos 7 días y no puede ser una fecha futura.");
+            }
+
+            if (compraModel.ProductoCantidad == null)
+            {
+                ModelState.AddModelError("ProductoCantidad", "Debe comprar al menos 1 item.");
+            }
 
 			if (compraModel.ProductoId == null)
 			{
 				ModelState.AddModelError("ProductoId", "Debe seleccionar un producto para realizar la compra.");
 			}
 
-			if (ModelState.IsValid)
-			{
-				var compra = new Compra
-				{
-					ProductoId = (int)compraModel.ProductoId,
-					Fecha = compraModel.FechaCompra.GetValueOrDefault(),
-					Cantidad = (int)compraModel.ProductoCantidad,
-					UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)      
-				};
+            if (ModelState.IsValid)
+            {
+                var compra = new Compra
+                {
+                    ProductoId = (int)compraModel.ProductoId,
+                    Fecha = compraModel.FechaCompra.GetValueOrDefault(),
+                    Cantidad = (int)compraModel.ProductoCantidad,
+                    UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
+                };
 
 				_compraBusiness.AddCompra(compra);
 
 				return RedirectToAction("Index", new { refresh = true });
 
-			}
-			
-			compraModel.CategoriaLista = _categoriaBusiness.GetAll();
-			compraModel.CompraLista = _compraBusiness.GetCompras(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
-			return View(compraModel);
-		}
+            }
+
+            compraModel.CategoriaLista = _categoriaBusiness.GetAll();
+            compraModel.CompraLista = _compraBusiness.GetCompras(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+            return View(compraModel);
+        }
 
 
 		public IActionResult Edit(int compraId)
@@ -201,14 +208,14 @@ namespace WebApp.Controllers
 		}
 
 
-		[HttpPost]
-		public IActionResult Edit(CompraVM compraModel)
-		{
-			if (!ModelState.IsValid)
-			{
-				// Si el modelo no es válido, devolvemos la vista con los errores
-				return View("Create",compraModel);
-			}
+        [HttpPost]
+        public IActionResult Edit(CompraVM compraModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Si el modelo no es válido, devolvemos la vista con los errores
+                return View("Create", compraModel);
+            }
 
 			// Verificar si la fecha de compra está dentro del rango permitido
 			if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
