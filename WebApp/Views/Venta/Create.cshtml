@@ -16,25 +16,23 @@
             @if (Model.VentaId == 0)
             {
                 <div>
-                    <label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
+                        <span class="mb-md-5 text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
                 </div>
                 <div>
-                    <select asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
+                        <select class="form-control" asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
                         <option value="">Seleccione una categoría</option>                       
                     </select>
-                    <span class="campo-obligatorio">(*) Campo Obligatorio</span>
                 </div>
 
                 @if (Model.ProductoLista != null && Model.ProductoLista.Any())
                 {
                     <div>
-                        <label for="_Producto.ProductoId">Seleccione un Producto:</label>
+                            <span class="mb-md-5 text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId">Seleccione un Producto:</label>
                     </div>
                     <div>
-                        <select asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
+                        <select class="form-control" asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
                             <option value="">Seleccione un producto</option>                            
                         </select>
-                        <span class="campo-obligatorio">(*) Campo Obligatorio</span>
                     </div>
                 }
 
