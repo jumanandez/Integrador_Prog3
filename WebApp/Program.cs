@@ -43,6 +43,7 @@ builder.Services.AddScoped<IProductoBusiness, ProductoBusiness>();
 builder.Services.AddScoped<ICompraBusiness,CompraBusiness>();
 builder.Services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
 builder.Services.AddScoped<IntegradorProg3Context>();
+builder.Services.AddSingleton<CompraService>();
 
 #endregion
 
@@ -80,3 +81,7 @@ app.MapControllerRoute(
 	pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
+public class CompraService
+{
+    public List<Compra> CurrentFiltered { get; set; } = new List<Compra>();
+}

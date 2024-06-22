@@ -1,63 +1,112 @@
 ﻿@model WebApp.Models.ViewModels.CompraVM
 
 @{
-    ViewData["Title"] = Model.CompraId == 0 ? "Crear nueva compra" : "Editar compra";
+    // ViewData["Title"] = Model.Llamado == 0 ? "Crear nueva compra" : "Editar compra";
+    ViewData["Title"] = TipoDeLlamado(Model.Llamado)[0];
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string CallmeMaybe()
+    {
+        if (TipoDeLlamado(Model.Llamado)[1] != "Create")
+        {
+            DateTime CDate = (DateTime)Model.FechaCompra;
+            return (CDate.ToString("yyyy-MM-ddTHH:mm:ss"));
+        }
+        else
+        {
+            return (DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
+        }
+    }
+
+    string[] TipoDeLlamado(int llamado)
+    {
+        string[] tipollamado = new string[2];
+        switch (llamado)
+        {
+            case 0:
+                {
+                    tipollamado[0] = "Nueva compra";
+                    tipollamado[1] = "Create";
+                    break;
+                }
+            case 1:
+                {
+                    tipollamado[0] = "Editar compra";
+                    tipollamado[1] = "Edit";
+                    break;
+                }
+            case 2:
+                {
+                    tipollamado[0] = "Repetir compra";
+                    tipollamado[1] = "RepetirCompra";
+                    break;
+                }
+        }
+        return (tipollamado);
+    }
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class=" user-select-none container-fluid" style="margin-top:4%">
+    <h1>@ViewData["Title"]</h1>
 
-<div class="row" style="margin-top:30px">
-    <div class="col-sm-12">
+    <div class="row" style="margin-top:30px">
+        <div class="col-sm-12">
 
-        <a class="btn btn-primary btn-sm" asp-action="Index" asp-controller="Compra">Volver</a>
-        <hr />
+            <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-refresh="true" asp-controller="Compra">Volver</a>
+            <hr />
 
-        <form asp-action="@(Model.CompraId == 0 ? "Create" : "Edit")" asp-controller="Compra" method="post">
-            <input type="hidden" asp-for="CompraId" />
+            <form asp-action="@TipoDeLlamado(Model.Llamado)[1]" asp-controller="Compra" method="post">
+                <input type="hidden" asp-for="CompraId" />
 
-            @if (Model.CompraId == 0)
-            {
+                @if (TipoDeLlamado(Model.Llamado)[1] == "Create")
+                {
                     <div class="form-group">
                         <label asp-for="CategoriaId">Categoría</label>
-                        <select asp-for="CategoriaId" class="form-control" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))"></select>
+                        <select asp-for="CategoriaId" class="form-control" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))">
+                            <option selected>Seleccione una categoria</option>
+                    </select>
                         <span asp-validation-for="CategoriaId" class="text-danger"></span>
                     </div>
-                
+
+                    <div class="form-group">
+                        <label asp-for="ProductoId">Producto</label>
+                        <select asp-for="ProductoId" class="form-control">
+                            <option value="">Seleccione un producto</option>
+                        </select>
+                        <span asp-validation-for="ProductoId" class="text-danger"></span>
+                    </div>
+                }
+
+                <div class="mb-2">
+                    <label class="form-label" asp-for="ProductoCantidad">Cantidad</label>
+                    <input class="form-control" asp-for="ProductoCantidad" type="number" />
+                    <span asp-validation-for="ProductoCantidad" class="text-danger"></span>
+                </div>
 
                 <div class="form-group">
-                    <label asp-for="ProductoId">Producto</label>
-                    <select asp-for="ProductoId" class="form-control">
-                        <option value="">Seleccione un producto</option>
-                    </select>
-                    <span asp-validation-for="ProductoId" class="text-danger"></span>
+                    <label asp-for="FechaCompra">Fecha de compra</label>
+                    <input asp-for="FechaCompra" class="form-control" type="datetime-local"
+                           value="@CallmeMaybe()"
+                           id="inputDate" />
+                    <span asp-validation-for="FechaCompra" class="text-danger"></span>
                 </div>
-            }
 
-            <div class="mb-2">
-                <label class="form-label" asp-for="ProductoCantidad">Cantidad</label>
-                <input class="form-control" asp-for="ProductoCantidad" type="number" />
-                <span asp-validation-for="ProductoCantidad" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="FechaCompra">Fecha de compra</label>
-                <input asp-for="FechaCompra" class="form-control" type="date" />
-                <span asp-validation-for="FechaCompra" class="text-danger"></span>
-            </div>
-
-            <div class="mt-2">
-                <button class="btn btn-primary" type="submit">@ViewData["Title"]</button>
-            </div>
-        </form>
+                <div class="mt-2">
+                    <button class="btn btn-principe" type="submit">@ViewData["Title"]</button>
+                </div>
+            </form>
+        </div>
 
         @section Scripts {
             <script src="~/lib/jquery/dist/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    var today = new Date().toISOString().split('T')[0];
-                    $('input[name="FechaCompra"]').val(today);
-                    $('select[name="CategoriaId"]').change(function () {
+                    // var today = new Date().toISOString().split('T')[0];
+                    // $('input[name="FechaCompra"]').val(today);
+                    $('select[name="CategoriaId"]').click(function () {
+                        var placeholderOP = this.querySelector('option');
+                        if (placeholderOP && placeholderOP.textContent === 'Seleccione una categoria') {
+                            placeholderOP.remove();
+                        }
                         var categoriaId = $(this).val();
                         var productosSelect = $('select[name="ProductoId"]');
 
@@ -67,7 +116,6 @@
                                 data: { categoriaId: categoriaId },
                                 success: function (data) {
                                     productosSelect.empty();
-                                    productosSelect.append('<option value="">Seleccione un producto</option>');
                                     $.each(data, function (i, producto) {
                                         productosSelect.append('<option value="' + producto.productoId + '">' + producto.nombre + '</option>');
                                     });
@@ -81,6 +129,25 @@
                             productosSelect.append('<option value="">Seleccione un producto</option>');
                         }
                     });
+                    var initialCategoriaId = $('select[name="CategoriaId"]').val();
+                    var productosSelect = $('select[name="ProductoId"]');
+                    if (initialCategoriaId) {
+                        $.ajax({
+                            url: '@Url.Action("GetProductosByCategoria", "Compra")',
+                            data: { categoriaId: initialCategoriaId },
+                            success: function (data) {
+                                productosSelect.empty();
+                                productosSelect.append('<option value="">Seleccione un producto</option>');
+                                $.each(data, function (index, producto) {
+                                    productosSelect.append('<option value="' + producto.productoId + '">' + producto.nombre + '</option>');
+                                });
+                                var selectedProductoId = '@Model.ProductoId';
+                                if (selectedProductoId) {
+                                    productosSelect.val(selectedProductoId);
+                                }
+                            }
+                        });
+                    }
                 });
             </script>
         }

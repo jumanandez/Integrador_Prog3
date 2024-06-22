@@ -3,7 +3,7 @@
     ViewData["Title"] = "Registrar Venta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="row" style="margin-top:30px">
 <h1>Registrar Venta</h1>
 
 <div class="row" style="margin-top:30px">
@@ -39,20 +39,15 @@
                 }
 
             }
-                       
-            
             <div class="mb-2">
                 <label class="form-label" asp-for="@Model.VentaLista.">Cantidad</label>
                 <input class="form-control form-control-sm" asp-for="Cantidad" type="number" min="1" max="1000000" />
                 @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
            </div>
 
-
-
             <button type="submit" class="btn btn-primary">Registrar Venta</button>            
 
-
         </form>
-
     </div>
+</div>
 </div>

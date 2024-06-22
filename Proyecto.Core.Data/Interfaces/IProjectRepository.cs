@@ -19,10 +19,10 @@ namespace Proyecto.Core.Data.Interfaces
         public void ModifyProduct(Producto product);
         public bool AddCategoria(Categoria categoria);
         public List<Compra> GetCompras(int usuarioId);
-        public List<Compra> FiltrarCompraFecha(string search);
-        public List<Compra> FiltrarCompraNombre(string search);
-        public List<Compra> FiltrarCompraMasComprado();
+        public List<Compra> FiltrarCompraFecha(string search, List<Compra> unfilteredCompras);
+        public List<Compra> FiltrarCompraMasComprado(int usuarioId, List<Compra> unfilteredCompras);
         public List<Venta> GetVentas(int userId);
+        public int GetVentaProducto(int userId, int productoId);
         public Producto GetProducto(int id);
         public void DeleteProducto(int id);
         public int GetStock(int usuarioId, int productoId);

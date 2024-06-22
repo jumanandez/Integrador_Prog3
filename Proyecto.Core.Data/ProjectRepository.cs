@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 using Proyecto.Core.Configurations;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -214,51 +217,56 @@ namespace Proyecto.Core.Data
             return compra;
         }
 
-        public List<Compra> FiltrarCompraFecha(string search)
+        public List<Compra> FiltrarCompraFecha(string search, List<Compra>unfilteredCompras)
         {
-            var compras = new List<Compra>();
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                compras = (from c in dbcontext.Compras
-                          where c.Fecha == DateTime.Parse(search)
-                          select c)
-                          .Include(c => c.Producto).ToList();
-            }
+            var compras = (from c in unfilteredCompras
+                           where c.Fecha.Date == DateTime.Parse(search)
+                           select c).ToList();
+                          
+            //var compras = new List<Compra>();
+            //using (var dbcontext = new IntegradorProg3Context(_config))
+            //{
+            //    compras = (from c in dbcontext.Compras
+            //              where c.Fecha == DateTime.Parse(search)
+            //              select c)
+            //              .Include(c => c.Producto).ToList();
+            //}
             return compras;
         }
 
-        public List<Compra> FiltrarCompraNombre(string search)
+        public List<Compra> FiltrarCompraMasComprado(int usuarioId, List<Compra> unfilteredCompras)
         {
-            var compras = new List<Compra>();
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                compras = (from c in dbcontext.Compras
-                           where c.Producto.Nombre.Equals(search)
-                           select c)
-                           .Include(c => c.Producto).ToList();
-            }
+            var compras = unfilteredCompras.GroupBy(c => c.ProductoId)
+                                           .Select(g => new Compra
+                                           {
+                                               ProductoId = g.Key,
+                                               Producto = g.First().Producto, 
+                                               UsuarioId = g.First().UsuarioId, 
+                                               Cantidad = g.Sum(c => c.Cantidad),
+                                           })
+                                           .OrderByDescending(c => c.Cantidad)
+                                           .ToList();
+            //var compras = new List<Compra>();
+            //using (var dbcontext = new IntegradorProg3Context(_config))
+            //{
+            //    compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
+            //                               .Include(c => c.Producto)
+            //                               .Where(c => c.Producto.Habilitado == true)
+            //                               .ToList()
+            //                               .GroupBy(c => c.ProductoId)
+            //                               .Select(g => new Compra
+            //                               {
+            //                                   ProductoId = g.Key,
+            //                                   Producto = g.First().Producto, 
+            //                                   UsuarioId = g.First().UsuarioId, 
+            //                                   Cantidad = g.Sum(c => c.Cantidad),
+            //                               })
+            //                               .OrderByDescending(c => c.Cantidad)
+            //                               .ToList();
+
+            //}
             return compras;
         }
-
-        public List<Compra> FiltrarCompraMasComprado()
-        {
-            var compras = new List<Compra>();
-            using (var dbcontext = new IntegradorProg3Context(_config))
-            {
-                compras = dbcontext.Compras
-                           .Include(c => c.Producto)
-                           .ToList()  // Ejecuta la consulta y trae los datos en memoria
-                           .GroupBy(c => c.ProductoId)
-                           .OrderByDescending(g => g.Sum(c => c.Cantidad))
-                           .SelectMany(g => g)
-                           .ToList();
-            }
-            return compras;
-        }
-
-
-
-
         #endregion
 
         #region Region Ventas
@@ -276,6 +284,18 @@ namespace Proyecto.Core.Data
                                            .OrderByDescending(v => v.Fecha).ToList();
             }
             return ventas;
+        }
+
+        public int GetVentaProducto(int userId, int productoId)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+
+                int ventaproducto = (from v in dbcontext.Ventas
+                                     where v.ProductoId == productoId && v.UsuarioId == userId
+                                     select v.Cantidad).Sum();
+                return ventaproducto;
+            }
         }
 
         public void AddVenta(Venta venta)
