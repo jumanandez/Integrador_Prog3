@@ -243,6 +243,7 @@ namespace WebApp.Controllers
         public IActionResult RepetirCompra(int compraId)
         {
             var compra = _compraBusiness.GetCompraById(compraId);
+
             if (compra == null)
             {
                 return NotFound();
@@ -278,6 +279,7 @@ namespace WebApp.Controllers
 
             // Obtener la compra original desde la capa de negocios
             var compra = _compraBusiness.GetCompraById((int)compraModel.CompraId);
+
             if (compra == null)
             {
                 return NotFound();
@@ -285,7 +287,7 @@ namespace WebApp.Controllers
 
             compra.ProductoId = compraModel.ProductoId ?? compra.ProductoId;  // Manejar el caso de ProductoId nullable
             compra.Cantidad = compraModel.ProductoCantidad ?? compra.Cantidad; // Manejar el caso de ProductoCantidad nullable
-            compra.Fecha = compraModel.FechaCompra.Value;
+            compra.Fecha = DateTime.Now;
 
             _compraBusiness.AddCompra(compra);
 
