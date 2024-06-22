@@ -212,3 +212,29 @@ body {
     padding: 0;
     margin: 0;
 }
+.table-copete {
+    --bs-table-color: #DCDCDC;
+    --bs-table-bg: #22242D;
+    --bs-table-border-color: #5B5B5B;
+    --bs-table-striped-bg: #1a1a23;
+    --bs-table-striped-color: #c0c0c0;
+    --bs-table-active-bg: #181820;
+    --bs-table-active-color: #e0e0e0;
+    --bs-table-hover-bg: #2e2e38;
+    --bs-table-hover-color: #eeeeee;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}
+.table-headercopete {
+    --bs-table-color: #e0e0e0;
+    --bs-table-bg: #3c41be;
+    --bs-table-border-color: #4646c3;
+    --bs-table-striped-bg: #c5e8ef;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #badce3;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #323796;
+    --bs-table-hover-color: #FFFFFF;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}

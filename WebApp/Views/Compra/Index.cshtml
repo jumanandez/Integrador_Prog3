@@ -13,6 +13,7 @@
         }
     }
 }
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <body>
     <div class="container-fluid " style="margin-top : 3%">
         <h1>Compras</h1>
@@ -35,50 +36,69 @@
             <div style="weight : 300px" class="m-1">
                 <input class="form-control me-2" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
             </div>
-            <button class="btn btn-secondary m-1" type="submit">Filtrar</button>
+            <button class="btn btn-secondary" type="submit">Filtrar</button>
             <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
             <input type="hidden" name="SearchString" value="@ViewData["CurrentFilter"]" />
             <input type="hidden" name="pagina" value="@(Model.Paginado.PaginaActual)" />
         </form>
-
-        <table class="table datatable-table table-striped">
-            <thead class="datatable-header">
+        <div class="table-responsive">
+            <table class="table table-copete table-striped table-hover">
+                <thead class="table-headercopete table-hover">
                 <tr>
                     <th scope="col" class="fixed-cell">
-                        <a class="btn btn-outline-info" style="width:100%;"
+                            <a class="list-group-item list-group-item-action active"
                            asp-action="Index"
                            asp-route-sortOrder="@ViewData["NameSortParm"]"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                           asp-route-pagina="@(Model.Paginado.PaginaActual)">Producto</a>
+                               asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                                <i class="fa-solid fa-box-open"></i><span style="padding-left: 10px;">
+                               Producto</span>
+                            </a>
                     </th>
                     @if (shouldShowFecha)
                     {
                         <th scope="col">
-                            <a class="btn btn-outline-info" style="width:100%;"
+                                <a class="list-group-item list-group-item-action active"
                                asp-action="Index"
                                asp-route-sortOrder="@ViewData["DateSortParm"]"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                               asp-route-pagina="@(Model.Paginado.PaginaActual)">Fecha</a>
+                               asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                                    <i class="fa-solid fa-calendar-days"></i><span style="padding-left: 10px;">
+                                        Fecha
+                                    </span>
+                                </a>
                         </th>
                     }
                     <th scope="col">
-                        <a class="btn btn-outline-info" style="width:100%;"
+                            <a class="list-group-item list-group-item-action active"
                            asp-action="Index"
                            asp-route-sortOrder="@ViewData["AmmountSortParm"]"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                           asp-route-pagina="@(Model.Paginado.PaginaActual)">Cantidad</a>
+                           asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                                <i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">
+                                    Cantidad
+                                </span>
+                            </a>
                     </th>
                     <th scope="col">
-                        <a class="btn btn-outline-info" style="width:100%;"
+                            <a class="list-group-item list-group-item-action active"
                            asp-action="Index"
                            asp-route-sortOrder="@ViewData["StockSortParm"]"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                           asp-route-pagina="@(Model.Paginado.PaginaActual)">Stock</a>
+                           asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                                <i class="fa-solid fa-dolly"></i><span style="padding-left: 10px;">
+                                    Stock
+                                </span>
+                            </a>
                     </th>
                     @if (shouldShowFecha)
                     {
                         <th scope="col">
-                            <a class="btn btn-outline-info disabled">Acciones</a>
+                                <a class="list-group-item list-group-item-action disabled">
+                                    <i class="fa-solid fa-ellipsis"></i><span style="padding-left: 10px;">
+                                        Acciones
+                                    </span>
+                                </a>
                         </th>
                     }
                 </tr>
@@ -86,7 +106,7 @@
             <tbody class="datatable-body">
                 @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
                 {
-                    <tr>
+                    <tr class=" ">
                         <td>@c.Producto?.Nombre</td>
                         @if (shouldShowFecha)
                         {
@@ -110,8 +130,12 @@
                     </tr>
                 }
             </tbody>
+            <tfoot>
+
+            </tfoot>
         </table>
-        <div class="px-4 py-5 my-5 text-center">
+        </div>
+        <div class="text-center">
             @{
                 var prevDisabled = !Model.Paginado.HasPreviousPage ? "disabled" : "";
                 var nextDisabled = !Model.Paginado.HasNextPage ? "disabled" : "";
