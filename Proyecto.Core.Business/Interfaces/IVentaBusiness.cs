@@ -16,7 +16,10 @@ namespace Proyecto.Core.Business.Interfaces
         public Paginado<Venta> GetVentasPaginadas(int pagina, int itemsPorPagina, int usuarioId, List<Venta>? ventas);
 
         public List<Venta> GetVentas(int userId);
-  
+        public int GetVentaProducto(int userId, int productoId);
+
+        public List<Venta> OptionSelectFilter(string search, int userId, List<Venta>? ventasList);
+
         public Venta GetVentaById(int id);
 
         public void UpdateVenta(Venta venta);
