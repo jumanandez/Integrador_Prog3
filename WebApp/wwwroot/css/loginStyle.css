@@ -114,13 +114,45 @@ button {
     margin: 20px 0 10px;
 }
 
-    .registrar p a {
+.registrar p a {
         text-decoration: none;
         color: #fff;
         font-weight: bold;
         transition: .3s;
-    }
+ }
 
-        .registrar p a:hover {
+.registrar p a:hover {
             text-decoration: underline;
-        }
+}
+
+.bg-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(0.6);
+    filter: brightness(0.3);
+}
+.btn-copete {
+    --bs-btn-color: #FAFCFC;
+    --bs-btn-bg: #0000C0;
+    --bs-btn-border-color: #000080;
+    --bs-btn-hover-color: #FFFFFF;
+    --bs-btn-hover-bg: #143CC0;
+    --bs-btn-hover-border-color: #142880;
+    --bs-btn-focus-shadow-rgb: 6, 2, 112;
+    --bs-btn-active-color: #FFFFFF;
+    --bs-btn-active-bg: #000040;
+    --bs-btn-active-border-color: #143CC0;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #000040;
+    --bs-btn-disabled-border-color: #000040;
+}
+
+.btn {
+    border-radius: 80px;
+}

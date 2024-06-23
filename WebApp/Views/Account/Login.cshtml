@@ -15,11 +15,15 @@
     <script src="https://kit.fontawesome.com/b4396ba374.js" crossorigin="anonymous"></script>
 </head>
 <body>
+     <img class="bg-image " src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bg image" />
     <section>
+
         <div class="logo">
             <img src="~/css/logo mersh.png" alt="Logo Mersh Mecanica" />
+
         </div>
-        <div class="contenedor shadow-lg ">          
+        <div class="contenedor shadow-lg ">
+            
             <div class="formulario">
                 <form asp-action="Login" method="post">
                     <h2>Iniciar sesión</h2>
@@ -36,7 +40,7 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div>
-                        <button type="submit" class="iniciar">Ingresar</button>
+                        <button type="submit" class="iniciar btn-copete btn">Ingresar</button>
                         @if (ViewData["LoginError"] != null)
                         {
                             <div class="alert alert-danger mt-2" role="alert">
@@ -44,7 +48,7 @@
                             </div>
                         }
                         <div class="registrar">
-                            <p>¿No tiene un usuario? <a asp-controller="Account" asp-action="Register">Crear Usuario</a></p>
+                            <p>¿No tiene un usuario? <a asp-controller="Account" asp-action="Register">Crear usuario</a></p>
                         </div>
                     </div>
                 </form>
