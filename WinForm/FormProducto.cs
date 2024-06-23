@@ -561,8 +561,8 @@ namespace WinForm
             {
                 if (((int)numericUpDown1.Value) >= 1)
                 {
-                    producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
-                    //producomp.Venta.Add(new Venta { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId }); //testear ventas
+                    //producomp.Compras.Add(new Compra { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId });
+                    producomp.Venta.Add(new Venta { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId }); //testear ventas
                     _productoBusiness.ModifyProduct(producomp);
                     RJMessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
                 }
