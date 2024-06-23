@@ -68,7 +68,6 @@ namespace Proyecto.Core.Business
             }
             else
             {
-
                 var saltBytes = CryptoHelper.GenerateSalt();
 
                 byte[] hashedPassword = CryptoHelper.HashPassword(password, saltBytes);
