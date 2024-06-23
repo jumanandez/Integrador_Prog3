@@ -13,22 +13,31 @@
         <title>@ViewData["Title"] - WebApp</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+        <link rel="stylesheet" href="~/css/RegistrarStyle.css" />
+
         <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 </head>
 <body>
-    <div class="d-flex justify-content-center align-items-center" style="height:100vh">
-        <div class="col-sm-4">
-            <div class="card">
+    <img class="bg-image " src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bg image" />
+        <div class="logo">
+            <img src="~/css/logo mersh.png" alt="Logo Mersh Mecanica" />
+
+        </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="contenedor shadow-lg">
+            <div class="formulario">
                 <div class="card-header">
                     <h2>Registrarse</h2>
                 </div>
                 <div class="card-body">
                     <form asp-action="Register" method="post">
                         <div class="form-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input asp-for="Username" required />
                             <label asp-for="Username">Usuario</label>
-                            <input asp-for="Username" class="form-control" />
                             <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
                         @if (ViewData["ExistUser"] != null)
@@ -38,17 +47,21 @@
                             </div>
                         }
                         <div class="form-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input asp-for="Password" type="password" required />
                             <label asp-for="Password">Contraseña</label>
-                            <input asp-for="Password" type="password" class="form-control" />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-2">
-                            <label asp-for="ConfirmPassword">Confirmar contraseña</label>
-                            <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                            <i class="fa-solid fa-lock"></i>
+                            <input asp-for="ConfirmPassword" type="password" required />
+                            <label asp-for="Password">Confirmar contraseña </label>
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                         
                         </div>
                         <div class="d-grid gap-2 mb-3 my-4">
-                            <button type="submit" class="btn btn-outline-primary">Registrase</button>
+                            <button id="Registrar" type="submit" class="btn btn-secondary">Registrase</button>
                         </div>
                         ¿Ya tiene un usuario? <a asp-controller="Account" asp-action="Login">Iniciar Sesion</a>
                     </form>
