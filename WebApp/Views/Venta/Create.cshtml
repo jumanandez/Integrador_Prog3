@@ -3,56 +3,53 @@
     ViewData["Title"] = "Registrar Venta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Registrar Venta</h1>
-
 <div class="row" style="margin-top:30px">
+    <h1>Registrar Venta</h1>
+    <hr>
     <div class="col-sm-12">
-
+        <a class="btn btn-secondary btn-sm" asp-action="Index" asp-route-refresh="true" asp-controller="Venta"><i class="fa-solid fa-arrow-left"></i><span style="padding-left: 5px;">Volver</span></a>
+    </div>
+    <div class="col-sm-12 mt-3">
         <form asp-action="@(Model.VentaId == 0 ? "Create" : "Edit")" asp-controller="Venta" method="post">
             <input type="hidden" asp-for="VentaId" />
             <input type="hidden" asp-for="ProductoId" />
-            
             @if (Model.VentaId == 0)
             {
                 <div>
-                    <label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
+                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
                 </div>
                 <div>
-                    <select asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
-                        <option value="">Seleccione una categoría</option>                       
+                    <select class="form-control m-2 rounded-5" asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
+                        <option value="">Seleccione una categoría</option>
                     </select>
-                    <span class="campo-obligatorio">(*) Campo Obligatorio</span>
+                    @Html.ValidationMessageFor(model => model.CategoriaSeleccionada, "", new { @class = "text-danger" })
+
                 </div>
 
                 @if (Model.ProductoLista != null && Model.ProductoLista.Any())
                 {
                     <div>
-                        <label for="_Producto.ProductoId">Seleccione un Producto:</label>
+                        <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId">Seleccione un Producto:</label>
                     </div>
                     <div>
-                        <select asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
-                            <option value="">Seleccione un producto</option>                            
+                        <select class="form-control m-2 rounded-5" asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
+                            <option value="">Seleccione un producto</option>
                         </select>
-                        <span class="campo-obligatorio">(*) Campo Obligatorio</span>
+                        @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+
                     </div>
                 }
 
             }
-                       
-            
-            <div class="mb-2">
-                <label class="form-label" asp-for="@Model.VentaLista.">Cantidad</label>
-                <input class="form-control form-control-sm" asp-for="Cantidad" type="number" min="1" max="1000000" />
+            <div>
+                <label class="mt-2 mx-4 form-label" asp-for="@Model.VentaLista.">Cantidad</label>
+                <input class="form-control form-control-sm mx-1 m-1 rounded-5" asp-for="Cantidad" type="number" min="1" max="1000000" />
                 @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
-           </div>
-
-
-
-            <button type="submit" class="btn btn-primary">Registrar Venta</button>            
-
+            </div>
+            <div class="mt-4 mx-2">
+                <button type="submit" class="btn btn-principe"><i class="fa-solid fa-receipt"></i><span style="padding-left: 10px;">Registrar Venta</span></button>
+            </div>
 
         </form>
-
     </div>
 </div>
