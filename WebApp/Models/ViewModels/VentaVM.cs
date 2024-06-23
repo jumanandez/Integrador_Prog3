@@ -25,7 +25,11 @@ namespace WebApp.Models.ViewModels
         public int? VentaId { get; set; }
 
         public int? CategoriaId { get; set; }
+
         public int? ProductoId { get; set; }
+
+        public int Llamado { get; set; } = 0; //0 = nueva venta, 1 = editar.
+
 
 
     }

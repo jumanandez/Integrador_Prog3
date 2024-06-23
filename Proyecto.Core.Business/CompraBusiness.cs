@@ -110,7 +110,6 @@ namespace Proyecto.Core.Business
                 Cantidad = compra.Cantidad
 
             };
-        
         }
 
     }

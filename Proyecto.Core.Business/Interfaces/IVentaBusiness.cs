@@ -18,6 +18,7 @@ namespace Proyecto.Core.Business.Interfaces
         public List<Venta> GetVentas(int userId);
         public int GetVentaProducto(int userId, int productoId);
 
+        public List<Venta> OptionSelectFilter(string search, int userId, List<Venta>? ventasList);
 
         public Venta GetVentaById(int id);
 

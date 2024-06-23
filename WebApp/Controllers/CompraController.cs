@@ -66,7 +66,7 @@ namespace WebApp.Controllers
             ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
             ViewData["AmmountSortParm"] = sortOrder == "Ammount" ? "ammount_desc" : "Ammount";
             ViewData["StockSortParm"] = sortOrder == "Stock" ? "stock_desc" : "Stock";
-
+            
             if (searchString != null)
             {
                 pagina = 1;
@@ -151,6 +151,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CompraVM compraModel)
         {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
             if (compraModel.CategoriaId == null)
             {
                 ModelState.AddModelError("CategoriaId", "Debe seleccionar una categoria.");
@@ -187,7 +189,7 @@ namespace WebApp.Controllers
             }
 
             compraModel.CategoriaLista = _categoriaBusiness.GetAll();
-            compraModel.CompraLista = _compraBusiness.GetCompras(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+            compraModel.CompraLista = _compraBusiness.GetCompras(userId);
             return View(compraModel);
         }
 
@@ -299,7 +301,6 @@ namespace WebApp.Controllers
                 return View("Create", compraModel);
             }
 
-            // Verificar si la fecha de compra está dentro del rango permitido
             if (_compraBusiness.VerificarFecha(compraModel.FechaCompra.GetValueOrDefault()))
             {
                 compraModel.Llamado = 2;

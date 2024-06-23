@@ -118,7 +118,7 @@ body {
 }
 
 .btn {
-    border-radius: 100px;
+    border-radius: 80px;
 }
 
 /*Color cambiado*/
@@ -246,4 +246,14 @@ body {
     --bs-table-hover-color: #FFFFFF;
     color: var(--bs-table-color);
     border-color: var(--bs-table-border-color);
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: #3741AF !important;
+}
+
+.bg-bb {
+    --bs-bg-opacity: 1;
+    background-color: #383844 !important;
 }

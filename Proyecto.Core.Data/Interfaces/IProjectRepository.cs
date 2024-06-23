@@ -22,6 +22,7 @@ namespace Proyecto.Core.Data.Interfaces
         public List<Compra> FiltrarCompraFecha(string search, List<Compra> unfilteredCompras);
         public List<Compra> FiltrarCompraMasComprado(int usuarioId, List<Compra> unfilteredCompras);
         public List<Venta> GetVentas(int userId);
+        public List<Venta> FiltrarVentaFecha(string search, List<Venta> unfilteredVentas);
         public int GetVentaProducto(int userId, int productoId);
         public Producto GetProducto(int id);
         public void DeleteProducto(int id);
