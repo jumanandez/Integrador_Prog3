@@ -103,9 +103,9 @@ button {
     transition: .4s;
 }
 
-    button:hover {
-        opacity: .9;
-    }
+button:hover {
+    opacity: .9;
+}
 
 .registrar {
     font-size: .8rem;
