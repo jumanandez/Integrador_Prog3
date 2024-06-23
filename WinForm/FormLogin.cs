@@ -1,10 +1,8 @@
 ﻿using Proyecto.Core.Business.Interfaces;
-using System.Text;
-using System.Security.Cryptography;
 using Proyecto.Core.Entities;
-using Proyecto.Core.Data;
 using Proyecto.Core.Business;
 using Krypton.Toolkit;
+using WinForm.CustomMessageBox;
 
 namespace WinForm
 {
@@ -13,46 +11,46 @@ namespace WinForm
         private readonly IUsuarioBusiness _usuarioBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
         private readonly IProductoBusiness _productoBusiness;
-        public Usuario _loggedUser;
+        public Usuario _loggedUser = null!;
         public FormLogin(ICategoriaBusiness catbusi, IProductoBusiness produbusi, IUsuarioBusiness usuarioBusiness)
         {
-
             _usuarioBusiness = usuarioBusiness;
             _categoriaBusiness = catbusi;
             _productoBusiness = produbusi;
             InitializeComponent();
-            button1.Enabled= false;
+            btnlogin.Enabled = false;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             bool pass;
-            if (_usuarioBusiness.CompareUserToDB(textBox1.Text))//obtener salt ya
+            var user = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
+            if (user != null)
             {
-                var hashnew = CryptoHelper.HashPassword(textBox2.Text, _usuarioBusiness.GetUsuarioSalt(textBox1.Text));
+                var hashnew = CryptoHelper.HashPassword(txtboxpassw.Text, user.Salt);
 
-                pass = hashnew.SequenceEqual(_usuarioBusiness.GetUsuarioHash(textBox1.Text));
+                pass = hashnew.SequenceEqual(user.HashPassword);
 
                 if (pass)
                 {
+                    _loggedUser = user;
                     IngresarAlaAplicacion();
                 }
                 else
                 {
-                    MessageBox.Show("Contraseña Incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RJMessageBox.Show("Contraseña Incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (textBox1.Text.Trim() == "")
+            else if (txtboxuser.Text.Trim() == "")
             {
-                MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (textBox2.Text.Trim() == "" || textBox1.Text == "Ingrese una contraseña")
+            else if (txtboxpassw.Text.Trim() == "" || txtboxuser.Text == "Ingrese una contraseña")
             {
-                MessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                MessageBox.Show("Usuario y/o Contraseña Incorrecto!",
+                RJMessageBox.Show("Usuario y/o Contraseña Incorrecto!",
                                 "Pruebe otro Usuario y/o Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -63,8 +61,7 @@ namespace WinForm
 
             if (formCambioContraseña.ShowDialog() == DialogResult.OK)
             {
-                _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
-                MessageBox.Show("Contraseña Cambiada Con Exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Contraseña Cambiada Con Exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Show();
             }
             else
@@ -72,7 +69,7 @@ namespace WinForm
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult operao = RJMessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
@@ -93,8 +90,8 @@ namespace WinForm
 
             if (registrarse.ShowDialog() == DialogResult.OK)
             {
-                _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
-                MessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _loggedUser = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
+                RJMessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Show();
             }
             else
@@ -102,7 +99,7 @@ namespace WinForm
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult operao = RJMessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
@@ -117,19 +114,20 @@ namespace WinForm
         }
         private void IngresarAlaAplicacion()
         {
-            _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
             Hide();
             FormProducto productosesion = new FormProducto(_categoriaBusiness, _productoBusiness, _usuarioBusiness, _loggedUser);
             if (productosesion.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Rompiste todo!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Show();
+                txtboxuser.Focus();
+                txtboxpassw.Clear();
             }
             else
             {
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Salir?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult operao = RJMessageBox.Show("Salir?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
@@ -139,22 +137,21 @@ namespace WinForm
                         productosesion.ShowDialog();
                     }
                 }
+                DialogResult = DialogResult.OK;
             }
-            DialogResult = DialogResult.OK;
         }
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
-            textBox1.StateCommon.Content.Color1 = Color.White;
-            button1.Enabled = true;
+            txtboxuser.Clear();
+            txtboxuser.StateCommon.Content.Color1 = Color.White;
+            btnlogin.Enabled = true;
         }
 
         private void textBox2_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
-            textBox2.UseSystemPasswordChar = true;
-            textBox2.StateCommon.Content.Color1 = Color.White;
+            txtboxpassw.Clear();
+            txtboxpassw.StateCommon.Content.Color1 = Color.White;
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -164,8 +161,8 @@ namespace WinForm
 
             if (registrarse.ShowDialog() == DialogResult.OK)
             {
-                _loggedUser = _usuarioBusiness.ObtainUsuario(textBox1.Text);
-                MessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _loggedUser = _usuarioBusiness.ObtainUsuario(txtboxuser.Text);
+                RJMessageBox.Show("Registrado Correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Show();
             }
             else
@@ -173,7 +170,7 @@ namespace WinForm
                 bool exit = false;
                 while (!exit)
                 {
-                    DialogResult operao = MessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult operao = RJMessageBox.Show("Cancelar operacion?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (operao == DialogResult.Yes)
                     {
                         exit = true;
@@ -187,12 +184,42 @@ namespace WinForm
             }
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)//Ignora  espacios en textbox
         {
+            if (e.KeyChar == (char)Keys.Enter && (txtboxpassw.Text != "Ingrese una contraseña" || txtboxpassw.Text == "".Trim()))
+            {
+                this.AcceptButton = btnlogin;//aceptar enter como click
+                Point screenCoordinates = btnlogin.PointToScreen(Point.Empty);//manda al puntero al centro del boton
+
+                Cursor.Position = new Point(screenCoordinates.X + btnlogin.Width / 2, screenCoordinates.Y + btnlogin.Height / 2);
+            }
             if (e.KeyChar == (char)Keys.Space)
             {
                 e.Handled = true;
             }
+        }
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)//implementado a medias, codigo para presionar enter y logear
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+                if (txtboxpassw.Text == "Ingrese una contraseña" || txtboxpassw.Text == "".Trim())
+                {
+                    txtboxpassw.UseSystemPasswordChar = true;
+                    txtboxpassw.StateCommon.Content.Color1 = Color.White;
+                    txtboxpassw.Focus();
+                    txtboxpassw.Clear();
+                }
+                else
+                {
+                    button1_Click(this, new EventArgs());
+                }
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            btnlogin.Enabled = true;
         }
     }
 }

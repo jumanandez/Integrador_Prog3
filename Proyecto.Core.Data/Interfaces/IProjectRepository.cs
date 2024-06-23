@@ -41,7 +41,6 @@ namespace Proyecto.Core.Data.Interfaces
         public bool CreateUser(string Username, byte[] hashPassword, byte[] salt);
         public Compra GetCompraById(int id);
         public Venta GetVentaById(int id);
-
-
+        List<Usuario> GetAllUsuarios();
     }
 }

@@ -56,6 +56,9 @@ namespace Proyecto.Core.Data
                                                .Include(p => p.Compras).ThenInclude(c => c.Usuario)
                                                .Include(p => p.Venta).ThenInclude(v => v.Usuario)
                                                .ToList();
+                productos = dbcontext.Productos.Include(p => p.Categoria)// arreglar
+                                               .Include(p => p.Compras).ThenInclude(c => c.Usuario)
+                                               .Include(p => p.Venta).ThenInclude(v => v.Usuario).ToList();
             }
             return productos;
         }
@@ -417,7 +420,14 @@ namespace Proyecto.Core.Data
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                var User = dbcontext.Usuarios.Include(v => v.Venta).Include(v => v.Compras).Where(b => b.Nombre == Username).FirstOrDefault();
+            //var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
+                var User = dbcontext.Usuarios
+                    .Where(b => b.Nombre == Username)
+                    .Include(c => c.Compras)
+                        .ThenInclude(compra => compra.Producto)
+                    .Include(c => c.Venta)
+                    .ThenInclude(venta => venta.Producto)
+                    .FirstOrDefault();
                 return User;
             }
         }
@@ -437,8 +447,17 @@ namespace Proyecto.Core.Data
             }
             return true;
         }
-
-
+        public List<Usuario> GetAllUsuarios()
+        {
+                using (var _dbContext = new IntegradorProg3Context(_config))
+                {
+                    return _dbContext.Usuarios.Include(u => u.Compras).
+                                               ThenInclude(c => c.Producto).
+                                               Include(u => u.Venta).
+                                               ThenInclude(v => v.Producto).ToList();
+                }
+           
+        }
         #endregion
     }
 }

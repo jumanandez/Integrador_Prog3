@@ -42,7 +42,7 @@ namespace Proyecto.Core.Business
 
                 if (coincideConDB)
                 {
-                    usuarioAux.HashPassword = CryptoHelper.HashPassword(passwordNueva, usuarioAux.Salt);
+                    usuarioAux.HashPassword = CryptoHelper.HashPassword(passwordNueva, CryptoHelper.GenerateSalt());
 
                     return _projectRepository.ChangePass(usuarioAux);
                 }
@@ -68,7 +68,6 @@ namespace Proyecto.Core.Business
             }
             else
             {
-
                 var saltBytes = CryptoHelper.GenerateSalt();
 
                 byte[] hashedPassword = CryptoHelper.HashPassword(password, saltBytes);
@@ -77,5 +76,10 @@ namespace Proyecto.Core.Business
             }
 		}
 
-	}
+        public List<Usuario> GetAllUsuarios()
+        {
+            return _projectRepository.GetAllUsuarios();
+        }
+
+    }
 }

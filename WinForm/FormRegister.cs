@@ -1,24 +1,14 @@
 ﻿using Krypton.Toolkit;
 using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using WinForm.CustomMessageBox;
 
 namespace WinForm
 {
     public partial class FormRegister : KryptonForm
     {
         private readonly IUsuarioBusiness _usuarioBusiness;
-        public Usuario User;
+        public Usuario User = null!;
         public FormRegister(IUsuarioBusiness usuarioBusiness)
         {
             _usuarioBusiness = usuarioBusiness;
@@ -30,43 +20,57 @@ namespace WinForm
             string username = txtNombreUsuario.Text;
             string pass = txtContraseña.Text;
 
-            if (txtNombreUsuario.Text.Trim() != "" && txtContraseña.Text != "Ingrese una contraseña" && txtContraseña.Text.Trim() != "" && _usuarioBusiness.CreateUsuario(username, pass))
+            if (txtContraseña.Text != txtConfirm.Text)
+            {
+                RJMessageBox.Show("La nueva contraseña y la confirmacion no coinciden!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtNombreUsuario.Text.Trim() == "")
+            {
+                RJMessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtContraseña.Text.Trim() == "" || txtContraseña.Text == "Ingrese una contraseña")
+            {
+                RJMessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtNombreUsuario.Text.Trim() != "" && txtContraseña.Text != "Ingrese una contraseña" && txtContraseña.Text.Trim() != "" && txtContraseña.Text == txtConfirm.Text && _usuarioBusiness.CreateUsuario(username, pass))
             {
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            else if (txtNombreUsuario.Text.Trim() == "")
-            {
-                MessageBox.Show("Usuario no puede estar vacio!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else if (txtContraseña.Text.Trim() == "" || txtContraseña.Text == "Ingrese una contraseña")
-            {
-                MessageBox.Show("Ingrese una contraseña!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
             else
             {
-                MessageBox.Show("Usuario existente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                RJMessageBox.Show("Usuario existente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            txtNombreUsuario.Clear();
-            txtNombreUsuario.StateCommon.Content.Color1 = Color.White;
-            btnRegistrarse.Enabled = true;
-        }
-
-        private void textBox2_Click(object sender, EventArgs e)
-        {
-            txtContraseña.Clear();
-            txtContraseña.UseSystemPasswordChar = true;
-            txtContraseña.StateCommon.Content.Color1 = Color.White;
-        }
-
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Space)
+            if (e.KeyChar == (char)Keys.Enter && txtContraseña.Text != "".Trim())
             {
-                e.Handled = true;
+                this.AcceptButton = btnRegistrarse;
+                Point screenCoordinates = btnRegistrarse.PointToScreen(Point.Empty);
+
+                Cursor.Position = new Point(screenCoordinates.X + btnRegistrarse.Width / 2, screenCoordinates.Y + btnRegistrarse.Height / 2);
+                if (e.KeyChar == (char)Keys.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtNombreUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+                if (txtContraseña.Text == "".Trim())
+                {
+                    txtContraseña.Focus();
+                    txtContraseña.Clear();
+                }
+                else
+                {
+                    btnRegistrarse_Click(this, new EventArgs());
+                }
             }
         }
     }

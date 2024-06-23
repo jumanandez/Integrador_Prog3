@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="ReaLTaiizor" Version="3.8.0.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,11 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form1.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Form1.resx</DependentUpon>
-    </Compile>
+    <Compile Update="FormUserDetails.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -44,10 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Form1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Form1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

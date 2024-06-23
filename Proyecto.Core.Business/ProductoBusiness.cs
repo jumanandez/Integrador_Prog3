@@ -72,5 +72,22 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetAllNames();
 
 		}
-  }
+        public Paginado<Producto> GetProductosPaginados(int pagina, int itemsPorPagina)
+        {
+			var producto = _projectRepository.GetProductos()
+                .Skip((pagina - 1) * itemsPorPagina)
+                .Take(itemsPorPagina)
+                .ToList();
+
+            var totalProductos = _projectRepository.GetProductos().Count();
+
+            return new Paginado<Producto>
+            {
+                Items = producto,
+                PaginaActual = pagina,
+                ItemsPorPagina = itemsPorPagina,
+                TotalPaginas = (int)Math.Ceiling(totalProductos / (double)itemsPorPagina)
+            };
+        }
+    }
 }

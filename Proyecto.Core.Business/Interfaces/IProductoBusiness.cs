@@ -19,5 +19,6 @@ namespace Proyecto.Core.Business.Interfaces
         public List<string> GetAllNames();
 		public int GetStock(int usuarioId, int productoId);
         public int GetStock(int productoId);
-	}
+        public Paginado<Producto> GetProductosPaginados(int pagina, int itemsPorPagina);
+    }
 }

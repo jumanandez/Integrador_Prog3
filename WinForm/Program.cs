@@ -5,8 +5,8 @@ using Proyecto.Core.Business.Interfaces;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Data;
 using Proyecto.Core.Configurations;
-using System;
 using Krypton.Toolkit;
+using WinForm.CustomMessageBox;
 
 namespace WinForm
 {
@@ -19,14 +19,6 @@ namespace WinForm
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
             ConfigureServices(services);
-            //using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-            //{
-
-            //    var login = serviceProvider.GetRequiredService<FormLogin>();
-            //    Application.Run(login);
-
-            //}
-
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
                 var login = serviceProvider.GetRequiredService<FormLogin>();
@@ -36,7 +28,7 @@ namespace WinForm
                     bool exit = false;
                     while (!exit)
                     {
-                        DialogResult dialogResult = KryptonMessageBox.Show("Salir del programa?", "Confirmar", KryptonMessageBoxButtons.OKCancel, KryptonMessageBoxIcon.Question);
+                        DialogResult dialogResult = RJMessageBox.Show("Salir del programa?", "Confirmar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.OK)
                         {
                             Application.Exit();
@@ -48,16 +40,6 @@ namespace WinForm
                         }
                     }
                 }
-
-
-                //if (login.ShowDialog() == DialogResult.OK)
-                //{
-                //            }
-                //            else
-                //{
-                //	// Handle failed login (optional)
-                //               MessageBox.Show("Operacion cancelada", "Aviso", MessageBoxButtons.);
-                //Application.Exit();
             }
         }
         private static void ConfigureServices(ServiceCollection services)
@@ -70,9 +52,6 @@ namespace WinForm
                 ConnectionString = connectionString
             };
 
-
-
-
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             services.AddLogging(configure => configure.AddConsole())
                     .AddScoped<Config>(p =>
@@ -84,18 +63,8 @@ namespace WinForm
                     .AddScoped<IProductoBusiness, ProductoBusiness>()
                     .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
                     .AddTransient<FormProducto>()
-                    .AddTransient<Form2>()
+                    .AddTransient<FormAddModif>()
                     .AddTransient<FormLogin>();
-
-            //ServiceProvider serviceLogin = services.BuildServiceProvider();
-            //services.AddLogging(configure => configure.AddConsole())
-            //        .AddScoped<Config>(p =>
-            //        {
-            //            return config;
-            //        })
-            //        .AddScoped<IUsuarioBusiness, UsuarioBusiness>()
-            //        .AddScoped<IProjectRepository, ProjectRepository>()
-            //        .AddTransient<FormLogin>();
 
         }
     }

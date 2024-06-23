@@ -18,5 +18,6 @@ namespace Proyecto.Core.Business.Interfaces
         public bool CreateUsuario(string userName, string password);
 
         public bool? ChangePass(string username, string passwordActual, string passwordNueva);
-	}
+        List<Usuario> GetAllUsuarios();
+    }
 }
