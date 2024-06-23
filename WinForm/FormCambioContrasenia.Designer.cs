@@ -110,8 +110,8 @@ namespace WinForm
             kryptonCustomPaletteBase1.Common.StateDisabled.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.Common.StateDisabled.Content.ShortText.Color1 = Color.DarkGray;
             kryptonCustomPaletteBase1.Common.StateDisabled.Content.ShortText.Color2 = Color.DarkGray;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(32, 30, 30);
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(32, 30, 30);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(26, 26, 28);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(26, 26, 28);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.GraphicsHint = PaletteGraphicsHint.AntiAlias;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Rounding = 16F;
@@ -283,7 +283,7 @@ namespace WinForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
+            BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(383, 529);
             Controls.Add(btnconfirmar);
             Controls.Add(txtConfirmarContrasena);

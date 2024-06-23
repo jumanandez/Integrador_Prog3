@@ -251,8 +251,8 @@ namespace WinForm
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.Color2 = Color.FromArgb(64, 64, 64);
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.ColorAngle = 45F;
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 32);
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 32);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(26, 26, 28);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(26, 26, 28);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Draw = InheritBool.True;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color2 = Color.Gray;
@@ -389,11 +389,11 @@ namespace WinForm
             checkHabilitado.TabIndex = 3;
             checkHabilitado.Values.Text = "Habilitado";
             // 
-            // Form2
+            // FormAddModif
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(30, 30, 30);
+            BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(260, 306);
             Controls.Add(checkHabilitado);
             Controls.Add(BTNCancelar);
@@ -405,7 +405,7 @@ namespace WinForm
             ForeColor = Color.WhiteSmoke;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             FormTitleAlign = PaletteRelativeAlign.Inherit;
-            Name = "Form2";
+            Name = "FormAddModif";
             Palette = kryptonCustomPaletteBase1;
             PaletteMode = PaletteMode.Custom;
             ShowIcon = false;

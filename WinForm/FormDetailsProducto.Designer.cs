@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec1 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec5 = new Krypton.Toolkit.IconSpec();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetailsProducto));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec2 = new Krypton.Toolkit.IconSpec();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec3 = new Krypton.Toolkit.IconSpec();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec4 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec6 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec7 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec8 = new Krypton.Toolkit.IconSpec();
             lblCategoria = new Label();
             lblCompra = new Label();
             datagridCompra = new Krypton.Toolkit.KryptonDataGridView();
@@ -105,11 +105,11 @@
             datagridCompra.AllowUserToDeleteRows = false;
             datagridCompra.AllowUserToResizeColumns = false;
             datagridCompra.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 60, 70);
-            dataGridViewCellStyle1.ForeColor = Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
-            datagridCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(60, 60, 70);
+            dataGridViewCellStyle7.ForeColor = Color.Gainsboro;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(24, 24, 32);
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(224, 224, 224);
+            datagridCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             datagridCompra.BorderStyle = BorderStyle.None;
             datagridCompra.ColumnHeadersHeight = 20;
             datagridCompra.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha, ColumnCantidad });
@@ -135,11 +135,11 @@
             // ColumnFecha
             // 
             ColumnFecha.DataPropertyName = "Fecha";
-            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle2;
+            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle8;
             ColumnFecha.HeaderText = "Fecha";
-            iconSpec1.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
-            ColumnFecha.IconSpecs.Add(iconSpec1);
+            iconSpec5.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
+            ColumnFecha.IconSpecs.Add(iconSpec5);
             ColumnFecha.Name = "ColumnFecha";
             ColumnFecha.ReadOnly = true;
             ColumnFecha.Resizable = DataGridViewTriState.True;
@@ -148,11 +148,11 @@
             // ColumnCantidad
             // 
             ColumnCantidad.DataPropertyName = "Cantidad";
-            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle9;
             ColumnCantidad.HeaderText = "Cantidad";
-            iconSpec2.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
-            ColumnCantidad.IconSpecs.Add(iconSpec2);
+            iconSpec6.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
+            ColumnCantidad.IconSpecs.Add(iconSpec6);
             ColumnCantidad.Name = "ColumnCantidad";
             ColumnCantidad.ReadOnly = true;
             ColumnCantidad.Width = 100;
@@ -244,8 +244,8 @@
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.Color2 = Color.FromArgb(64, 64, 64);
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.ColorAngle = 45F;
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 30);
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 30);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(26, 26, 26);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(26, 26, 26);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Draw = Krypton.Toolkit.InheritBool.True;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color2 = Color.DimGray;
@@ -355,11 +355,11 @@
             datagridVentas.AllowUserToDeleteRows = false;
             datagridVentas.AllowUserToResizeColumns = false;
             datagridVentas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(60, 60, 70);
-            dataGridViewCellStyle4.ForeColor = Color.Gainsboro;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(24, 24, 32);
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(224, 224, 224);
-            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 60, 70);
+            dataGridViewCellStyle1.ForeColor = Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
+            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             datagridVentas.BorderStyle = BorderStyle.None;
             datagridVentas.ColumnHeadersHeight = 20;
             datagridVentas.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha2, ColumnCantidad2 });
@@ -386,11 +386,11 @@
             // ColumnFecha2
             // 
             ColumnFecha2.DataPropertyName = "Fecha";
-            ColumnFecha2.DefaultCellStyle = dataGridViewCellStyle5;
+            ColumnFecha2.DefaultCellStyle = dataGridViewCellStyle10;
             ColumnFecha2.HeaderText = "Fecha";
-            iconSpec3.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
-            ColumnFecha2.IconSpecs.Add(iconSpec3);
+            iconSpec7.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec7.Icon = (Image)resources.GetObject("iconSpec7.Icon");
+            ColumnFecha2.IconSpecs.Add(iconSpec7);
             ColumnFecha2.Name = "ColumnFecha2";
             ColumnFecha2.ReadOnly = true;
             ColumnFecha2.Resizable = DataGridViewTriState.True;
@@ -400,11 +400,11 @@
             // ColumnCantidad2
             // 
             ColumnCantidad2.DataPropertyName = "Cantidad";
-            ColumnCantidad2.DefaultCellStyle = dataGridViewCellStyle6;
+            ColumnCantidad2.DefaultCellStyle = dataGridViewCellStyle11;
             ColumnCantidad2.HeaderText = "Cantidad";
-            iconSpec4.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
-            ColumnCantidad2.IconSpecs.Add(iconSpec4);
+            iconSpec8.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec8.Icon = (Image)resources.GetObject("iconSpec8.Icon");
+            ColumnCantidad2.IconSpecs.Add(iconSpec8);
             ColumnCantidad2.Name = "ColumnCantidad2";
             ColumnCantidad2.ReadOnly = true;
             ColumnCantidad2.Resizable = DataGridViewTriState.True;
@@ -442,12 +442,12 @@
             btnAnterior.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAnterior.Location = new Point(20, 41);
             btnAnterior.Name = "btnAnterior";
-            btnAnterior.OverrideDefault.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.OverrideDefault.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.OverrideDefault.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.OverrideDefault.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.OverrideDefault.Back.ColorAngle = 45F;
             btnAnterior.OverrideDefault.Back.Image = Properties.Resources.Arrow_back;
-            btnAnterior.OverrideDefault.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.OverrideDefault.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.OverrideDefault.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.OverrideDefault.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.OverrideDefault.Border.ColorAngle = 45F;
             btnAnterior.OverrideDefault.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnAnterior.OverrideDefault.Border.Rounding = 8F;
@@ -455,15 +455,15 @@
             btnAnterior.OverrideDefault.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
             btnAnterior.OverrideDefault.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
             btnAnterior.Size = new Size(72, 108);
-            btnAnterior.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.StateCommon.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.StateCommon.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.StateCommon.Back.ColorAngle = 45F;
             btnAnterior.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
             btnAnterior.StateCommon.Back.Image = Properties.Resources.Arrow_back;
             btnAnterior.StateCommon.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
             btnAnterior.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
-            btnAnterior.StateCommon.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.StateCommon.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.StateCommon.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.StateCommon.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.StateCommon.Border.ColorAngle = 45F;
             btnAnterior.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnAnterior.StateCommon.Content.AdjacentGap = 1;
@@ -476,24 +476,24 @@
             btnAnterior.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAnterior.StateCommon.Content.ShortText.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
             btnAnterior.StateCommon.Content.ShortText.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
-            btnAnterior.StatePressed.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.StatePressed.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.StatePressed.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.StatePressed.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.StatePressed.Back.Image = Properties.Resources.Arrow_backP;
             btnAnterior.StatePressed.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
             btnAnterior.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
-            btnAnterior.StatePressed.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.StatePressed.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.StatePressed.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.StatePressed.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.StatePressed.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnAnterior.StatePressed.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
             btnAnterior.StatePressed.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
             btnAnterior.StatePressed.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
-            btnAnterior.StateTracking.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.StateTracking.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.StateTracking.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.StateTracking.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.StateTracking.Back.ColorAngle = 135F;
             btnAnterior.StateTracking.Back.Image = Properties.Resources.Arrow_backS;
             btnAnterior.StateTracking.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
-            btnAnterior.StateTracking.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnAnterior.StateTracking.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnAnterior.StateTracking.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnAnterior.StateTracking.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnAnterior.StateTracking.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnAnterior.StateTracking.Border.Rounding = 8F;
             btnAnterior.StateTracking.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
@@ -525,12 +525,12 @@
             btnSiguiente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSiguiente.Location = new Point(384, 41);
             btnSiguiente.Name = "btnSiguiente";
-            btnSiguiente.OverrideDefault.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.OverrideDefault.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.OverrideDefault.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.OverrideDefault.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.OverrideDefault.Back.ColorAngle = 45F;
             btnSiguiente.OverrideDefault.Back.Image = Properties.Resources.arrow_forward;
-            btnSiguiente.OverrideDefault.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.OverrideDefault.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.OverrideDefault.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.OverrideDefault.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.OverrideDefault.Border.ColorAngle = 45F;
             btnSiguiente.OverrideDefault.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnSiguiente.OverrideDefault.Border.Rounding = 8F;
@@ -538,15 +538,15 @@
             btnSiguiente.OverrideDefault.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
             btnSiguiente.OverrideDefault.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
             btnSiguiente.Size = new Size(72, 108);
-            btnSiguiente.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.StateCommon.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.StateCommon.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.StateCommon.Back.ColorAngle = 45F;
             btnSiguiente.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Dashed;
             btnSiguiente.StateCommon.Back.Image = Properties.Resources.arrow_forward1;
             btnSiguiente.StateCommon.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
             btnSiguiente.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
-            btnSiguiente.StateCommon.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.StateCommon.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.StateCommon.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.StateCommon.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.StateCommon.Border.ColorAngle = 45F;
             btnSiguiente.StateCommon.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnSiguiente.StateCommon.Content.AdjacentGap = 1;
@@ -559,24 +559,24 @@
             btnSiguiente.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSiguiente.StateCommon.Content.ShortText.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
             btnSiguiente.StateCommon.Content.ShortText.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
-            btnSiguiente.StatePressed.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.StatePressed.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.StatePressed.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.StatePressed.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.StatePressed.Back.Image = Properties.Resources.arrow_forwardP;
             btnSiguiente.StatePressed.Back.ImageAlign = Krypton.Toolkit.PaletteRectangleAlign.Local;
             btnSiguiente.StatePressed.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterRight;
-            btnSiguiente.StatePressed.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.StatePressed.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.StatePressed.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.StatePressed.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.StatePressed.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnSiguiente.StatePressed.Content.DrawFocus = Krypton.Toolkit.InheritBool.False;
             btnSiguiente.StatePressed.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
             btnSiguiente.StatePressed.Content.ShortText.Color2 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.StateTracking.Back.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.StateTracking.Back.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.StateTracking.Back.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.StateTracking.Back.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.StateTracking.Back.ColorAngle = 135F;
             btnSiguiente.StateTracking.Back.Image = Properties.Resources.arrow_forwardS;
             btnSiguiente.StateTracking.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterLeft;
-            btnSiguiente.StateTracking.Border.Color1 = Color.FromArgb(30, 30, 30);
-            btnSiguiente.StateTracking.Border.Color2 = Color.FromArgb(30, 30, 30);
+            btnSiguiente.StateTracking.Border.Color1 = Color.FromArgb(26, 26, 26);
+            btnSiguiente.StateTracking.Border.Color2 = Color.FromArgb(26, 26, 26);
             btnSiguiente.StateTracking.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom | Krypton.Toolkit.PaletteDrawBorders.Left | Krypton.Toolkit.PaletteDrawBorders.Right;
             btnSiguiente.StateTracking.Border.Rounding = 8F;
             btnSiguiente.StateTracking.Content.ShortText.Color1 = Color.FromArgb(30, 30, 30);
@@ -759,7 +759,7 @@
             // 
             // btnlvolver
             // 
-            btnlvolver.BackColor = Color.FromArgb(32, 32, 32);
+            btnlvolver.BackColor = Color.FromArgb(28, 28, 28);
             btnlvolver.Cursor = Cursors.Hand;
             btnlvolver.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
             btnlvolver.FlatAppearance.BorderSize = 0;
@@ -840,7 +840,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
+            BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(459, 523);
             Controls.Add(lblnumerostock);
             Controls.Add(lblcustomcategoria);

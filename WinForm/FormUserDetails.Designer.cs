@@ -199,8 +199,8 @@ namespace WinForm
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.ColorAngle = 45F;
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
             kryptonCustomPaletteBase1.ControlStyles.ControlCustom1.StateCommon.Border.Width = 1;
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 32);
-            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 32);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color1 = Color.FromArgb(26, 26, 28);
+            kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Color2 = Color.FromArgb(26, 26, 28);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Back.Draw = InheritBool.True;
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
             kryptonCustomPaletteBase1.FormStyles.FormMain.StateCommon.Border.Color2 = Color.Gray;
@@ -329,6 +329,7 @@ namespace WinForm
             // 
             // mainpanel
             // 
+            mainpanel.BackColor = Color.FromArgb(26, 26, 26);
             mainpanel.Controls.Add(panelCompras);
             mainpanel.Controls.Add(panelventas);
             mainpanel.Location = new Point(230, 12);
@@ -593,7 +594,7 @@ namespace WinForm
             // 
             // btnlogout
             // 
-            btnlogout.BackColor = Color.FromArgb(32, 32, 32);
+            btnlogout.BackColor = Color.FromArgb(26, 26, 28);
             btnlogout.Cursor = Cursors.Hand;
             btnlogout.FlatAppearance.BorderColor = Color.FromArgb(56, 56, 64);
             btnlogout.FlatAppearance.BorderSize = 0;
@@ -634,7 +635,7 @@ namespace WinForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(30, 30, 30);
+            BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(670, 515);
             Controls.Add(cmbUsuarios);
             Controls.Add(btnlogout);

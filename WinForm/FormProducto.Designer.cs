@@ -1424,7 +1424,7 @@ namespace WinForm
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackColor = Color.FromArgb(30, 30, 32);
+            BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(924, 635);
             ControlBox = false;
             Controls.Add(label1);
