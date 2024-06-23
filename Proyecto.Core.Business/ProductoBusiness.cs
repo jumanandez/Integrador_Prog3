@@ -41,6 +41,11 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetProductos();
 		}
 
+        public List<Producto> GetAllWeb()
+        {
+            return _projectRepository.GetProductosWeb();
+        }
+
 
         public Producto GetProducto(int id)
 		{

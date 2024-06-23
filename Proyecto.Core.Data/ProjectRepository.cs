@@ -62,6 +62,20 @@ namespace Proyecto.Core.Data
             }
             return productos;
         }
+        public List<Producto> GetProductosWeb()
+        {
+            var productos = new List<Producto>();
+
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                productos = dbcontext.Productos.Where(c => c.Habilitado == true)
+                                               .Include(p => p.Categoria)
+                                               .Include(p => p.Compras).ThenInclude(c => c.Usuario)
+                                               .Include(p => p.Venta).ThenInclude(v => v.Usuario)
+                                               .ToList();
+            }
+            return productos;
+        }
         public int GetStock(int usuarioId, int productoId)
         {
             int stock = 0;

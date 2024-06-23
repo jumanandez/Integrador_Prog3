@@ -296,6 +296,8 @@ namespace WinForm
             Controls.Add(lblcontraseniaA);
             Controls.Add(lblnombreusuario);
             FormTitleAlign = PaletteRelativeAlign.Inherit;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FormCambioContrasena";
             Palette = kryptonCustomPaletteBase1;
             PaletteMode = PaletteMode.Custom;

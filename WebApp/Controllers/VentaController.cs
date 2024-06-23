@@ -157,7 +157,7 @@ namespace WebApp.Controllers
 
             if (ventaModel.CategoriaSeleccionada != 0)
             {
-                ventaModel.ProductoLista = _productoBusiness.GetAll()
+                ventaModel.ProductoLista = _productoBusiness.GetAllWeb()
                     .Where(p => p.CategoriaId == ventaModel.CategoriaSeleccionada)
                     .ToList();
             }            
