@@ -49,21 +49,25 @@ namespace Proyecto.Core.Business
             return false;
         }
 
-        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId)
+        public Paginado<Compra> GetComprasPaginadas(int pagina, int itemsPorPagina, int usuarioId, List<Compra>? compras)
         {
-            var compras = _projectRepository.GetCompras(usuarioId)
+            List<Compra> comprasList = compras ?? _projectRepository.GetCompras(usuarioId);
+
+            int totalCompras = comprasList.Count;
+
+            List<Compra> comprasPaginadas = comprasList
                 .Skip((pagina - 1) * itemsPorPagina)
                 .Take(itemsPorPagina)
                 .ToList();
 
-            var totalCompras = _projectRepository.GetCompras(usuarioId).Count();
-
-            return new Paginado<Compra>
+            return new Paginado<Compra>()
             {
-                Items = compras,
+                Items = comprasPaginadas,
                 PaginaActual = pagina,
                 ItemsPorPagina = itemsPorPagina,
-                TotalPaginas = (int)Math.Ceiling(totalCompras / (double)itemsPorPagina)
+                TotalPaginas = (int)Math.Ceiling(totalCompras / (double)itemsPorPagina),
+                HasPreviousPage = pagina > 1,
+                HasNextPage = pagina < (int)Math.Ceiling(totalCompras / (double)itemsPorPagina),
             };
         }
 
@@ -77,6 +81,36 @@ namespace Proyecto.Core.Business
             _projectRepository.UpdateCompra(compra);
         }
 
+        public List<Compra> OptionSelectFilter(string search, int selectOption, int userId, List<Compra>? comprasList)
+        {
+            List<Compra> comprasFiltradas = comprasList ?? _projectRepository.GetCompras(userId);
+
+            switch (selectOption)
+            {
+                case 1:
+                    { 
+                        comprasFiltradas = _projectRepository.FiltrarCompraFecha(search, comprasFiltradas);
+                        break;
+                    }
+                case 2:
+                    {
+                        comprasFiltradas = _projectRepository.FiltrarCompraMasComprado(userId, comprasFiltradas);
+                        break;
+                    }
+            }
+            return comprasFiltradas;
+        }
+
+        public void RepetirCompra(Compra compra)
+        {
+
+            var nuevaCompra = new Compra
+            {
+                Fecha = compra.Fecha,
+                Cantidad = compra.Cantidad
+
+            };
+        }
 
     }
 }

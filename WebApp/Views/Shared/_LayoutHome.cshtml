@@ -1,24 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@* ESTE ES EL LAYOUT DE HOME *@
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApp</title>
+    <title>@ViewData["Title"] - Sistema de control de stock</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="user-select-none">
     <header>
-        <nav class="navbar navbar-expand-lg bg-bb user-select-none" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand ms-auto" href="@Url.Action("Index", "Home")"><img class="logo-mini" src="https://i.imgur.com/NRCrSyI.png" alt="Alternate Text" />Inicio</a>
+                <a class="navbar-brand" href="#"> <img class="logo-mini" src="https://i.imgur.com/NRCrSyI.png" alt="Alternate Text" />Inicio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor02">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Venta" asp-action="Index" asp-route-refresh="true">Ventas<span style="padding-left: 10px;"><i class="fa-solid fa-tag"></i></span></a>
                         </li>
@@ -26,10 +27,10 @@
                             <a class="nav-link" asp-area="" asp-controller="Compra" asp-action="Index" asp-route-refresh="true">Compras<span style="padding-left: 10px;"><i class="fa-solid fa-cart-shopping"></i></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy" asp-route-refresh="true">Acerca de<span style="padding-left: 10px;"><i class="fa-solid fa-globe"></i></span></a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Acerca de<span style="padding-left: 10px;"><i class="fa-solid fa-globe"></i></span></a>
                         </li>
                         <li id="CERRAR" class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="SignOut" asp-route-refresh="true">Cerrar Sesión<span style="padding-left: 10px;"><i class="fa-solid fa-arrow-right-from-bracket"></i></span></a>
+                            <a class="nav-link " style="margin-left 6%" asp-area="" asp-controller="Home" asp-action="SignOut">Cerrar Sesión<span style="padding-left: 10px;"><i class="fa-solid fa-arrow-right-from-bracket"></i></span></a>
                         </li>
                     </ul>
                 </div>
@@ -42,7 +43,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted user-select-none">
+    <footer class="footer text-muted user-select-none">
         <div class="container">
             &copy; 2024 - MecanicaMersch - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

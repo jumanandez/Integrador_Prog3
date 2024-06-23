@@ -7,13 +7,13 @@ public partial class Producto
 {
     public int ProductoId { get; set; }
 
-    public string Nombre { get; set; } = null!;
+    public string? Nombre { get; set; }
 
     public int CategoriaId { get; set; }
 
     public bool Habilitado { get; set; }
 
-    public virtual Categoria Categoria { get; set; } = null!;
+    public virtual Categoria? Categoria { get; set; }
 
     public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
 

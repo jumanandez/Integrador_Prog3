@@ -30,10 +30,57 @@ namespace Proyecto.Core.Business
             return _projectRepository.GetVentas(userId);
         }
 
+        public int GetVentaProducto(int userId, int productoId)
+        {
+            return _projectRepository.GetVentaProducto(userId, productoId);
+        }
+
+        public Paginado<Venta> GetVentasPaginadas(int pagina, int itemsPorPagina, int usuarioId, List<Venta>? ventas)
+        {
+            List<Venta> ventaList = ventas ?? _projectRepository.GetVentas(usuarioId);
+
+            int totalVentas = ventaList.Count;
+
+            List<Venta> ventasPaginadas = ventaList            
+                .Skip((pagina - 1) * itemsPorPagina)
+                .Take(itemsPorPagina)
+                .ToList();
+
+
+            return new Paginado<Venta>()
+            {
+                Items = ventasPaginadas,
+                PaginaActual = pagina,
+                ItemsPorPagina = itemsPorPagina,
+                TotalPaginas = (int)Math.Ceiling(totalVentas / (double)itemsPorPagina),
+                HasPreviousPage = pagina > 1,
+                HasNextPage = pagina < (int)Math.Ceiling(totalVentas / (double)itemsPorPagina),
+
+            };
+        }
+
         public void DeleteVenta(int id)
         {
             _projectRepository.DeleteVenta(id);
         }
 
+        public Venta GetVentaById(int id)
+        {
+            return _projectRepository.GetVentaById(id);
+        }
+
+        public void UpdateVenta(Venta venta)
+        {
+            _projectRepository.UpdateVenta(venta);
+        }
+
+        public List<Venta> OptionSelectFilter(string search, int userId, List<Venta>? ventasList)
+        {
+            List<Venta> ventasFiltradas = ventasList ?? _projectRepository.GetVentas(userId);
+           
+            ventasFiltradas = _projectRepository.FiltrarVentaFecha(search, ventasFiltradas);
+                       
+            return ventasFiltradas;
+        }
     }
 }

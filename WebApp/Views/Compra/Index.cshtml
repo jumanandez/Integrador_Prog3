@@ -3,63 +3,289 @@
 @{
     ViewData["Title"] = "Registrar Compra";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1>Compras</h1>
-
-<hr>
-<a class="btn btn-primary" asp-controller="Compra" asp-action="Create">Nueva Compra</a>
-
-<hr>
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+    bool shouldShowFecha = true;
+    foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+    {
+        if (c.Fecha == DateTime.MinValue)
         {
-            <tr>
-                <td>@c.Producto?.Nombre</td>
-                <td>@c.Fecha.ToShortDateString()</td>
-                <td>@c.Cantidad</td>
-                <td>
-                    <div class="d-flex">
-                         <a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Compra" asp-route-compraId="@c.CompraId">Editar</a>
-                         <form asp-action="Delete" asp-controller="Compra" method="post" onsubmit="return confirmDelete()">
-                             <input type="hidden" name="compraId" value="@c.CompraId" />
-                             <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
-                         </form>
-                    </div>
-                </td>
-            </tr>
+            shouldShowFecha = false;
+            break;
         }
-    </tbody>
-</table>
-
-<div>
-    @if (Model.Paginado.PaginaActual > 1)
-    {
-        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual - 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Anterior</a>
     }
+}
+<body>
+    <div class="container-fluid user-select-none" style="margin-top : 3%">
+        <h1>Bienvenido a la sección de compras</h1>
+        <hr>
+        <a class="btn btn-principe" asp-controller="Compra" asp-action="Create"><i class="fa-solid fa-cart-plus"></i><span style="padding-left: 10px;">Nueva Compra</span></a>
+        <hr>
+        <form class="bs-component mb-3" asp-action="Index" method="get">
+            <div class="row row-cols-sm-auto">
+                <div class="col col-lg-4 align-content-center">
+                    <input class="form-control rounded-5 my-1" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Buscar..." />
+                </div>
+                <div class="col-sm-auto align-content-center">
+                    <button class="btn btn-secondary my-1" value="Search" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span style="padding-left: 5px;">
+                            Buscar
+                        </span>
+                    </button>
+                </div>
+                <div class="col-sm-auto">
+                    <a class="btn btn-secondary my-1" asp-action="Index" asp-route-refresh="true">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span style="padding-left: 5px;">
+                            Refrescar
+                        </span>
+                    </a>
+                </div>
+        </form>
+    </div>
+    <form class="bs-component justify-content-center mt-2" asp-action="Index"
+          asp-controller="Compra" method="get">
+        <div class="row row-cols-sm-auto d-flex">
+            <div class="col-sm-auto align-content-center">
+                <select class="my-1 form-select-sm column-gap-xxl-5 rounded-4" data-style="btn-warning" name="selectOption" id="filterOption" onchange="updateInputType()">
+                    <option value="1">Fecha</option>
+                    <option value="2">Mas comprados</option>
+                </select>
+            </div>
+            <div class="col-lg-auto">
+                <input class=" my-1 form-control rounded-5 m-0" type="text" id="searchInput" name="search" placeholder="Buscar..." aria-label="Search">
+            </div>
+            <div class="col col-sm-auto">
+                <button class=" my-1 btn btn-secondary" type="submit">
+                    <i class="fa-solid fa-filter"></i>
+                    <span style="padding-left: 5px;">
+                        Filtrar
+                    </span>
+                </button>
+                <input type="hidden" name="sortOrder" value="@ViewData["CurrentSort"]" />
+                <input type="hidden" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="hidden" name="pagina" value="@(Model.Paginado.PaginaActual)" />
+            </div>
+        </div>
+    </form>
+    <div class="py-2 table-responsive rounded-5 user-select-none">
+        <table class="table table-copete table-striped table-hover user-select-none shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+            <thead class="table-headercopete table-hover rounded-5">
+                <tr>
+                    <th scope="col" class="fixed-cell">
+                        <a id="sortToggleName" class="list-group-item list-group-item-action active" data-sort-key="Name"
+                           asp-action="Index"
+                           asp-route-sortOrder="@ViewData["NameSortParm"]"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                            <i class="fa-solid fa-box-open"></i><span style="padding-left: 10px;">
+                                Producto
+                            </span>
+                            <i id="sortIconName" class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    @if (shouldShowFecha)
+                    {
+                        <th scope="col">
+                            <a id="sortToggleFecha" class="list-group-item list-group-item-action active" data-sort-key="Date"
+                               asp-action="Index"
+                               asp-route-sortOrder="@ViewData["DateSortParm"]"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                                <i class="fa-solid fa-calendar-days"></i><span style="padding-left: 10px;">
+                                    Fecha
+                                </span>
+                                <i id="sortIconDate" class="fa-solid fa-sort-down"></i>
+                            </a>
+                        </th>
+                    }
+                    <th scope="col">
+                        <a id="sortToggleAmmount" class="list-group-item list-group-item-action active" data-sort-key="Ammount"
+                           asp-action="Index"
+                           asp-route-sortOrder="@ViewData["AmmountSortParm"]"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                            <i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">
+                                Cantidad
+                            </span>
+                            <i id="sortIconAmmount" class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th scope="col">
+                        <a id="sortToggleStock" class="list-group-item list-group-item-action active" data-sort-key="Stock"
+                           asp-action="Index"
+                           asp-route-sortOrder="@ViewData["StockSortParm"]"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                            <i class="fa-solid fa-dolly"></i><span style="padding-left: 10px;">
+                                Stock
+                            </span>
+                            <i id="sortIconStock" class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    @if (shouldShowFecha)
+                    {
+                        <th scope="col">
+                            <a class="list-group-item list-group-item-action disabled">
+                                <i class="fa-solid fa-ellipsis"></i><span style="padding-left: 10px;">
+                                    Acciones
+                                </span>
+                            </a>
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model.Paginado.Items.Where(c => c.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)))
+                {
+                    <tr>
+                        <td>@c.Producto?.Nombre</td>
+                        @if (shouldShowFecha)
+                        {
+                            <td>@c.Fecha</td>
+                        }
+                        <td>@c.Cantidad</td>
+                        <td>@(c.Producto?.Compras.Select(c => c.Cantidad).Sum() - c.Producto?.Venta.Select(c => c.Cantidad).Sum())</td>
+                        @if (shouldShowFecha)
+                        {
+                            <td>
+                                <div class="bs-component">
+                                    <a class="badge rounded-pill bg-warning link-underline link-underline-opacity-0 mx-1" asp-action="Edit" asp-controller="Compra" asp-route-compraId="@c.CompraId">
+                                        <i class="fa-solid fa-pen"></i><span style="padding-top: 1px;">
+                                            Editar
+                                        </span>
+                                    </a>
+                                    <a class="badge rounded-pill bg-primary link-underline link-underline-opacity-0 mx-1" asp-action="RepetirCompra" asp-controller="Compra" asp-route-compraId="@c.CompraId">
+                                        <i class="fa-solid fa-repeat"></i><span style="padding-top: 1px;">
+                                            Repetir Compra
+                                        </span>
+                                    </a>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        @{
+            var prevDisabled = !Model.Paginado.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.Paginado.HasNextPage ? "disabled" : "";
+        }
 
-    Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+        <a class="btn btn-secondary m-1 @prevDisabled"
+           asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pagina="@(Model.Paginado.PaginaActual - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           asp-route-selectOption="@ViewData["CurrentOption"]">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
 
-    @if (Model.Paginado.PaginaActual < Model.Paginado.TotalPaginas)
-    {
-        <a class="btn btn-primary btn-sm" asp-action="Index" asp-route-pagina="@(Model.Paginado.PaginaActual + 1)" asp-route-itemsPorPagina="@Model.Paginado.ItemsPorPagina">Siguiente</a>
-    }
-</div>
+        Página @Model.Paginado.PaginaActual de @Model.Paginado.TotalPaginas
+
+        <a class="btn btn-secondary m-1 @nextDisabled"
+           asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pagina="@(Model.Paginado.PaginaActual + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           asp-route-selectOption="@ViewData["CurrentOption"]">
+            <i class="fa-solid fa-angle-right"></i>
+        </a>
+    </div>
+    </div>
+</body>
 
 @section Scripts {
     <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            function resetSortIcons() {
+                $('[id^=sortToggle]').each(function () {
+                    var iconElement = $(this).find('i[id^=sortIcon]');
+                    iconElement.removeClass('fa-sort-up').addClass('fa-sort-down');
+                });
+            }
+
+            function initializeSortIcons() {
+                $('[id^=sortToggle]').each(function () {
+                    var sortKey = $(this).data('sort-key');
+                    var sortState = sessionStorage.getItem('sortState_' + sortKey);
+                    var iconElement = $(this).find('i[id^=sortIcon]');
+
+                    if (sortState === 'up') {
+                        iconElement.removeClass('fa-sort-down').addClass('fa-sort-up');
+                    } else {
+                        iconElement.removeClass('fa-sort-up').addClass('fa-sort-down');
+                    }
+                });
+            }
+
+            if (getUrlParameter('refresh') === 'true') {
+                resetSortIcons();
+
+                $('[id^=sortToggle]').each(function () {
+                    var sortKey = $(this).data('sort-key');
+                    sessionStorage.removeItem('sortState_' + sortKey);
+                });
+            } else {
+                initializeSortIcons();
+            }
+
+            $('[id^=sortToggle]').click(function () {
+                var sortKey = $(this).data('sort-key');
+                var iconElement = $(this).find('i[id^=sortIcon' + sortKey + ']');
+
+                iconElement.toggleClass('fa-sort-down fa-sort-up');
+                var currentState = iconElement.hasClass('fa-sort-up') ? 'up' : 'down';
+
+                sessionStorage.setItem('sortState_' + sortKey, currentState);
+            });
+        });
+
         function confirmDelete() {
             return confirm('¿Está seguro de que desea eliminar este producto?');
         }
+
+        function updateInputType() {
+            var filterOption = document.getElementById('filterOption').value;
+            var searchInput = document.getElementById('searchInput');
+            switch (filterOption) {
+                case '1':
+                    searchInput.type = 'date';
+                    var now = new Date();//crea un nuevo objeto tipo datetime now
+                    var formattedDate = now.toISOString().split('T')[0];//formatea la fecha para ignorar segundos blla bla
+                    searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
+                    break;
+                case '2':
+                    searchInput.type = 'hidden';
+                    searchInput.value = null;
+                    shouldShowFechaField.value = 'true';
+                    break;
+            }
+        }
+        // Seteo incial del input
+        updateInputType();
+
+
+        function checkPageReload() {//para checkear si se recargo la page
+            if (performance.navigation.type === 1) {
+                let url = new URL(window.location.href);
+                if (!url.searchParams.has('refresh')) {
+                    url.searchParams.set('refresh', 'true');
+                    window.location.replace(url);
+                }
+            }
+        }
+        window.onload = checkPageReload;
+
     </script>
 }
