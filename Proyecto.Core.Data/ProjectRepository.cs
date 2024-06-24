@@ -340,7 +340,8 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                categorias = dbcontext.Categoria.ToList();
+                categorias = dbcontext.Categoria.
+                                                 Include(p => p.Productos).ToList();
             }
 
             return categorias;

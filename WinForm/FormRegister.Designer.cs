@@ -233,6 +233,7 @@ namespace WinForm
             txtConfirm.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtConfirm.TabIndex = 24;
             txtConfirm.UseSystemPasswordChar = true;
+            txtConfirm.KeyPress += txtConfirm_KeyPress;
             // 
             // kryptonLabel1
             // 

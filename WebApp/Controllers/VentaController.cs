@@ -193,7 +193,6 @@ namespace WebApp.Controllers
                 var errorModel = new ErrorViewModel
                 {
                     RequestId = "Usuario no autorizado!"
-
                 };
                 return View("Error", errorModel);
             }

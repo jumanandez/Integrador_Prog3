@@ -40,7 +40,7 @@
                         <label asp-for="Password">Contraseña</label>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-                    <div>
+                    <div class="d-grid gap-2 mb-3 my-4">
                         <button type="submit" class="btn btn-secondary">Ingresar</button>
                         @if (ViewData["LoginError"] != null)
                         {
