@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec5 = new Krypton.Toolkit.IconSpec();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetailsProducto));
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec6 = new Krypton.Toolkit.IconSpec();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec7 = new Krypton.Toolkit.IconSpec();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            Krypton.Toolkit.IconSpec iconSpec8 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec1 = new Krypton.Toolkit.IconSpec();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetailsProducto));
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec2 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec3 = new Krypton.Toolkit.IconSpec();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            Krypton.Toolkit.IconSpec iconSpec4 = new Krypton.Toolkit.IconSpec();
             lblCategoria = new Label();
             lblCompra = new Label();
             datagridCompra = new Krypton.Toolkit.KryptonDataGridView();
@@ -66,6 +66,7 @@
             bordeHorizontal = new Krypton.Toolkit.KryptonBorderEdge();
             lblcustomcategoria = new Label();
             lblnumerostock = new Label();
+            lblPagina = new Label();
             ((System.ComponentModel.ISupportInitialize)datagridCompra).BeginInit();
             ((System.ComponentModel.ISupportInitialize)datagridVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picturestock).BeginInit();
@@ -105,11 +106,11 @@
             datagridCompra.AllowUserToDeleteRows = false;
             datagridCompra.AllowUserToResizeColumns = false;
             datagridCompra.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(60, 60, 70);
-            dataGridViewCellStyle7.ForeColor = Color.Gainsboro;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(24, 24, 32);
-            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(224, 224, 224);
-            datagridCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 60, 70);
+            dataGridViewCellStyle1.ForeColor = Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
+            datagridCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             datagridCompra.BorderStyle = BorderStyle.None;
             datagridCompra.ColumnHeadersHeight = 20;
             datagridCompra.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha, ColumnCantidad });
@@ -135,11 +136,11 @@
             // ColumnFecha
             // 
             ColumnFecha.DataPropertyName = "Fecha";
-            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle8;
+            ColumnFecha.DefaultCellStyle = dataGridViewCellStyle2;
             ColumnFecha.HeaderText = "Fecha";
-            iconSpec5.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
-            ColumnFecha.IconSpecs.Add(iconSpec5);
+            iconSpec1.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
+            ColumnFecha.IconSpecs.Add(iconSpec1);
             ColumnFecha.Name = "ColumnFecha";
             ColumnFecha.ReadOnly = true;
             ColumnFecha.Resizable = DataGridViewTriState.True;
@@ -148,11 +149,11 @@
             // ColumnCantidad
             // 
             ColumnCantidad.DataPropertyName = "Cantidad";
-            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle9;
+            ColumnCantidad.DefaultCellStyle = dataGridViewCellStyle3;
             ColumnCantidad.HeaderText = "Cantidad";
-            iconSpec6.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
-            ColumnCantidad.IconSpecs.Add(iconSpec6);
+            iconSpec2.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
+            ColumnCantidad.IconSpecs.Add(iconSpec2);
             ColumnCantidad.Name = "ColumnCantidad";
             ColumnCantidad.ReadOnly = true;
             ColumnCantidad.Width = 100;
@@ -355,11 +356,11 @@
             datagridVentas.AllowUserToDeleteRows = false;
             datagridVentas.AllowUserToResizeColumns = false;
             datagridVentas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(60, 60, 70);
-            dataGridViewCellStyle1.ForeColor = Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(24, 24, 32);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(224, 224, 224);
-            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(60, 60, 70);
+            dataGridViewCellStyle4.ForeColor = Color.Gainsboro;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(24, 24, 32);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(224, 224, 224);
+            datagridVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             datagridVentas.BorderStyle = BorderStyle.None;
             datagridVentas.ColumnHeadersHeight = 20;
             datagridVentas.Columns.AddRange(new DataGridViewColumn[] { ColumnFecha2, ColumnCantidad2 });
@@ -386,11 +387,11 @@
             // ColumnFecha2
             // 
             ColumnFecha2.DataPropertyName = "Fecha";
-            ColumnFecha2.DefaultCellStyle = dataGridViewCellStyle10;
+            ColumnFecha2.DefaultCellStyle = dataGridViewCellStyle5;
             ColumnFecha2.HeaderText = "Fecha";
-            iconSpec7.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec7.Icon = (Image)resources.GetObject("iconSpec7.Icon");
-            ColumnFecha2.IconSpecs.Add(iconSpec7);
+            iconSpec3.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
+            ColumnFecha2.IconSpecs.Add(iconSpec3);
             ColumnFecha2.Name = "ColumnFecha2";
             ColumnFecha2.ReadOnly = true;
             ColumnFecha2.Resizable = DataGridViewTriState.True;
@@ -400,11 +401,11 @@
             // ColumnCantidad2
             // 
             ColumnCantidad2.DataPropertyName = "Cantidad";
-            ColumnCantidad2.DefaultCellStyle = dataGridViewCellStyle11;
+            ColumnCantidad2.DefaultCellStyle = dataGridViewCellStyle6;
             ColumnCantidad2.HeaderText = "Cantidad";
-            iconSpec8.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
-            iconSpec8.Icon = (Image)resources.GetObject("iconSpec8.Icon");
-            ColumnCantidad2.IconSpecs.Add(iconSpec8);
+            iconSpec4.Alignment = Krypton.Toolkit.IconSpec.IconAlignment.Left;
+            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
+            ColumnCantidad2.IconSpecs.Add(iconSpec4);
             ColumnCantidad2.Name = "ColumnCantidad2";
             ColumnCantidad2.ReadOnly = true;
             ColumnCantidad2.Resizable = DataGridViewTriState.True;
@@ -836,12 +837,23 @@
             lblnumerostock.Size = new Size(0, 31);
             lblnumerostock.TabIndex = 34;
             // 
+            // lblPagina
+            // 
+            lblPagina.AutoSize = true;
+            lblPagina.Font = new Font("Poppins SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPagina.Location = new Point(202, 9);
+            lblPagina.Name = "lblPagina";
+            lblPagina.Size = new Size(53, 22);
+            lblPagina.TabIndex = 37;
+            lblPagina.Text = "pagina";
+            // 
             // FormDetailsProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(459, 523);
+            Controls.Add(lblPagina);
             Controls.Add(lblnumerostock);
             Controls.Add(lblcustomcategoria);
             Controls.Add(bordeHorizontal);
@@ -908,5 +920,6 @@
         private Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ColumnCantidad2;
         private Label lblcustomcategoria;
         private Label lblnumerostock;
+        private Label lblPagina;
     }
 }

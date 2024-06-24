@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="iconSpec5.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec1.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAUNJREFUOE+F0r9LQlEYxvGTYlBLQ1CLUUOTg6QiQQRBi/0HjiHYLtgqBEFUNAb1
@@ -129,7 +129,7 @@
         ez+AcvWHKHg0hOde/F0d3OD6D+p3XvqDrEe/F43xf+R8lBXCBwTyJM7SUjdAAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="iconSpec6.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec2.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAARVJREFUOE/N0j0ohHEcB/A73Z2XOxZvk5KU2SIM2E3KZFEG6ZjsJCaTDEwMBoMy
@@ -143,7 +143,7 @@
   <metadata name="kryptonCustomPaletteBase1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="iconSpec7.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec3.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAUNJREFUOE+F0r9LQlEYxvGTYlBLQ1CLUUOTg6QiQQRBi/0HjiHYLtgqBEFUNAb1
@@ -154,7 +154,7 @@
         ez+AcvWHKHg0hOde/F0d3OD6D+p3XvqDrEe/F43xf+R8lBXCBwTyJM7SUjdAAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="iconSpec8.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="iconSpec4.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAARVJREFUOE/N0j0ohHEcB/A73Z2XOxZvk5KU2SIM2E3KZFEG6ZjsJCaTDEwMBoMy

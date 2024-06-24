@@ -11,11 +11,13 @@ namespace WinForm
         private readonly IProductoBusiness _productoBusiness;
         public List<Producto> _listaProductos;
         public int _currentPage = 1;
+        private int _totalPages = 0;
         public FormDetailsProducto(Producto producto, IProductoBusiness productoBusiness)
         {
             _productoBusiness = productoBusiness;
             _producto = producto;
             _listaProductos = _productoBusiness.GetAll();
+            _totalPages = _listaProductos.Count();
             _currentPage = _listaProductos.FindIndex(p=> p.ProductoId == _producto.ProductoId) + 1;
             InitializeComponent();
             lblcustomcategoria.Text = _producto.Categoria.Nombre;
@@ -28,7 +30,7 @@ namespace WinForm
         private void FormDetailsProducto_Activated(object sender, EventArgs e)
         {
             lblNombre.Text = _producto.Nombre;
-
+            lblPagina.Text = $"{_currentPage} de {_totalPages}";
             if (_producto.Habilitado) switchHabilitado.SwitchState = ReaLTaiizor.Controls.ParrotSwitch.State.On;
             else switchHabilitado.SwitchState = ReaLTaiizor.Controls.ParrotSwitch.State.Off;
 
@@ -83,14 +85,19 @@ namespace WinForm
         private Producto? Paginado(int pagina)
         {
             if (pagina < 1) return null;
+            
+            var paginado = _productoBusiness.GetProductosPaginados(pagina, 1);
+            
+            var productoPaginado = paginado.Items.FirstOrDefault();
+            
 
-            var anteriorProducto = _productoBusiness.GetProductosPaginados(pagina, 1).
-                            Items.FirstOrDefault();
-            if (anteriorProducto != null)
+            if (productoPaginado != null)
             {
-                _currentPage = pagina; // Update the current page only if a product is found
+                _currentPage = pagina;
+                _totalPages = paginado.TotalPaginas;
+                lblPagina.Text = $"{_currentPage} de {_totalPages}";
             }
-            return anteriorProducto;
+            return productoPaginado;
         }
         private void datagridCompra_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
         {

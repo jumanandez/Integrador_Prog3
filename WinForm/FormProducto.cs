@@ -28,7 +28,6 @@ namespace WinForm
             _productoACargar = new Producto();
             _loggedUser = userLogged;
             InitializeComponent();
-            LblBienvenido.Text = ($"Bienvenenido \n{_loggedUser.Nombre}");
             userHeader1.Values.Heading = $"{_loggedUser.Nombre}";
             numericUpDown1.Value = 1;
         }
