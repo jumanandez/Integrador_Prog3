@@ -60,13 +60,13 @@ namespace WinForm
         {
             Producto produmf = _new ? new Producto() : _productorSeleccionado; //pregunta si es llamado por nuevo o modificar
             List<string> nms = _productoBusiness.GetAllNames();
-            produmf.Nombre = txtNombreProducto.Text;
-            produmf.CategoriaId = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
-            produmf.Habilitado = checkHabilitado.Checked;
 
             if (produmf != null)
             {
                 nms.Remove(produmf.Nombre); //no afecta al nuevo producto ya que este no tiene valor en nombre
+                produmf.Nombre = txtNombreProducto.Text;
+                produmf.CategoriaId = ((Categoria)cmbBoxCategorias.SelectedItem).CategoriaId;
+                produmf.Habilitado = checkHabilitado.Checked;
                 DialogResult dialogResult = _new ?
                                                    RJMessageBox.Show("Agregar producto?", "Confirme", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) :
                                                    RJMessageBox.Show("Seguro que quiere realizar los cambios?", "Confirme", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -77,6 +77,7 @@ namespace WinForm
                         if (nms.Any(s => s.Replace(" ", "").Equals(produmf.Nombre.Replace(" ", ""), StringComparison.OrdinalIgnoreCase)))//ignora los espacios en blanco
                         {
                             RJMessageBox.Show("Este producto ya existe!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            this.Close();
                         }
                         else
                         {
@@ -88,10 +89,7 @@ namespace WinForm
                             }
                             else
                             {
-                                var cates = _categoríaBusiness.GetAll();
-                                produmf.Nombre = txtNombreProducto.Text;
-                                produmf.Habilitado = checkHabilitado.Checked;
-                                _productoBusiness.ModifyProduct(produmf);
+                                _productoBusiness.ModifyProduct(produmf);//le mandas por modify y de todas maneras lo agrega si es nuevo por mas que usemos modify WTF, funciona asi que ni toco
                                 RJMessageBox.Show("Accion realizada correctamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 this.Close();
                             }
