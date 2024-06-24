@@ -1,0 +1,156 @@
+﻿@model WebApp.Models.ViewModels.CompraVM
+
+@{
+    ViewData["Title"] = TipoDeLlamado(Model.Llamado)[0];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string CallmeMaybe()
+    {
+        if (TipoDeLlamado(Model.Llamado)[1] != "Create")
+        {
+            DateTime CDate = (DateTime)Model.FechaCompra;
+            return (CDate.ToString("yyyy-MM-ddTHH:mm:ss"));
+        }
+        else
+        {
+            return (DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
+        }
+    }
+
+    string[] TipoDeLlamado(int llamado)
+    {
+        string[] tipollamado = new string[2];
+        switch (llamado)
+        {
+            case 0:
+                {
+                    tipollamado[0] = "Nueva compra";
+                    tipollamado[1] = "Create";
+                    break;
+                }
+            case 1:
+                {
+                    tipollamado[0] = "Editar compra";
+                    tipollamado[1] = "Edit";
+                    break;
+                }
+            case 2:
+                {
+                    tipollamado[0] = "Repetir compra";
+                    tipollamado[1] = "RepetirCompra";
+                    break;
+                }
+        }
+        return (tipollamado);
+    }
+}
+
+<div class=" user-select-none container-fluid" style="margin-top:4%">
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="row" style="margin-top:30px">
+        <div class="col-sm-12">
+            <a class="btn btn-principe btn-sm" asp-action="Index" asp-route-refresh="true" asp-controller="Compra"><i class="fa-solid fa-arrow-left"></i><span style="padding-left: 5px;">Volver</span></a>
+            <hr />
+
+            <form asp-action="@TipoDeLlamado(Model.Llamado)[1]" asp-controller="Compra" method="post">
+                <input type="hidden" asp-for="CompraId" />
+
+                @if (TipoDeLlamado(Model.Llamado)[1] == "Create")
+                {
+                    <div class="form-group">
+                        <label class="mx-3" asp-for="CategoriaId"><i class="fa-solid fa-shapes"></i><span style="padding-left: 8px;">Categoría</span></label>
+                        <select asp-for="CategoriaId" class="m-2 form-control rounded-5" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))">
+                            <option selected>Seleccione una categoria</option>
+                    </select>
+                        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="mx-3" asp-for="ProductoId"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Producto</span></label>
+                        <select asp-for="ProductoId" class="m-2 form-control rounded-5">
+                            <option value="">Seleccione un producto</option>
+                        </select>
+                        <span asp-validation-for="ProductoId" class="text-danger"></span>
+                    </div>
+                }
+
+                <div class="mb-2">
+                    <label class="form-label mx-3" asp-for="ProductoCantidad">
+                        <i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">
+                            Cantidad
+                        </span>
+                    </label>
+                    <input class="m-1 form-control rounded-5" asp-for="ProductoCantidad" type="number" />
+                    <span asp-validation-for="ProductoCantidad" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="mx-3" asp-for="FechaCompra">
+                        <i class="fa-solid fa-calendar-days"></i><span style="padding-left: 10px;">
+                            Fecha
+                        </span>
+                    </label>
+                    <input asp-for="FechaCompra" class="m-2 form-control rounded-5" type="datetime-local"
+                           value="@CallmeMaybe()"
+                           id="inputDate" />
+                    <span asp-validation-for="FechaCompra" class="text-danger"></span>
+                </div>
+                <div class="mt-3">
+                    <button class="m-2 btn btn-principe" type="submit"><i class="fa-solid fa-cart-plus"></i><span style="padding-left: 10px;">@ViewData["Title"]</span></button>
+                </div>
+            </form>
+        </div>
+
+        @section Scripts {
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('select[name="CategoriaId"]').click(function () {
+                        var placeholderOP = this.querySelector('option');
+                        if (placeholderOP && placeholderOP.textContent === 'Seleccione una categoria') {
+                            placeholderOP.remove();
+                        }
+                        var categoriaId = $(this).val();
+                        var productosSelect = $('select[name="ProductoId"]');
+
+                        if (categoriaId) {
+                            $.ajax({
+                                url: '@Url.Action("GetProductosByCategoria", "Compra")',
+                                data: { categoriaId: categoriaId },
+                                success: function (data) {
+                                    productosSelect.empty();
+                                    $.each(data, function (i, producto) {
+                                        productosSelect.append('<option value="' + producto.productoId + '">' + producto.nombre + '</option>');
+                                    });
+                                },
+                                error: function () {
+                                    alert("Error al obtener los productos. Por favor, inténtelo de nuevo.");
+                                }
+                            });
+                        } else {
+                            productosSelect.empty();
+                            productosSelect.append('<option value="">Seleccione un producto</option>');
+                        }
+                    });
+                    var initialCategoriaId = $('select[name="CategoriaId"]').val();
+                    var productosSelect = $('select[name="ProductoId"]');
+                    if (initialCategoriaId) {
+                        $.ajax({
+                            url: '@Url.Action("GetProductosByCategoria", "Compra")',
+                            data: { categoriaId: initialCategoriaId },
+                            success: function (data) {
+                                productosSelect.empty();
+                                productosSelect.append('<option value="">Seleccione un producto</option>');
+                                $.each(data, function (index, producto) {
+                                    productosSelect.append('<option value="' + producto.productoId + '">' + producto.nombre + '</option>');
+                                });
+                                var selectedProductoId = '@Model.ProductoId';
+                                if (selectedProductoId) {
+                                    productosSelect.val(selectedProductoId);
+                                }
+                            }
+                        });
+                    }
+                });
+            </script>
+        }

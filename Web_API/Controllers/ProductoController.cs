@@ -1,34 +1,43 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Proyecto.Core.Business;
-using Proyecto.Core.Entities;
+using Proyecto.Core.Business.Interfaces;
+using System.Security.Claims;
 
 namespace Web_API.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class ProductoController : ControllerBase
-	{
-		private readonly ILogger<ProductoController> _logger;
-		
-		//Se inyecta las dependencias para usar el business de ejemplo
-		private readonly ProductoBusiness _productoBusiness;
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ProductoController : ControllerBase
+    {
+        private readonly IProductoBusiness _productoBusiness;
 
-		public ProductoController(ProductoBusiness productoBusiness,
-									ILogger<ProductoController> logger)
-		{
-			_logger = logger;
-			_productoBusiness = productoBusiness;
-		}
+        public ProductoController(IProductoBusiness productoBusiness)
+        {
+            _productoBusiness = productoBusiness;
+        }
 
-		// Acá probé que funcione la conexion, lo pueden borrar si quieren
-		
-		[HttpGet(Name = "GetProductos")]
-		public IEnumerable<Producto> Get()
-		{
-			var productos = _productoBusiness.GetAll();
+        [HttpGet]
+        [Route("/user/{productoId:int}/stock")]
+        public IActionResult GetStock(int productoId)
+        {
+            var producto = _productoBusiness.GetProducto(productoId);
 
-			return productos;
-		}
-	}
+            if (producto == null)
+            {
+                return NotFound(new { Message = "Producto no encontrado" });
+            }
+
+            var stock = _productoBusiness.GetStock(productoId);
+
+            var result = new
+            {
+                ProductoId = productoId,
+                Nombre = producto.Nombre,
+                Stock = stock
+            };
+
+            return Ok(result);
+        }
+    }
 }
+

@@ -7,11 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
+    <Compile Remove="Views\Compra\NewFolder\**" />
+    <Content Remove="Views\Compra\NewFolder\**" />
+    <EmbeddedResource Remove="Views\Compra\NewFolder\**" />
+    <None Remove="Views\Compra\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bootstrap" Version="5.3.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.5.24306.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0-preview.5.24306.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0-preview.4.24271.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Proyecto.Core.Business\Proyecto.Core.Business.csproj" />
+    <ProjectReference Include="..\Proyecto.Core.Configurations\Proyecto.Core.Configurations.csproj" />
+    <ProjectReference Include="..\Proyecto.Core.Entities\Proyecto.Core.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

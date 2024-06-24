@@ -18,12 +18,12 @@ public partial class IntegradorProg3Context : DbContext
 
     
     //Este constructor no vamos a usar si usamos el Config
-    //Es el constructor que usa el EntityFramework.Core.Tools       lo que hace es que fuera de nuestra vista se conecta a la base de datos y usa la connectionstring, pero esto ni lo vemos, entonces no esta bueno
+    //Es el constructor que usa el EntityFramework.Core.Tools lo que hace es que fuera de nuestra vista se conecta a la base de datos y usa la connectionstring, pero esto ni lo vemos, entonces no esta bueno
 
-    //public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
-    //    : base(options)
-    //{
-    //}
+    public IntegradorProg3Context(DbContextOptions<IntegradorProg3Context> options)
+        : base(options)
+    {
+    }
 
     //Todos los DbSet Necesarios
     public virtual DbSet<Categoria> Categoria { get; set; }
@@ -34,7 +34,7 @@ public partial class IntegradorProg3Context : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
-    public virtual DbSet<Venta> Venta { get; set; }
+    public virtual DbSet<Venta> Ventas { get; set; }
 
     //Aca la config para que se conecte y utilice nuestro Constructor
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,6 +51,8 @@ public partial class IntegradorProg3Context : DbContext
             entity.HasKey(e => e.CategoriaId).HasName("PK__Categori__F353C1E5432C83E0");
 
             entity.Property(e => e.Nombre).HasMaxLength(50);
+
+            
         });
 
         modelBuilder.Entity<Compra>(entity =>
@@ -63,7 +65,7 @@ public partial class IntegradorProg3Context : DbContext
 
             entity.HasOne(d => d.Producto).WithMany(p => p.Compras)
                 .HasForeignKey(d => d.ProductoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)//al eliminar un producto tambien eliminas las compras de ese producto
                 .HasConstraintName("FK_Compra_Producto");
 
             entity.HasOne(d => d.Usuario).WithMany(p => p.Compras)
@@ -78,7 +80,7 @@ public partial class IntegradorProg3Context : DbContext
 
             entity.ToTable("Producto");
 
-            entity.Property(e => e.Habilitado).HasDefaultValue(true);
+            entity.Property(e => e.Habilitado).HasDefaultValue(false);
             entity.Property(e => e.Nombre).HasMaxLength(50);
 
             entity.HasOne(d => d.Categoria).WithMany(p => p.Productos)
@@ -96,6 +98,7 @@ public partial class IntegradorProg3Context : DbContext
             entity.Property(e => e.HashPassword).HasMaxLength(256);
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.Salt).HasMaxLength(16);
+            
         });
 
         modelBuilder.Entity<Venta>(entity =>
@@ -106,7 +109,7 @@ public partial class IntegradorProg3Context : DbContext
 
             entity.HasOne(d => d.Producto).WithMany(p => p.Venta)
                 .HasForeignKey(d => d.ProductoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)//al eliminar un producto tambien eliminas las ventas de ese producto
                 .HasConstraintName("FK_Venta_Producto");
 
             entity.HasOne(d => d.Usuario).WithMany(p => p.Venta)
