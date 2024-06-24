@@ -16,7 +16,7 @@
             @if (Model.VentaId == 0)
             {
                 <div>
-                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="CategoriaSeleccionada">Seleccione una Categoría:</label>
+                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="CategoriaSeleccionada"><i class="fa-solid fa-shapes"></i><span style="padding-left: 8px;">Seleccione una Categoría:</span></label>
                 </div>
                 <div>
                     <select class="form-control m-2 rounded-5" asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
@@ -27,7 +27,7 @@
                 @if (Model.ProductoLista != null && Model.ProductoLista.Any())
                 {
                     <div>
-                        <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId">Seleccione un Producto:</label>
+                        <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Seleccione un Producto:</span></label>
                     </div>
                     <div>
                         <select class="form-control m-2 rounded-5" asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
@@ -38,7 +38,7 @@
                 }
             }
             <div>
-                <label class="mt-2 mx-4 form-label" asp-for="@Model.VentaLista.">Cantidad</label>
+                <label class="mt-2 mx-4 form-label" asp-for="@Model.VentaLista."><i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">Cantidad</span></label>
                 <input class="form-control form-control-sm mx-1 m-1 rounded-5" asp-for="Cantidad" type="number" min="1" max="1000000" />
                 @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
             </div>

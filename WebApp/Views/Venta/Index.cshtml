@@ -48,7 +48,7 @@
                 <thead class="table-headercopete table-hover rounded-5">
                     <tr>
                         <th scope="col" class="fixed-cell">
-                            <a class="list-group-item list-group-item-action active"
+                            <a id="sortToggleName" class="list-group-item list-group-item-action active" data-sort-key="Name"
                                asp-action="Index"
                                asp-route-sortOrder="@ViewData["NameSortParm"]"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -56,10 +56,11 @@
                                 <i class="fa-solid fa-box-open"></i><span style="padding-left: 10px;">
                                     Producto
                                 </span>
+                                <i id="sortIconName" class="fa-solid fa-sort-down"></i>
                             </a>
                         </th>
                         <th scope="col">
-                            <a class="list-group-item list-group-item-action active"
+                            <a id="sortToggleFecha" class="list-group-item list-group-item-action active" data-sort-key="Date"
                                asp-action="Index"
                                asp-route-sortOrder="@ViewData["DateSortParm"]"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -67,10 +68,11 @@
                                 <i class="fa-solid fa-calendar-days"></i><span style="padding-left: 10px;">
                                     Fecha
                                 </span>
+                                <i id="sortIconDate" class="fa-solid fa-sort-down"></i>
                             </a>
                         </th>
                         <th scope="col">
-                            <a class="list-group-item list-group-item-action active"
+                            <a id="sortToggleAmmount" class="list-group-item list-group-item-action active" data-sort-key="Ammount"
                                asp-action="Index"
                                asp-route-sortOrder="@ViewData["AmmountSortParm"]"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -78,6 +80,7 @@
                                 <i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">
                                     Cantidad
                                 </span>
+                                <i id="sortIconAmmount" class="fa-solid fa-sort-down"></i>
                             </a>
                         <th scope="col">
                             <a class="list-group-item list-group-item-action disabled">
@@ -141,6 +144,59 @@
 
         @section Scripts {
             <script type="text/javascript">
+
+                $(document).ready(function () {
+
+                    function getUrlParameter(name) {
+                        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                        var results = regex.exec(location.search);
+                        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                    }
+
+                    function resetSortIcons() {
+                        $('[id^=sortToggle]').each(function () {
+                            var iconElement = $(this).find('i[id^=sortIcon]');
+                            iconElement.removeClass('fa-sort-up').addClass('fa-sort-down');
+                        });
+                    }
+
+                    function initializeSortIcons() {
+                        $('[id^=sortToggle]').each(function () {
+                            var sortKey = $(this).data('sort-key');
+                            var sortState = sessionStorage.getItem('sortState_' + sortKey);
+                            var iconElement = $(this).find('i[id^=sortIcon]');
+
+                            if (sortState === 'up') {
+                                iconElement.removeClass('fa-sort-down').addClass('fa-sort-up');
+                            } else {
+                                iconElement.removeClass('fa-sort-up').addClass('fa-sort-down');
+                            }
+                        });
+                    }
+
+                    if (getUrlParameter('refresh') === 'true') {
+                        resetSortIcons();
+
+                        $('[id^=sortToggle]').each(function () {
+                            var sortKey = $(this).data('sort-key');
+                            sessionStorage.removeItem('sortState_' + sortKey);
+                        });
+                    } else {
+                        initializeSortIcons();
+                    }
+
+                    $('[id^=sortToggle]').click(function () {
+                        var sortKey = $(this).data('sort-key');
+                        var iconElement = $(this).find('i[id^=sortIcon' + sortKey + ']');
+
+                        iconElement.toggleClass('fa-sort-down fa-sort-up');
+                        var currentState = iconElement.hasClass('fa-sort-up') ? 'up' : 'down';
+
+                        sessionStorage.setItem('sortState_' + sortKey, currentState);
+                    });
+                });
+
                 function confirmDelete() {
                     return confirm('¿Está seguro de que desea eliminar este producto?');
 

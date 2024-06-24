@@ -53,7 +53,6 @@ body {
     width: 70px;
 }
 
-}
 
 .mrgntop {
     margin-top: 10%
@@ -76,6 +75,14 @@ body {
     --bs-btn-disabled-border-color: #000040;
 }
 
+.bth {
+    transition: all 0.3s;
+}
+
+    .bth:hover {
+        transform: scale(1.2);
+    }
+
 [data-bs-theme=dark] {
     --bs-link-color: #000275;
     --bs-link-hover-color: #141677;
@@ -87,7 +94,7 @@ body {
     --bs-btn-color: #eeeeee;
     --bs-btn-border-color: #142880;
     --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #0000C0;
+    --bs-btn-hover-bg: #143CC0;
     --bs-btn-hover-border-color: #143CC0;
     --bs-btn-focus-shadow-rgb: 13, 110, 253;
     --bs-btn-active-color: #ffff;
@@ -155,11 +162,11 @@ body {
 
     .nav-link::after {
         content: '';
-        transition: all 0.2s;
+        transition: all 0.25s;
         opacity: 0;
-        height: 2px;
+        height: 3px;
         width: 100%;
-        background-color: royalblue;
+        background-color: #143CC0;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -186,25 +193,24 @@ body {
     font-size: 1rem;
     font-weight: 300;
     line-height: 1.5;
-    color: #555ADC;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: #303030;
+    background-color: #282828;
     background-clip: padding-box;
     border: 0 solid var(--bs-border-color);
     border-radius: 0;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-    .form-control:focus {
+.form-control:focus {
         color: #FFFFFF;
-        background-color: #303030;
+        background-color: #282828;
         border-color: #404040;
         outline: 0;
         border: 1px solid var(--bs-border-color);
         box-shadow: 0 0 0 0.25rem rgba(26, 26, 26, 0.25);
-    }
+}
 
 .header-btn {
     display: block;
