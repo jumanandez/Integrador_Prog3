@@ -55,7 +55,6 @@ namespace WinForm
             comprasToolStripMenuItem1 = new ToolStripMenuItem();
             ventasToolStripMenuItem1 = new ToolStripMenuItem();
             habilitadoToolStripMenuItem1 = new ToolStripMenuItem();
-            ordenarStripMenuItem3 = new ToolStripMenuItem();
             modificarToolStripMenuItem = new ToolStripMenuItem();
             eliminarToolStripMenuItem = new ToolStripMenuItem();
             detallesToolStripMenuItem = new ToolStripMenuItem();
@@ -68,6 +67,7 @@ namespace WinForm
             columnMenuStrip = new ContextMenuStrip(components);
             nuevoToolStripMenuItem1 = new ToolStripMenuItem();
             refrescarToolStripMenuItem2 = new ToolStripMenuItem();
+            ordenarStripMenuItem3 = new ToolStripMenuItem();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             nuevoToolStripMenuItem = new ToolStripMenuItem();
             ordenarToolStripMenuItem = new ToolStripMenuItem();
@@ -216,7 +216,7 @@ namespace WinForm
             sortcontext.Font = new Font("Segoe UI", 9F);
             sortcontext.Items.AddRange(new ToolStripItem[] { nombreToolStripMenuItem, categoriaToolStripMenuItem1, stockToolStripMenuItem1, comprasToolStripMenuItem1, ventasToolStripMenuItem1, habilitadoToolStripMenuItem1 });
             sortcontext.Name = "sortcontext";
-            sortcontext.OwnerItem = ordenarToolStripMenuItem1;
+            sortcontext.OwnerItem = ordenarStripMenuItem3;
             sortcontext.RenderMode = ToolStripRenderMode.System;
             sortcontext.Size = new Size(130, 136);
             // 
@@ -283,15 +283,6 @@ namespace WinForm
             habilitadoToolStripMenuItem1.Size = new Size(129, 22);
             habilitadoToolStripMenuItem1.Text = "Habilitado";
             habilitadoToolStripMenuItem1.Click += ordenarSubContex_Click;
-            // 
-            // ordenarStripMenuItem3
-            // 
-            ordenarStripMenuItem3.DropDown = sortcontext;
-            ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
-            ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
-            ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
-            ordenarStripMenuItem3.Size = new Size(122, 22);
-            ordenarStripMenuItem3.Text = "Ordenar";
             // 
             // modificarToolStripMenuItem
             // 
@@ -432,6 +423,15 @@ namespace WinForm
             refrescarToolStripMenuItem2.Size = new Size(122, 22);
             refrescarToolStripMenuItem2.Text = "Refrescar";
             refrescarToolStripMenuItem2.Click += refrescarToolStripMenuItem_Click;
+            // 
+            // ordenarStripMenuItem3
+            // 
+            ordenarStripMenuItem3.DropDown = sortcontext;
+            ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
+            ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
+            ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
+            ordenarStripMenuItem3.Size = new Size(122, 22);
+            ordenarStripMenuItem3.Text = "Ordenar";
             // 
             // kryptonCustomPaletteBase1
             // 
