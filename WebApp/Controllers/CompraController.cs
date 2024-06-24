@@ -9,6 +9,7 @@ using Proyecto.Core.Entities;
 using System;
 using System.Linq;
 using System.Security.Claims;
+using WebApp.Models;
 using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
@@ -194,27 +195,42 @@ namespace WebApp.Controllers
         }
 
 
-		public IActionResult Edit(int compraId)
-		{
-			var compra = _compraBusiness.GetCompraById(compraId);
-			if (compra == null)
-			{
-				return NotFound();
-			}
+        public IActionResult Edit(int compraId)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var compra = _compraBusiness.GetCompraById(compraId);
 
-            var viewModel = new CompraVM
-			{
-				CompraId = compra.CompraId,
-				ProductoId = compra.ProductoId,
-				ProductoCantidad = compra.Cantidad,
-				FechaCompra = compra.Fecha,
-				CategoriaId = compra.Producto?.CategoriaId,
-                Llamado = 1,
+            if (compra == null)
+            {
+                return NotFound();
+            }
 
-			};
+            if (userId != compra.UsuarioId)
+            {
+                var errorModel = new ErrorViewModel
+                {
+                    RequestId = "Usuario no autorizado!"
 
-			return View("Create", viewModel);
-		}
+                };
+                return View("Error", errorModel);
+            }
+            else
+            {
+
+                var viewModel = new CompraVM
+                {
+                    CompraId = compra.CompraId,
+                    ProductoId = compra.ProductoId,
+                    ProductoCantidad = compra.Cantidad,
+                    FechaCompra = compra.Fecha,
+                    CategoriaId = compra.Producto?.CategoriaId,
+                    Llamado = 1,
+
+                };
+
+                return View("Create", viewModel);
+            }
+        }
 
 
         [HttpPost]

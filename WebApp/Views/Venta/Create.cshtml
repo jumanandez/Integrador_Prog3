@@ -23,9 +23,7 @@
                         <option value="">Seleccione una categoría</option>
                     </select>
                     @Html.ValidationMessageFor(model => model.CategoriaSeleccionada, "", new { @class = "text-danger" })
-
                 </div>
-
                 @if (Model.ProductoLista != null && Model.ProductoLista.Any())
                 {
                     <div>
@@ -36,10 +34,8 @@
                             <option value="">Seleccione un producto</option>
                         </select>
                         @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
-
                     </div>
                 }
-
             }
             <div>
                 <label class="mt-2 mx-4 form-label" asp-for="@Model.VentaLista.">Cantidad</label>
@@ -49,7 +45,6 @@
             <div class="mt-4 mx-2">
                 <button type="submit" class="btn btn-principe"><i class="fa-solid fa-receipt"></i><span style="padding-left: 10px;">Registrar Venta</span></button>
             </div>
-
         </form>
     </div>
 </div>

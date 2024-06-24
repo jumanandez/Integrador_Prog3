@@ -118,7 +118,6 @@
                 var prevDisabled = !Model.Paginado.HasPreviousPage ? "disabled" : "";
                 var nextDisabled = !Model.Paginado.HasNextPage ? "disabled" : "";
             }
-
             <a class="btn btn-secondary m-1 @prevDisabled"
                asp-action="Index"
                asp-route-sortOrder="@ViewData["CurrentSort"]"
@@ -147,7 +146,7 @@
 
                 }
 
-                function checkPageReload() {//para checkear si se recargo la page
+                function checkPageReload() {
                     if (performance.navigation.type === 1) {
                         let url = new URL(window.location.href);
                         if (!url.searchParams.has('refresh')) {
@@ -156,6 +155,6 @@
                         }
                     }
                 }
-                window.onload = checkPageReload;//ni bien se carga ya llama a la funcion
+                window.onload = checkPageReload;
             </script>
         }

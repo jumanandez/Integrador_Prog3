@@ -261,9 +261,9 @@
             switch (filterOption) {
                 case '1':
                     searchInput.type = 'date';
-                    var now = new Date();//crea un nuevo objeto tipo datetime now
-                    var formattedDate = now.toISOString().split('T')[0];//formatea la fecha para ignorar segundos blla bla
-                    searchInput.value = formattedDate;//asigna la fecha actual como valor inicial
+                    var now = new Date();
+                    var formattedDate = now.toISOString().split('T')[0];
+                    searchInput.value = formattedDate;
                     break;
                 case '2':
                     searchInput.type = 'hidden';
@@ -272,11 +272,10 @@
                     break;
             }
         }
-        // Seteo incial del input
         updateInputType();
 
 
-        function checkPageReload() {//para checkear si se recargo la page
+        function checkPageReload() {
             if (performance.navigation.type === 1) {
                 let url = new URL(window.location.href);
                 if (!url.searchParams.has('refresh')) {

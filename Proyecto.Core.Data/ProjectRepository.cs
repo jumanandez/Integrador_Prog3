@@ -51,11 +51,6 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                productos = dbcontext.Productos.Where(c => c.Habilitado == true)
-                                               .Include(p => p.Categoria)
-                                               .Include(p => p.Compras).ThenInclude(c => c.Usuario)
-                                               .Include(p => p.Venta).ThenInclude(v => v.Usuario)
-                                               .ToList();
                 productos = dbcontext.Productos.Include(p => p.Categoria)// arreglar
                                                .Include(p => p.Compras).ThenInclude(c => c.Usuario)
                                                .Include(p => p.Venta).ThenInclude(v => v.Usuario).ToList();
@@ -239,15 +234,6 @@ namespace Proyecto.Core.Data
             var compras = (from c in unfilteredCompras
                            where c.Fecha.Date == DateTime.Parse(search)
                            select c).ToList();
-
-            //var compras = new List<Compra>();
-            //using (var dbcontext = new IntegradorProg3Context(_config))
-            //{
-            //    compras = (from c in dbcontext.Compras
-            //              where c.Fecha == DateTime.Parse(search)
-            //              select c)
-            //              .Include(c => c.Producto).ToList();
-            //}
             return compras;
         }
 
@@ -263,25 +249,6 @@ namespace Proyecto.Core.Data
                                            })
                                            .OrderByDescending(c => c.Cantidad)
                                            .ToList();
-            //var compras = new List<Compra>();
-            //using (var dbcontext = new IntegradorProg3Context(_config))
-            //{
-            //    compras = dbcontext.Compras.Where(c => c.UsuarioId == usuarioId)
-            //                               .Include(c => c.Producto)
-            //                               .Where(c => c.Producto.Habilitado == true)
-            //                               .ToList()
-            //                               .GroupBy(c => c.ProductoId)
-            //                               .Select(g => new Compra
-            //                               {
-            //                                   ProductoId = g.Key,
-            //                                   Producto = g.First().Producto, 
-            //                                   UsuarioId = g.First().UsuarioId, 
-            //                                   Cantidad = g.Sum(c => c.Cantidad),
-            //                               })
-            //                               .OrderByDescending(c => c.Cantidad)
-            //                               .ToList();
-
-            //}
             return compras;
         }
         #endregion
@@ -434,7 +401,6 @@ namespace Proyecto.Core.Data
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-            //var User = dbcontext.Usuarios.Where(b => b.Nombre == Username).FirstOrDefault();
                 var User = dbcontext.Usuarios
                     .Where(b => b.Nombre == Username)
                     .Include(c => c.Compras)

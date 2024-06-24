@@ -46,7 +46,6 @@ namespace WinForm
         {
             var connectionString = Properties.Settings.Default.Connection;
 
-            //Se setea la connectionstring en nuestra clase de configuracion
             var config = new Config()
             {
                 ConnectionString = connectionString

@@ -24,49 +24,49 @@
             <img src="~/css/logo mersh.png" alt="Logo Mersh Mecanica" />
 
         </div>
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="contenedor shadow-lg">
-            <div class="formulario">
-                <div class="card-header">
-                    <h2>Registrarse</h2>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Register" method="post">
-                        <div class="form-group">
-                            <i class="fa-solid fa-envelope"></i>
-                            <input asp-for="Username" required />
-                            <label asp-for="Username">Usuario</label>
-                            <span asp-validation-for="Username" class="text-danger"></span>
-                        </div>
-                        @if (ViewData["ExistUser"] != null)
-                        {
-                            <div class="alert alert-danger mt-2" role="alert">
-                                @ViewData["ExistUser"]
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="contenedor shadow-lg">
+                <div class="formulario">
+                    <div class="card-header">
+                        <h2>Registrarse</h2>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Register" method="post">
+                            <div class="form-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input asp-for="Username" required />
+                                <label asp-for="Username">Usuario</label>
+                                <span asp-validation-for="Username" class="text-danger"></span>
                             </div>
-                        }
-                        <div class="form-group">
-                            <i class="fa-solid fa-lock"></i>
-                            <input asp-for="Password" type="password" required />
-                            <label asp-for="Password">Contraseña</label>
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                        <div class="form-group mb-2">
-                            <i class="fa-solid fa-lock"></i>
-                            <input asp-for="ConfirmPassword" type="password" required />
-                            <label asp-for="Password">Confirmar contraseña </label>
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            @if (ViewData["ExistUser"] != null)
+                            {
+                                <div class="alert alert-danger mt-2" role="alert">
+                                    @ViewData["ExistUser"]
+                                </div>
+                            }
+                            <div class="form-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input asp-for="Password" type="password" required />
+                                <label asp-for="Password">Contraseña</label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-2">
+                                <i class="fa-solid fa-lock"></i>
+                                <input asp-for="ConfirmPassword" type="password" required />
+                                <label asp-for="Password">Confirmar contraseña </label>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
-                         
-                        </div>
-                        <div class="d-grid gap-2 mb-3 my-4">
-                            <button id="Registrar" type="submit" class="btn btn-secondary">Registrase</button>
-                        </div>
-                        ¿Ya tiene un usuario? <a asp-controller="Account" asp-action="Login">Iniciar Sesion</a>
-                    </form>
+
+                            </div>
+                            <div class="d-grid gap-2 mb-3 my-4">
+                                <button id="Registrar" type="submit" class="btn btn-secondary">Registrase</button>
+                            </div>
+                            ¿Ya tiene un usuario? <a asp-controller="Account" asp-action="Login">Iniciar Sesion</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
 
     @section Scripts {

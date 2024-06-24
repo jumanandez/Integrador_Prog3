@@ -9,6 +9,7 @@ using Proyecto.Core.Configurations;
 using Proyecto.Core.Data;
 using Proyecto.Core.Entities;
 using System.Security.Claims;
+using WebApp.Models;
 using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
@@ -17,8 +18,6 @@ namespace WebApp.Controllers
     public class VentaController : Controller
     {
         private readonly ILogger<VentaController> _logger;
-
-        //Se inyecta las dependencias para usar el business de ejemplo
         private readonly IVentaBusiness _ventaBusiness;
         private readonly IProductoBusiness _productoBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
@@ -135,8 +134,6 @@ namespace WebApp.Controllers
                 return _currentFiltered;
             }
         }
-
-        // GET: VentaController/CreateVenta
         public IActionResult Create()
         {
             var ventaModel = new VentaVM
@@ -148,8 +145,6 @@ namespace WebApp.Controllers
             ModelState.AddModelError("CategoriaId", "(*)Campo obligatorio.");
             return View(ventaModel);
         }
-
-        // POST: VentaController/Create
         [HttpPost]
         public IActionResult Create(VentaVM ventaModel)
         {
@@ -161,10 +156,8 @@ namespace WebApp.Controllers
                     .Where(p => p.CategoriaId == ventaModel.CategoriaSeleccionada)
                     .ToList();
             }            
-
             if (ventaModel._Producto != null && ventaModel._Producto.ProductoId != 0 && ModelState.IsValid)
             {
-
                 if (_productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId) < ventaModel.Cantidad)
                 {
                     ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
@@ -187,45 +180,48 @@ namespace WebApp.Controllers
                     _ventaBusiness.AddVenta(nuevaVenta);
                     return RedirectToAction("Index", new { refresh = true });
                 }
-
-
             }
-
             ventaModel.CategoriaLista = _categoriaBusiness.GetAll();
             return View(ventaModel);
-
         }
-
-        // GET: VentaController/Edit/5
         public IActionResult Edit(int ventaId)
         {
+            var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var venta = _ventaBusiness.GetVentaById(ventaId);
-            if (venta == null)
+            if (userID != venta.UsuarioId)
             {
-                return NotFound();
+                var errorModel = new ErrorViewModel
+                {
+                    RequestId = "Usuario no autorizado!"
+
+                };
+                return View("Error", errorModel);
             }
-
-            var ventaModel = new VentaVM
+            else
             {
-                VentaId = venta.VentaId,
-                ProductoId = venta.ProductoId,
-                Cantidad = venta.Cantidad,
-                CategoriaId = venta.Producto?.CategoriaId,
+                if (venta == null)
+                {
+                    return NotFound();
+                }
 
-            };
+                var ventaModel = new VentaVM
+                {
+                    VentaId = venta.VentaId,
+                    ProductoId = venta.ProductoId,
+                    Cantidad = venta.Cantidad,
+                    CategoriaId = venta.Producto?.CategoriaId,
 
-            return View("Create", ventaModel);
+                };
+
+                return View("Create", ventaModel);
+            }
         }
-
-        // POST: VentaController/Edit/5
-
         [HttpPost]
         public IActionResult Edit(VentaVM ventaModel)
         {
 
             if (!ModelState.IsValid)
             {
-                // Si el modelo no es válido, devolvemos la vista con los errores
                 return View("Create", ventaModel);
             }
 
@@ -249,15 +245,13 @@ namespace WebApp.Controllers
 
             if (diferenciaCantidad <= 0 || stockActual >= diferenciaCantidad)
             {
-                // Obtener la compra original desde la capa de negocios
-                //var venta = _ventaBusiness.GetVentaById((int)ventaModel.VentaId);
                 if (venta == null)
                 {
                     return NotFound();
                 }
 
-                venta.ProductoId = ventaModel.ProductoId ?? venta.ProductoId;  // Manejar el caso de ProductoId nullable
-                venta.Cantidad = (int)ventaModel.Cantidad; // Manejar el caso de ProductoCantidad nullable
+                venta.ProductoId = ventaModel.ProductoId ?? venta.ProductoId;
+                venta.Cantidad = (int)ventaModel.Cantidad;
 
                 _ventaBusiness.UpdateVenta(venta);
 
@@ -270,8 +264,6 @@ namespace WebApp.Controllers
             }
 
         }
-
-        // POST: VentaController/Delete/5
         [HttpPost]
         public IActionResult Delete(int ventaId)
         {

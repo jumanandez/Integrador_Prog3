@@ -5,31 +5,31 @@
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
- <body>
+<body>
     <img class="bg-image " src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bg image" />
 
     <div class="px-4 py-3 my-1 text-center user-select-none pe-none">
         <img class="logo-image" src="https://i.imgur.com/Sq5FRZ1.png" alt="..." />
-    @if (User.Identity!.IsAuthenticated)
-    {
+        @if (User.Identity!.IsAuthenticated)
+        {
             <h1 class="lead mb-0 my-2 fs-1 fw-bold text-body-emphasis">
                 Bienvenido
 
-            @User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault()
-        </h1>
-    }
+                @User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault()
+            </h1>
+        }
         <p class="my-2 lead mb-4 user-select-none">¿Que desea realizar?</p>
     </div>
     <div class="px-4 text-center">
         <div class="mrgntop col-lg-6 mx-auto">
-        <div class="d-grid d-sm-flex justify-content-sm-center">
+            <div class="d-grid d-sm-flex justify-content-sm-center">
                 <a class="btn btn-copete mx-5 my-1" asp-controller="Venta" asp-action="Create">
                     <i class="fa-solid fa-tag"></i><span style="padding-left: 10px;">Realizar venta</span>
-            </a>
+                </a>
                 <a class="btn btn-outline-primary mx-5 my-1" asp-controller="Compra" asp-action="Create">
                     <i class="fa-solid fa-cart-shopping"></i><span style="padding-left: 10px;">Realizar compra</span>
-                    </a>
+                </a>
+            </div>
         </div>
     </div>
-</div>
 </body>

@@ -1,7 +1,6 @@
 ﻿@model WebApp.Models.ViewModels.CompraVM
 
 @{
-    // ViewData["Title"] = Model.Llamado == 0 ? "Crear nueva compra" : "Editar compra";
     ViewData["Title"] = TipoDeLlamado(Model.Llamado)[0];
     Layout = "~/Views/Shared/_Layout.cshtml";
     string CallmeMaybe()
@@ -106,8 +105,6 @@
             <script src="~/lib/jquery/dist/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    // var today = new Date().toISOString().split('T')[0];
-                    // $('input[name="FechaCompra"]').val(today);
                     $('select[name="CategoriaId"]').click(function () {
                         var placeholderOP = this.querySelector('option');
                         if (placeholderOP && placeholderOP.textContent === 'Seleccione una categoria') {

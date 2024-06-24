@@ -69,32 +69,22 @@ namespace WebApp.Controllers
                             new Claim(ClaimTypes.Name, user.Nombre),
                             new Claim(ClaimTypes.NameIdentifier, user.UsuarioId.ToString())
                         };
-
                         ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         AuthenticationProperties properties = new AuthenticationProperties()
                         {
                             AllowRefresh = true,
                         };
-
                         await HttpContext.SignInAsync(
                             CookieAuthenticationDefaults.AuthenticationScheme,
                             new ClaimsPrincipal(claimsIdentity),
                             properties
                             );
-
                         return RedirectToAction("Index", "Home");
                     }
                 }
-
                 ViewData["LoginError"] = "Usuario o contraseña incorrecta";
             }
             return View(model);
         }
-        //[HttpPost]
-        //public async Task<IActionResult> SignOut()
-        //{
-        //    await LoginViewModel.SignOutAsync();
-        //    return RedirectToAction("Index", "Home");
-        //}
     }
 }
