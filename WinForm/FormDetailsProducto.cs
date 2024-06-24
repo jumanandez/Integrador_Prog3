@@ -18,7 +18,7 @@ namespace WinForm
             _producto = producto;
             _listaProductos = _productoBusiness.GetAll();
             _totalPages = _listaProductos.Count();
-            _currentPage = _listaProductos.FindIndex(p=> p.ProductoId == _producto.ProductoId) + 1;
+            _currentPage = _listaProductos.FindIndex(p => p.ProductoId == _producto.ProductoId) + 1;
             InitializeComponent();
             lblcustomcategoria.Text = _producto.Categoria.Nombre;
             datagridVentas.AutoGenerateColumns = false;
@@ -43,10 +43,10 @@ namespace WinForm
 
         #region Boton Modificar y Eliminar
         //PARA ESTA PARTE DE CODIGO MANEJAREMOS UN POCO DE LÓGICA
-        //CON LOS RESULTADOS DEL DIALOGO ENTRE FORMULARIOS 
+        //CON LOS RESULTADOS DEL DIALOGO ENTRE FORMULARIOS
         //  none   EL FORMULARIO SE CERRÓ POR EL BOTON CERRAR
-        //  No     EL FORMULARIO SE CIERRA Y LLAMA AL EVENTO CLICK DEL BOTON ELIMINAR PRODUCTO
-        //  Yes    EL FORMULARIO SE CIERRA Y LLAMA AL EVENTO CLICK DEL BOTON MODIFICAR PRODUCTO
+        //  No EL FORMULARIO SE CIERRA Y LLAMA AL EVENTO CLICK DEL BOTON ELIMINAR PRODUCTO
+        //  Yes EL FORMULARIO SE CIERRA Y LLAMA AL EVENTO CLICK DEL BOTON MODIFICAR PRODUCTO
 
         private void BTNdelete_Click(object sender, EventArgs e)
         {
@@ -85,11 +85,11 @@ namespace WinForm
         private Producto? Paginado(int pagina)
         {
             if (pagina < 1) return null;
-            
-            var paginado = _productoBusiness.GetProductosPaginados(pagina, 1);
-            
+
+            var paginado = _productoBusiness.GetProductosPaginados(pagina, 1, null);
+
             var productoPaginado = paginado.Items.FirstOrDefault();
-            
+
 
             if (productoPaginado != null)
             {
@@ -124,11 +124,11 @@ namespace WinForm
         {
             var tooltip = new ToolTip();
 
-            if(switchHabilitado.SwitchState == ReaLTaiizor.Controls.ParrotSwitch.State.On)
+            if (switchHabilitado.SwitchState == ReaLTaiizor.Controls.ParrotSwitch.State.On)
             {
                 tooltip.SetToolTip(switchHabilitado, "Habilitado");
             }
-            else if(switchHabilitado.SwitchState == ReaLTaiizor.Controls.ParrotSwitch.State.Off)
+            else if (switchHabilitado.SwitchState == ReaLTaiizor.Controls.ParrotSwitch.State.Off)
             {
                 tooltip.SetToolTip(switchHabilitado, "Dehabilitado");
             }

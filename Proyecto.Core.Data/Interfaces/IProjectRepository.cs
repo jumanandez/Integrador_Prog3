@@ -17,7 +17,7 @@ namespace Proyecto.Core.Data.Interfaces
         public List<Producto> GetProductosWeb();
         public List<string> GetAllNames();
         public List<Categoria> GetCategorias();
-        public void ModifyProduct(Producto product);
+        public void ModifyProduct(Producto product, int categoriaId);
         public bool AddCategoria(Categoria categoria);
         public List<Compra> GetCompras(int usuarioId);
         public List<Compra> FiltrarCompraFecha(string search, List<Compra> unfilteredCompras);
