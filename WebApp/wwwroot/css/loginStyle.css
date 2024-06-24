@@ -108,7 +108,8 @@ button:hover {
 }
 
 .registrar {
-    font-size: .8rem;
+    font-size: 0.8rem;
+    font-family: Poppins;
     color: #fff;
     text-align: center;
     margin: 20px 0 10px;
@@ -118,12 +119,13 @@ button:hover {
         text-decoration: none;
         color: #fff;
         font-weight: bold;
-        transition: .3s;
+        transition: .2s;
  }
 
-.registrar p a:hover {
-            text-decoration: underline;
-}
+    .registrar p a:hover {
+        text-decoration: underline;
+        font-size: 0.9rem;
+    }
 
 .bg-image {
     height: 100%;
