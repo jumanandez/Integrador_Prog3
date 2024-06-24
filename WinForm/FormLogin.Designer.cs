@@ -296,7 +296,9 @@ namespace WinForm
             Controls.Add(lblpassword);
             Controls.Add(lblusername);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             MaximumSize = new Size(400, 500);
+            MinimizeBox = false;
             MinimumSize = new Size(400, 500);
             Name = "FormLogin";
             Palette = kryptonCustomPaletteBase1;

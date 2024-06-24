@@ -61,7 +61,7 @@ namespace WinForm
             txtContraseña.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic);
             txtContraseña.Location = new Point(74, 260);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.PasswordChar = 'ඞ';
+            txtContraseña.PasswordChar = '●';
             txtContraseña.Size = new Size(249, 31);
             txtContraseña.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             txtContraseña.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
@@ -74,6 +74,7 @@ namespace WinForm
             txtContraseña.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContraseña.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtContraseña.TabIndex = 1;
+            txtContraseña.UseSystemPasswordChar = true;
             txtContraseña.KeyPress += txtContraseña_KeyPress;
             // 
             // txtNombreUsuario
@@ -158,7 +159,7 @@ namespace WinForm
             // 
             // btnRegistrarse
             // 
-            btnRegistrarse.Location = new Point(121, 364);
+            btnRegistrarse.Location = new Point(121, 370);
             btnRegistrarse.Name = "btnRegistrarse";
             btnRegistrarse.OverrideDefault.Back.Color1 = Color.FromArgb(0, 0, 192);
             btnRegistrarse.OverrideDefault.Back.Color2 = Color.Navy;
@@ -216,9 +217,9 @@ namespace WinForm
             txtConfirm.CueHint.Color1 = SystemColors.ControlDark;
             txtConfirm.CueHint.CueHintText = "Ingrese una contraseña";
             txtConfirm.CueHint.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Italic);
-            txtConfirm.Location = new Point(74, 318);
+            txtConfirm.Location = new Point(74, 324);
             txtConfirm.Name = "txtConfirm";
-            txtConfirm.PasswordChar = 'ඞ';
+            txtConfirm.PasswordChar = '●';
             txtConfirm.Size = new Size(249, 31);
             txtConfirm.StateCommon.Back.Color1 = Color.FromArgb(36, 36, 36);
             txtConfirm.StateCommon.Border.Color1 = Color.FromArgb(64, 64, 64);
@@ -231,12 +232,13 @@ namespace WinForm
             txtConfirm.StateCommon.Content.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtConfirm.StateCommon.Content.Padding = new Padding(10, 0, 10, 0);
             txtConfirm.TabIndex = 24;
+            txtConfirm.UseSystemPasswordChar = true;
             // 
             // kryptonLabel1
             // 
             kryptonLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             kryptonLabel1.LabelStyle = LabelStyle.Custom1;
-            kryptonLabel1.Location = new Point(82, 290);
+            kryptonLabel1.Location = new Point(82, 297);
             kryptonLabel1.Name = "kryptonLabel1";
             kryptonLabel1.Palette = kryptonCustomPaletteBase1;
             kryptonLabel1.PaletteMode = PaletteMode.Custom;
@@ -259,7 +261,9 @@ namespace WinForm
             Controls.Add(lblcontrasenia);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             MaximumSize = new Size(400, 500);
+            MinimizeBox = false;
             MinimumSize = new Size(400, 470);
             Name = "FormRegister";
             Palette = kryptonCustomPaletteBase1;

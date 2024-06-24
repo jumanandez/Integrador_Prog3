@@ -14,6 +14,7 @@ namespace Proyecto.Core.Data.Interfaces
         public void UpdateVenta(Venta venta);
         public void DeleteProducto(Producto product);
         public List<Producto> GetProductos();
+        public List<Producto> GetProductosWeb();
         public List<string> GetAllNames();
         public List<Categoria> GetCategorias();
         public void ModifyProduct(Producto product);
