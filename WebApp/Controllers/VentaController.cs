@@ -143,7 +143,7 @@ namespace WebApp.Controllers
             var ventaModel = new VentaVM
             {
                 VentaId = 0,
-                CategoriaLista = _categoriaBusiness.GetAll(),
+                CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList(),
                 ProductoLista = new List<Producto>()
             };
             ModelState.AddModelError("CategoriaId", "(*)Campo obligatorio.");
@@ -192,7 +192,7 @@ namespace WebApp.Controllers
 
             }
 
-            ventaModel.CategoriaLista = _categoriaBusiness.GetAll();
+            ventaModel.CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList();
             return View(ventaModel);
         }
         public IActionResult Edit(int ventaId)

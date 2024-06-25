@@ -56,7 +56,8 @@ namespace WinForm
                 paginado = _productoBusiness.GetProductosPaginados(paginado.PaginaActual, _itemsPerPage, source);
                 if (paginado.TotalPaginas < paginado.PaginaActual)
                 {
-                    paginado.PaginaActual = 1;
+                    paginado.PaginaActual = paginado.TotalPaginas;
+                    paginado = _productoBusiness.GetProductosPaginados(paginado.PaginaActual, _itemsPerPage, source);
                 }
                 dataGridViewProducto.DataSource = paginado.Items;
                 CheckPageRelatedButtons(null);
