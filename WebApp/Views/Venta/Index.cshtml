@@ -82,6 +82,19 @@
                                 </span>
                                 <i id="sortIconAmmount" class="fa-solid fa-sort-down"></i>
                             </a>
+                        </th>
+                        <th scope="col">
+                            <a id="sortToggleStock" class="list-group-item list-group-item-action active" data-sort-key="Stock"
+                               asp-action="Index"
+                               asp-route-sortOrder="@ViewData["StockSortParm"]"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               asp-route-pagina="@(Model.Paginado.PaginaActual)">
+                                <i class="fa-solid fa-dolly"></i><span style="padding-left: 10px;">
+                                    Stock
+                                </span>
+                                <i id="sortIconStock" class="fa-solid fa-sort-down"></i>
+                            </a>
+                        </th>
                         <th scope="col">
                             <a class="list-group-item list-group-item-action disabled">
                                 <i class="fa-solid fa-ellipsis"></i><span style="padding-left: 10px;">
@@ -98,6 +111,11 @@
                             <td>@v.Producto?.Nombre</td>
                             <td>@v.Fecha.ToShortDateString()</td>
                             <td>@v.Cantidad</td>
+                            <td>@(Model.CompraLista
+                                .Where(p => p.ProductoId == v.ProductoId && p.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+                                .Select(p => p.Cantidad)
+                                    .Sum() - v.Producto?.Venta.Select(c => c.Cantidad).Sum())
+                            </td>
                             <td>
                                 <div class="d-flex">
                                     <a class="btn btn-sm btn-warning mx-2" asp-action="Edit" asp-controller="Venta" asp-route-ventaId="@v.VentaId">

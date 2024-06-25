@@ -14,8 +14,6 @@ namespace WebApp.Models.ViewModels
 
         public List<Categoria>? CategoriaLista { get; set; }
 
-        public Categoria? _Categoria { get; set; }
-
         public int? Cantidad { get; set; }
 
         public int CategoriaSeleccionada { get; set; }
@@ -31,6 +29,8 @@ namespace WebApp.Models.ViewModels
         public int Llamado { get; set; } = 0; //0 = nueva venta, 1 = editar.
 
         public int? stockProducto {  get; set; }
+      
+        public List<Compra>? CompraLista { get; set; }
 
     }
 }

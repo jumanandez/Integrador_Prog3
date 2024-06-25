@@ -43,5 +43,7 @@ namespace Proyecto.Core.Data.Interfaces
         public Compra GetCompraById(int id);
         public Venta GetVentaById(int id);
         List<Usuario> GetAllUsuarios();
+
+        public (List<Compra>, List<Venta>) ReturnVentasCompras(int userID);
     }
 }

@@ -24,6 +24,17 @@ namespace Proyecto.Core.Data
             _config = config;
         }
 
+        public (List<Compra>, List<Venta>) ReturnVentasCompras(int userID)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                List<Compra> Compras = dbcontext.Compras.Where(p => p.UsuarioId == userID).ToList();
+                List<Venta> Ventas = dbcontext.Ventas.Where(p => p.UsuarioId == userID).ToList();
+
+                return (Compras, Ventas);  
+            }
+        }
+
         #region Region Producto
         public void AddProducto(Producto product)
         {
@@ -51,7 +62,7 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                productos = dbcontext.Productos.Include(p => p.Categoria)// arreglar
+                productos = dbcontext.Productos.Include(p => p.Categoria)
                                                .Include(p => p.Compras).ThenInclude(c => c.Usuario)
                                                .Include(p => p.Venta).ThenInclude(v => v.Usuario).ToList();
             }

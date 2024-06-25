@@ -4,6 +4,7 @@ using Proyecto.Core.Data;
 using Proyecto.Core.Data.Interfaces;
 using Proyecto.Core.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,7 +71,6 @@ namespace Proyecto.Core.Business
                 HasNextPage = pagina < (int)Math.Ceiling(totalCompras / (double)itemsPorPagina),
             };
         }
-
         public Compra GetCompraById(int id)
         {
             return _projectRepository.GetCompraById(id);
@@ -110,6 +110,24 @@ namespace Proyecto.Core.Business
                 Cantidad = compra.Cantidad
 
             };
+        }
+
+        public int GetStockperUser(int Userid, int ProductoId)
+        {
+            List<Venta> ventas;
+            List<Compra> compras;
+            (compras, ventas) = _projectRepository.ReturnVentasCompras(Userid);
+
+            int ccantidad = compras.Where(p=> p.ProductoId == ProductoId).Select(c=> c.Cantidad).Sum();
+
+            int vcantidad =ventas.Where(p => p.ProductoId == ProductoId).Select(c => c.Cantidad).Sum();
+
+            var test = ccantidad - vcantidad;
+
+            return ccantidad - vcantidad;
+
+
+
         }
 
     }
