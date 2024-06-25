@@ -1052,5 +1052,10 @@ namespace WinForm
             btnNextPage.Enabled = paginado.HasPreviousPage ? true : false;
             labelPages.Text = $"{((_itemsPerPage * paginado.PaginaActual) - (_itemsPerPage - paginado.Items.Count))} / {_All.Count()}";
         }
+
+        private void idToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortingResult("Id");
+        }
     }
 }

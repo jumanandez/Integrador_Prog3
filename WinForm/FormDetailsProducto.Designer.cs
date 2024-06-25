@@ -869,7 +869,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.FromArgb(60, 63, 65);
-            pictureBox1.Image = Properties.Resources.Medium_stock;
+            pictureBox1.Image = Properties.Resources.medium_id;
             pictureBox1.Location = new Point(42, 252);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(30, 30);

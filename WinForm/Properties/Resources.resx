@@ -118,17 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Medium_meno" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Medium meno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="big_buttonVU" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\big_buttonVU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mini_Arrow_backP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini_Arrow_backP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,6 +136,9 @@
   <data name="check_mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check mini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="medium_id" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medium_id.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ventas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ventas1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,11 +148,8 @@
   <data name="guardar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\guardar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="addmini" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addmini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mini_Arrow_backS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini_Arrow_backS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Mini_borrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mini borrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="medium_editP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\medium_editP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,11 +166,8 @@
   <data name="medium_categoria2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\medium_categoria2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="check_Umini" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\check_Umini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mini_arrow_forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini_arrow_forward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="micro_id" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\micro_id.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,11 +235,14 @@
   <data name="question" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mini_Arrow_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini_Arrow_back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sort_by_alpha_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sort_by_alpha_24dp_FILL0_wght400_GRAD0_opsz24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="chevron_right_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron_right_24dp_FILL0_wght400_GRAD0_opsz24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check_Umini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check_Umini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LOgo_TUP_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOgo_TUP_png.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -289,9 +283,6 @@
   <data name="shoppingcart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shoppingcart1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mini_borrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mini borrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="tag1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tag1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -322,9 +313,6 @@
   <data name="micro_cate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\micro cate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mini_arrow_forwardP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini_arrow_forwardP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="addmini_b" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addmini_b.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -343,20 +331,20 @@
   <data name="unchecked_Umini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unchecked_Umini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mini_arrow_forwardS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini_arrow_forwardS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="unchecked_Smini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unchecked_Smini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="big_buttonVD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\big_buttonVD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="addmini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addmini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="big_buttonD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\big_buttonD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sort_by_alpha_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sort_by_alpha_24dp_FILL0_wght400_GRAD0_opsz24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Medium_meno_tracked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Medium_meno_tracked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mini_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini_left.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -406,8 +394,8 @@
   <data name="micro_compras" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\micro_compras.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Medium_meno_tracked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Medium_meno_tracked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Medium_meno" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Medium meno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="chevron_left_24dp_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron_left_24dp_FILL0_wght400_GRAD0_opsz24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -445,7 +433,28 @@
   <data name="mini_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini_right.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="micro_id" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\micro_id.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mini_Arrow_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_Arrow_back1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mini_Arrow_backD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_Arrow_backD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mini_Arrow_backP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_Arrow_backP1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mini_Arrow_backS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_Arrow_backS1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mini_arrow_forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_arrow_forward1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mini_arrow_forwardD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_arrow_forwardD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mini_arrow_forwardP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_arrow_forwardP1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mini_arrow_forwardS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini_arrow_forwardS1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

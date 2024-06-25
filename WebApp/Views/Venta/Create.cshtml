@@ -22,7 +22,6 @@
                     <select class="form-control m-2 rounded-5" asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
                         <option value="">Seleccione una categoría</option>
                     </select>
-                    @Html.ValidationMessageFor(model => model.CategoriaSeleccionada, "", new { @class = "text-danger" })
                 </div>
                 @if (Model.ProductoLista != null && Model.ProductoLista.Any())
                 {
@@ -30,24 +29,20 @@
                         <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Seleccione un Producto:</span></label>
                     </div>
                     <div>
-                        <select class="form-control m-2 rounded-5" asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))">
+                        <select class="form-control m-2 rounded-5" asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))" onchange="this.form.submit()">
+                            >
                             <option value="">Seleccione un producto</option>
                         </select>
-                        @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
                     </div>
-
-                    <button type="submit" class="btn btn-principe"><i class="fa-solid fa-receipt"></i><span style="padding-left: 10px;">Seleccionar Producto</span></button>
-
-
                     <div>
-                        <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Stock actual del producto: @Model.stockProducto</span></label>
+                        <label class="px-2 mt-3 mb-3 mx-md-4" for="_Producto.ProductoId"><i class="fa-solid fa-dolly"></i><span style="padding-top:15px; padding-left: 8px;">Stock actual del producto: @Model.stockProducto</span></label>
                     </div>
 
                     @if (Model.stockProducto.HasValue)
                     {
 
                         <div>
-                            <label class="mt-2 mx-4 form-label" asp-for="@Model.VentaLista."><i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">Cantidad</span></label>
+                            <label class="mt-2" asp-for="@Model.VentaLista."><span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">Cantidad</span></label>
                             <input class="form-control form-control-sm mx-1 m-1 rounded-5" asp-for="Cantidad" type="number" min="1" max="1000000" />
                             @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
                         </div>
@@ -82,3 +77,15 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('productSelect').addEventListener('change', function () {
+        var selectedOption = this.options[this.selectedIndex];
+        var label = document.getElementById('selectedProductLabel');
+        if (selectedOption.value) {
+            label.textContent = 'Selected product: ' + selectedOption.text;
+        } else {
+            label.textContent = 'Selected product: None';
+        }
+    });
+</script>

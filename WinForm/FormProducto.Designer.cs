@@ -46,31 +46,25 @@ namespace WinForm
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             IconSpec iconSpec7 = new IconSpec();
             dataGridViewProducto = new KryptonDataGridView();
-            ColumnId = new KryptonDataGridViewTextBoxColumn();
-            ColumnNombreProducto = new KryptonDataGridViewTextBoxColumn();
-            contextMenuRow = new ContextMenuStrip(components);
-            nuevoToolStrip = new ToolStripMenuItem();
-            ordenarToolStripMenuItem1 = new ToolStripMenuItem();
+            columnMenuStrip = new ContextMenuStrip(components);
+            nuevoToolStripMenuItem1 = new ToolStripMenuItem();
+            refrescarToolStripMenuItem2 = new ToolStripMenuItem();
+            ordenarStripMenuItem3 = new ToolStripMenuItem();
             sortcontext = new ContextMenuStrip(components);
+            idToolStripMenuItem = new ToolStripMenuItem();
             nombreToolStripMenuItem = new ToolStripMenuItem();
             categoriaToolStripMenuItem1 = new ToolStripMenuItem();
             stockToolStripMenuItem1 = new ToolStripMenuItem();
             comprasToolStripMenuItem1 = new ToolStripMenuItem();
             ventasToolStripMenuItem1 = new ToolStripMenuItem();
             habilitadoToolStripMenuItem1 = new ToolStripMenuItem();
-            ordenarStripMenuItem3 = new ToolStripMenuItem();
+            contextMenuRow = new ContextMenuStrip(components);
+            nuevoToolStrip = new ToolStripMenuItem();
+            ordenarToolStripMenuItem1 = new ToolStripMenuItem();
             modificarToolStripMenuItem = new ToolStripMenuItem();
             eliminarToolStripMenuItem = new ToolStripMenuItem();
             detallesToolStripMenuItem = new ToolStripMenuItem();
             refrescarToolStripMenuItem1 = new ToolStripMenuItem();
-            ColumnCategoria = new KryptonDataGridViewTextBoxColumn();
-            ColumnStock = new KryptonDataGridViewTextBoxColumn();
-            ColumnCompras = new KryptonDataGridViewTextBoxColumn();
-            ColumnVentas = new KryptonDataGridViewTextBoxColumn();
-            ColumnHabilitado = new KryptonDataGridViewCheckBoxColumn();
-            columnMenuStrip = new ContextMenuStrip(components);
-            nuevoToolStripMenuItem1 = new ToolStripMenuItem();
-            refrescarToolStripMenuItem2 = new ToolStripMenuItem();
             kryptonCustomPaletteBase1 = new KryptonCustomPaletteBase(components);
             nuevoToolStripMenuItem = new ToolStripMenuItem();
             ordenarToolStripMenuItem = new ToolStripMenuItem();
@@ -117,10 +111,17 @@ namespace WinForm
             btnPreviousPage = new KryptonButton();
             btnNextPage = new KryptonButton();
             labelPages = new Label();
+            ColumnId = new KryptonDataGridViewTextBoxColumn();
+            ColumnNombreProducto = new KryptonDataGridViewTextBoxColumn();
+            ColumnCategoria = new KryptonDataGridViewTextBoxColumn();
+            ColumnStock = new KryptonDataGridViewTextBoxColumn();
+            ColumnCompras = new KryptonDataGridViewTextBoxColumn();
+            ColumnVentas = new KryptonDataGridViewTextBoxColumn();
+            ColumnHabilitado = new KryptonDataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).BeginInit();
-            contextMenuRow.SuspendLayout();
-            sortcontext.SuspendLayout();
             columnMenuStrip.SuspendLayout();
+            sortcontext.SuspendLayout();
+            contextMenuRow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).BeginInit();
             ((System.ComponentModel.ISupportInitialize)buscarPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)menubutton).BeginInit();
@@ -172,76 +173,70 @@ namespace WinForm
             dataGridViewProducto.ColumnHeaderMouseClick += dataGridViewProducto_ColumnHeaderMouseClick;
             dataGridViewProducto.MouseDown += dataGridViewProducto_MouseDown;
             // 
-            // ColumnId
+            // columnMenuStrip
             // 
-            ColumnId.DataPropertyName = "ProductoId";
-            ColumnId.DefaultCellStyle = dataGridViewCellStyle2;
-            ColumnId.HeaderText = "Id";
-            iconSpec1.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
-            ColumnId.IconSpecs.Add(iconSpec1);
-            ColumnId.Name = "ColumnId";
-            ColumnId.ReadOnly = true;
-            ColumnId.Width = 60;
+            columnMenuStrip.AllowMerge = false;
+            columnMenuStrip.BackColor = Color.FromArgb(64, 64, 64);
+            columnMenuStrip.DropShadowEnabled = false;
+            columnMenuStrip.Font = new Font("Segoe UI", 9F);
+            columnMenuStrip.Items.AddRange(new ToolStripItem[] { nuevoToolStripMenuItem1, refrescarToolStripMenuItem2, ordenarStripMenuItem3 });
+            columnMenuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            columnMenuStrip.Name = "contextMenuStrip2";
+            columnMenuStrip.RenderMode = ToolStripRenderMode.Professional;
+            columnMenuStrip.Size = new Size(123, 70);
             // 
-            // ColumnNombreProducto
+            // nuevoToolStripMenuItem1
             // 
-            ColumnNombreProducto.ContextMenuStrip = contextMenuRow;
-            ColumnNombreProducto.DataPropertyName = "Nombre";
-            ColumnNombreProducto.DefaultCellStyle = dataGridViewCellStyle3;
-            ColumnNombreProducto.HeaderText = "Nombre";
-            iconSpec2.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
-            ColumnNombreProducto.IconSpecs.Add(iconSpec2);
-            ColumnNombreProducto.Name = "ColumnNombreProducto";
-            ColumnNombreProducto.ReadOnly = true;
-            ColumnNombreProducto.Resizable = DataGridViewTriState.True;
-            ColumnNombreProducto.Width = 140;
+            nuevoToolStripMenuItem1.BackColor = Color.RosyBrown;
+            nuevoToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            nuevoToolStripMenuItem1.Image = (Image)resources.GetObject("nuevoToolStripMenuItem1.Image");
+            nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
+            nuevoToolStripMenuItem1.Size = new Size(122, 22);
+            nuevoToolStripMenuItem1.Text = "Nuevo";
+            nuevoToolStripMenuItem1.Click += nuevoProductoToolStripMenuItem_Click;
             // 
-            // contextMenuRow
+            // refrescarToolStripMenuItem2
             // 
-            contextMenuRow.BackColor = Color.FromArgb(30, 30, 32);
-            contextMenuRow.Font = new Font("Segoe UI", 9F);
-            contextMenuRow.Items.AddRange(new ToolStripItem[] { nuevoToolStrip, ordenarToolStripMenuItem1, modificarToolStripMenuItem, eliminarToolStripMenuItem, detallesToolStripMenuItem, refrescarToolStripMenuItem1 });
-            contextMenuRow.Name = "contextMenuStrip1";
-            contextMenuRow.RenderMode = ToolStripRenderMode.System;
-            contextMenuRow.Size = new Size(126, 136);
+            refrescarToolStripMenuItem2.ForeColor = SystemColors.ButtonFace;
+            refrescarToolStripMenuItem2.Image = Properties.Resources.mini_refresh_b;
+            refrescarToolStripMenuItem2.Name = "refrescarToolStripMenuItem2";
+            refrescarToolStripMenuItem2.Size = new Size(122, 22);
+            refrescarToolStripMenuItem2.Text = "Refrescar";
+            refrescarToolStripMenuItem2.Click += refrescarToolStripMenuItem_Click;
             // 
-            // nuevoToolStrip
+            // ordenarStripMenuItem3
             // 
-            nuevoToolStrip.BackColor = Color.FromArgb(30, 30, 32);
-            nuevoToolStrip.ForeColor = SystemColors.ButtonFace;
-            nuevoToolStrip.Image = Properties.Resources.addmini;
-            nuevoToolStrip.Name = "nuevoToolStrip";
-            nuevoToolStrip.Size = new Size(125, 22);
-            nuevoToolStrip.Text = "Nuevo";
-            nuevoToolStrip.Click += nuevoProductoToolStripMenuItem_Click;
-            // 
-            // ordenarToolStripMenuItem1
-            // 
-            ordenarToolStripMenuItem1.DropDown = sortcontext;
-            ordenarToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
-            ordenarToolStripMenuItem1.Image = Properties.Resources.sort_mini;
-            ordenarToolStripMenuItem1.Name = "ordenarToolStripMenuItem1";
-            ordenarToolStripMenuItem1.Size = new Size(125, 22);
-            ordenarToolStripMenuItem1.Text = "Ordenar";
-            ordenarToolStripMenuItem1.Click += ordenarToolStripMenuItem1_Click;
+            ordenarStripMenuItem3.DropDown = sortcontext;
+            ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
+            ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
+            ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
+            ordenarStripMenuItem3.Size = new Size(122, 22);
+            ordenarStripMenuItem3.Text = "Ordenar";
             // 
             // sortcontext
             // 
             sortcontext.BackColor = Color.FromArgb(30, 30, 32);
             sortcontext.Font = new Font("Segoe UI", 9F);
-            sortcontext.Items.AddRange(new ToolStripItem[] { nombreToolStripMenuItem, categoriaToolStripMenuItem1, stockToolStripMenuItem1, comprasToolStripMenuItem1, ventasToolStripMenuItem1, habilitadoToolStripMenuItem1 });
+            sortcontext.Items.AddRange(new ToolStripItem[] { idToolStripMenuItem, nombreToolStripMenuItem, categoriaToolStripMenuItem1, stockToolStripMenuItem1, comprasToolStripMenuItem1, ventasToolStripMenuItem1, habilitadoToolStripMenuItem1 });
             sortcontext.Name = "sortcontext";
             sortcontext.OwnerItem = ordenarToolStripMenuItem1;
             sortcontext.RenderMode = ToolStripRenderMode.System;
-            sortcontext.Size = new Size(130, 136);
+            sortcontext.Size = new Size(130, 158);
+            // 
+            // idToolStripMenuItem
+            // 
+            idToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
+            idToolStripMenuItem.Image = Properties.Resources.micro_id;
+            idToolStripMenuItem.Name = "idToolStripMenuItem";
+            idToolStripMenuItem.Size = new Size(129, 22);
+            idToolStripMenuItem.Text = "Id";
+            idToolStripMenuItem.Click += idToolStripMenuItem_Click;
             // 
             // nombreToolStripMenuItem
             // 
             nombreToolStripMenuItem.BackColor = Color.FromArgb(30, 30, 32);
             nombreToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
-            nombreToolStripMenuItem.Image = Properties.Resources.Mini_refresh;
+            nombreToolStripMenuItem.Image = Properties.Resources.sort_by_alpha_24dp_FILL0_wght400_GRAD0_opsz24;
             nombreToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft;
             nombreToolStripMenuItem.Name = "nombreToolStripMenuItem";
             nombreToolStripMenuItem.Size = new Size(129, 22);
@@ -301,14 +296,34 @@ namespace WinForm
             habilitadoToolStripMenuItem1.Text = "Habilitado";
             habilitadoToolStripMenuItem1.Click += ordenarSubContex_Click;
             // 
-            // ordenarStripMenuItem3
+            // contextMenuRow
             // 
-            ordenarStripMenuItem3.DropDown = sortcontext;
-            ordenarStripMenuItem3.ForeColor = SystemColors.ButtonFace;
-            ordenarStripMenuItem3.Image = Properties.Resources.sort_mini_B;
-            ordenarStripMenuItem3.Name = "ordenarStripMenuItem3";
-            ordenarStripMenuItem3.Size = new Size(122, 22);
-            ordenarStripMenuItem3.Text = "Ordenar";
+            contextMenuRow.BackColor = Color.FromArgb(30, 30, 32);
+            contextMenuRow.Font = new Font("Segoe UI", 9F);
+            contextMenuRow.Items.AddRange(new ToolStripItem[] { nuevoToolStrip, ordenarToolStripMenuItem1, modificarToolStripMenuItem, eliminarToolStripMenuItem, detallesToolStripMenuItem, refrescarToolStripMenuItem1 });
+            contextMenuRow.Name = "contextMenuStrip1";
+            contextMenuRow.RenderMode = ToolStripRenderMode.System;
+            contextMenuRow.Size = new Size(126, 136);
+            // 
+            // nuevoToolStrip
+            // 
+            nuevoToolStrip.BackColor = Color.FromArgb(30, 30, 32);
+            nuevoToolStrip.ForeColor = SystemColors.ButtonFace;
+            nuevoToolStrip.Image = Properties.Resources.addmini;
+            nuevoToolStrip.Name = "nuevoToolStrip";
+            nuevoToolStrip.Size = new Size(125, 22);
+            nuevoToolStrip.Text = "Nuevo";
+            nuevoToolStrip.Click += nuevoProductoToolStripMenuItem_Click;
+            // 
+            // ordenarToolStripMenuItem1
+            // 
+            ordenarToolStripMenuItem1.DropDown = sortcontext;
+            ordenarToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
+            ordenarToolStripMenuItem1.Image = Properties.Resources.sort_mini;
+            ordenarToolStripMenuItem1.Name = "ordenarToolStripMenuItem1";
+            ordenarToolStripMenuItem1.Size = new Size(125, 22);
+            ordenarToolStripMenuItem1.Text = "Ordenar";
+            ordenarToolStripMenuItem1.Click += ordenarToolStripMenuItem1_Click;
             // 
             // modificarToolStripMenuItem
             // 
@@ -345,110 +360,6 @@ namespace WinForm
             refrescarToolStripMenuItem1.Size = new Size(125, 22);
             refrescarToolStripMenuItem1.Text = "Refrescar";
             refrescarToolStripMenuItem1.Click += refrescarToolStripMenuItem_Click;
-            // 
-            // ColumnCategoria
-            // 
-            ColumnCategoria.ContextMenuStrip = contextMenuRow;
-            ColumnCategoria.DataPropertyName = "Categoria";
-            ColumnCategoria.DefaultCellStyle = dataGridViewCellStyle4;
-            ColumnCategoria.HeaderText = "Categoria";
-            iconSpec3.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
-            ColumnCategoria.IconSpecs.Add(iconSpec3);
-            ColumnCategoria.Name = "ColumnCategoria";
-            ColumnCategoria.ReadOnly = true;
-            ColumnCategoria.Resizable = DataGridViewTriState.True;
-            ColumnCategoria.Width = 140;
-            // 
-            // ColumnStock
-            // 
-            ColumnStock.ContextMenuStrip = contextMenuRow;
-            ColumnStock.DefaultCellStyle = dataGridViewCellStyle5;
-            ColumnStock.HeaderText = "Stock";
-            iconSpec4.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
-            ColumnStock.IconSpecs.Add(iconSpec4);
-            ColumnStock.Name = "ColumnStock";
-            ColumnStock.ReadOnly = true;
-            ColumnStock.Resizable = DataGridViewTriState.True;
-            ColumnStock.Width = 80;
-            // 
-            // ColumnCompras
-            // 
-            ColumnCompras.ContextMenuStrip = contextMenuRow;
-            ColumnCompras.DefaultCellStyle = dataGridViewCellStyle6;
-            ColumnCompras.HeaderText = "Compras";
-            iconSpec5.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
-            ColumnCompras.IconSpecs.Add(iconSpec5);
-            ColumnCompras.Name = "ColumnCompras";
-            ColumnCompras.ReadOnly = true;
-            ColumnCompras.Resizable = DataGridViewTriState.True;
-            ColumnCompras.Width = 105;
-            // 
-            // ColumnVentas
-            // 
-            ColumnVentas.ContextMenuStrip = contextMenuRow;
-            ColumnVentas.DefaultCellStyle = dataGridViewCellStyle7;
-            ColumnVentas.HeaderText = "Ventas";
-            iconSpec6.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
-            ColumnVentas.IconSpecs.Add(iconSpec6);
-            ColumnVentas.Name = "ColumnVentas";
-            ColumnVentas.ReadOnly = true;
-            ColumnVentas.Resizable = DataGridViewTriState.True;
-            ColumnVentas.Width = 100;
-            // 
-            // ColumnHabilitado
-            // 
-            ColumnHabilitado.ContextMenuStrip = contextMenuRow;
-            ColumnHabilitado.DataPropertyName = "Habilitado";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = false;
-            ColumnHabilitado.DefaultCellStyle = dataGridViewCellStyle8;
-            ColumnHabilitado.FalseValue = null;
-            ColumnHabilitado.HeaderText = "Habilitado";
-            iconSpec7.Alignment = IconSpec.IconAlignment.Left;
-            iconSpec7.Icon = (Image)resources.GetObject("iconSpec7.Icon");
-            ColumnHabilitado.IconSpecs.Add(iconSpec7);
-            ColumnHabilitado.IndeterminateValue = null;
-            ColumnHabilitado.Name = "ColumnHabilitado";
-            ColumnHabilitado.ReadOnly = true;
-            ColumnHabilitado.Resizable = DataGridViewTriState.True;
-            ColumnHabilitado.SortMode = DataGridViewColumnSortMode.Automatic;
-            ColumnHabilitado.TrueValue = null;
-            ColumnHabilitado.Width = 120;
-            // 
-            // columnMenuStrip
-            // 
-            columnMenuStrip.AllowMerge = false;
-            columnMenuStrip.BackColor = Color.FromArgb(64, 64, 64);
-            columnMenuStrip.DropShadowEnabled = false;
-            columnMenuStrip.Font = new Font("Segoe UI", 9F);
-            columnMenuStrip.Items.AddRange(new ToolStripItem[] { nuevoToolStripMenuItem1, refrescarToolStripMenuItem2, ordenarStripMenuItem3 });
-            columnMenuStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            columnMenuStrip.Name = "contextMenuStrip2";
-            columnMenuStrip.RenderMode = ToolStripRenderMode.Professional;
-            columnMenuStrip.Size = new Size(123, 70);
-            // 
-            // nuevoToolStripMenuItem1
-            // 
-            nuevoToolStripMenuItem1.BackColor = Color.RosyBrown;
-            nuevoToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
-            nuevoToolStripMenuItem1.Image = (Image)resources.GetObject("nuevoToolStripMenuItem1.Image");
-            nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
-            nuevoToolStripMenuItem1.Size = new Size(122, 22);
-            nuevoToolStripMenuItem1.Text = "Nuevo";
-            nuevoToolStripMenuItem1.Click += nuevoProductoToolStripMenuItem_Click;
-            // 
-            // refrescarToolStripMenuItem2
-            // 
-            refrescarToolStripMenuItem2.ForeColor = SystemColors.ButtonFace;
-            refrescarToolStripMenuItem2.Image = Properties.Resources.mini_refresh_b;
-            refrescarToolStripMenuItem2.Name = "refrescarToolStripMenuItem2";
-            refrescarToolStripMenuItem2.Size = new Size(122, 22);
-            refrescarToolStripMenuItem2.Text = "Refrescar";
-            refrescarToolStripMenuItem2.Click += refrescarToolStripMenuItem_Click;
             // 
             // kryptonCustomPaletteBase1
             // 
@@ -1440,6 +1351,7 @@ namespace WinForm
             // btnPreviousPage
             // 
             btnPreviousPage.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnPreviousPage.CornerRoundingRadius = 15F;
             btnPreviousPage.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPreviousPage.Location = new Point(873, 574);
             btnPreviousPage.Name = "btnPreviousPage";
@@ -1451,21 +1363,21 @@ namespace WinForm
             btnPreviousPage.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
             btnPreviousPage.OverrideDefault.Border.ColorAngle = 45F;
             btnPreviousPage.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            btnPreviousPage.OverrideDefault.Border.Rounding = 8F;
+            btnPreviousPage.OverrideDefault.Border.Rounding = 15F;
             btnPreviousPage.OverrideDefault.Content.DrawFocus = InheritBool.False;
-            btnPreviousPage.Size = new Size(36, 35);
+            btnPreviousPage.Size = new Size(41, 40);
             btnPreviousPage.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
             btnPreviousPage.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
             btnPreviousPage.StateCommon.Back.ColorAngle = 45F;
             btnPreviousPage.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
             btnPreviousPage.StateCommon.Back.Image = Properties.Resources.mini_arrow_forward;
             btnPreviousPage.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
-            btnPreviousPage.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterRight;
+            btnPreviousPage.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterMiddle;
             btnPreviousPage.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
             btnPreviousPage.StateCommon.Border.Color2 = Color.FromArgb(60, 60, 175);
             btnPreviousPage.StateCommon.Border.ColorAngle = 45F;
             btnPreviousPage.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            btnPreviousPage.StateCommon.Border.Rounding = 8F;
+            btnPreviousPage.StateCommon.Border.Rounding = 15F;
             btnPreviousPage.StateCommon.Content.AdjacentGap = 1;
             btnPreviousPage.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
             btnPreviousPage.StateCommon.Content.ShortText.Color1 = Color.LightGray;
@@ -1473,8 +1385,9 @@ namespace WinForm
             btnPreviousPage.StateCommon.Content.ShortText.ColorAngle = 45F;
             btnPreviousPage.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
             btnPreviousPage.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPreviousPage.StateDisabled.Back.Color1 = Color.FromArgb(160, 180, 240);
-            btnPreviousPage.StateDisabled.Back.Color2 = Color.FromArgb(160, 180, 240);
+            btnPreviousPage.StateDisabled.Back.Color1 = Color.FromArgb(31, 51, 129);
+            btnPreviousPage.StateDisabled.Back.Color2 = Color.FromArgb(31, 51, 129);
+            btnPreviousPage.StateDisabled.Back.Image = Properties.Resources.mini_arrow_forwardD;
             btnPreviousPage.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
             btnPreviousPage.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
             btnPreviousPage.StatePressed.Back.Image = Properties.Resources.mini_arrow_forwardP;
@@ -1484,7 +1397,6 @@ namespace WinForm
             btnPreviousPage.StateTracking.Back.ColorAngle = 135F;
             btnPreviousPage.StateTracking.Back.Image = Properties.Resources.mini_arrow_forwardS;
             btnPreviousPage.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            btnPreviousPage.StateTracking.Border.Rounding = 8F;
             btnPreviousPage.StateTracking.Content.ShortText.Color1 = Color.White;
             btnPreviousPage.StateTracking.Content.ShortText.Color2 = Color.White;
             btnPreviousPage.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
@@ -1496,8 +1408,9 @@ namespace WinForm
             // btnNextPage
             // 
             btnNextPage.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnNextPage.CornerRoundingRadius = 15F;
             btnNextPage.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnNextPage.Location = new Point(749, 574);
+            btnNextPage.Location = new Point(737, 574);
             btnNextPage.Name = "btnNextPage";
             btnNextPage.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
             btnNextPage.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
@@ -1507,21 +1420,21 @@ namespace WinForm
             btnNextPage.OverrideDefault.Border.Color2 = Color.FromArgb(60, 60, 175);
             btnNextPage.OverrideDefault.Border.ColorAngle = 45F;
             btnNextPage.OverrideDefault.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            btnNextPage.OverrideDefault.Border.Rounding = 8F;
+            btnNextPage.OverrideDefault.Border.Rounding = 15F;
             btnNextPage.OverrideDefault.Content.DrawFocus = InheritBool.False;
-            btnNextPage.Size = new Size(38, 35);
+            btnNextPage.Size = new Size(45, 40);
             btnNextPage.StateCommon.Back.Color1 = Color.FromArgb(60, 65, 190);
             btnNextPage.StateCommon.Back.Color2 = Color.FromArgb(55, 55, 170);
             btnNextPage.StateCommon.Back.ColorAngle = 45F;
             btnNextPage.StateCommon.Back.ColorStyle = PaletteColorStyle.Dashed;
             btnNextPage.StateCommon.Back.Image = Properties.Resources.mini_Arrow_back;
             btnNextPage.StateCommon.Back.ImageAlign = PaletteRectangleAlign.Local;
-            btnNextPage.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterRight;
+            btnNextPage.StateCommon.Back.ImageStyle = PaletteImageStyle.CenterMiddle;
             btnNextPage.StateCommon.Border.Color1 = Color.FromArgb(60, 65, 190);
             btnNextPage.StateCommon.Border.Color2 = Color.FromArgb(60, 60, 175);
             btnNextPage.StateCommon.Border.ColorAngle = 45F;
             btnNextPage.StateCommon.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            btnNextPage.StateCommon.Border.Rounding = 8F;
+            btnNextPage.StateCommon.Border.Rounding = 15F;
             btnNextPage.StateCommon.Content.AdjacentGap = 1;
             btnNextPage.StateCommon.Content.Image.ImageColorTo = Color.White;
             btnNextPage.StateCommon.Content.Padding = new Padding(30, -1, 0, -1);
@@ -1530,19 +1443,18 @@ namespace WinForm
             btnNextPage.StateCommon.Content.ShortText.ColorAngle = 45F;
             btnNextPage.StateCommon.Content.ShortText.ColorStyle = PaletteColorStyle.Solid;
             btnNextPage.StateCommon.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNextPage.StateDisabled.Back.Color1 = Color.FromArgb(160, 180, 240);
-            btnNextPage.StateDisabled.Back.Color2 = Color.FromArgb(160, 180, 240);
+            btnNextPage.StateDisabled.Back.Color1 = Color.FromArgb(31, 51, 129);
+            btnNextPage.StateDisabled.Back.Color2 = Color.FromArgb(31, 51, 129);
+            btnNextPage.StateDisabled.Back.Image = Properties.Resources.mini_Arrow_backD;
             btnNextPage.StatePressed.Back.Color1 = Color.FromArgb(35, 45, 150);
             btnNextPage.StatePressed.Back.Color2 = Color.FromArgb(40, 45, 130);
             btnNextPage.StatePressed.Back.Image = Properties.Resources.mini_Arrow_backP;
-            btnNextPage.StatePressed.Back.ImageStyle = PaletteImageStyle.CenterMiddle;
+            btnNextPage.StatePressed.Back.ImageStyle = PaletteImageStyle.CenterLeft;
             btnNextPage.StateTracking.Back.Color1 = Color.FromArgb(85, 90, 220);
             btnNextPage.StateTracking.Back.Color2 = Color.FromArgb(70, 75, 195);
             btnNextPage.StateTracking.Back.ColorAngle = 135F;
             btnNextPage.StateTracking.Back.Image = Properties.Resources.mini_Arrow_backS;
-            btnNextPage.StateTracking.Back.ImageStyle = PaletteImageStyle.CenterRight;
             btnNextPage.StateTracking.Border.DrawBorders = PaletteDrawBorders.Top | PaletteDrawBorders.Bottom | PaletteDrawBorders.Left | PaletteDrawBorders.Right;
-            btnNextPage.StateTracking.Border.Rounding = 8F;
             btnNextPage.StateTracking.Content.ShortText.Color1 = Color.White;
             btnNextPage.StateTracking.Content.ShortText.Color2 = Color.White;
             btnNextPage.StateTracking.Content.ShortText.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Bold);
@@ -1556,12 +1468,112 @@ namespace WinForm
             labelPages.AutoSize = true;
             labelPages.Font = new Font("Poppins SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelPages.ForeColor = SystemColors.ButtonFace;
-            labelPages.Location = new Point(788, 579);
+            labelPages.Location = new Point(788, 580);
             labelPages.Name = "labelPages";
             labelPages.Size = new Size(79, 28);
             labelPages.TabIndex = 1;
             labelPages.Text = "123 / 150";
             labelPages.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ColumnId
+            // 
+            ColumnId.ContextMenuStrip = contextMenuRow;
+            ColumnId.DataPropertyName = "ProductoId";
+            ColumnId.DefaultCellStyle = dataGridViewCellStyle2;
+            ColumnId.HeaderText = "Id";
+            iconSpec1.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec1.Icon = (Image)resources.GetObject("iconSpec1.Icon");
+            ColumnId.IconSpecs.Add(iconSpec1);
+            ColumnId.Name = "ColumnId";
+            ColumnId.ReadOnly = true;
+            ColumnId.Width = 60;
+            // 
+            // ColumnNombreProducto
+            // 
+            ColumnNombreProducto.ContextMenuStrip = contextMenuRow;
+            ColumnNombreProducto.DataPropertyName = "Nombre";
+            ColumnNombreProducto.DefaultCellStyle = dataGridViewCellStyle3;
+            ColumnNombreProducto.HeaderText = "Nombre";
+            iconSpec2.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec2.Icon = (Image)resources.GetObject("iconSpec2.Icon");
+            ColumnNombreProducto.IconSpecs.Add(iconSpec2);
+            ColumnNombreProducto.Name = "ColumnNombreProducto";
+            ColumnNombreProducto.ReadOnly = true;
+            ColumnNombreProducto.Resizable = DataGridViewTriState.True;
+            ColumnNombreProducto.Width = 140;
+            // 
+            // ColumnCategoria
+            // 
+            ColumnCategoria.ContextMenuStrip = contextMenuRow;
+            ColumnCategoria.DataPropertyName = "Categoria";
+            ColumnCategoria.DefaultCellStyle = dataGridViewCellStyle4;
+            ColumnCategoria.HeaderText = "Categoria";
+            iconSpec3.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec3.Icon = (Image)resources.GetObject("iconSpec3.Icon");
+            ColumnCategoria.IconSpecs.Add(iconSpec3);
+            ColumnCategoria.Name = "ColumnCategoria";
+            ColumnCategoria.ReadOnly = true;
+            ColumnCategoria.Resizable = DataGridViewTriState.True;
+            ColumnCategoria.Width = 140;
+            // 
+            // ColumnStock
+            // 
+            ColumnStock.ContextMenuStrip = contextMenuRow;
+            ColumnStock.DefaultCellStyle = dataGridViewCellStyle5;
+            ColumnStock.HeaderText = "Stock";
+            iconSpec4.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec4.Icon = (Image)resources.GetObject("iconSpec4.Icon");
+            ColumnStock.IconSpecs.Add(iconSpec4);
+            ColumnStock.Name = "ColumnStock";
+            ColumnStock.ReadOnly = true;
+            ColumnStock.Resizable = DataGridViewTriState.True;
+            ColumnStock.Width = 80;
+            // 
+            // ColumnCompras
+            // 
+            ColumnCompras.ContextMenuStrip = contextMenuRow;
+            ColumnCompras.DefaultCellStyle = dataGridViewCellStyle6;
+            ColumnCompras.HeaderText = "Compras";
+            iconSpec5.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec5.Icon = (Image)resources.GetObject("iconSpec5.Icon");
+            ColumnCompras.IconSpecs.Add(iconSpec5);
+            ColumnCompras.Name = "ColumnCompras";
+            ColumnCompras.ReadOnly = true;
+            ColumnCompras.Resizable = DataGridViewTriState.True;
+            ColumnCompras.Width = 105;
+            // 
+            // ColumnVentas
+            // 
+            ColumnVentas.ContextMenuStrip = contextMenuRow;
+            ColumnVentas.DefaultCellStyle = dataGridViewCellStyle7;
+            ColumnVentas.HeaderText = "Ventas";
+            iconSpec6.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec6.Icon = (Image)resources.GetObject("iconSpec6.Icon");
+            ColumnVentas.IconSpecs.Add(iconSpec6);
+            ColumnVentas.Name = "ColumnVentas";
+            ColumnVentas.ReadOnly = true;
+            ColumnVentas.Resizable = DataGridViewTriState.True;
+            ColumnVentas.Width = 100;
+            // 
+            // ColumnHabilitado
+            // 
+            ColumnHabilitado.ContextMenuStrip = contextMenuRow;
+            ColumnHabilitado.DataPropertyName = "Habilitado";
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = false;
+            ColumnHabilitado.DefaultCellStyle = dataGridViewCellStyle8;
+            ColumnHabilitado.FalseValue = null;
+            ColumnHabilitado.HeaderText = "Habilitado";
+            iconSpec7.Alignment = IconSpec.IconAlignment.Left;
+            iconSpec7.Icon = (Image)resources.GetObject("iconSpec7.Icon");
+            ColumnHabilitado.IconSpecs.Add(iconSpec7);
+            ColumnHabilitado.IndeterminateValue = null;
+            ColumnHabilitado.Name = "ColumnHabilitado";
+            ColumnHabilitado.ReadOnly = true;
+            ColumnHabilitado.Resizable = DataGridViewTriState.True;
+            ColumnHabilitado.SortMode = DataGridViewColumnSortMode.Automatic;
+            ColumnHabilitado.TrueValue = null;
+            ColumnHabilitado.Width = 120;
             // 
             // FormProducto
             // 
@@ -1600,9 +1612,9 @@ namespace WinForm
             Activated += FormProducto_Activated;
             MouseDown += FormProducto_MouseDown;
             ((System.ComponentModel.ISupportInitialize)dataGridViewProducto).EndInit();
-            contextMenuRow.ResumeLayout(false);
-            sortcontext.ResumeLayout(false);
             columnMenuStrip.ResumeLayout(false);
+            sortcontext.ResumeLayout(false);
+            contextMenuRow.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)cmbBoxCategorias).EndInit();
             ((System.ComponentModel.ISupportInitialize)buscarPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)menubutton).EndInit();
@@ -1692,6 +1704,7 @@ namespace WinForm
         private KryptonButton btnPreviousPage;
         private KryptonButton btnNextPage;
         private Label labelPages;
+        private ToolStripMenuItem idToolStripMenuItem;
         private KryptonDataGridViewTextBoxColumn ColumnId;
         private KryptonDataGridViewTextBoxColumn ColumnNombreProducto;
         private KryptonDataGridViewTextBoxColumn ColumnCategoria;

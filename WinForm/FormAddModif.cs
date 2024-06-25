@@ -21,7 +21,7 @@ namespace WinForm
             this.Text = "     Modificar Elemento";
             InitializeComponent();
             _new = false; //llamado por boton de modificar
-            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
+            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList();
             cmbBoxCategorias.DisplayMember = "Nombre";
             int index = FindIndexByName(productin.Categoria.Nombre);
             cmbBoxCategorias.SelectedIndex = index;
@@ -36,7 +36,7 @@ namespace WinForm
             _new = true;//llamado por boton de nuevo
             this.Text = "     Añadir Elemento";
             InitializeComponent();
-            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll();
+            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll().OrderBy(c => c.Nombre).ToList();
             cmbBoxCategorias.DisplayMember = "Nombre";
             checkHabilitado.Checked = true;
             checkHabilitado.Enabled = false;//no se porque rayos pero al querer poner desabilitado no funciona entonces anulo nomas hasta saber como arreglar
