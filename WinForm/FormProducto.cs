@@ -436,7 +436,7 @@ namespace WinForm
         private void cmbBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //var productos = _productoBusiness.GetAll();
+            var productos = _productoBusiness.GetAll();
 
             if (cmbBoxCategorias.SelectedIndex == 0)
             {//SELECIONADO 'Todos' EN COMBOBOX
@@ -448,25 +448,25 @@ namespace WinForm
                 }
                 else if (txtboxbuscar.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
-                    RefreshGrid(FilterHabilitados(_All, true));//Habilitados 
+                    RefreshGrid(FilterHabilitados(productos, true));//Habilitados 
                 }
                 else if (txtboxbuscar.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
                 {
-                    RefreshGrid(FilterHabilitados(_All, false));//Deshabilitados
+                    RefreshGrid(FilterHabilitados(productos, false));//Deshabilitados
                 }
 
                 //HAY TEXTO EN EL TEXTBOX
                 else if (rdiobtnTodos.Checked) //en caso de tener algo escrito
                 {
-                    RefreshGrid(FilterByText(_All, txtboxbuscar.Text.ToLower().Trim()));
+                    RefreshGrid(FilterByText(productos, txtboxbuscar.Text.ToLower().Trim()));
                 }
                 else if (rdiobtnHabilitado.Checked)
                 {
-                    RefreshGrid(FilterByTextHabilitado(_All, true));//Busca texto y Habilitados 
+                    RefreshGrid(FilterByTextHabilitado(productos, true));//Busca texto y Habilitados 
                 }
                 else if (rdiobtnDeshabilitado.Checked)
                 {
-                    RefreshGrid(FilterByTextHabilitado(_All, false));//Busca texto y Deshabilitados
+                    RefreshGrid(FilterByTextHabilitado(productos, false));//Busca texto y Deshabilitados
                 }
             }
             else
@@ -475,29 +475,29 @@ namespace WinForm
                 //NO HAY TEXTO EN EL TEXTBOX
                 if (txtboxbuscar.Text.Trim() == "" && rdiobtnTodos.Checked)
                 {
-                    RefreshGrid(FilterByCategoria(_All));
+                    RefreshGrid(FilterByCategoria(productos));
                 }
                 else if (txtboxbuscar.Text.Trim() == "" && rdiobtnHabilitado.Checked)
                 {
-                    RefreshGrid(FilterByCategoriaHabilitado(_All, true));
+                    RefreshGrid(FilterByCategoriaHabilitado(productos, true));
                 }
                 else if (txtboxbuscar.Text.Trim() == "" && rdiobtnDeshabilitado.Checked)
                 {
-                    RefreshGrid(FilterByCategoriaHabilitado(_All, false));
+                    RefreshGrid(FilterByCategoriaHabilitado(productos, false));
                 }
 
                 //HAY TEXTO EN EL TEXTBOX
                 else if (rdiobtnTodos.Checked)
                 {
-                    RefreshGrid(FilterCategoriaYTexto(_All));
+                    RefreshGrid(FilterCategoriaYTexto(productos));
                 }
                 else if (rdiobtnHabilitado.Checked)
                 {
-                    RefreshGrid(TripleFilter(_All, true));
+                    RefreshGrid(TripleFilter(productos, true));
                 }
                 else if (rdiobtnDeshabilitado.Checked)
                 {
-                    RefreshGrid(TripleFilter(_All, false));
+                    RefreshGrid(TripleFilter(productos, false));
                 }
             }
         }
