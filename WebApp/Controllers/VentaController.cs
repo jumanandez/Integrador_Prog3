@@ -268,6 +268,8 @@ namespace WebApp.Controllers
 
             var stockActual = _productoBusiness.GetStock(userID, productoId);
 
+            ventaModel.stockProducto = stockActual;
+
             if (diferenciaCantidad <= 0 || stockActual >= diferenciaCantidad)
             {
                 if (venta == null)
