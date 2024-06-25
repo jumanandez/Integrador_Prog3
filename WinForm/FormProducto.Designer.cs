@@ -1510,7 +1510,7 @@ namespace WinForm
             btnNextPage.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnNextPage.CornerRoundingRadius = 15F;
             btnNextPage.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnNextPage.Location = new Point(817, 586);
+            btnNextPage.Location = new Point(840, 586);
             btnNextPage.Name = "btnNextPage";
             btnNextPage.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
             btnNextPage.OverrideDefault.Back.Color2 = Color.FromArgb(55, 55, 170);
@@ -1568,11 +1568,11 @@ namespace WinForm
             labelPages.AutoSize = true;
             labelPages.Font = new Font("Poppins SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelPages.ForeColor = SystemColors.ButtonFace;
-            labelPages.Location = new Point(868, 593);
+            labelPages.Location = new Point(891, 593);
             labelPages.Name = "labelPages";
-            labelPages.Size = new Size(79, 28);
+            labelPages.Size = new Size(46, 28);
             labelPages.TabIndex = 1;
-            labelPages.Text = "123 / 150";
+            labelPages.Text = "1/ 10";
             labelPages.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormProducto

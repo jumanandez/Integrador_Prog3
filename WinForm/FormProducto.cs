@@ -983,7 +983,10 @@ namespace WinForm
         {
             sortingResult("Ventas");
         }
-
+        private void idToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortingResult("Id");
+        }
         private void ordenarSubContex_Click(object sender, EventArgs e)
         {
             sortingResult("Habilitado");
@@ -1039,6 +1042,7 @@ namespace WinForm
         }
         #endregion
 
+        #region Funcionamiento Paginado
         private void kryptonButton1_Click_1(object sender, EventArgs e)
         {
             paginado.PaginaActual++;
@@ -1059,12 +1063,21 @@ namespace WinForm
             }
             btnPreviousPage.Enabled = paginado.HasNextPage ? true : false;
             btnNextPage.Enabled = paginado.HasPreviousPage ? true : false;
-            labelPages.Text = $"{((_itemsPerPage * paginado.PaginaActual) - (_itemsPerPage - paginado.Items.Count))} / {_All.Count()}";
+            labelPages.Text = $"{paginado.PaginaActual} / {paginado.TotalPaginas}";
+            LabelPositionUI();
         }
 
-        private void idToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LabelPositionUI()//Metodo de UI para hacer mas dinamico el label de pagina
         {
-            sortingResult("Id");
+            if (paginado.PaginaActual == 10 && paginado.TotalPaginas == 10)
+            {
+                labelPages.Location = new Point(885, 593);
+            }
+            else
+            {
+                labelPages.Location = new Point(891, 593);
+            }
         }
+        #endregion 
     }
 }
