@@ -54,19 +54,24 @@ namespace WinForm
             {
                 _All = source.ToList();
                 paginado = _productoBusiness.GetProductosPaginados(paginado.PaginaActual, _itemsPerPage, source);
+                if (paginado.TotalPaginas < paginado.PaginaActual)
+                {
+                    paginado.PaginaActual = 1;
+                }
                 dataGridViewProducto.DataSource = paginado.Items;
-                CheckPageRelatedButtons();
+                CheckPageRelatedButtons(null);
             }
             else
             {
                 _All = _productoBusiness.GetAll();
-                paginado = _productoBusiness.GetProductosPaginados(_currentPage, _itemsPerPage, _All);
+                paginado = _productoBusiness.GetProductosPaginados(_currentPage, _itemsPerPage, null);
                 paginado.PaginaActual = 1;
                 dataGridViewProducto.DataSource = paginado.Items;
                 txtboxbuscar.Clear();
                 cmbBoxCategorias.SelectedIndex = 0;
                 _orderType = "x";
-                CheckPageRelatedButtons();
+                CheckPageRelatedButtons(true);
+                rdiobtnTodos.Checked = true;
             }
 
 
@@ -639,7 +644,6 @@ namespace WinForm
         }
         private void sortingResult(string order)
         {
-            //List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
             switch (order)
             {
                 case "Nombre":
@@ -1046,8 +1050,12 @@ namespace WinForm
             RefreshGrid(_All);
         }
 
-        private void CheckPageRelatedButtons()
+        private void CheckPageRelatedButtons(bool? refresh)
         {
+            if (refresh != null)
+            {
+                rdiobtnTodos.Checked = true;
+            }
             btnPreviousPage.Enabled = paginado.HasNextPage ? true : false;
             btnNextPage.Enabled = paginado.HasPreviousPage ? true : false;
             labelPages.Text = $"{((_itemsPerPage * paginado.PaginaActual) - (_itemsPerPage - paginado.Items.Count))} / {_All.Count()}";
