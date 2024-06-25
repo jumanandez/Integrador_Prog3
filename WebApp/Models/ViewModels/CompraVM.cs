@@ -35,6 +35,10 @@ namespace WebApp.Models.ViewModels
         public DateTime? FechaCompra { get; set; }
 
         public int Llamado { get; set; } = 0; //0 = nueva compra, 1 = editar, 2 = repetir compra
+
+        public List<Venta>? VentaLista { get; set; }
+
+        public Venta? _Venta { get; set; }
     }
 
 

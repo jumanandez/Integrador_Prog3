@@ -387,7 +387,7 @@ namespace WebApp.Controllers
 		}
         public bool IsTooLow(int UserId, int Cantidad, int productoId)
         {
-            return ((_productoBusiness.GetStock(UserId, productoId) - Cantidad) - _ventaBusiness.GetVentaProducto(UserId, productoId) < 0);
+            return ((_productoBusiness.GetStock(UserId, productoId) - Cantidad) < 0);
         }
 	}
 }
