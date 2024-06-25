@@ -673,6 +673,16 @@ namespace WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap medium_id {
+            get {
+                object obj = ResourceManager.GetObject("medium_id", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap medium_logout {
             get {
                 object obj = ResourceManager.GetObject("medium_logout", resourceCulture);
@@ -746,6 +756,96 @@ namespace WinForm.Properties {
         public static System.Drawing.Bitmap micro_compras {
             get {
                 object obj = ResourceManager.GetObject("micro_compras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap micro_id {
+            get {
+                object obj = ResourceManager.GetObject("micro_id", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_Arrow_back {
+            get {
+                object obj = ResourceManager.GetObject("mini_Arrow_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_Arrow_backD {
+            get {
+                object obj = ResourceManager.GetObject("mini_Arrow_backD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_Arrow_backP {
+            get {
+                object obj = ResourceManager.GetObject("mini_Arrow_backP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_Arrow_backS {
+            get {
+                object obj = ResourceManager.GetObject("mini_Arrow_backS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_arrow_forward {
+            get {
+                object obj = ResourceManager.GetObject("mini_arrow_forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_arrow_forwardD {
+            get {
+                object obj = ResourceManager.GetObject("mini_arrow_forwardD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_arrow_forwardP {
+            get {
+                object obj = ResourceManager.GetObject("mini_arrow_forwardP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mini_arrow_forwardS {
+            get {
+                object obj = ResourceManager.GetObject("mini_arrow_forwardS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

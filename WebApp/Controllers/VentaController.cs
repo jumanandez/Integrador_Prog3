@@ -143,7 +143,7 @@ namespace WebApp.Controllers
             var ventaModel = new VentaVM
             {
                 VentaId = 0,
-                CategoriaLista = _categoriaBusiness.GetAll(),
+                CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList(),
                 ProductoLista = new List<Producto>()
             };
             ModelState.AddModelError("CategoriaId", "(*)Campo obligatorio.");
@@ -158,10 +158,14 @@ namespace WebApp.Controllers
             {
                 ventaModel.ProductoLista = _productoBusiness.GetAllWeb()
                     .Where(p => p.CategoriaId == ventaModel.CategoriaSeleccionada)
+                    .OrderBy(p => p.Nombre)
                     .ToList();
-            }            
+            }
+
             if (ventaModel._Producto != null && ventaModel._Producto.ProductoId != 0 && ModelState.IsValid)
             {
+                ventaModel.stockProducto = _productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId);
+
                 if (_productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId) < ventaModel.Cantidad)
                 {
                     ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
@@ -171,7 +175,7 @@ namespace WebApp.Controllers
                 {
                     ModelState.AddModelError("Cantidad", "Debe ingresar la cantidad de productos");
                 }
-                else if(ModelState.IsValid && ventaModel.Cantidad != null)
+                else if (ModelState.IsValid && ventaModel.Cantidad != null)
                 {
                     var nuevaVenta = new Venta
                     {
@@ -184,39 +188,57 @@ namespace WebApp.Controllers
                     _ventaBusiness.AddVenta(nuevaVenta);
                     return RedirectToAction("Index", new { refresh = true });
                 }
+
+
             }
-            ventaModel.CategoriaLista = _categoriaBusiness.GetAll();
+
+            ventaModel.CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList();
             return View(ventaModel);
         }
         public IActionResult Edit(int ventaId)
         {
             var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var venta = _ventaBusiness.GetVentaById(ventaId);
-            if (userID != venta.UsuarioId)
+
+            if (venta != null)
             {
-                var errorModel = new ErrorViewModel
+
+                if (userID != venta.UsuarioId)
                 {
-                    RequestId = "Usuario no autorizado!"
-                };
-                return View("Error", errorModel);
+                    var errorModel = new ErrorViewModel
+                    {
+                        RequestId = "Usuario no autorizado!"
+                    };
+                    return View("Error", errorModel);
+                }
+                else
+                {
+                    if (venta == null)
+                    {
+                        return NotFound();
+                    }
+
+                    var stockProducto = _productoBusiness.GetStock(userID, venta.ProductoId);
+
+                    var ventaModel = new VentaVM
+                    {
+                        VentaId = venta.VentaId,
+                        ProductoId = venta.ProductoId,
+                        Cantidad = venta.Cantidad,
+                        CategoriaId = venta.Producto?.CategoriaId,
+                        stockProducto = stockProducto
+                    };
+
+                    return View("Create", ventaModel);
+                }
             }
             else
             {
-                if (venta == null)
+                var errorModel = new ErrorViewModel
                 {
-                    return NotFound();
-                }
-
-                var ventaModel = new VentaVM
-                {
-                    VentaId = venta.VentaId,
-                    ProductoId = venta.ProductoId,
-                    Cantidad = venta.Cantidad,
-                    CategoriaId = venta.Producto?.CategoriaId,
-
+                    RequestId = "Producto Inexistente!"
                 };
-
-                return View("Create", ventaModel);
+                return View("Error", errorModel);
             }
         }
         [HttpPost]

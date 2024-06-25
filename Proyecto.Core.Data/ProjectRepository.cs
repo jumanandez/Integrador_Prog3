@@ -153,11 +153,19 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-        public void ModifyProduct(Producto product)
+        public void ModifyProduct(Producto product, int categoriaId)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                dbcontext.Update(product);
+                var producto = dbcontext.Productos.Find(product.ProductoId);
+
+
+                var newCategoria = dbcontext.Categoria.Find(categoriaId);
+
+                producto.CategoriaId = categoriaId;
+                producto.Nombre = product.Nombre;
+                producto.Habilitado = product.Habilitado;
+
                 dbcontext.SaveChanges();
             }
         }
@@ -275,7 +283,6 @@ namespace Proyecto.Core.Data
                 ventas = dbcontext.Ventas.Where(v => v.UsuarioId == userId)
                                            .Include(v => v.Producto)
                                            .Include(v => v.Usuario)
-                                           .Where(v => v.Producto.Habilitado == true)
                                            .OrderByDescending(v => v.Fecha).ToList();
             }
             return ventas;

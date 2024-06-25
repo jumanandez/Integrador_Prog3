@@ -28,9 +28,9 @@ namespace WebApp.Models.ViewModels
 
         public int Llamado { get; set; } = 0; //0 = nueva venta, 1 = editar.
 
+        public int? stockProducto {  get; set; }
+      
         public List<Compra>? CompraLista { get; set; }
-
-
 
     }
 }
