@@ -24,6 +24,17 @@ namespace Proyecto.Core.Data
             _config = config;
         }
 
+        public (List<Compra>, List<Venta>) ReturnVentasCompras(int userID)
+        {
+            using (var dbcontext = new IntegradorProg3Context(_config))
+            {
+                List<Compra> Compras = dbcontext.Compras.Where(p => p.UsuarioId == userID).ToList();
+                List<Venta> Ventas = dbcontext.Ventas.Where(p => p.UsuarioId == userID).ToList();
+
+                return (Compras, Ventas);  
+            }
+        }
+
         #region Region Producto
         public void AddProducto(Producto product)
         {
@@ -51,7 +62,7 @@ namespace Proyecto.Core.Data
 
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                productos = dbcontext.Productos.Include(p => p.Categoria)// arreglar
+                productos = dbcontext.Productos.Include(p => p.Categoria)
                                                .Include(p => p.Compras).ThenInclude(c => c.Usuario)
                                                .Include(p => p.Venta).ThenInclude(v => v.Usuario).ToList();
             }
@@ -142,11 +153,19 @@ namespace Proyecto.Core.Data
                 dbcontext.SaveChanges();
             }
         }
-        public void ModifyProduct(Producto product)
+        public void ModifyProduct(Producto product, int categoriaId)
         {
             using (var dbcontext = new IntegradorProg3Context(_config))
             {
-                dbcontext.Update(product);
+                var producto = dbcontext.Productos.Find(product.ProductoId);
+
+
+                var newCategoria = dbcontext.Categoria.Find(categoriaId);
+
+                producto.CategoriaId = categoriaId;
+                producto.Nombre = product.Nombre;
+                producto.Habilitado = product.Habilitado;
+
                 dbcontext.SaveChanges();
             }
         }
@@ -264,7 +283,6 @@ namespace Proyecto.Core.Data
                 ventas = dbcontext.Ventas.Where(v => v.UsuarioId == userId)
                                            .Include(v => v.Producto)
                                            .Include(v => v.Usuario)
-                                           .Where(v => v.Producto.Habilitado == true)
                                            .OrderByDescending(v => v.Fecha).ToList();
             }
             return ventas;

@@ -17,10 +17,10 @@ namespace Proyecto.Core.Business.Interfaces
         public void DeleteProducto(int id);
         public List<Producto> GetProductosByCategoria(int categoriaId);
         public void DeleteProducto(Producto product);
-        public void ModifyProduct(Producto product);
+        public void ModifyProduct(Producto product, int categoriaId);
         public List<string> GetAllNames();
 		public int GetStock(int usuarioId, int productoId);
         public int GetStock(int productoId);
-        public Paginado<Producto> GetProductosPaginados(int pagina, int itemsPorPagina);
+        public Paginado<Producto> GetProductosPaginados(int pagina, int itemsPorPagina, List<Producto>? List);
     }
 }

@@ -67,10 +67,13 @@
             lblcustomcategoria = new Label();
             lblnumerostock = new Label();
             lblPagina = new Label();
+            lblProductoid = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)datagridCompra).BeginInit();
             ((System.ComponentModel.ISupportInitialize)datagridVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picturestock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picturecategoria).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblCategoria
@@ -80,7 +83,7 @@
             lblCategoria.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             lblCategoria.ForeColor = SystemColors.ButtonFace;
             lblCategoria.ImageAlign = ContentAlignment.BottomLeft;
-            lblCategoria.Location = new Point(71, 183);
+            lblCategoria.Location = new Point(84, 183);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(114, 31);
             lblCategoria.TabIndex = 12;
@@ -93,9 +96,9 @@
             lblCompra.ForeColor = SystemColors.ButtonFace;
             lblCompra.Image = Properties.Resources.shoppingcart1;
             lblCompra.ImageAlign = ContentAlignment.MiddleLeft;
-            lblCompra.Location = new Point(-1, 290);
+            lblCompra.Location = new Point(3, 290);
             lblCompra.Name = "lblCompra";
-            lblCompra.Size = new Size(229, 32);
+            lblCompra.Size = new Size(245, 32);
             lblCompra.TabIndex = 8;
             lblCompra.Text = "Compras";
             lblCompra.TextAlign = ContentAlignment.MiddleCenter;
@@ -119,14 +122,14 @@
             datagridCompra.GridStyles.StyleColumn = Krypton.Toolkit.GridStyle.Custom1;
             datagridCompra.GridStyles.StyleDataCells = Krypton.Toolkit.GridStyle.Custom1;
             datagridCompra.GridStyles.StyleRow = Krypton.Toolkit.GridStyle.Custom1;
-            datagridCompra.Location = new Point(4, 322);
+            datagridCompra.Location = new Point(3, 322);
             datagridCompra.Name = "datagridCompra";
             datagridCompra.Palette = kryptonCustomPaletteBase1;
             datagridCompra.PaletteMode = Krypton.Toolkit.PaletteMode.Custom;
             datagridCompra.ReadOnly = true;
             datagridCompra.RowHeadersVisible = false;
             datagridCompra.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            datagridCompra.Size = new Size(226, 147);
+            datagridCompra.Size = new Size(242, 147);
             datagridCompra.StateCommon.Background.Color1 = Color.FromArgb(48, 48, 56);
             datagridCompra.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundCustom1;
             datagridCompra.TabIndex = 10;
@@ -369,14 +372,14 @@
             datagridVentas.GridStyles.StyleColumn = Krypton.Toolkit.GridStyle.Custom1;
             datagridVentas.GridStyles.StyleDataCells = Krypton.Toolkit.GridStyle.Custom1;
             datagridVentas.GridStyles.StyleRow = Krypton.Toolkit.GridStyle.Custom1;
-            datagridVentas.Location = new Point(229, 322);
+            datagridVentas.Location = new Point(244, 322);
             datagridVentas.Name = "datagridVentas";
             datagridVentas.Palette = kryptonCustomPaletteBase1;
             datagridVentas.PaletteMode = Krypton.Toolkit.PaletteMode.Custom;
             datagridVentas.ReadOnly = true;
             datagridVentas.RowHeadersVisible = false;
             datagridVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            datagridVentas.Size = new Size(226, 147);
+            datagridVentas.Size = new Size(241, 147);
             datagridVentas.StateCommon.Background.Color1 = Color.FromArgb(48, 48, 56);
             datagridVentas.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundCustom1;
             datagridVentas.TabIndex = 11;
@@ -418,9 +421,9 @@
             lblVentas.ForeColor = SystemColors.ButtonFace;
             lblVentas.Image = Properties.Resources.tag1;
             lblVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            lblVentas.Location = new Point(230, 290);
+            lblVentas.Location = new Point(245, 290);
             lblVentas.Name = "lblVentas";
-            lblVentas.Size = new Size(232, 32);
+            lblVentas.Size = new Size(240, 32);
             lblVentas.TabIndex = 9;
             lblVentas.Text = "Ventas";
             lblVentas.TextAlign = ContentAlignment.MiddleCenter;
@@ -431,7 +434,7 @@
             lblStock.BackColor = Color.FromArgb(60, 63, 65);
             lblStock.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             lblStock.ForeColor = SystemColors.ButtonFace;
-            lblStock.Location = new Point(71, 216);
+            lblStock.Location = new Point(84, 216);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(70, 31);
             lblStock.TabIndex = 13;
@@ -441,7 +444,9 @@
             // 
             btnAnterior.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnAnterior.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAnterior.Location = new Point(20, 41);
+            btnAnterior.Location = new Point(17, 41);
+            btnAnterior.MaximumSize = new Size(72, 108);
+            btnAnterior.MinimumSize = new Size(72, 108);
             btnAnterior.Name = "btnAnterior";
             btnAnterior.OverrideDefault.Back.Color1 = Color.FromArgb(26, 26, 26);
             btnAnterior.OverrideDefault.Back.Color2 = Color.FromArgb(26, 26, 26);
@@ -509,7 +514,7 @@
             // 
             // bordeVertical
             // 
-            bordeVertical.Location = new Point(228, 290);
+            bordeVertical.Location = new Point(242, 290);
             bordeVertical.Margin = new Padding(0);
             bordeVertical.Name = "bordeVertical";
             bordeVertical.Orientation = Orientation.Vertical;
@@ -522,9 +527,11 @@
             // 
             // btnSiguiente
             // 
-            btnSiguiente.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSiguiente.Anchor = AnchorStyles.Right;
             btnSiguiente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSiguiente.Location = new Point(384, 41);
+            btnSiguiente.Location = new Point(413, 41);
+            btnSiguiente.MaximumSize = new Size(72, 108);
+            btnSiguiente.MinimumSize = new Size(72, 108);
             btnSiguiente.Name = "btnSiguiente";
             btnSiguiente.OverrideDefault.Back.Color1 = Color.FromArgb(26, 26, 26);
             btnSiguiente.OverrideDefault.Back.Color2 = Color.FromArgb(26, 26, 26);
@@ -596,7 +603,7 @@
             lblNombre.AutoEllipsis = true;
             lblNombre.Font = new Font("Montserrat SemiBold", 22F, FontStyle.Bold, GraphicsUnit.World, 0);
             lblNombre.ForeColor = SystemColors.ButtonFace;
-            lblNombre.Location = new Point(99, 34);
+            lblNombre.Location = new Point(96, 34);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(269, 108);
             lblNombre.TabIndex = 16;
@@ -609,7 +616,7 @@
             labelhabilitado.BackColor = Color.FromArgb(60, 63, 65);
             labelhabilitado.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             labelhabilitado.ForeColor = SystemColors.ButtonFace;
-            labelhabilitado.Location = new Point(35, 253);
+            labelhabilitado.Location = new Point(377, 183);
             labelhabilitado.Name = "labelhabilitado";
             labelhabilitado.Size = new Size(108, 31);
             labelhabilitado.TabIndex = 14;
@@ -621,7 +628,7 @@
             switchHabilitado.Enabled = false;
             switchHabilitado.HandleOffColor = Color.FromArgb(255, 255, 255);
             switchHabilitado.HandleOnColor = Color.FromArgb(255, 255, 255);
-            switchHabilitado.Location = new Point(148, 253);
+            switchHabilitado.Location = new Point(313, 184);
             switchHabilitado.Name = "switchHabilitado";
             switchHabilitado.OffColor = Color.FromArgb(75, 75, 75);
             switchHabilitado.OnColor = Color.FromArgb(40, 40, 40);
@@ -634,10 +641,10 @@
             // 
             // BTNmodif
             // 
-            BTNmodif.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            BTNmodif.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             BTNmodif.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNmodif.Location = new Point(401, 487);
-            BTNmodif.MaximumSize = new Size(95, 35);
+            BTNmodif.Location = new Point(430, 487);
+            BTNmodif.MaximumSize = new Size(35, 35);
             BTNmodif.MinimumSize = new Size(1, 1);
             BTNmodif.Name = "BTNmodif";
             BTNmodif.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
@@ -690,11 +697,11 @@
             // 
             // BTNdelete
             // 
-            BTNdelete.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            BTNdelete.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             BTNdelete.CornerRoundingRadius = 5F;
             BTNdelete.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTNdelete.Location = new Point(341, 487);
-            BTNdelete.MaximumSize = new Size(95, 35);
+            BTNdelete.Location = new Point(370, 487);
+            BTNdelete.MaximumSize = new Size(35, 35);
             BTNdelete.MinimumSize = new Size(1, 1);
             BTNdelete.Name = "BTNdelete";
             BTNdelete.OverrideDefault.Back.Color1 = Color.FromArgb(60, 65, 190);
@@ -751,9 +758,9 @@
             lblbackground.BackColor = Color.FromArgb(60, 63, 65);
             lblbackground.Font = new Font("Montserrat SemiBold", 22F, FontStyle.Bold, GraphicsUnit.World, 0);
             lblbackground.ForeColor = SystemColors.ButtonFace;
-            lblbackground.Location = new Point(-7, 171);
+            lblbackground.Location = new Point(-3, 171);
             lblbackground.Name = "lblbackground";
-            lblbackground.Size = new Size(470, 304);
+            lblbackground.Size = new Size(495, 304);
             lblbackground.TabIndex = 17;
             lblbackground.Text = " ";
             lblbackground.TextAlign = ContentAlignment.MiddleCenter;
@@ -771,7 +778,7 @@
             btnlvolver.ForeColor = Color.Silver;
             btnlvolver.Image = Properties.Resources.medium_logout;
             btnlvolver.ImageAlign = ContentAlignment.MiddleLeft;
-            btnlvolver.Location = new Point(4, 481);
+            btnlvolver.Location = new Point(1, 481);
             btnlvolver.Margin = new Padding(0);
             btnlvolver.Name = "btnlvolver";
             btnlvolver.Size = new Size(223, 41);
@@ -784,7 +791,7 @@
             // 
             picturestock.BackColor = Color.FromArgb(60, 63, 65);
             picturestock.Image = Properties.Resources.Medium_stock;
-            picturestock.Location = new Point(38, 216);
+            picturestock.Location = new Point(42, 216);
             picturestock.Name = "picturestock";
             picturestock.Size = new Size(30, 30);
             picturestock.TabIndex = 29;
@@ -794,7 +801,7 @@
             // 
             picturecategoria.BackColor = Color.FromArgb(60, 63, 65);
             picturecategoria.Image = Properties.Resources.medium_categoria2;
-            picturecategoria.Location = new Point(38, 180);
+            picturecategoria.Location = new Point(42, 180);
             picturecategoria.Name = "picturecategoria";
             picturecategoria.Size = new Size(30, 30);
             picturecategoria.TabIndex = 31;
@@ -802,7 +809,7 @@
             // 
             // bordeHorizontal
             // 
-            bordeHorizontal.Location = new Point(-1, 290);
+            bordeHorizontal.Location = new Point(15, 290);
             bordeHorizontal.Margin = new Padding(0);
             bordeHorizontal.Name = "bordeHorizontal";
             bordeHorizontal.Size = new Size(463, 3);
@@ -820,7 +827,7 @@
             lblcustomcategoria.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             lblcustomcategoria.ForeColor = Color.FromArgb(110, 160, 220);
             lblcustomcategoria.ImageAlign = ContentAlignment.BottomLeft;
-            lblcustomcategoria.Location = new Point(172, 183);
+            lblcustomcategoria.Location = new Point(190, 183);
             lblcustomcategoria.Name = "lblcustomcategoria";
             lblcustomcategoria.Size = new Size(0, 31);
             lblcustomcategoria.TabIndex = 33;
@@ -832,7 +839,7 @@
             lblnumerostock.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             lblnumerostock.ForeColor = Color.FromArgb(110, 160, 220);
             lblnumerostock.ImageAlign = ContentAlignment.BottomLeft;
-            lblnumerostock.Location = new Point(131, 216);
+            lblnumerostock.Location = new Point(150, 216);
             lblnumerostock.Name = "lblnumerostock";
             lblnumerostock.Size = new Size(0, 31);
             lblnumerostock.TabIndex = 34;
@@ -841,18 +848,43 @@
             // 
             lblPagina.AutoSize = true;
             lblPagina.Font = new Font("Poppins SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPagina.Location = new Point(202, 9);
+            lblPagina.Location = new Point(211, 9);
             lblPagina.Name = "lblPagina";
             lblPagina.Size = new Size(53, 22);
             lblPagina.TabIndex = 37;
             lblPagina.Text = "pagina";
+            // 
+            // lblProductoid
+            // 
+            lblProductoid.AutoSize = true;
+            lblProductoid.BackColor = Color.FromArgb(60, 63, 65);
+            lblProductoid.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
+            lblProductoid.ForeColor = SystemColors.ButtonFace;
+            lblProductoid.Location = new Point(84, 252);
+            lblProductoid.Name = "lblProductoid";
+            lblProductoid.Size = new Size(36, 31);
+            lblProductoid.TabIndex = 40;
+            lblProductoid.Text = "Id:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(60, 63, 65);
+            pictureBox1.Image = Properties.Resources.medium_id;
+            pictureBox1.Location = new Point(42, 252);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 30);
+            pictureBox1.TabIndex = 43;
+            pictureBox1.TabStop = false;
             // 
             // FormDetailsProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(26, 26, 26);
-            ClientSize = new Size(459, 523);
+            ClientSize = new Size(491, 523);
+            Controls.Add(pictureBox1);
+            Controls.Add(lblNombre);
+            Controls.Add(lblProductoid);
             Controls.Add(lblPagina);
             Controls.Add(lblnumerostock);
             Controls.Add(lblcustomcategoria);
@@ -873,7 +905,6 @@
             Controls.Add(datagridCompra);
             Controls.Add(lblCompra);
             Controls.Add(lblCategoria);
-            Controls.Add(lblNombre);
             Controls.Add(lblbackground);
             ForeColor = SystemColors.ButtonFace;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -889,6 +920,7 @@
             ((System.ComponentModel.ISupportInitialize)datagridVentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)picturestock).EndInit();
             ((System.ComponentModel.ISupportInitialize)picturecategoria).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -921,5 +953,7 @@
         private Label lblcustomcategoria;
         private Label lblnumerostock;
         private Label lblPagina;
+        private Label lblProductoid;
+        private PictureBox pictureBox1;
     }
 }

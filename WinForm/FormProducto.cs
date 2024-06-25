@@ -19,6 +19,11 @@ namespace WinForm
         bool sidebaropen;
         bool filteropen = false;
         bool userbarcollapsed = false;
+        public int _currentPage = 1;
+        private int _totalPages = 0;
+        private int _itemsPerPage = 13;
+        private Paginado<Producto> paginado = null!;
+        private List<Producto> _All;
 
         public FormProducto(ICategoriaBusiness categoriaBusiness, IProductoBusiness productoBusiness, IUsuarioBusiness usuarioBusiness, Usuario userLogged)
         {
@@ -27,6 +32,7 @@ namespace WinForm
             _usuarioBusiness = usuarioBusiness;
             _productoACargar = new Producto();
             _loggedUser = userLogged;
+            _All = _productoBusiness.GetAll();
             InitializeComponent();
             userHeader1.Values.Heading = $"{_loggedUser.Nombre}";
             numericUpDown1.Value = 1;
@@ -41,19 +47,34 @@ namespace WinForm
         //Refrescar el DatagridView segun una lista especifica o como viene desde la base
         public void RefreshGrid(List<Producto>? source)
         {
+
             dataGridViewProducto.AutoGenerateColumns = false;
 
             if (source != null)
             {
-                dataGridViewProducto.DataSource = source;
-                _orderType = "x";
+                _All = source.ToList();
+                paginado = _productoBusiness.GetProductosPaginados(paginado.PaginaActual, _itemsPerPage, source);
+                if (paginado.TotalPaginas < paginado.PaginaActual)
+                {
+                    paginado.PaginaActual = paginado.TotalPaginas;
+                    paginado = _productoBusiness.GetProductosPaginados(paginado.PaginaActual, _itemsPerPage, source);
+                }
+                dataGridViewProducto.DataSource = paginado.Items;
+                CheckPageRelatedButtons(null);
             }
-            else//RefreshGrid(null) debe ser la llamada para que funcione
+            else
             {
-                dataGridViewProducto.DataSource = _productoBusiness.GetAll();
+                _All = _productoBusiness.GetAll();
+                paginado = _productoBusiness.GetProductosPaginados(_currentPage, _itemsPerPage, null);
+                paginado.PaginaActual = 1;
+                dataGridViewProducto.DataSource = paginado.Items;
                 txtboxbuscar.Clear();
                 cmbBoxCategorias.SelectedIndex = 0;
+                _orderType = "x";
+                CheckPageRelatedButtons(true);
+                rdiobtnTodos.Checked = true;
             }
+
 
             CargarEstadoStock();
         }
@@ -63,7 +84,7 @@ namespace WinForm
 
             categorias.Add(new Categoria { Nombre = "Todos" });
 
-            var cateBasicas = _categoriaBusiness.GetAll();
+            var cateBasicas = _categoriaBusiness.GetAll().OrderBy(c => c.Nombre);
 
             foreach (Categoria categoria in cateBasicas)
             {
@@ -561,7 +582,7 @@ namespace WinForm
                 if (((int)numericUpDown1.Value) >= 1)
                 {
                     producomp.Venta.Add(new Venta { Cantidad = ((int)numericUpDown1.Value), Fecha = DateTime.Now, UsuarioId = _loggedUser.UsuarioId }); //testear ventas
-                    _productoBusiness.ModifyProduct(producomp);
+                    //_productoBusiness.ModifyProduct(producomp);
                     RJMessageBox.Show($"Se hizo el pedido de {(int)numericUpDown1.Value} {producomp.Nombre}");
                 }
                 else
@@ -582,7 +603,7 @@ namespace WinForm
         #region FUNCIONES DE FILTRADO PARA NO REPETIR CODE
         private List<Producto> TripleFilter(List<Producto> productos, bool valor)
         {
-            return (from p in FilterCategoriaYTexto(productos)
+            return (from p in FilterCategoriaYTexto(_All)
                     where p.Habilitado == valor
                     select p).ToList();
         }
@@ -616,7 +637,7 @@ namespace WinForm
                     where p.Habilitado == valor
                     select p).ToList();
         }
-        public static List<Producto> FilterHabilitados(List<Producto> productos, bool valor)
+        public List<Producto> FilterHabilitados(List<Producto> productos, bool valor)
         {
             return (from prod in productos
                     where prod.Habilitado == valor
@@ -624,84 +645,96 @@ namespace WinForm
         }
         private void sortingResult(string order)
         {
-            List<Producto> on = (List<Producto>)dataGridViewProducto.DataSource;
             switch (order)
             {
                 case "Nombre":
                     if (_orderType == "n")
                     {
-                        RefreshGrid(on.OrderByDescending(p => p.Nombre).ToList());
+                        RefreshGrid(_All.OrderByDescending(p => p.Nombre).ToList());
                         _orderType = "x";
                         break;
                     }
                     else
                     {
-                        RefreshGrid(on.OrderBy(p => p.Nombre).ToList());
+                        RefreshGrid(_All.OrderBy(p => p.Nombre).ToList());
                         _orderType = "n";
                         break;
                     }
                 case "Categoria":
                     if (_orderType != "c")
                     {
-                        RefreshGrid(on.OrderBy(p => p.Categoria.Nombre).ToList());
+                        RefreshGrid(_All.OrderBy(p => p.Categoria.Nombre).ToList());
                         _orderType = "c";
                         break;
                     }
                     else
                     {
-                        RefreshGrid(on.OrderByDescending(p => p.Categoria.Nombre).ToList());
+                        RefreshGrid(_All.OrderByDescending(p => p.Categoria.Nombre).ToList());
                         _orderType = "x";
                         break;
                     }
                 case "Stock":
                     if (_orderType != "s")
                     {
-                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                        RefreshGrid(_All.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
                         _orderType = "s";
                         break;
                     }
                     else
                     {
-                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
+                        RefreshGrid(_All.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum() - p.Venta.Select(v => v.Cantidad).Sum()).ToList());
                         _orderType = "x";
                         break;
                     }
                 case "Habilitado":
                     if (_orderType != "h")
                     {
-                        RefreshGrid(on.OrderBy(p => p.Habilitado).ToList());
+                        RefreshGrid(_All.OrderBy(p => p.Habilitado).ToList());
                         _orderType = "h";
                         break;
                     }
                     else
                     {
-                        RefreshGrid(on.OrderByDescending(p => p.Habilitado).ToList());
+                        RefreshGrid(_All.OrderByDescending(p => p.Habilitado).ToList());
                         _orderType = "x";
                         break;
                     }
                 case "Compras":
                     if (_orderType != "cp")
                     {
-                        RefreshGrid(on.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
+                        RefreshGrid(_All.OrderByDescending(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
                         _orderType = "cp";
                         break;
                     }
                     else
                     {
-                        RefreshGrid(on.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
+                        RefreshGrid(_All.OrderBy(p => p.Compras.Select(c => c.Cantidad).Sum()).ToList());
                         _orderType = "x";
                         break;
                     }
                 case "Ventas":
                     if (_orderType != "v")
                     {
-                        RefreshGrid(on.OrderByDescending(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
+                        RefreshGrid(_All.OrderByDescending(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
                         _orderType = "v";
                         break;
                     }
                     else
                     {
-                        RefreshGrid(on.OrderBy(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
+                        RefreshGrid(_All.OrderBy(p => p.Venta.Select(c => c.Cantidad).Sum()).ToList());
+                        _orderType = "x";
+                        break;
+                    }
+                case "Id":
+                    if (_orderType != "id")
+                    {
+                        RefreshGrid(_All.OrderByDescending(p => p.ProductoId).ToList());
+                        _orderType = "id";
+                        break;
+                    }
+                    else
+                    {
+                        RefreshGrid(_All.OrderBy(p => p.ProductoId).ToList());
                         _orderType = "x";
                         break;
                     }
@@ -903,7 +936,7 @@ namespace WinForm
 
             FormDetailsProducto form = new FormDetailsProducto(_productoSeleccionado, _productoBusiness);
             form.ShowDialog();
-            
+
             if (form.DialogResult == DialogResult.Yes)
             {
                 form.Close();
@@ -950,7 +983,10 @@ namespace WinForm
         {
             sortingResult("Ventas");
         }
-
+        private void idToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortingResult("Id");
+        }
         private void ordenarSubContex_Click(object sender, EventArgs e)
         {
             sortingResult("Habilitado");
@@ -996,9 +1032,52 @@ namespace WinForm
                             sortingResult("Ventas");
                             break;
                         }
+                    case "ColumnId":
+                        {
+                            sortingResult("Id");
+                            break;
+                        }
                 }
             }
         }
         #endregion
+
+        #region Funcionamiento Paginado
+        private void kryptonButton1_Click_1(object sender, EventArgs e)
+        {
+            paginado.PaginaActual++;
+            RefreshGrid(_All);
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            paginado.PaginaActual--;
+            RefreshGrid(_All);
+        }
+
+        private void CheckPageRelatedButtons(bool? refresh)
+        {
+            if (refresh != null)
+            {
+                rdiobtnTodos.Checked = true;
+            }
+            btnPreviousPage.Enabled = paginado.HasNextPage ? true : false;
+            btnNextPage.Enabled = paginado.HasPreviousPage ? true : false;
+            labelPages.Text = $"{paginado.PaginaActual} / {paginado.TotalPaginas}";
+            LabelPositionUI();
+        }
+
+        private void LabelPositionUI()//Metodo de UI para hacer mas dinamico el label de pagina
+        {
+            if (paginado.PaginaActual == 10 && paginado.TotalPaginas == 10)
+            {
+                labelPages.Location = new Point(885, 593);
+            }
+            else
+            {
+                labelPages.Location = new Point(891, 593);
+            }
+        }
+        #endregion 
     }
 }

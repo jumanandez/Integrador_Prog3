@@ -30,9 +30,9 @@ namespace Proyecto.Core.Business
 			_projectRepository.DeleteProducto(product);
 		}
 
-        public void ModifyProduct(Producto product)
-		{
-			_projectRepository.ModifyProduct(product);
+        public void ModifyProduct(Producto product, int categoriaId)
+        {
+			_projectRepository.ModifyProduct(product, categoriaId);
 		}
 
 
@@ -77,21 +77,31 @@ namespace Proyecto.Core.Business
 			return _projectRepository.GetAllNames();
 
 		}
-        public Paginado<Producto> GetProductosPaginados(int pagina, int itemsPorPagina)
+        public Paginado<Producto> GetProductosPaginados(int pagina, int itemsPorPagina, List<Producto>? List)
         {
 			var producto = _projectRepository.GetProductos()
                 .Skip((pagina - 1) * itemsPorPagina)
                 .Take(itemsPorPagina)
                 .ToList();
 
-            var totalProductos = _projectRepository.GetProductos().Count();
+            List<Producto> productoList = List ?? _projectRepository.GetProductos();
 
-            return new Paginado<Producto>
+            int totalProductos = productoList.Count;
+
+            List<Producto> comprasPaginadas = productoList
+                .Skip((pagina - 1) * itemsPorPagina)
+                .Take(itemsPorPagina)
+                .ToList();
+
+
+            return new Paginado<Producto>()
             {
-                Items = producto,
+                Items = comprasPaginadas,
                 PaginaActual = pagina,
                 ItemsPorPagina = itemsPorPagina,
-                TotalPaginas = (int)Math.Ceiling(totalProductos / (double)itemsPorPagina)
+                TotalPaginas = (int)Math.Ceiling(totalProductos / (double)itemsPorPagina),
+                HasPreviousPage = pagina > 1,
+                HasNextPage = pagina < (int)Math.Ceiling(totalProductos / (double)itemsPorPagina),
             };
         }
     }
