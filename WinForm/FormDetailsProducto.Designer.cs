@@ -824,7 +824,7 @@
             lblcustomcategoria.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             lblcustomcategoria.ForeColor = Color.FromArgb(110, 160, 220);
             lblcustomcategoria.ImageAlign = ContentAlignment.BottomLeft;
-            lblcustomcategoria.Location = new Point(169, 183);
+            lblcustomcategoria.Location = new Point(190, 183);
             lblcustomcategoria.Name = "lblcustomcategoria";
             lblcustomcategoria.Size = new Size(0, 31);
             lblcustomcategoria.TabIndex = 33;
@@ -836,7 +836,7 @@
             lblnumerostock.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             lblnumerostock.ForeColor = Color.FromArgb(110, 160, 220);
             lblnumerostock.ImageAlign = ContentAlignment.BottomLeft;
-            lblnumerostock.Location = new Point(128, 216);
+            lblnumerostock.Location = new Point(150, 216);
             lblnumerostock.Name = "lblnumerostock";
             lblnumerostock.Size = new Size(0, 31);
             lblnumerostock.TabIndex = 34;

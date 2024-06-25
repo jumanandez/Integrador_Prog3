@@ -188,31 +188,44 @@ namespace WebApp.Controllers
         {
             var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var venta = _ventaBusiness.GetVentaById(ventaId);
-            if (userID != venta.UsuarioId)
+
+            if (venta != null)
             {
-                var errorModel = new ErrorViewModel
+
+                if (userID != venta.UsuarioId)
                 {
-                    RequestId = "Usuario no autorizado!"
-                };
-                return View("Error", errorModel);
+                    var errorModel = new ErrorViewModel
+                    {
+                        RequestId = "Usuario no autorizado!"
+                    };
+                    return View("Error", errorModel);
+                }
+                else
+                {
+                    if (venta == null)
+                    {
+                        return NotFound();
+                    }
+
+                    var ventaModel = new VentaVM
+                    {
+                        VentaId = venta.VentaId,
+                        ProductoId = venta.ProductoId,
+                        Cantidad = venta.Cantidad,
+                        CategoriaId = venta.Producto?.CategoriaId,
+
+                    };
+
+                    return View("Create", ventaModel);
+                }
             }
             else
             {
-                if (venta == null)
+                var errorModel = new ErrorViewModel
                 {
-                    return NotFound();
-                }
-
-                var ventaModel = new VentaVM
-                {
-                    VentaId = venta.VentaId,
-                    ProductoId = venta.ProductoId,
-                    Cantidad = venta.Cantidad,
-                    CategoriaId = venta.Producto?.CategoriaId,
-
+                    RequestId = "Producto Inexistente!"
                 };
-
-                return View("Create", ventaModel);
+                return View("Error", errorModel);
             }
         }
         [HttpPost]

@@ -199,36 +199,47 @@ namespace WebApp.Controllers
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var compra = _compraBusiness.GetCompraById(compraId);
-
-            if (compra == null)
+            if (compra != null)
             {
-                return NotFound();
-            }
 
-            if (userId != compra.UsuarioId)
-            {
-                var errorModel = new ErrorViewModel
+                if (compra == null)
                 {
-                    RequestId = "Usuario no autorizado!"
+                    return NotFound();
+                }
 
-                };
-                return View("Error", errorModel);
+                if (userId != compra.UsuarioId)
+                {
+                    var errorModel = new ErrorViewModel
+                    {
+                        RequestId = "Usuario no autorizado!"
+
+                    };
+                    return View("Error", errorModel);
+                }
+                else
+                {
+
+                    var viewModel = new CompraVM
+                    {
+                        CompraId = compra.CompraId,
+                        ProductoId = compra.ProductoId,
+                        ProductoCantidad = compra.Cantidad,
+                        FechaCompra = compra.Fecha,
+                        CategoriaId = compra.Producto?.CategoriaId,
+                        Llamado = 1,
+
+                    };
+
+                    return View("Create", viewModel);
+                }
             }
             else
             {
-
-                var viewModel = new CompraVM
+                var errorModel = new ErrorViewModel
                 {
-                    CompraId = compra.CompraId,
-                    ProductoId = compra.ProductoId,
-                    ProductoCantidad = compra.Cantidad,
-                    FechaCompra = compra.Fecha,
-                    CategoriaId = compra.Producto?.CategoriaId,
-                    Llamado = 1,
-
+                    RequestId = "Producto Inexistente!"
                 };
-
-                return View("Create", viewModel);
+                return View("Error", errorModel);
             }
         }
 
