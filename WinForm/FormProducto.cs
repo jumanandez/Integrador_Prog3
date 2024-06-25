@@ -78,7 +78,7 @@ namespace WinForm
 
             categorias.Add(new Categoria { Nombre = "Todos" });
 
-            var cateBasicas = _categoriaBusiness.GetAll();
+            var cateBasicas = _categoriaBusiness.GetAll().OrderBy(c => c.Nombre);
 
             foreach (Categoria categoria in cateBasicas)
             {

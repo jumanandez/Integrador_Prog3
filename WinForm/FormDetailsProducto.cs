@@ -39,6 +39,7 @@ namespace WinForm
             //Calcula stock
             var stock = _producto.Compras.Select(c => c.Cantidad).Sum() - _producto.Venta.Select(c => c.Cantidad).Sum();
             lblnumerostock.Text = stock < 2 ? $"{stock} Unidad" : $"{stock} Unidades";
+            lblProductoid.Text = $"id: {_producto.ProductoId}";
         }
 
         #region Boton Modificar y Eliminar

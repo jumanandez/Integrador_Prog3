@@ -67,10 +67,13 @@
             lblcustomcategoria = new Label();
             lblnumerostock = new Label();
             lblPagina = new Label();
+            lblProductoid = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)datagridCompra).BeginInit();
             ((System.ComponentModel.ISupportInitialize)datagridVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picturestock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picturecategoria).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblCategoria
@@ -613,7 +616,7 @@
             labelhabilitado.BackColor = Color.FromArgb(60, 63, 65);
             labelhabilitado.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             labelhabilitado.ForeColor = SystemColors.ButtonFace;
-            labelhabilitado.Location = new Point(48, 253);
+            labelhabilitado.Location = new Point(377, 183);
             labelhabilitado.Name = "labelhabilitado";
             labelhabilitado.Size = new Size(108, 31);
             labelhabilitado.TabIndex = 14;
@@ -625,7 +628,7 @@
             switchHabilitado.Enabled = false;
             switchHabilitado.HandleOffColor = Color.FromArgb(255, 255, 255);
             switchHabilitado.HandleOnColor = Color.FromArgb(255, 255, 255);
-            switchHabilitado.Location = new Point(161, 253);
+            switchHabilitado.Location = new Point(313, 184);
             switchHabilitado.Name = "switchHabilitado";
             switchHabilitado.OffColor = Color.FromArgb(75, 75, 75);
             switchHabilitado.OnColor = Color.FromArgb(40, 40, 40);
@@ -851,12 +854,37 @@
             lblPagina.TabIndex = 37;
             lblPagina.Text = "pagina";
             // 
+            // lblProductoid
+            // 
+            lblProductoid.AutoSize = true;
+            lblProductoid.BackColor = Color.FromArgb(60, 63, 65);
+            lblProductoid.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
+            lblProductoid.ForeColor = SystemColors.ButtonFace;
+            lblProductoid.Location = new Point(84, 252);
+            lblProductoid.Name = "lblProductoid";
+            lblProductoid.Size = new Size(36, 31);
+            lblProductoid.TabIndex = 40;
+            lblProductoid.Text = "Id:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(60, 63, 65);
+            pictureBox1.Image = Properties.Resources.Medium_stock;
+            pictureBox1.Location = new Point(42, 252);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 30);
+            pictureBox1.TabIndex = 43;
+            pictureBox1.TabStop = false;
+            // 
             // FormDetailsProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(26, 26, 26);
             ClientSize = new Size(491, 523);
+            Controls.Add(pictureBox1);
+            Controls.Add(lblNombre);
+            Controls.Add(lblProductoid);
             Controls.Add(lblPagina);
             Controls.Add(lblnumerostock);
             Controls.Add(lblcustomcategoria);
@@ -877,7 +905,6 @@
             Controls.Add(datagridCompra);
             Controls.Add(lblCompra);
             Controls.Add(lblCategoria);
-            Controls.Add(lblNombre);
             Controls.Add(lblbackground);
             ForeColor = SystemColors.ButtonFace;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -893,6 +920,7 @@
             ((System.ComponentModel.ISupportInitialize)datagridVentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)picturestock).EndInit();
             ((System.ComponentModel.ISupportInitialize)picturecategoria).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -925,5 +953,7 @@
         private Label lblcustomcategoria;
         private Label lblnumerostock;
         private Label lblPagina;
+        private Label lblProductoid;
+        private PictureBox pictureBox1;
     }
 }
