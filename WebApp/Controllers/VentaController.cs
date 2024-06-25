@@ -154,6 +154,7 @@ namespace WebApp.Controllers
             {
                 ventaModel.ProductoLista = _productoBusiness.GetAllWeb()
                     .Where(p => p.CategoriaId == ventaModel.CategoriaSeleccionada)
+                    .OrderBy(p => p.Nombre)
                     .ToList();
             }
 
