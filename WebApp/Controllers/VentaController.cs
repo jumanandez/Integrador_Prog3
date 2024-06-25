@@ -155,9 +155,12 @@ namespace WebApp.Controllers
                 ventaModel.ProductoLista = _productoBusiness.GetAllWeb()
                     .Where(p => p.CategoriaId == ventaModel.CategoriaSeleccionada)
                     .ToList();
-            }            
+            }
+
             if (ventaModel._Producto != null && ventaModel._Producto.ProductoId != 0 && ModelState.IsValid)
             {
+                ventaModel.stockProducto = _productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId);
+
                 if (_productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId) < ventaModel.Cantidad)
                 {
                     ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
@@ -167,7 +170,7 @@ namespace WebApp.Controllers
                 {
                     ModelState.AddModelError("Cantidad", "Debe ingresar la cantidad de productos");
                 }
-                else if(ModelState.IsValid && ventaModel.Cantidad != null)
+                else if (ModelState.IsValid && ventaModel.Cantidad != null)
                 {
                     var nuevaVenta = new Venta
                     {
@@ -180,7 +183,10 @@ namespace WebApp.Controllers
                     _ventaBusiness.AddVenta(nuevaVenta);
                     return RedirectToAction("Index", new { refresh = true });
                 }
+
+
             }
+
             ventaModel.CategoriaLista = _categoriaBusiness.GetAll();
             return View(ventaModel);
         }
@@ -207,13 +213,15 @@ namespace WebApp.Controllers
                         return NotFound();
                     }
 
+                    var stockProducto = _productoBusiness.GetStock(userID, venta.ProductoId);
+
                     var ventaModel = new VentaVM
                     {
                         VentaId = venta.VentaId,
                         ProductoId = venta.ProductoId,
                         Cantidad = venta.Cantidad,
                         CategoriaId = venta.Producto?.CategoriaId,
-
+                        stockProducto = stockProducto
                     };
 
                     return View("Create", ventaModel);
