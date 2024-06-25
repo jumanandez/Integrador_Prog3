@@ -46,7 +46,9 @@ namespace WebApp.Controllers
 
 			var viewModel = new CompraVM
 			{
-				Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, SortOrSearch(search, selectOption, userId, refresh, sortOrder, searchString, currentFilter, pagina, itemsPorPagina))
+
+                VentaLista = _ventaBusiness.GetVentas(userId),
+                Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, SortOrSearch(search, selectOption, userId, refresh, sortOrder, searchString, currentFilter, pagina, itemsPorPagina))
 			};
 
             return View(viewModel);
@@ -135,8 +137,8 @@ namespace WebApp.Controllers
             var viewModel = new CompraVM
             {
                 CompraId = 0,
-                CategoriaLista = _categoriaBusiness.GetAll(),
-                CompraLista = _compraBusiness.GetCompras(userId)
+                CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList(),
+                CompraLista = _compraBusiness.GetCompras(userId),
             };
 
 			return View(viewModel);
@@ -146,7 +148,7 @@ namespace WebApp.Controllers
 		public JsonResult GetProductosByCategoria(int categoriaId)
 		{
 			var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
-			return Json(productos);
+			return Json(productos.OrderBy(c=>c.Nombre).ToList());
 		}
 
         [HttpPost]
@@ -183,6 +185,7 @@ namespace WebApp.Controllers
                     UsuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
                 };
 
+
 				_compraBusiness.AddCompra(compra);
 
 				return RedirectToAction("Index", new { refresh = true });
@@ -191,6 +194,8 @@ namespace WebApp.Controllers
 
             compraModel.CategoriaLista = _categoriaBusiness.GetAll();
             compraModel.CompraLista = _compraBusiness.GetCompras(userId);
+            compraModel.VentaLista = _ventaBusiness.GetVentas(userId);
+
             return View(compraModel);
         }
 
@@ -249,7 +254,7 @@ namespace WebApp.Controllers
                 compraModel.Llamado = 1;
                 ModelState.AddModelError("ProductoCantidad", "Debe comprar al menos 1 item.");
             }
-            if (IsTooLow(UsuarioId, (int)compraModel.ProductoCantidad, compra.ProductoId))
+            if (IsTooLow(UsuarioId, (int)compraModel.ProductoCantidad, compra.ProductoId, compra.Cantidad))
             {
                 compraModel.Llamado = 1;
                 ModelState.AddModelError("ProductoCantidad", "Las compras no pueden ser menores a las ventas!");
@@ -353,41 +358,18 @@ namespace WebApp.Controllers
         [HttpPost]
 		public IActionResult Delete(int compraId)
 		{
-            //_compraBusiness.DeleteCompra(compraId);
             return RedirectToAction("Index");
         }
 
-		//[HttpGet]
-		//public IActionResult Filter(int selectOption, string search, int? pagina, int itemsPorPagina = 8)
-		//{
-		//    int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-		//    if (_compraService.CurrentFiltered == null || _compraService.CurrentFiltered.Count == 0)
-		//    {
-		//        _currentFiltered = _compraBusiness.GetCompras(userId);
-		//        _compraService.CurrentFiltered = _currentFiltered;
-		//    }
-		//    else
-		//    {
-		//        _currentFiltered = _compraService.CurrentFiltered;
-		//    }
-
-		//    //var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId, _currentFiltered); ;
-
-		//    var oCompraVM = new CompraVM()
-		//        {
-		//            Paginado = _compraBusiness.GetComprasPaginadas(pagina ?? 1, itemsPorPagina, userId, Filter(userId, selectOption, search, pagina, _currentFiltered, itemsPorPagina))
-		//        };
-		//        return View("Index", oCompraVM);
-		//}
 		public List<Compra> Filter(int userId, int selectOption, string search, List<Compra> comprasSinfiltro)
 		{
 			var comprasFiltradas = _compraBusiness.OptionSelectFilter(search, selectOption, userId, comprasSinfiltro);
 
 			return comprasFiltradas.ToList();
 		}
-        public bool IsTooLow(int UserId, int Cantidad, int productoId)
+        public bool IsTooLow(int UserId, int Cantidad, int productoId, int cantidadanterior)
         {
-            return ((_productoBusiness.GetStock(UserId, productoId) - Cantidad) < 0);
+            return (_productoBusiness.GetStock(UserId, productoId) + Cantidad) - (cantidadanterior) < 0;
         }
 	}
 }

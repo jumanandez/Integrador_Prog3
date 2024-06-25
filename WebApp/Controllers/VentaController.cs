@@ -19,6 +19,7 @@ namespace WebApp.Controllers
     {
         private readonly ILogger<VentaController> _logger;
         private readonly IVentaBusiness _ventaBusiness;
+        private readonly ICompraBusiness _compraBusiness;
         private readonly IProductoBusiness _productoBusiness;
         private readonly ICategoriaBusiness _categoriaBusiness;
         private readonly IUsuarioBusiness _usuarioBusiness;
@@ -28,6 +29,7 @@ namespace WebApp.Controllers
 
 
         public VentaController(IVentaBusiness ventaBusiness,
+                               ICompraBusiness compraBusiness,
                                IProductoBusiness productoBusiness,
                                ICategoriaBusiness categoriaBusiness,
                                IUsuarioBusiness usuarioBusiness,
@@ -36,6 +38,7 @@ namespace WebApp.Controllers
         {
             _logger = logger;
             _ventaBusiness = ventaBusiness;
+            _compraBusiness = compraBusiness;
             _productoBusiness = productoBusiness;
             _categoriaBusiness = categoriaBusiness;
             _usuarioBusiness = usuarioBusiness;
@@ -52,6 +55,7 @@ namespace WebApp.Controllers
 
             var ViewModel = new VentaVM()
             {
+                CompraLista = _compraBusiness.GetCompras(userId),
                 Paginado = _ventaBusiness.GetVentasPaginadas(pagina ?? 1, itemsPorPagina, userId, SortOrSearch(search, selectOption, userId, refresh, sortOrder, searchString, currentFilter, pagina, itemsPorPagina))
             };
 

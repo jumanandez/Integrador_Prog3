@@ -144,7 +144,12 @@
                             <td>@c.Fecha</td>
                         }
                         <td>@c.Cantidad</td>
-                        <td>@(c.Producto?.Compras.Select(c => c.Cantidad).Sum() - c.Producto?.Venta.Select(c => c.Cantidad).Sum())</td>
+                        <td>
+                            @(c.Producto?.Compras.Select(c => c.Cantidad).Sum() - Model.VentaLista
+                                .Where(p => p.ProductoId == c.ProductoId && p.UsuarioId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+                                .Select(p => p.Cantidad)
+                                .Sum())
+                    </td>
                         @if (shouldShowFecha)
                         {
                             <td>
