@@ -4,6 +4,9 @@ using System.Data;
 using Krypton.Toolkit;
 using WinForm.CustomMessageBox;
 using System.Linq;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace WinForm
 {
@@ -21,7 +24,7 @@ namespace WinForm
             this.Text = "     Modificar Elemento";
             InitializeComponent();
             _new = false; //llamado por boton de modificar
-            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList();
+            cmbBoxCategorias.DataSource = _categoríaBusiness.GetAll().OrderBy(c => c.Nombre).ToList();
             cmbBoxCategorias.DisplayMember = "Nombre";
             int index = FindIndexByName(productin.Categoria.Nombre);
             cmbBoxCategorias.SelectedIndex = index;
@@ -74,7 +77,7 @@ namespace WinForm
                 {
                     if (produmf.Nombre.Trim() != "") //checkea que el textbox no este vacio
                     {
-                        if (nms.Any(s => s.Replace(" ", "").Equals(produmf.Nombre.Replace(" ", ""), StringComparison.OrdinalIgnoreCase)))//ignora los espacios en blanco
+                        if (nms.Any(s => CompareStrings(s).Equals(CompareStrings(produmf.Nombre), StringComparison.OrdinalIgnoreCase)))//ignora los espacios en blanco
                         {
                             RJMessageBox.Show("Este producto ya existe!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             this.Close();
@@ -109,6 +112,37 @@ namespace WinForm
             {
                 RJMessageBox.Show("Error ningun producto seleccionado!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public static string CompareStrings(string str1)
+        {
+            string normalizedStr1 = RemoveAccents(str1);
+
+            normalizedStr1 = RemoveWhitespace(normalizedStr1);
+
+            return normalizedStr1;
+        }
+
+        private static string RemoveAccents(string input)
+        {
+            var normalizedString = input.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+        private static string RemoveWhitespace(string input)
+        {
+            return Regex.Replace(input, @"\s+", "");
         }
     }
 }
