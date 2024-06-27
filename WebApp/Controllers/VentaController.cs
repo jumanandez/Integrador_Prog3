@@ -153,6 +153,12 @@ namespace WebApp.Controllers
         public IActionResult Create(VentaVM ventaModel)
         {
             var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            if( ventaModel.ProductoId == null)
+            {
+                ModelState.AddModelError("ProductoId", "Seleccione un producto!.");
+                ventaModel.CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c => c.Nombre).ToList();
+                return View(ventaModel);
+            }
 
             if (ventaModel.CategoriaSeleccionada != 0)
             {
