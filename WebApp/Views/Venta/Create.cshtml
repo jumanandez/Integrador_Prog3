@@ -3,6 +3,14 @@
     ViewData["Title"] = "Registrar Venta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+@{
+    List<CompraService> callLista()
+    {
+        return new List<CompraService>();
+    }
+}
 <div class="row user-select-none" style="margin-top:30px">
     <h1>Registrar Venta</h1>
     <hr>
@@ -12,57 +20,113 @@
     <div class="col-sm-12 mt-3">
         <form asp-action="@(Model.VentaId == 0 ? "Create" : "Edit")" asp-controller="Venta" method="post">
             <input type="hidden" asp-for="VentaId" />
-            <input type="hidden" asp-for="ProductoId" />
             @if (Model.VentaId == 0)
             {
                 <div>
-                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="CategoriaSeleccionada"><i class="fa-solid fa-shapes"></i><span style="padding-left: 8px;">Categoría:</span></label>
+                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span>
+                    <label for="CategoriaSeleccionada"><i class="fa-solid fa-shapes"></i><span style="padding-left: 8px;">Categoría:</span></label>
                 </div>
                 <div>
-                    <select class="form-control m-2 rounded-5" asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))" onchange="this.form.submit()">
-                        <option value="">Seleccione una categoría</option>
+                    <select id="CategoriaSeleccionada" class="form-control m-2 rounded-5" asp-for="CategoriaSeleccionada" asp-items="@(new SelectList(Model.CategoriaLista, "CategoriaId", "Nombre"))">
+                        <option disabled selected>Seleccione una categoría</option>
                     </select>
                 </div>
-                @if (Model.ProductoLista != null && Model.ProductoLista.Any())
-                {
-                    <div>
-                        <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Producto:</span></label>
-                    </div>
-                    <div>
-                        <select class="form-control m-2 rounded-5" asp-for="_Producto.ProductoId" asp-items="@(new SelectList(Model.ProductoLista, "ProductoId", "Nombre"))" onchange="this.form.submit()">
-                            <option value="">Seleccione un producto</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="px-2 mt-3 mb-3 mx-md-4" for="_Producto.ProductoId"><i class="fa-solid fa-dolly"></i><span style="padding-top:15px; padding-left: 8px;">Stock actual del producto: @Model.stockProducto</span></label>
-                    </div>
-                    @if (Model.stockProducto.HasValue)
-                    {
-                        <div>
-                            <label class="mt-2" asp-for="@Model.VentaLista."><span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">Cantidad</span></label>
-                            <input class="form-control form-control-sm mx-1 m-1 rounded-5" asp-for="Cantidad" type="number" min="1" max="1000000" />
-                            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="mt-4 mx-2">
-                            <button type="submit" class="btn btn-principe"><i class="fa-solid fa-receipt"></i><span style="padding-left: 10px;">Registrar Venta</span></button>
-                        </div>
-                    }
-                }
-            }
-            @if (Model.VentaId != 0)
-            {
                 <div>
-                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Stock actual del producto: @Model.stockProducto</span></label>
+                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span>
+                    <label for="ProductoSeleccionado"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Producto:</span></label>
                 </div>
                 <div>
-                    <label class="mt-2 mx-4 form-label" asp-for="@Model.VentaLista."><i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">Cantidad</span></label>
+                    <select id="ProductoSeleccionado" asp-for="ProductoId" class="form-control m-2 rounded-5">
+                        <option disabled selected>Seleccione un producto</option>
+                    </select>
+                    <span asp-validation-for="ProductoId" class="text-danger"></span>
+                </div>
+            }
+            <div>
+                    <label class="px-2 mt-3 mb-3 mx-md-4" for="stockProducto"><i class="fa-solid fa-dolly"></i><span style="padding-top:15px; padding-left: 8px;">Stock actual del producto: <span id="stockProducto"></span></span></label>
+                </div>
+                <div>
+                    <label class="mt-2">
+                        <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span>
+                        <i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">Cantidad</span>
+                    </label>
                     <input class="form-control form-control-sm mx-1 m-1 rounded-5" asp-for="Cantidad" type="number" min="1" max="1000000" />
                     @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
                 </div>
                 <div class="mt-4 mx-2">
                     <button type="submit" class="btn btn-principe"><i class="fa-solid fa-receipt"></i><span style="padding-left: 10px;">Registrar Venta</span></button>
                 </div>
-            }
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#CategoriaSeleccionada').change(function () {
+                var categoriaId = $(this).val();
+                if (categoriaId) {
+                    $.ajax({
+                        url: '@Url.Action("GetProductosByCategoria", "Venta")',
+                        type: 'GET',
+                        data: { categoriaId: categoriaId },
+                        success: function (data) {
+                            $('#ProductoSeleccionado').empty();
+                            $('#ProductoSeleccionado').append('<option disabled selected>Seleccione un producto</option>');
+                            $.each(data, function (i, producto) {
+                                $('#ProductoSeleccionado').append('<option value="' + producto.productoId + '">' + producto.nombre + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#ProductoSeleccionado').empty();
+                    $('#ProductoSeleccionado').append('<option disabled selected>Seleccione un producto</option>');
+                }
+            });
+            var initialCategoriaId = $('#CategoriaSeleccionada').val();
+            var productosSelect = $('#ProductoSeleccionado');
+            var productoId = '@Model.ProductoId';
+            if (initialCategoriaId) {
+                $.ajax({
+                    url: '@Url.Action("GetProductosByCategoria", "Venta")',
+                    data: { categoriaId: initialCategoriaId },
+                    success: function (data) {
+                        productosSelect.empty();
+                        productosSelect.append('<option disabled selected>Seleccione un producto</option>');
+                        $.each(data, function (index, producto) {
+                            productosSelect.append('<option value="' + producto.productoId + '">' + producto.nombre + '</option>');
+                        });
+                        var selectedProductoId = '@Model.ProductoId';
+                        if (selectedProductoId != null) {
+                            productosSelect.val(selectedProductoId);
+                            $.ajax({
+                                url: '@Url.Action("GetStockByProducto", "Venta")',
+                                type: 'GET',
+                                data: { productoId: productoId },
+                                success: function (data) {
+                                    $('#stockProducto').text(data);
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+            $('#ProductoSeleccionado').change(function () {
+                var productoId = $(this).val();
+                if (productoId) {
+                    $.ajax({
+                        url: '@Url.Action("GetStockByProducto", "Venta")',
+                        type: 'GET',
+                        data: { productoId: productoId },
+                        success: function (data) {
+                            $('#stockProducto').text(data);
+                        }
+                    });
+                } else {
+                    $('#stockProducto').text('');
+                }
+            });
+        });
+    </script>
+}

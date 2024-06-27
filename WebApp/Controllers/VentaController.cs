@@ -143,7 +143,7 @@ namespace WebApp.Controllers
             var ventaModel = new VentaVM
             {
                 VentaId = 0,
-                CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList(),
+                CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c => c.Nombre).ToList(),
                 ProductoLista = new List<Producto>()
             };
             ModelState.AddModelError("CategoriaId", "(*)Campo obligatorio.");
@@ -161,12 +161,10 @@ namespace WebApp.Controllers
                     .OrderBy(p => p.Nombre)
                     .ToList();
             }
-
-            if (ventaModel._Producto != null && ventaModel._Producto.ProductoId != 0 && ModelState.IsValid)
+            if (ventaModel.ProductoId != null || ventaModel.Cantidad != null)
             {
-                ventaModel.stockProducto = _productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId);
 
-                if (_productoBusiness.GetStock(userID, ventaModel._Producto.ProductoId) < ventaModel.Cantidad)
+                if (_productoBusiness.GetStock(userID, (int)ventaModel.ProductoId) < ventaModel.Cantidad)
                 {
                     ModelState.AddModelError("Cantidad", "La cantidad de venta no puede superar el total disponible en stock.");
                 }
@@ -175,12 +173,12 @@ namespace WebApp.Controllers
                 {
                     ModelState.AddModelError("Cantidad", "Debe ingresar la cantidad de productos");
                 }
-                else if (ModelState.IsValid && ventaModel.Cantidad != null)
+                else if (ModelState.IsValid && ventaModel.Cantidad > 0)
                 {
                     var nuevaVenta = new Venta
                     {
                         Fecha = DateTime.Now,
-                        ProductoId = ventaModel._Producto.ProductoId,
+                        ProductoId = (int)ventaModel.ProductoId,
                         Cantidad = (int)ventaModel.Cantidad,
                         UsuarioId = userID
                     };
@@ -189,11 +187,13 @@ namespace WebApp.Controllers
                     return RedirectToAction("Index", new { refresh = true });
                 }
 
-
+                ventaModel.CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c => c.Nombre).ToList();
+                return View(ventaModel);
             }
-
-            ventaModel.CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c=> c.Nombre).ToList();
-            return View(ventaModel);
+            else {
+                ventaModel.CategoriaLista = _categoriaBusiness.GetAll().OrderBy(c => c.Nombre).ToList();
+                return View(ventaModel);
+            }
         }
         public IActionResult Edit(int ventaId)
         {
@@ -303,6 +303,20 @@ namespace WebApp.Controllers
             var ventasFiltradas = _ventaBusiness.OptionSelectFilter(search, userId, ventasSinfiltro);
 
             return ventasFiltradas.ToList();
+        }
+
+        public JsonResult GetProductosByCategoria(int categoriaId)
+        {
+            var productos = _productoBusiness.GetProductosByCategoria(categoriaId);
+            return Json(productos.OrderBy(c => c.Nombre).ToList());
+        }
+
+        public JsonResult GetStockByProducto(int productoId)
+        {
+            var userID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var stock = _productoBusiness.GetStock(userID, productoId);
+
+            return Json(stock);
         }
     }
 }
