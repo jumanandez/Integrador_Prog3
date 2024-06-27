@@ -41,8 +41,8 @@
                     </select>
                     <span asp-validation-for="ProductoId" class="text-danger"></span>
                 </div>
-            }
-            <div>
+
+                <div>
                     <label class="px-2 mt-3 mb-3 mx-md-4" for="stockProducto"><i class="fa-solid fa-dolly"></i><span style="padding-top:15px; padding-left: 8px;">Stock actual del producto: <span id="stockProducto"></span></span></label>
                 </div>
                 <div>
@@ -56,6 +56,21 @@
                 <div class="mt-4 mx-2">
                     <button type="submit" class="btn btn-principe"><i class="fa-solid fa-receipt"></i><span style="padding-left: 10px;">Registrar Venta</span></button>
                 </div>
+            }
+            @if (Model.VentaId != 0)
+            {
+                <div>
+                    <span class="mx-2 align-text-top text-danger-emphasis campo-obligatorio" style="font-size:small;">(*)</span><label for="_Producto.ProductoId"><i class="fa-solid fa-box-open"></i><span style="padding-top:15px; padding-left: 8px;">Stock actual del producto: @Model.stockProducto</span></label>
+                </div>
+                <div>
+                    <label class="mt-2 mx-4 form-label" asp-for="@Model.VentaLista."><i class="fa-solid fa-boxes-stacked"></i><span style="padding-left: 10px;">Cantidad</span></label>
+                    <input class="form-control form-control-sm mx-1 m-1 rounded-5" asp-for="Cantidad" type="number" min="1" max="1000000" />
+                    @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+                </div>
+                <div class="mt-4 mx-2">
+                    <button type="submit" class="btn btn-principe"><i class="fa-solid fa-receipt"></i><span style="padding-left: 10px;">Registrar Venta</span></button>
+                </div>
+            }
         </form>
     </div>
 </div>
